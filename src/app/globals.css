@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@300;400;500;600;700;800;900&family=Tiro+Kannada:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-kannada: 'Noto Sans Kannada', sans-serif;
+  --font-display: 'Tiro Kannada', serif;
+}
+
+body {
+  font-family: var(--font-kannada);
+  background-color: #0f0f11;
+  color: #f3f4f6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Cinema Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #16171b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2b33;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
+}
+
+/* Shimmer animation for badges and highlights */
+.glow-red {
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.text-shadow-film {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
