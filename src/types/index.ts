@@ -174,3 +174,4 @@ export interface AdSpot {
   isActive: boolean;
   altText: string;
 }
+

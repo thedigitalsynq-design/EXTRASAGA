@@ -62,6 +62,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hubballi&family=Noto+Sans+Kannada:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-[#0F0F11] text-gray-100 font-kannada antialiased selection:bg-brand-red selection:text-white">
         <Header />

@@ -115,3 +115,4 @@ export default function VideoSection({ videos }: VideoSectionProps) {
     </section>
   );
 }
+

@@ -49,3 +49,4 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
     </div>
   );
 }
+

@@ -22,8 +22,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        kannada: ["var(--font-kannada)", "'Noto Sans Kannada'", "sans-serif"],
-        display: ["var(--font-display)", "'Tiro Kannada'", "serif"],
+        kannada: ["var(--font-kannada)", "'Hubballi'", "'Noto Sans Kannada'", "sans-serif"],
+        display: ["var(--font-display)", "'Hubballi'", "sans-serif"],
       },
       animation: {
         ticker: "ticker 25s linear infinite",

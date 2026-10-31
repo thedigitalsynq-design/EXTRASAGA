@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@300;400;500;600;700;800;900&family=Tiro+Kannada:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Noto+Sans+Kannada:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-kannada: 'Noto Sans Kannada', sans-serif;
-  --font-display: 'Tiro Kannada', serif;
+  --font-kannada: 'Hubballi', 'Noto Sans Kannada', sans-serif;
+  --font-display: 'Hubballi', 'Noto Sans Kannada', sans-serif;
 }
 
 body {
@@ -15,6 +15,28 @@ body {
   color: #f3f4f6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hubballi Bold & Extra Bold Formats */
+.font-bold,
+b,
+strong {
+  font-family: var(--font-kannada);
+  font-weight: 700;
+  -webkit-text-stroke: 0.35px currentColor;
+}
+
+.font-extrabold {
+  font-family: var(--font-kannada);
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px currentColor;
+}
+
+.font-black {
+  font-family: var(--font-kannada);
+  font-weight: 900;
+  -webkit-text-stroke: 0.75px currentColor;
 }
 
 /* Custom Cinema Scrollbar */

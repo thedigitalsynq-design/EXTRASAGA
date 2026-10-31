@@ -103,3 +103,4 @@ export default function OttSection({ releases }: OttSectionProps) {
     </section>
   );
 }
+

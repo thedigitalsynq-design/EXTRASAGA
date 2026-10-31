@@ -135,3 +135,4 @@ export default function ArticleCard({ article, variant = "grid" }: ArticleCardPr
     </article>
   );
 }
+

@@ -158,3 +158,4 @@ export default function PhotoGallerySection({
     </section>
   );
 }
+

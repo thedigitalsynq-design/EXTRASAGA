@@ -355,3 +355,4 @@ export const DataService = {
     return memoryAds.find((a) => a.placement === placement && a.isActive) || null;
   },
 };
+

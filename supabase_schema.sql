@@ -202,3 +202,4 @@ CREATE POLICY "Public can post comments" ON public.comments FOR INSERT WITH CHEC
 INSERT INTO storage.buckets (id, name, public) 
 VALUES ('sini-media', 'sini-media', true)
 ON CONFLICT (id) DO NOTHING;
+
