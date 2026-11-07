@@ -17,6 +17,7 @@ import {
   CheckCircle2,
   AlertCircle,
   Clapperboard,
+  Sparkles,
 } from "lucide-react";
 import { DataService } from "@/lib/dataService";
 import { formatReleaseDateIST } from "@/lib/cinemaDateUtils";
@@ -31,15 +32,15 @@ interface MoviePageProps {
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
   const movie = await DataService.getMovieBySlug(params.slug);
   if (!movie) {
-    return { title: "Movie Not Found | EXTRASAGA" };
+    return { title: "Movie Not Found | CINIJAATRE" };
   }
 
   const siteUrl = getSiteUrl();
   const canonicalUrl = `${siteUrl}/movies/${movie.slug}`;
 
   return {
-    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Full Synopsis | EXTRASAGA`,
-    description: `${movie.title} (${movie.titleEn}) theatrical release details. Director: ${movie.director}. Cast: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. Release date: ${movie.theatricalReleaseDate}.`,
+    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Synopsis | CINIJAATRE`,
+    description: `${movie.title} (${movie.titleEn}) theatrical release dossier. Director: ${movie.director}. Cast: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. Release date: ${movie.theatricalReleaseDate}.`,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -138,7 +139,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-void text-popcorn pb-16 font-sans">
+    <main className="min-h-screen bg-paper text-ink pb-20 font-sans">
       {/* Schema.org Injections */}
       <script
         type="application/ld+json"
@@ -149,154 +150,129 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
       />
 
-      {/* Hero Header with Backdrop */}
-      <div className="projector-beam relative w-full bg-hall border-b border-glow-line overflow-hidden">
-        {movie.bannerImage && (
-          <div className="absolute inset-0 opacity-15 filter blur-xl scale-110 pointer-events-none">
-            <Image
-              src={movie.bannerImage}
-              alt=""
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-void via-void/85 to-transparent pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 relative z-10">
+      {/* Broadsheet Hero Dossier Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 sm:py-12 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
           {/* Breadcrumb Navigation */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <nav className="flex items-center gap-2 text-xs text-popcorn-dim" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-popcorn transition-colors font-medium">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5 text-popcorn-muted" />
-              <Link href="/movies" className="hover:text-popcorn transition-colors font-medium">Now Showing</Link>
-              <ChevronRight className="w-3.5 h-3.5 text-popcorn-muted" />
-              <span className="text-popcorn font-bold truncate max-w-xs">{movie.titleEn}</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-ink/20">
+            <nav className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink-muted uppercase" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-poster-red transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-ink-muted" />
+              <Link href="/movies" className="hover:text-poster-red transition-colors">Now Showing</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-ink-muted" />
+              <span className="text-ink font-black truncate max-w-xs">{movie.titleEn}</span>
             </nav>
 
-            {/* Anticipation meta chip */}
-            <div className="flex items-center gap-3 self-start sm:self-auto">
-              <div className="flex -space-x-2 overflow-hidden">
-                <span className="inline-block h-6 w-6 rounded-full ring-2 ring-glow-line bg-marquee-deep text-[10px] font-bold text-void flex items-center justify-center">★</span>
-                <span className="inline-block h-6 w-6 rounded-full ring-2 ring-glow-line bg-signal-deep text-[10px] font-bold text-popcorn flex items-center justify-center">🎬</span>
-                <span className="inline-block h-6 w-6 rounded-full ring-2 ring-glow-line bg-ultra-deep text-[10px] font-bold text-popcorn flex items-center justify-center">🍿</span>
-              </div>
-              <div className="text-left font-sans">
-                <span className="text-[11px] font-bold text-popcorn block leading-none">12,500+ Verified Cinephile Anticipations</span>
-                <span className="text-[9px] text-marquee-soft font-bold tracking-wider">Critical Buzz Locked In</span>
-              </div>
+            <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1 border border-ink shadow-sticker">
+              <Sparkles className="w-3.5 h-3.5 text-poster-red" />
+              <span>Verified Release Dossier</span>
             </div>
           </div>
 
-          {/* Hero Content Grid (Asymmetrical Framing) */}
-          <div className="relative rounded-[32px] bg-revealed border border-glow-line p-6 sm:p-10 overflow-hidden">
-            {/* Asymmetrical beam backplate */}
-            <div className="absolute -top-10 -right-10 w-96 h-96 rounded-full bg-gradient-to-br from-signal/10 via-ultra/10 to-transparent blur-2xl pointer-events-none" />
-
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-              {/* Poster Column - Breaks bounds with lift */}
-              <div className="md:col-span-4 lg:col-span-3">
-                <div className="relative aspect-[2/3] rounded-3xl overflow-hidden shadow-2xl border border-glow-line-strong group">
-                  <Image
-                    src={movie.posterImage}
-                    alt={movie.titleEn}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 300px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
-                    <span
-                      className={`text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md backdrop-blur-md font-mono-tabular uppercase tracking-wide border ${
-                        diffDays === 0
-                          ? "bg-signal-deep text-popcorn border-signal animate-pulse"
-                          : diffDays > 0
-                          ? "bg-marquee-deep text-void border-marquee"
-                          : "bg-ultra-deep text-popcorn border-ultra"
-                      }`}
-                    >
-                      {relativeBadge}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Micro Floating Spec Pill */}
-                <div className="mt-4 p-3 rounded-2xl bg-hall border border-glow-line shadow-sm flex items-center justify-between gap-2">
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-mono-tabular uppercase text-popcorn-muted block font-bold">RELEASE SPEC</span>
-                    <span className="text-xs font-bold text-popcorn truncate block">{movie.industry.toUpperCase()} THEATRICAL</span>
-                  </div>
-                  <div className="w-6 h-6 rounded-full bg-signal-deep text-popcorn text-[10px] font-bold flex items-center justify-center shrink-0">
-                    7
-                  </div>
+          {/* Dossier Content Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            {/* Poster Column */}
+            <div className="md:col-span-4 lg:col-span-3">
+              <div className="relative aspect-[2/3] bg-band border-2 border-ink shadow-press overflow-hidden group">
+                <Image
+                  src={movie.posterImage}
+                  alt={movie.titleEn}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3">
+                  <span
+                    className={`text-[10px] font-mono-tabular font-black px-2.5 py-1 border-2 border-ink shadow-sticker uppercase tracking-wide ${
+                      diffDays === 0
+                        ? "bg-[#4ADE80] text-ink animate-pulse"
+                        : diffDays > 0
+                        ? "bg-poster-gold text-ink"
+                        : "bg-paper text-ink"
+                    }`}
+                  >
+                    {relativeBadge}
+                  </span>
                 </div>
               </div>
 
-              {/* Movie Key Specs Column */}
-              <div className="md:col-span-8 lg:col-span-9 space-y-4">
+              {/* Release Spec Plate */}
+              <div className="mt-4 p-3 bg-paper border-2 border-ink shadow-sticker flex items-center justify-between gap-2">
+                <div>
+                  <span className="text-[10px] font-mono-tabular uppercase text-ink-muted block font-black">RELEASE SPEC</span>
+                  <span className="text-xs font-black text-ink uppercase">{movie.industry} THEATRICAL</span>
+                </div>
+                <span className="px-2 py-0.5 bg-band text-ink font-mono-tabular text-xs font-black border border-ink">
+                  70mm
+                </span>
+              </div>
+            </div>
+
+            {/* Movie Key Specs Column */}
+            <div className="md:col-span-8 lg:col-span-9 space-y-4">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-signal/10 text-signal-soft border border-signal/25 shadow-2xs">
+                <span className="px-3 py-1 bg-band text-ink font-mono-tabular font-black text-xs uppercase tracking-wider border border-ink shadow-sticker">
                   {movie.industry.toUpperCase()}
                 </span>
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-revealed text-popcorn-dim border border-glow-line shadow-2xs">
+                <span className="px-3 py-1 bg-paper text-ink font-mono-tabular font-bold text-xs uppercase border border-ink shadow-sticker">
                   {movie.language.toUpperCase()}
                 </span>
                 {movie.censorRating && (
-                  <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-revealed text-popcorn-dim border border-glow-line">
-                    {movie.censorRating}
+                  <span className="px-2.5 py-1 bg-paper text-ink font-mono-tabular text-xs font-black border border-ink">
+                    CENSOR: {movie.censorRating}
                   </span>
                 )}
                 {movie.runtimeFormatted && (
-                  <span className="text-xs text-popcorn-dim flex items-center gap-1 font-sans">
-                    <Clock className="w-3.5 h-3.5" />
+                  <span className="text-xs font-mono-tabular font-bold text-ink-muted flex items-center gap-1.5 ml-2">
+                    <Clock className="w-3.5 h-3.5 text-poster-red" />
                     <span>{movie.runtimeFormatted}</span>
                   </span>
                 )}
               </div>
 
               <div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-ink tracking-tight uppercase">
                   {movie.title}
                 </h1>
-                <p className="text-lg sm:text-xl text-signal-soft font-medium mt-1">
+                <p className="text-xl sm:text-2xl text-poster-red font-black uppercase mt-1">
                   {movie.titleEn}
                 </p>
               </div>
 
               {/* Release Date Banner */}
-              <div className="p-4 rounded-2xl bg-marquee/10 border border-marquee/25 flex flex-wrap items-center justify-between gap-4 max-w-xl shadow-2xs">
+              <div className="p-4 bg-paper border-2 border-ink shadow-press flex flex-wrap items-center justify-between gap-4 max-w-xl">
                 <div>
-                  <span className="text-[11px] text-marquee-soft uppercase font-bold tracking-wider block">
-                    Theatrical Release Date
+                  <span className="text-[10px] text-ink-muted uppercase font-black tracking-wider block font-mono-tabular">
+                    Theatrical Release Date (IST)
                   </span>
-                  <div className="text-xl font-black font-mono-tabular text-popcorn flex items-center gap-2 mt-0.5">
-                    <Calendar className="w-5 h-5 text-marquee-soft" />
+                  <div className="text-2xl font-black font-mono-tabular text-ink flex items-center gap-2 mt-0.5">
+                    <Calendar className="w-5 h-5 text-poster-red" />
                     <span>{formatted}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div>
                   {isConfirmed ? (
-                    <span className="px-3 py-1 rounded-full bg-ultra/10 text-ultra-soft border border-ultra/25 text-xs font-bold flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-ultra-soft" />
-                      <span>Confirmed</span>
+                    <span className="px-3 py-1 bg-[#4ADE80] text-ink border-2 border-ink shadow-sticker text-xs font-black uppercase flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-ink" />
+                      <span>Confirmed Date</span>
                     </span>
                   ) : (
-                    <span className="px-3 py-1 rounded-full bg-marquee/10 text-marquee-soft border border-marquee/25 text-xs font-bold flex items-center gap-1.5">
-                      <AlertCircle className="w-4 h-4 text-marquee-soft" />
-                      <span>Tentative</span>
+                    <span className="px-3 py-1 bg-poster-gold text-ink border-2 border-ink shadow-sticker text-xs font-black uppercase flex items-center gap-1.5">
+                      <AlertCircle className="w-4 h-4 text-ink" />
+                      <span>Tentative Window</span>
                     </span>
                   )}
                 </div>
               </div>
 
               {/* Genres Pills */}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {movie.genres.map((g) => (
                   <span
                     key={g}
-                    className="px-3 py-1 rounded-full bg-revealed text-popcorn-dim border border-glow-line text-xs font-medium shadow-2xs"
+                    className="px-3 py-1 bg-paper text-ink border border-ink text-xs font-bold shadow-sticker uppercase"
                   >
                     {g}
                   </span>
@@ -305,13 +281,13 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
 
               {/* Director & Producers quick list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
-                <div className="p-3.5 rounded-xl bg-revealed border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">Director</span>
-                  <span className="text-popcorn font-bold text-sm mt-0.5 block">{movie.director}</span>
+                <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
+                  <span className="text-ink-muted block text-[10px] uppercase font-black">Director</span>
+                  <span className="text-ink font-black text-sm uppercase mt-0.5 block">{movie.director}</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-revealed border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">Producers</span>
-                  <span className="text-popcorn font-bold text-sm mt-0.5 block truncate">
+                <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
+                  <span className="text-ink-muted block text-[10px] uppercase font-black">Producers</span>
+                  <span className="text-ink font-black text-sm uppercase mt-0.5 block truncate">
                     {movie.producers.join(", ")}
                   </span>
                 </div>
@@ -320,72 +296,71 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
           </div>
         </div>
       </div>
-    </div>
 
       {/* Main Body Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Article & Movie Dossier */}
-          <div className="lg:col-span-8 space-y-10">
-            {/* Introduction & Synopsis */}
-            <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
-              <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
-                <Film className="w-5 h-5 text-signal-soft" />
+          <div className="lg:col-span-8 space-y-8">
+            {/* Synopsis */}
+            <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
+              <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
+                <Film className="w-5 h-5 text-poster-red" />
                 <span>Synopsis &amp; Storyline</span>
               </h2>
 
               {movie.introduction && (
-                <p className="text-sm text-popcorn leading-relaxed font-medium bg-marquee/10 p-4 rounded-2xl border-l-4 border-marquee">
+                <p className="text-base text-ink font-bold leading-relaxed bg-band p-4 border-l-4 border-poster-red">
                   {movie.introduction}
                 </p>
               )}
 
-              <p className="text-sm text-popcorn-dim leading-relaxed">
+              <p className="text-base text-ink-muted leading-relaxed font-medium">
                 {movie.synopsis}
               </p>
             </section>
 
             {/* Official Trailer Embed Player */}
             {movie.trailerYoutubeId && (
-              <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
-                <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
-                  <Play className="w-5 h-5 text-signal-soft fill-current" />
+              <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
+                <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
+                  <Play className="w-5 h-5 text-poster-red fill-current" />
                   <span>Official Theatrical Trailer</span>
                 </h2>
 
-                <div className="relative aspect-video rounded-2xl overflow-hidden border border-glow-line shadow-lg bg-void">
+                <div className="relative aspect-video border-2 border-ink shadow-sticker bg-ink overflow-hidden">
                   <iframe
                     src={`https://www.youtube.com/embed/${movie.trailerYoutubeId}?autoplay=0&rel=0`}
                     title={`${movie.titleEn} Official Trailer`}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                  ></iframe>
+                  />
                 </div>
               </section>
             )}
 
             {/* Cast & Characters Grid */}
-            <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
-              <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
-                <User className="w-5 h-5 text-signal-soft" />
+            <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
+              <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
+                <User className="w-5 h-5 text-poster-red" />
                 <span>Main Cast &amp; Characters</span>
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {movie.cast.map((actor, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-hall border border-glow-line hover:border-glow-line-strong transition-colors shadow-2xs"
+                    className="flex items-center gap-3.5 p-3.5 bg-paper border-2 border-ink shadow-sticker card-press-interactive"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-signal-deep text-popcorn border border-signal/40 flex items-center justify-center shrink-0 font-bold text-base">
+                    <div className="w-12 h-12 bg-band text-ink border-2 border-ink flex items-center justify-center shrink-0 font-mono-tabular font-black text-lg">
                       {actor.name.charAt(0)}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold text-popcorn truncate">{actor.name}</h4>
-                      <p className="text-xs text-marquee-soft font-medium truncate">{actor.role}</p>
+                      <h4 className="text-sm font-black text-ink uppercase truncate">{actor.name}</h4>
+                      <p className="text-xs text-poster-red font-bold uppercase truncate">{actor.role}</p>
                       {actor.characterName && (
-                        <p className="text-[11px] text-popcorn-muted truncate">
+                        <p className="text-[11px] text-ink-muted truncate font-medium">
                           Character: {actor.characterName}
                         </p>
                       )}
@@ -395,41 +370,41 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               </div>
             </section>
 
-            {/* Production & Distribution Companies */}
-            <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
-              <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
-                <Building className="w-5 h-5 text-signal-soft" />
+            {/* Production & Distribution */}
+            <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
+              <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
+                <Building className="w-5 h-5 text-poster-red" />
                 <span>Production &amp; Distribution</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="p-4 rounded-2xl bg-hall border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted uppercase text-[10px] font-bold block">
+                <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                  <span className="text-ink-muted uppercase text-[10px] font-black block font-mono-tabular">
                     Production House
                   </span>
-                  <span className="text-popcorn font-bold text-sm mt-1 block">
+                  <span className="text-ink font-black text-sm uppercase mt-1 block">
                     {movie.productionCompany || "To be announced"}
                   </span>
                 </div>
-                <div className="p-4 rounded-2xl bg-hall border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted uppercase text-[10px] font-bold block">
+                <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                  <span className="text-ink-muted uppercase text-[10px] font-black block font-mono-tabular">
                     Distribution Network
                   </span>
-                  <span className="text-popcorn font-bold text-sm mt-1 block">
+                  <span className="text-ink font-black text-sm uppercase mt-1 block">
                     {movie.distributionCompany || "All-India Theatrical Distribution"}
                   </span>
                 </div>
               </div>
             </section>
 
-            {/* Source References & Editorial Verification */}
-            <section className="p-5 rounded-2xl bg-revealed border border-glow-line text-xs text-popcorn-dim space-y-2 shadow-xs">
-              <div className="flex items-center gap-2 text-popcorn font-bold">
-                <ShieldCheck className="w-4 h-4 text-ultra-soft" />
+            {/* Editorial Verification */}
+            <section className="p-5 bg-paper border-2 border-ink shadow-sticker text-xs text-ink-muted space-y-2">
+              <div className="flex items-center gap-2 text-ink font-black uppercase text-xs">
+                <ShieldCheck className="w-4 h-4 text-poster-red" />
                 <span>Verified Editorial References</span>
               </div>
-              <p className="leading-relaxed">
-                This film&apos;s release details, cast and censor information have been independently checked against official production-house publications and the authorized distributor network.
+              <p className="leading-relaxed font-medium">
+                This film&apos;s release details, cast, and censor certificate information have been independently checked against official production house bulletins and authorized trade distributors.
               </p>
               {movie.sourceReferences && movie.sourceReferences.length > 0 && (
                 <div className="flex flex-wrap gap-2 pt-1">
@@ -439,7 +414,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       href={src.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-hall text-ultra-soft hover:text-popcorn border border-glow-line transition-colors text-[11px] font-medium"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-band text-ink font-bold border border-ink transition-colors text-[11px] hover:bg-sheet shadow-sticker"
                     >
                       <span>{src.name}</span>
                       <ExternalLink className="w-3 h-3" />
@@ -447,8 +422,8 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   ))}
                 </div>
               )}
-              <div className="pt-2 text-[11px] text-popcorn-muted border-t border-glow-line">
-                Last updated: {new Date(movie.updatedAt).toLocaleDateString()} · Asia/Kolkata time
+              <div className="pt-2 text-[11px] text-ink-muted font-mono-tabular font-bold border-t border-ink/20">
+                Last updated: {new Date(movie.updatedAt).toLocaleDateString()} · Asia/Kolkata live time
               </div>
             </section>
           </div>
@@ -456,28 +431,28 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
           {/* Right Sidebar */}
           <div className="lg:col-span-4 space-y-6">
             {/* Quick Share Card */}
-            <div className="bg-revealed p-5 sm:p-6 rounded-3xl border border-glow-line space-y-3 shadow-sm">
-              <h3 className="text-sm font-bold text-popcorn uppercase tracking-wider flex items-center gap-2">
-                <Share2 className="w-4 h-4 text-signal-soft" />
-                <span>Share Movie</span>
+            <div className="bg-sheet p-6 border-2 border-ink shadow-press space-y-3">
+              <h3 className="text-sm font-black text-ink uppercase tracking-wider flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-poster-red" />
+                <span>Share Release Dossier</span>
               </h3>
-              <p className="text-xs text-popcorn-dim">
-                Share this film&apos;s release date with your friends:
+              <p className="text-xs text-ink-muted font-medium">
+                Share this film&apos;s release date with fellow cinephiles:
               </p>
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on EXTRASAGA: ${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on CINIJAATRE: ${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 py-2 rounded-xl bg-ultra/10 text-ultra-soft hover:bg-ultra-deep hover:text-popcorn text-xs font-bold text-center border border-ultra/25 transition-all shadow-2xs"
+                  className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"
                 >
                   WhatsApp
                 </a>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #EXTRASAGA`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #CINIJAATRE`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 py-2 rounded-xl bg-hall text-popcorn-dim hover:bg-signal-deep hover:text-popcorn text-xs font-bold text-center border border-glow-line transition-all shadow-2xs"
+                  className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"
                 >
                   Twitter / X
                 </a>
@@ -485,19 +460,19 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             </div>
 
             {/* Related Movie Articles */}
-            <div className="bg-revealed p-5 sm:p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-popcorn uppercase tracking-wider flex items-center gap-2">
-                <Clapperboard className="w-4 h-4 text-marquee-soft" />
-                <span>Related Stories</span>
+            <div className="bg-sheet p-6 border-2 border-ink shadow-press space-y-4">
+              <h3 className="text-sm font-black text-ink uppercase tracking-wider flex items-center gap-2">
+                <Clapperboard className="w-4 h-4 text-poster-violet" />
+                <span>Related Dispatches</span>
               </h3>
               <div className="space-y-3">
                 {relatedArticles.map((art) => (
                   <Link
                     key={art.id}
                     href={`/news/${art.slug}`}
-                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-screen transition-colors group"
+                    className="flex items-start gap-3 p-2 bg-paper border border-ink shadow-sticker hover:bg-band transition-all card-press-interactive group"
                   >
-                    <div className="relative w-16 h-12 rounded-xl overflow-hidden bg-hall shrink-0 shadow-2xs">
+                    <div className="relative w-16 h-12 border border-ink overflow-hidden bg-band shrink-0">
                       <Image
                         src={art.featuredImage}
                         alt={art.title}
@@ -506,10 +481,10 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-bold text-popcorn group-hover:text-marquee-soft line-clamp-2 transition-colors">
+                      <h4 className="text-xs font-black text-ink group-hover:text-poster-red line-clamp-2 transition-colors uppercase">
                         {art.title}
                       </h4>
-                      <span className="text-[10px] text-popcorn-muted block mt-1">
+                      <span className="text-[10px] text-ink-muted font-mono-tabular font-bold block mt-1">
                         {new Date(art.publishedAt).toLocaleDateString()}
                       </span>
                     </div>
@@ -519,16 +494,16 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             </div>
 
             {/* Permanent Archive Notice */}
-            <div className="p-5 rounded-3xl bg-marquee/10 border border-marquee/25 text-xs text-marquee-soft space-y-2 shadow-2xs">
-              <div className="font-bold text-popcorn">Permanent Archive</div>
-              <p className="text-[11px] leading-relaxed text-popcorn-dim">
-                Long after the 30-day window closes, this film&apos;s details, reviews and posters stay permanently preserved in the archive.
+            <div className="p-5 bg-band border-2 border-ink shadow-press text-xs space-y-2">
+              <div className="font-black text-ink uppercase text-sm">Permanent Lore Vault</div>
+              <p className="text-xs leading-relaxed text-ink-muted font-medium">
+                Long after the theatrical run closes, this film&apos;s details, reviews, and posters remain permanently cataloged in our archival registry.
               </p>
               <Link
                 href="/archive"
-                className="text-marquee-soft font-bold text-[11px] hover:underline block pt-1"
+                className="text-poster-red font-black text-xs uppercase hover:underline block pt-1"
               >
-                Browse the full cinema archive &rarr;
+                Browse the permanent cinema archive &rarr;
               </Link>
             </div>
           </div>

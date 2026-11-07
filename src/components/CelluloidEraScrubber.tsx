@@ -1,84 +1,71 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { Film, Sparkles, ArrowRight, Clock, Award, Clapperboard } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { Sparkles, Clock, Clapperboard, Award, ChevronRight } from "lucide-react";
 
 interface Era {
   id: string;
   years: string;
   title: string;
-  titleNative: string;
   tagline: string;
   keyFilms: string[];
   description: string;
   quote: string;
   quoteAuthor: string;
   image: string;
-  accent: string;
 }
 
 export default function CelluloidEraScrubber() {
-  const { language, localizeUrl } = useLanguage();
   const [selectedEra, setSelectedEra] = useState<number>(3); // Default to 2026 Global Vanguard
 
   const eras: Era[] = [
     {
       id: "era-1970",
       years: "1970 — 1989",
-      title: "The Mythological & Cultural Epoch",
-      titleNative: "The Mythological & Cultural Epoch",
-      tagline: "Epic Storytelling & Timeless Folklore Roots",
+      title: "Mythological & Classical Epoch",
+      tagline: "Epic Storytelling, Cultural Reverence & Timeless Folklore Roots",
       keyFilms: ["Mayura (1975)", "Babruvahana (1977)", "Bhakta Prahlada (1983)", "Sholay (1975)"],
       description:
-        "The golden age when Indian cinema established its profound cultural resonance. Dr. Rajkumar and legendary auteurs fused classical literature, traditional music, and grand theatrical performances into cinematic monuments.",
-      quote: "Cinema is not just entertainment; it is the spiritual mirror of our society's collective memory.",
+        "The foundational era when Indian cinema established its deep cultural resonance. Legendary auteurs, iconic performers, and classical literature fused into theatrical monuments celebrated across generations.",
+      quote: "Cinema is not merely entertainment; it is the living mirror of our society's collective memory.",
       quoteAuthor: "Dr. Rajkumar",
       image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-marquee/20 to-void/60 border-marquee/30 text-marquee-soft",
     },
     {
       id: "era-1990",
       years: "1990 — 2009",
-      title: "Auteur Awakening & Gangster Realism",
-      titleNative: "Auteur Awakening & Gangster Realism",
-      tagline: "The Reinvention of Narrative Form and Music",
-      keyFilms: ["Om (1995)", "A (1998)", "Sparsha (2000)", "Mungaru Male (2006)"],
+      title: "Auteur Awakening & Realism",
+      tagline: "Reinvention of Narrative Form, Raw Realism & Monsoonal Romance",
+      keyFilms: ["Om (1995)", "A (1998)", "Sparsha (2000)", "Mungaru Male (2006)", "Dilwale Dulhania Le Jayenge (1995)"],
       description:
-        "A revolutionary phase led by visionary directors Upendra, Sunil Kumar Desai, and Yogaraj Bhat. Realism, philosophical non-linear storytelling, and record-breaking monsoonal romances redefined the box office.",
-      quote: "If you want to be original, dare to show what audience feels but never speaks.",
+        "A revolutionary phase led by visionary writer-directors. Philosophical non-linear storytelling, gritty realism, and record-breaking musical romances redefined the pan-Indian box office.",
+      quote: "If you want to be original, dare to project what an audience feels but never speaks out loud.",
       quoteAuthor: "Real Star Upendra",
       image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-signal/20 to-void/60 border-signal/30 text-signal-soft",
     },
     {
       id: "era-2010",
       years: "2010 — 2024",
-      title: "The Pan-Indian Frontier",
-      titleNative: "The Pan-Indian Frontier",
-      tagline: "Regional Stories Conquering the Global Stage",
-      keyFilms: ["KGF: Chapter 1 & 2", "Kantara", "777 Charlie", "Kantara: Chapter 1"],
+      title: "Pan-Indian Phenomenon",
+      tagline: "Regional Stories Conquering the Global Box Office Canvas",
+      keyFilms: ["Baahubali 1 & 2", "KGF: Chapter 1 & 2", "RRR", "Kantara", "777 Charlie"],
       description:
-        "The historic paradigm shift where regional storytelling dismantled Bollywood hegemony. Sandalwood and South Indian cinema emerged as the heartbeat of global Indian entertainment with unmatched technical audacity.",
-      quote: "Our local folklore has the power to grip audiences across Tokyo, London, and New York.",
+        "The historic paradigm shift where regional storytelling dismantled linguistic barriers. Indian cinema emerged as a global entertainment powerhouse with unprecedented visual audacity.",
+      quote: "Our indigenous folklore has the raw power to grip audiences from Tokyo and London to Los Angeles.",
       quoteAuthor: "Rishab Shetty & Rocking Star Yash",
       image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-ultra/20 to-void/60 border-ultra/30 text-ultra-soft",
     },
     {
       id: "era-2026",
       years: "2026 & Beyond",
-      title: "The Global Celluloid Vanguard",
-      titleNative: "The Global Celluloid Vanguard",
-      tagline: "IMAX Epics, Cultural Reverence & Dual-Axis Craft",
-      keyFilms: ["Ramayana: Part 1", "Toxic: A Fairy Tale", "Kantara: Chapter 1", "Max"],
+      title: "Global Celluloid Vanguard",
+      tagline: "IMAX 70mm Epics, Cultural Dignity & High-Octane Craft",
+      keyFilms: ["Ramayana: Part 1", "Toxic: A Fairy Tale", "Kantara: Chapter 1", "War 2", "Spirit"],
       description:
-        "The contemporary renaissance characterized by uncompromised cultural dignity, Hollywood-grade visual effects collaborations, IMAX 70mm masterworks, and a return to purist film criticism.",
-      quote: "When scale is matched with reverence, cinema transcends commerce and becomes cultural heritage.",
-      quoteAuthor: "EXTRASAGA Editorial Board",
+        "The contemporary renaissance characterized by uncompromised cultural dignity, Hollywood-grade visual effects, worldwide simultaneous releases, and a passionate return to purist film craft.",
+      quote: "When scale is matched with authentic reverence, cinema transcends commerce and becomes cultural heritage.",
+      quoteAuthor: "CINIJAATRE Editorial Board",
       image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-marquee/20 to-void/60 border-marquee/40 text-marquee-soft",
     },
   ];
 
@@ -86,31 +73,37 @@ export default function CelluloidEraScrubber() {
 
   return (
     <section aria-label="Celluloid Era Time-Machine" className="w-full py-12">
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase font-display-latin bg-marquee-faint border border-marquee/30 text-marquee-soft select-none">
-          <Clapperboard className="w-3.5 h-3.5" />
-          <span>Celluloid Time-Machine</span>
+      {/* Broadsheet Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-4 border-b-2 border-ink">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-band text-ink font-black text-xs uppercase tracking-widest border border-ink shadow-sticker mb-3">
+            <Clapperboard className="w-3.5 h-3.5 text-poster-red" />
+            <span>Celluloid Time-Machine</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-ink uppercase tracking-tight">
+            5 Decades of Cinema Evolution
+          </h2>
+          <p className="text-base text-ink-muted font-medium mt-1">
+            Scrub across five transformative decades of Indian film history — from mythological monuments to global IMAX spectacles.
+          </p>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-popcorn tracking-tight font-display-latin">
-          The Living Timeline of Cinema
-        </h2>
-        <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
-          Scrub through five decades of cinematic evolution — from classical mythological epics to the 2026 global vanguard.
-        </p>
+        <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">
+          <Clock className="w-3.5 h-3.5 text-poster-red" />
+          <span>Interactive Historical Reel</span>
+        </div>
       </div>
 
-      {/* 35mm Sprocket Film Strip Selector Bar */}
-      <div className="rounded-3xl bg-hall border border-glow-line p-2 sm:p-3 relative overflow-hidden shadow-lg mb-8">
-        {/* Top Sprocket Holes */}
-        <div className="flex items-center justify-between px-3 py-1.5 opacity-70 overflow-hidden">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={`sprocket-top-${i}`} className="w-3 h-2 rounded-[2px] bg-void shrink-0 mx-1" />
+      {/* 35mm Sprocket Strip Selector */}
+      <div className="bg-sheet border-2 border-ink shadow-press p-3 sm:p-4 mb-8">
+        {/* Top Sprocket Rail */}
+        <div className="flex items-center justify-between px-2 py-1 bg-ink/10 border-b border-ink/30 mb-3 overflow-hidden select-none">
+          {Array.from({ length: 28 }).map((_, i) => (
+            <div key={`sprocket-top-${i}`} className="w-3 h-2 rounded-xs bg-ink shrink-0 mx-1" />
           ))}
         </div>
 
-        {/* Interactive Era Cards Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 py-3 px-2">
+        {/* Interactive Era Buttons */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {eras.map((era, index) => {
             const isSelected = selectedEra === index;
             return (
@@ -118,99 +111,100 @@ export default function CelluloidEraScrubber() {
                 key={era.id}
                 type="button"
                 onClick={() => setSelectedEra(index)}
-                className={`p-3 sm:p-4 rounded-2xl text-left transition-all relative overflow-hidden group select-none ${
+                className={`p-3.5 text-left border-2 transition-all duration-150 relative select-none card-press-interactive ${
                   isSelected
-                    ? "bg-revealed border border-glow-line-strong shadow-[0_0_24px_rgba(255,176,32,0.12)] scale-[1.02]"
-                    : "bg-void/60 border border-glow-line hover:bg-revealed hover:border-glow-line-strong"
+                    ? "bg-band border-ink shadow-press scale-[1.01]"
+                    : "bg-paper border-ink/40 hover:border-ink hover:bg-sheet"
                 }`}
               >
-                <span className="text-[10px] sm:text-xs font-mono-tabular font-bold tracking-widest text-marquee-soft block mb-1">
-                  {era.years}
-                </span>
-                <span className="text-xs sm:text-sm font-bold text-popcorn block truncate">
-                  {language === "kn" ? era.titleNative : era.title}
-                </span>
-                <span className="text-[10px] text-popcorn-muted block truncate mt-0.5 font-normal">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[11px] font-mono-tabular font-black tracking-wider text-poster-red">
+                    {era.years}
+                  </span>
+                  {isSelected && (
+                    <span className="w-2 h-2 rounded-full bg-poster-red animate-pulse" />
+                  )}
+                </div>
+                <h4 className="text-sm font-black text-ink leading-tight mb-1">
+                  {era.title}
+                </h4>
+                <p className="text-[11px] text-ink-muted line-clamp-1 font-medium">
                   {era.tagline}
-                </span>
-
-                {isSelected && (
-                  <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-marquee via-signal to-ultra rounded-full" />
-                )}
+                </p>
               </button>
             );
           })}
         </div>
 
-        {/* Bottom Sprocket Holes */}
-        <div className="flex items-center justify-between px-3 py-1.5 opacity-70 overflow-hidden">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={`sprocket-bottom-${i}`} className="w-3 h-2 rounded-[2px] bg-void shrink-0 mx-1" />
+        {/* Bottom Sprocket Rail */}
+        <div className="flex items-center justify-between px-2 py-1 bg-ink/10 border-t border-ink/30 mt-3 overflow-hidden select-none">
+          {Array.from({ length: 28 }).map((_, i) => (
+            <div key={`sprocket-bottom-${i}`} className="w-3 h-2 rounded-xs bg-ink shrink-0 mx-1" />
           ))}
         </div>
       </div>
 
-      {/* Expanded Era Stage: Double-Bezel Concentric Frame */}
-      <div className="rounded-[2.5rem] p-1.5 ring-1 ring-glow-line bg-hall">
-        <div className="rounded-[calc(2.5rem-0.375rem)] bg-revealed border border-glow-line p-6 sm:p-10 relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Narrative */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono-tabular font-bold text-marquee-soft bg-marquee-faint border border-marquee/30">
-                <Clock className="w-3.5 h-3.5" />
-                <span>{current.years} • {current.title}</span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-black text-popcorn tracking-tight leading-snug font-display-latin">
-                {current.tagline}
-              </h3>
-
-              <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
-                {current.description}
-              </p>
-
-              {/* Quote Card */}
-              <div className="p-4 rounded-2xl bg-hall border border-glow-line space-y-1.5">
-                <p className="text-xs sm:text-sm text-popcorn-dim italic font-normal">
-                  &ldquo;{current.quote}&rdquo;
-                </p>
-                <span className="text-[11px] font-mono font-bold text-marquee-soft block">
-                  — {current.quoteAuthor}
-                </span>
-              </div>
-
-              {/* Key Landmark Films */}
-              <div className="space-y-2 pt-2">
-                <span className="text-[11px] uppercase font-bold tracking-widest text-popcorn-muted block font-display-latin">
-                  Landmark Celluloid Works:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {current.keyFilms.map((film) => (
-                    <span
-                      key={film}
-                      className="px-3 py-1 rounded-full bg-hall border border-glow-line text-xs font-semibold text-popcorn-dim hover:border-glow-line-strong hover:text-popcorn transition-colors"
-                    >
-                      {film}
-                    </span>
-                  ))}
-                </div>
-              </div>
+      {/* Selected Era Feature Dossier */}
+      <div className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Narrative Column */}
+          <div className="lg:col-span-7 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-poster-gold/20 text-ink font-mono-tabular font-black text-xs border border-ink shadow-sticker">
+              <Clock className="w-3.5 h-3.5 text-poster-red" />
+              <span>{current.years} • {current.title}</span>
             </div>
 
-            {/* Right Visual Plate */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-glow-line-strong shadow-[0_20px_50px_-12px_rgba(0,0,0,0.7)] group">
+            <h3 className="text-2xl sm:text-4xl font-black text-ink leading-tight uppercase tracking-tight">
+              {current.tagline}
+            </h3>
+
+            <p className="text-base text-ink-muted leading-relaxed font-medium">
+              {current.description}
+            </p>
+
+            {/* Quote Card */}
+            <div className="p-4 bg-paper border-2 border-ink shadow-sticker space-y-1.5">
+              <p className="text-sm text-ink italic font-medium leading-relaxed">
+                &ldquo;{current.quote}&rdquo;
+              </p>
+              <span className="text-xs font-black text-poster-red uppercase tracking-wider block">
+                — {current.quoteAuthor}
+              </span>
+            </div>
+
+            {/* Landmark Films */}
+            <div className="space-y-2 pt-2">
+              <span className="text-xs uppercase font-black tracking-widest text-ink block">
+                Landmark Celluloid Works:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {current.keyFilms.map((film) => (
+                  <span
+                    key={film}
+                    className="px-3 py-1 bg-paper border border-ink text-xs font-bold text-ink shadow-sticker hover:bg-band transition-colors"
+                  >
+                    {film}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Visual Archive Plate */}
+          <div className="lg:col-span-5">
+            <div className="border-2 border-ink bg-paper p-2 shadow-press relative group overflow-hidden">
+              <div className="relative w-full aspect-[4/3] overflow-hidden border border-ink">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url(${current.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-popcorn">
-                  <span className="font-mono font-bold text-marquee-soft uppercase tracking-widest">
-                    35mm Archive Plate
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-paper font-bold">
+                  <span className="font-mono-tabular text-poster-gold uppercase tracking-wider">
+                    35mm Historical Master
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-void/70 backdrop-blur-sm border border-glow-line text-[10px] font-mono text-popcorn-dim">
-                    Restored 4K
+                  <span className="px-2 py-0.5 bg-paper text-ink font-mono-tabular text-[10px] font-black border border-ink">
+                    Archival 4K
                   </span>
                 </div>
               </div>

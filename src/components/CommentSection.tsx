@@ -28,7 +28,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
     setIsSubmitting(true);
     const newCom = await DataService.addComment({
       articleId,
-      authorName: name.trim() || "Anonymous Reader",
+      authorName: name.trim() || "Anonymous Cinephile",
       content: content.trim(),
     });
 
@@ -36,94 +36,107 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
     setName("");
     setContent("");
     setIsSubmitting(false);
-    setSuccessMsg("Thank you! Your comment has been published.");
+    setSuccessMsg("Thank you! Your comment has been published to the reader wire.");
     setTimeout(() => setSuccessMsg(""), 4000);
   };
 
   return (
-    <section className="my-10 bg-revealed rounded-3xl border border-glow-line p-6 sm:p-7">
-      <div className="flex items-center gap-2 pb-4 mb-6 border-b border-glow-line">
-        <MessageSquare className="w-5 h-5 text-signal-soft" />
-        <h3 className="text-lg font-bold text-popcorn font-kannada">
-          Reader Comments ({comments.length})
-        </h3>
+    <section className="my-10 bg-sheet border-2 border-ink shadow-press p-6 sm:p-8">
+      <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-ink">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 bg-band border-2 border-ink flex items-center justify-center text-ink shadow-sticker">
+            <MessageSquare className="w-4 h-4 text-poster-red" />
+          </div>
+          <h3 className="text-xl font-black text-ink uppercase tracking-tight">
+            Reader Wire Comments ({comments.length})
+          </h3>
+        </div>
+        <span className="text-xs font-mono-tabular font-bold text-ink-muted uppercase">
+          Moderated Discussion
+        </span>
       </div>
 
       {/* Comment Form */}
       <form onSubmit={handleSubmit} className="mb-8 space-y-4">
         <div>
-          <label className="block text-xs text-popcorn-muted font-kannada mb-1.5 font-medium">
-            Your Name:
+          <label className="block text-xs uppercase font-black text-ink mb-1.5 tracking-wider">
+            Your Name & City:
           </label>
           <div className="relative">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name and city..."
-              className="w-full bg-hall border border-glow-line rounded-xl px-4 py-2.5 text-sm text-popcorn placeholder-popcorn-muted focus:outline-none focus:border-signal transition-all font-kannada"
+              placeholder="e.g. Praveen Kumar, Bengaluru"
+              className="w-full bg-paper border-2 border-ink px-4 py-2.5 text-sm text-ink placeholder-ink-muted/60 focus:outline-none focus:bg-band shadow-sticker font-bold transition-colors"
             />
-            <User className="w-4 h-4 text-popcorn-muted absolute right-3.5 top-3" />
+            <User className="w-4 h-4 text-ink-muted absolute right-3.5 top-3" />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs text-popcorn-muted font-kannada mb-1.5 font-medium">
-            Your Comment:
+          <label className="block text-xs uppercase font-black text-ink mb-1.5 tracking-wider">
+            Your Take:
           </label>
           <textarea
             rows={3}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Share your thoughts on this story here..."
+            placeholder="Share your review or reaction to this story..."
             required
-            className="w-full bg-hall border border-glow-line rounded-xl p-3.5 text-sm text-popcorn placeholder-popcorn-muted focus:outline-none focus:border-signal transition-all font-kannada resize-none"
+            className="w-full bg-paper border-2 border-ink p-3.5 text-sm text-ink placeholder-ink-muted/60 focus:outline-none focus:bg-band shadow-sticker font-medium transition-colors resize-none"
           />
         </div>
 
         {successMsg && (
-          <p className="text-xs change-positive font-kannada font-semibold">
-            ✓ {successMsg}
-          </p>
+          <div className="p-2.5 bg-[#4ADE80]/20 border-2 border-ink text-xs text-ink font-bold shadow-sticker flex items-center gap-2">
+            <span>✓</span>
+            <span>{successMsg}</span>
+          </div>
         )}
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-5 py-2.5 rounded-xl bg-signal-deep hover:bg-signal disabled:opacity-50 text-popcorn font-bold text-xs font-kannada flex items-center gap-1.5 transition-colors shadow-[0_0_20px_rgba(255,46,80,0.2)]"
+          className="px-6 py-2.5 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker flex items-center gap-2 transition-all btn-press-interactive disabled:opacity-50"
         >
           <Send className="w-3.5 h-3.5" />
-          <span>{isSubmitting ? "Posting..." : "Post Comment"}</span>
+          <span>{isSubmitting ? "Publishing..." : "Post Comment"}</span>
         </button>
       </form>
 
       {/* Comments List */}
       <div className="space-y-4">
         {comments.length === 0 ? (
-          <p className="text-xs text-popcorn-muted font-kannada text-center py-4">
-            No comments yet. Be the first to share your take!
-          </p>
+          <div className="p-6 bg-paper border-2 border-dashed border-ink/40 text-center">
+            <p className="text-sm text-ink-muted font-bold uppercase tracking-wider">
+              No reader comments yet. Be the first to share your critique!
+            </p>
+          </div>
         ) : (
           comments.map((com) => (
             <div
               key={com.id}
-              className="p-4 rounded-2xl bg-hall border border-glow-line hover:border-glow-line-strong transition-colors space-y-2"
+              className="p-4 bg-paper border-2 border-ink shadow-sticker space-y-2 card-press-interactive"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-popcorn font-kannada">
+              <div className="flex items-center justify-between border-b border-ink/20 pb-1.5">
+                <span className="text-sm font-black text-ink uppercase tracking-tight">
                   {com.authorName}
                 </span>
-                <span className="text-[11px] text-popcorn-muted font-kannada font-mono-tabular">
+                <span className="text-[11px] text-ink-muted font-mono-tabular font-bold">
                   {formatEditorialTimeAgo(com.createdAt)}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-popcorn-dim font-kannada leading-relaxed">
+              <p className="text-sm text-ink leading-relaxed font-medium">
                 {com.content}
               </p>
-              <div className="flex items-center gap-2 pt-1 text-[11px] text-popcorn-muted">
-                <button className="flex items-center gap-1 hover:text-signal-soft transition-colors">
-                  <Heart className="w-3 h-3" />
-                  <span>{com.likes} Likes</span>
+              <div className="flex items-center gap-2 pt-1 text-xs text-ink-muted font-bold">
+                <button
+                  type="button"
+                  className="flex items-center gap-1.5 px-2 py-0.5 bg-band border border-ink shadow-sticker hover:text-poster-red transition-colors"
+                >
+                  <Heart className="w-3 h-3 text-poster-red" />
+                  <span className="font-mono-tabular">{com.likes} Likes</span>
                 </button>
               </div>
             </div>

@@ -479,22 +479,22 @@ export default function AdminPage() {
   // Render Login Form if not logged in
   if (!isAuthenticated) {
     return (
-      <div className="min-h-[75vh] flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-sheet p-8 rounded-3xl border border-glow-line shadow-xl space-y-6">
+      <div className="min-h-[75vh] flex items-center justify-center p-4 bg-paper">
+        <div className="w-full max-w-md bg-sheet p-8 border-2 border-ink shadow-press space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-2xl bg-brand-crimson mx-auto flex items-center justify-center text-white shadow-md shadow-brand-crimson/25">
+            <div className="w-12 h-12 bg-poster-red mx-auto flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h1 className="text-2xl font-black text-popcorn font-sans tracking-tight">
-              FILMY <span className="text-brand-crimson">GARAGE</span>
+            <h1 className="text-2xl font-black text-ink uppercase tracking-tight">
+              CINIJAATRE <span className="text-poster-red">PRESS DESK</span>
             </h1>
-            <p className="text-xs text-popcorn-dim font-kannada">
-              EXTRASAGA — Admin Login (article, review, ads and settings management desk)
+            <p className="text-xs text-ink-muted font-medium">
+              Editorial Terminal &amp; Automated Pipeline Administration
             </p>
           </div>
 
           {authError && (
-            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-700 text-xs font-kannada flex items-center gap-2">
+            <div className="p-3 bg-poster-red/10 border-2 border-poster-red text-poster-red text-xs font-bold flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 shrink-0" />
               <span>{authError}</span>
             </div>
@@ -502,45 +502,45 @@ export default function AdminPage() {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-popcorn-dim font-sans mb-1">
-                Admin Email
+              <label className="block text-xs font-black uppercase text-ink mb-1 tracking-wider">
+                Admin Dispatch Email
               </label>
               <input
                 type="email"
                 value={loginEmail}
                 onChange={(e) => setLoginEmail(e.target.value)}
                 required
-                className="w-full bg-hall border border-glow-line rounded-xl p-2.5 text-sm text-popcorn focus:outline-none focus:border-brand-crimson focus:bg-sheet font-sans transition-all shadow-2xs"
+                className="w-full bg-paper border-2 border-ink p-2.5 text-sm text-ink font-bold focus:outline-none focus:bg-band shadow-sticker transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-popcorn-dim font-sans mb-1">
-                Password
+              <label className="block text-xs font-black uppercase text-ink mb-1 tracking-wider">
+                Security Password
               </label>
               <input
                 type="password"
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
                 required
-                className="w-full bg-hall border border-glow-line rounded-xl p-2.5 text-sm text-popcorn focus:outline-none focus:border-brand-crimson focus:bg-sheet font-sans transition-all shadow-2xs"
+                className="w-full bg-paper border-2 border-ink p-2.5 text-sm text-ink font-bold focus:outline-none focus:bg-band shadow-sticker transition-all"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold text-sm font-kannada transition-colors shadow-md"
+              className="w-full py-3 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
             >
-              Sign In to Dashboard
+              Sign In to Editorial Console
             </button>
           </form>
 
-          <div className="p-3.5 bg-hall rounded-2xl border border-glow-line text-[11px] text-popcorn-dim space-y-1 shadow-2xs">
-            <span className="font-semibold text-popcorn block">Demo credentials:</span>
+          <div className="p-3.5 bg-paper border border-ink text-xs text-ink space-y-1 shadow-sticker">
+            <span className="font-black uppercase tracking-wider block text-[11px] text-ink-muted">Terminal Credentials:</span>
             <div>
-              Email: <code className="text-amber-400 font-bold">{DEFAULT_ADMIN_EMAIL}</code>
+              Email: <code className="text-poster-red font-mono-tabular font-bold">{DEFAULT_ADMIN_EMAIL}</code>
             </div>
-            <div>Password: <code className="text-amber-400 font-bold">admin123</code></div>
+            <div>Password: <code className="text-poster-red font-mono-tabular font-bold">admin123</code></div>
           </div>
         </div>
       </div>
@@ -548,33 +548,33 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-void">
+    <div className="w-full min-h-screen bg-paper text-ink font-sans">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-2 font-kannada text-sm animate-bounce">
-          <CheckCircle className="w-4 h-4" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#4ADE80] text-ink px-5 py-3 border-2 border-ink shadow-press flex items-center gap-2 text-xs font-black uppercase tracking-wider">
+          <CheckCircle className="w-4 h-4 text-ink" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Admin Header */}
-      <div className="bg-sheet border-b border-glow-line px-4 sm:px-6 py-4 shadow-xs">
+      <div className="bg-sheet border-b-2 border-ink px-4 sm:px-6 py-4 shadow-press">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-crimson flex items-center justify-center text-white shadow-sm">
+            <div className="w-10 h-10 bg-poster-red flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-black text-popcorn font-sans tracking-tight">
-                  FILMY <span className="text-brand-crimson">GARAGE</span> — Editorial Dashboard
+                <h1 className="text-xl font-black text-ink uppercase tracking-tight">
+                  CINIJAATRE <span className="text-poster-red">PRESS</span> — Editorial Console
                 </h1>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold font-sans border border-emerald-500/30">
-                  PROD ACTIVE
+                <span className="px-2 py-0.5 bg-band text-ink text-[10px] font-black border border-ink shadow-sticker uppercase font-mono-tabular">
+                  LIVE DESK ACTIVE
                 </span>
               </div>
-              <p className="text-xs text-popcorn-dim font-kannada">
-                Manage news publishing, reviews, ads and reader feedback
+              <p className="text-xs text-ink-muted font-medium">
+                Manage all Indian cinema news publishing, reviews, releases, and ingestion wires
               </p>
             </div>
           </div>
@@ -583,14 +583,14 @@ export default function AdminPage() {
             <Link
               href="/"
               target="_blank"
-              className="px-3 py-1.5 rounded-xl bg-hall hover:bg-screen text-popcorn text-xs font-kannada flex items-center gap-1.5 border border-glow-line transition-colors shadow-2xs font-semibold"
+              className="px-3 py-1.5 bg-paper hover:bg-band text-ink text-xs font-black uppercase flex items-center gap-1.5 border-2 border-ink shadow-sticker transition-all btn-press-interactive"
             >
-              <Eye className="w-3.5 h-3.5 text-brand-crimson" />
-              <span>View Live Site</span>
+              <Eye className="w-3.5 h-3.5 text-poster-red" />
+              <span>View Live Frontpage</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="p-1.5 rounded-xl bg-hall hover:bg-red-500/10 text-popcorn-dim hover:text-brand-crimson border border-glow-line transition-colors"
+              className="p-1.5 bg-paper hover:bg-poster-red hover:text-paper text-ink border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
               title="Log Out"
             >
               <LogOut className="w-4 h-4" />
@@ -602,35 +602,35 @@ export default function AdminPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {/* Analytics Highlights Banner */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-          <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Total Articles</span>
-            <div className="text-2xl font-black text-popcorn font-sans mt-1">{totalArticles}</div>
-            <span className="text-[10px] text-emerald-400 font-sans font-bold">✓ All Published</span>
+          <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
+            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Total Articles</span>
+            <div className="text-2xl font-black text-ink font-mono-tabular mt-1">{totalArticles}</div>
+            <span className="text-[10px] text-poster-red font-black uppercase">✓ All Published</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Total Views</span>
-            <div className="text-2xl font-black text-amber-400 font-sans mt-1">
+          <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
+            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Total Views</span>
+            <div className="text-2xl font-black text-poster-violet font-mono-tabular mt-1">
               {formatCineNumber(totalViews)}
             </div>
-            <span className="text-[10px] text-popcorn-dim font-sans">+18% This Week</span>
+            <span className="text-[10px] text-ink-muted font-bold font-mono-tabular">+18% Weekly Surge</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Breaking News</span>
-            <div className="text-2xl font-black text-brand-crimson font-sans mt-1">{breakingCount}</div>
-            <span className="text-[10px] text-brand-crimson font-sans font-bold">On the Live Ticker</span>
+          <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
+            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Breaking Wires</span>
+            <div className="text-2xl font-black text-poster-red font-mono-tabular mt-1">{breakingCount}</div>
+            <span className="text-[10px] text-poster-red font-black uppercase">Active On Ticker</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Movie Reviews</span>
-            <div className="text-2xl font-black text-emerald-400 font-sans mt-1">{reviews.length}</div>
-            <span className="text-[10px] text-emerald-400 font-sans font-bold">Star Ratings</span>
+          <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
+            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Movie Reviews</span>
+            <div className="text-2xl font-black text-ink font-mono-tabular mt-1">{reviews.length}</div>
+            <span className="text-[10px] text-poster-gold font-black uppercase">Dual-Axis Audited</span>
           </div>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-2 border-b border-glow-line pb-3 mb-6 overflow-x-auto no-scrollbar font-kannada">
+        <div className="flex items-center gap-2 border-b-2 border-ink pb-4 mb-6 overflow-x-auto no-scrollbar">
           {ADMIN_TABS.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -638,13 +638,13 @@ export default function AdminPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider transition-all whitespace-nowrap btn-press-interactive ${
                   isActive
-                    ? "bg-brand-crimson text-white shadow-sm"
-                    : "text-popcorn-dim hover:text-popcorn hover:bg-screen"
+                    ? "bg-ink text-paper border-2 border-ink shadow-sticker"
+                    : "bg-paper text-ink border border-ink hover:bg-band"
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4 text-poster-red" />
                 <span>{tab.label}</span>
               </button>
             );

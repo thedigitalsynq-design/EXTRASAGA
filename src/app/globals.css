@@ -324,6 +324,68 @@ body {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ── Interactive Elevation & Micro-Interactions ── */
+.card-press-interactive {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-press-interactive:hover {
+  transform: translateY(-3px) translateX(-1px);
+  box-shadow: 6px 6px 0 0 #17140F;
+}
+
+.btn-press-interactive {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
+}
+
+.btn-press-interactive:active {
+  transform: translateY(2px) translateX(2px) scale(0.98);
+  box-shadow: 1px 1px 0 0 #17140F;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-subtle-float {
+  animation: subtleFloat 4s ease-in-out infinite;
+}
+
 /* ─── v4 FANZINE PRIMITIVES ─────────────────────────────────────── */
 
 /* The ink rule: 2px hard border on any element */

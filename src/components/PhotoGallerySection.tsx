@@ -14,14 +14,11 @@ interface PhotoGallerySectionProps {
 export default function PhotoGallerySection({
   galleries,
 }: PhotoGallerySectionProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
+  const { localizeUrl } = useLanguage();
   const [activeGallery, setActiveGallery] = useState<GalleryItem | null>(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
 
-  const filteredGalleries = galleries.filter(
-    (g) => g.language === language || (!g.language && language === "kn")
-  );
-  const displayGalleries = filteredGalleries.length > 0 ? filteredGalleries : galleries;
+  const displayGalleries = galleries;
 
   const openLightbox = (gallery: GalleryItem) => {
     setActiveGallery(gallery);
@@ -40,87 +37,72 @@ export default function PhotoGallerySection({
     );
   };
 
-  const gallerySubtitles: Record<string, string> = {
-    kn: "Glamorous Sandalwood star photoshoots & movie-launch moments",
-    te: "Glamorous Tollywood celebrity photoshoots & movie events",
-    ta: "Exclusive Kollywood star photoshoots & film events",
-    ml: "Glamorous Mollywood star photoshoots & cinema moments",
-    hi: "Glamorous Bollywood star photoshoots & cinematic moments",
-    en: "Glamorous celebrity photoshoots, movie launches and red carpet moments",
-  };
-
-  const photoCountWord: Record<string, string> = {
-    kn: "Photos",
-    te: "Photos",
-    ta: "Photos",
-    ml: "Photos",
-    hi: "Photos",
-    en: "Photos",
-  };
-
   return (
-    <section className="bg-revealed rounded-2xl border border-glow-line p-6">
-      <div className="flex items-center justify-between pb-4 mb-6 border-b border-glow-line">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="w-9 h-9 rounded-lg bg-ultra-faint text-ultra-soft border border-ultra/25 flex items-center justify-center shrink-0">
+    <section className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b-2 border-ink gap-4">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-10 h-10 bg-violet text-paper border-2 border-ink shadow-sticker flex items-center justify-center shrink-0">
             <Camera className="w-5 h-5" />
           </div>
           <div className="min-w-0">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-popcorn">
-              {t("sec_gallery")}{" "}
-              <span className="text-sm font-display-latin font-bold text-ultra-soft uppercase tracking-widest">
-                ({config.industryName} Gallery)
+            <div className="flex items-center gap-2 mb-1">
+              <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+                PHOTO DUMP
               </span>
+              <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
+                RED CARPET &amp; PROMOS
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink truncate">
+              CELEBRITY <span className="text-violet">GALLERIES</span>
             </h2>
-            <p className="text-xs text-popcorn-muted mt-0.5">
-              {gallerySubtitles[language] || gallerySubtitles.kn}
+            <p className="text-xs text-ink-dim font-grotesk font-medium">
+              High-resolution shoots, trailer launch events, and red carpet captures across all Indian cinema industries
             </p>
           </div>
         </div>
-        {/* Theatre rule running through the header */}
-        <div className="hidden md:flex-1 md:mx-4 h-px bg-glow-line" />
 
         <Link
           href={localizeUrl("/category/gallery")}
-          className="text-xs sm:text-sm font-semibold text-ultra-soft hover:text-ultra flex items-center gap-1 transition-colors shrink-0"
+          className="btn-press-interactive self-start sm:self-auto px-4 py-2 bg-ink text-paper hover:bg-violet border-2 border-ink shadow-sticker text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all shrink-0"
         >
-          <span>{t("btn_view_all")}</span>
-          <ChevronRight className="w-4 h-4" />
+          <span>View All Galleries</span>
+          <ChevronRight className="w-3.5 h-3.5 text-paper" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayGalleries.map((item) => (
           <div
             key={item.id}
             onClick={() => openLightbox(item)}
-            className="group cursor-pointer bg-hall rounded-xl overflow-hidden border border-glow-line hover:border-glow-line-strong hover:shadow-[0_0_24px_rgba(155,109,255,0.15)] hover:-translate-y-0.5 transition-all duration-300"
+            className="card-press-interactive group cursor-pointer bg-paper border-2 border-ink shadow-press overflow-hidden flex flex-col justify-between"
           >
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-void">
-              <Image
-                src={item.coverImage}
-                alt={item.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent"></div>
+            <div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden border-b-2 border-ink bg-band">
+                <Image
+                  src={item.coverImage}
+                  alt={item.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
 
-              {/* Photo Count Tag */}
-              <div className="absolute top-3 right-3 bg-void/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-glow-line text-popcorn text-xs font-mono-tabular font-bold flex items-center gap-1.5">
-                <Camera className="w-3.5 h-3.5 text-ultra-soft" />
-                <span>
-                  {item.photoCount} {photoCountWord[language] || photoCountWord.kn}
-                </span>
-              </div>
+                {/* Photo Count Tag */}
+                <div className="absolute top-3 right-3 bg-paper px-2.5 py-1 border-2 border-ink shadow-sticker text-ink text-xs font-mono font-bold flex items-center gap-1.5">
+                  <Camera className="w-3.5 h-3.5 text-press" />
+                  <span>{item.photoCount} Photos</span>
+                </div>
 
-              <div className="absolute bottom-3 left-3 right-3">
-                <span className="inline-block px-2.5 py-0.5 rounded-full bg-signal-faint backdrop-blur-sm text-[10px] font-bold text-signal-soft mb-1 border border-signal/25">
-                  {item.celebrityName}
-                </span>
-                <h3 className="text-sm font-bold text-popcorn group-hover:text-ultra-soft leading-snug line-clamp-2 transition-colors drop-shadow-sm">
-                  {item.title}
-                </h3>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <span className="inline-block px-2 py-0.5 sticker bg-marquee text-ink border-2 border-ink text-[9px] font-bold uppercase mb-1 shadow-sticker">
+                    {item.celebrityName}
+                  </span>
+                  <h3 className="text-sm font-poster uppercase text-paper leading-snug line-clamp-2 drop-shadow-sm">
+                    {item.title}
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
@@ -129,30 +111,31 @@ export default function PhotoGallerySection({
 
       {/* Lightbox Modal */}
       {activeGallery && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-void/95 backdrop-blur-md">
-          <div className="relative w-full max-w-5xl h-[85vh] flex flex-col justify-between">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/85 animate-fadeIn">
+          <div className="relative w-full max-w-5xl h-[85vh] bg-sheet border-4 border-ink shadow-press flex flex-col justify-between overflow-hidden">
             {/* Top Bar */}
-            <div className="flex items-center justify-between p-4 bg-hall/90 rounded-2xl border border-glow-line shadow-lg">
+            <div className="flex items-center justify-between p-4 bg-band border-b-2 border-ink">
               <div>
-                <h3 className="text-sm sm:text-base font-bold text-popcorn font-kannada">
+                <h3 className="text-sm sm:text-base font-poster uppercase text-ink">
                   {activeGallery.title}
                 </h3>
-                <span className="text-xs text-popcorn-muted font-mono-tabular">
-                  {activePhotoIndex + 1} of {activeGallery.photos.length}
+                <span className="text-xs text-ink-dim font-mono font-bold">
+                  {activePhotoIndex + 1} of {activeGallery.photos.length} Photos
                 </span>
               </div>
               <button
                 onClick={() => setActiveGallery(null)}
-                className="p-2 rounded-full bg-screen hover:bg-signal-deep text-popcorn transition-colors"
+                className="p-1.5 bg-ink hover:bg-press text-paper border-2 border-ink transition-colors"
+                aria-label="Close Gallery"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Photo View */}
-            <div className="relative flex-1 my-3 flex items-center justify-center">
+            <div className="relative flex-1 my-3 flex items-center justify-center bg-paper p-4">
               {activeGallery.photos[activePhotoIndex] && (
-                <div className="relative w-full h-full max-h-[65vh]">
+                <div className="relative w-full h-full max-h-[60vh]">
                   <Image
                     src={activeGallery.photos[activePhotoIndex].url}
                     alt={activeGallery.photos[activePhotoIndex].caption}
@@ -166,21 +149,23 @@ export default function PhotoGallerySection({
               {/* Prev / Next controls */}
               <button
                 onClick={prevPhoto}
-                className="absolute left-2 p-2.5 rounded-full bg-void/80 hover:bg-ultra-deep text-popcorn transition-colors border border-glow-line"
+                className="absolute left-4 p-3 bg-ink hover:bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+                aria-label="Previous Photo"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextPhoto}
-                className="absolute right-2 p-2.5 rounded-full bg-void/80 hover:bg-ultra-deep text-popcorn transition-colors border border-glow-line"
+                className="absolute right-4 p-3 bg-ink hover:bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+                aria-label="Next Photo"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
 
             {/* Caption */}
-            <div className="p-3.5 bg-hall/90 rounded-2xl border border-glow-line text-center shadow-lg">
-              <p className="text-xs sm:text-sm text-popcorn-dim font-kannada">
+            <div className="p-3.5 bg-band border-t-2 border-ink text-center">
+              <p className="text-xs sm:text-sm text-ink font-grotesk font-medium">
                 {activeGallery.photos[activePhotoIndex]?.caption}
               </p>
             </div>

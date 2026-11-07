@@ -11,12 +11,11 @@ interface BreakingTickerProps {
 }
 
 export default function BreakingTicker({ articles }: BreakingTickerProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
+  const { localizeUrl } = useLanguage();
   const [isPaused, setIsPaused] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liveItems, setLiveItems] = useState<{ id: string; title: string; slug: string }[]>([]);
 
-  // Unified breaking news across all Indian film industries
   const activeList = articles;
 
   const defaultList = [
@@ -42,7 +41,7 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
     let isMounted = true;
     const fetchLatest = async () => {
       try {
-        const res = await fetch(`/api/live-updates?category=breaking&limit=5`);
+        const res = await fetch("/api/live-updates?category=breaking&limit=5");
         if (res.ok && isMounted) {
           const data = await res.json();
           if (data.updates && data.updates.length > 0) {
@@ -59,17 +58,12 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
       }
     };
 
-    // Start polling after the first 35 seconds to keep initial page load instant
     const interval = setInterval(fetchLatest, 35000);
     return () => {
       isMounted = false;
       clearInterval(interval);
     };
-  }, [language]);
-
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [language]);
+  }, []);
 
   useEffect(() => {
     if (isPaused || mergedList.length <= 1) return;
@@ -82,23 +76,20 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
   const current = mergedList[currentIndex] || mergedList[0];
 
   return (
-    <div className="w-full bg-hall border-y border-glow-line py-2 px-3 sm:px-6 relative overflow-hidden">
-      {/* Void-on-hall projector tray */}
-      <div aria-hidden="true" className="absolute inset-0 bg-void/80 backdrop-blur-md pointer-events-none" />
+    <div className="w-full bg-band border-y-2 border-ink py-2 px-3 sm:px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
-        {/* Breaking plate — signal-red projection chip */}
-        <div className="flex items-stretch shrink-0 rounded-md overflow-hidden border border-signal/40 shadow-[0_0_24px_rgba(255,46,80,0.25)] animate-stamp-in">
-          <div className="flex items-center gap-1.5 sm:gap-2 bg-signal-deep text-popcorn px-2.5 sm:px-3 py-1 text-xs font-bold tracking-wide">
+        {/* Breaking plate */}
+        <div className="flex items-stretch shrink-0 border-2 border-ink shadow-sticker">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-press text-paper px-2.5 sm:px-3 py-1 text-xs font-bold tracking-wider uppercase">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-60"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-paper opacity-60"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-paper"></span>
             </span>
             <Zap className="w-3.5 h-3.5 text-marquee" fill="currentColor" />
-            <span className="hidden sm:inline font-sans uppercase tracking-wider">{t("sec_breaking")}</span>
-            <span className="sm:hidden font-sans uppercase tracking-wider">{t("sec_breaking").split(" ")[0]}</span>
+            <span>BREAKING</span>
           </div>
-          <div className="hidden sm:flex items-center px-2.5 text-[10px] font-sans uppercase tracking-widest bg-revealed/80 text-popcorn-dim">
-            {config.industryName}
+          <div className="hidden sm:flex items-center px-2.5 text-[10px] font-bold uppercase tracking-wider bg-paper text-ink border-l-2 border-ink">
+            ALL INDIAN CINEMA WIRE
           </div>
         </div>
 
@@ -106,27 +97,28 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
         <div className="flex-1 overflow-hidden">
           <Link
             href={localizeUrl(current.slug === "latest" ? "/category/latest" : `/news/${current.slug}`)}
-            className="block text-xs sm:text-sm font-semibold text-popcorn hover:text-signal transition-colors truncate"
+            className="block text-xs sm:text-sm font-bold text-ink hover:text-press transition-colors truncate"
           >
             {current.title}
           </Link>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-1.5 shrink-0 text-popcorn-dim">
+        <div className="flex items-center gap-1.5 shrink-0 text-ink-dim">
           <button
             onClick={() => setIsPaused(!isPaused)}
-            className="p-1 rounded-md border border-transparent hover:border-glow-line-strong hover:text-popcorn transition-colors"
+            className="p-1 border border-ink bg-paper hover:bg-press hover:text-paper transition-colors"
             title={isPaused ? "Play" : "Pause"}
           >
             {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
           </button>
-          <span className="text-[11px] text-popcorn-muted font-mono-tabular">
+          <span className="text-[11px] text-ink-mute font-mono font-bold">
             {currentIndex + 1}/{mergedList.length}
           </span>
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % mergedList.length)}
-            className="p-1 rounded-md border border-transparent hover:border-glow-line-strong hover:text-popcorn transition-colors"
+            className="p-1 border border-ink bg-paper hover:bg-press hover:text-paper transition-colors"
+            title="Next Story"
           >
             <ChevronRight className="w-3.5 h-3.5" />
           </button>

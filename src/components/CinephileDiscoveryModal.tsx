@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { X, Sparkles, Film, ArrowRight, RotateCcw, Clapperboard, Star } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { X, Sparkles, ArrowRight, RotateCcw } from "lucide-react";
 
 interface CinephileDiscoveryModalProps {
   isOpen: boolean;
@@ -14,7 +13,6 @@ export default function CinephileDiscoveryModal({
   isOpen,
   onClose,
 }: CinephileDiscoveryModalProps) {
-  const { language, config, localizeUrl } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
 
   // Selections
@@ -34,23 +32,23 @@ export default function CinephileDiscoveryModal({
       options: [
         {
           id: "spectacle",
-          label: "Adrenaline & Spectacle",
-          desc: "Massive scale, high-stakes action & jaw-dropping VFX",
+          label: "Adrenaline & High Spectacle",
+          desc: "Massive scale, high-stakes action & jaw-dropping VFX choreography",
         },
         {
           id: "cerebral",
           label: "Cerebral Mystery & Suspense",
-          desc: "Neo-noir, psychological twists & intellectual grit",
+          desc: "Neo-noir, psychological twists & intellectual storytelling grit",
         },
         {
           id: "soulful",
-          label: "Rooted Drama & Emotional Depth",
-          desc: "Folkloric storytelling, family sagas & poignant performances",
+          label: "Rooted Drama & Cultural Resonance",
+          desc: "Indigenous folklore, family sagas & profound performances",
         },
         {
           id: "escapism",
           label: "Pure Escapism & Celebration",
-          desc: "Wholesome comedy, musical energy & feel-good vibes",
+          desc: "Wholesome comedy, musical energy & feel-good commercial entertainment",
         },
       ],
       selected: selectedMood,
@@ -58,23 +56,23 @@ export default function CinephileDiscoveryModal({
     },
     {
       stepLabel: "QUESTION 02",
-      title: "Where would you like to watch?",
+      title: "Where do you want to experience it?",
       subtitle: "SELECT ONLY ONE",
       options: [
         {
           id: "theatre",
-          label: "Theatrical Big Screen (IMAX / Dolby Atmos)",
-          desc: "First-day experience in full cinematic sound & scale",
+          label: "Theatrical Big Screen (IMAX 70mm / Dolby Atmos)",
+          desc: "First-day experience in full cinematic sound & visual scale",
         },
         {
           id: "ott",
-          label: "OTT Streaming from Home",
-          desc: "Curated 4K HDR releases on Netflix, Prime, ZEE5",
+          label: "OTT Digital Streaming from Home",
+          desc: "Curated 4K HDR releases on Netflix, Prime, ZEE5, Hotstar",
         },
         {
           id: "retro",
           label: "Golden Era Archive & Cult Classics",
-          desc: "Restored masterpieces and legendary performances",
+          desc: "Restored masterpieces and legendary performances in 4K",
         },
       ],
       selected: selectedFormat,
@@ -82,13 +80,13 @@ export default function CinephileDiscoveryModal({
     },
     {
       stepLabel: "QUESTION 03",
-      title: "Which film industry inspires you today?",
+      title: "Which film industry inspires you right now?",
       subtitle: "SELECT ONLY ONE",
       options: [
         {
           id: "sandalwood",
           label: "Sandalwood (Kannada Cinema)",
-          desc: "Home of Kantara, Toxic, KGF & rooted narrative epics",
+          desc: "Home of Kantara, Toxic, KGF & rooted folkloric narrative epics",
         },
         {
           id: "tollywood",
@@ -98,22 +96,17 @@ export default function CinephileDiscoveryModal({
         {
           id: "kollywood",
           label: "Kollywood (Tamil Cinema)",
-          desc: "Gritty realism, Coolie, Vettaiyan & auteur craft",
-        },
-        {
-          id: "mollywood",
-          label: "Mollywood (Malayalam Cinema)",
-          desc: "Unmatched scriptwriting, Manjummel Boys & Aavesham",
+          desc: "Grounded character writing, Jailer, Coolie & intense auteur craft",
         },
         {
           id: "bollywood",
           label: "Bollywood (Hindi Cinema)",
-          desc: "Grand mythologies, Ramayana Part 1 & War 2",
+          desc: "Grand scale spectacles, War 2, Alpha & cultural epics like Ramayana",
         },
         {
-          id: "hollywood",
-          label: "Hollywood & Global Cinema",
-          desc: "Auteur masterworks, Dune 3, Avatar & Christopher Nolan",
+          id: "mollywood",
+          label: "Mollywood (Malayalam Cinema)",
+          desc: "Peerless realism, world-class screenplays & technical mastery",
         },
       ],
       selected: selectedIndustry,
@@ -121,77 +114,70 @@ export default function CinephileDiscoveryModal({
     },
   ];
 
-  // Dynamic recommendation based on answers
+  const q = questions[currentStep];
+
+  // Recommendations calculation
   const getRecommendation = () => {
-    if (selectedIndustry === "sandalwood" || selectedMood === "soulful") {
+    if (selectedMood === "soulful" || selectedIndustry === "sandalwood") {
       return {
         title: "Kantara: Chapter 1",
         industry: "Sandalwood",
-        status: "In Theatres / Pre-Release Radar",
+        status: "Coming to Theatres October 2026",
         director: "Rishab Shetty",
-        verdict: "Essential Mythological Masterpiece",
-        rating: "4.9 / 5.0",
-        slug: "/news/kantara-chapter-1-shooting-kundapura-rishab-shetty-look",
+        rating: "Most Anticipated",
         summary:
-          "Matched for your love of rooted storytelling and breathtaking visceral spectacle. Rishab Shetty brings Kadamba-era folklore to life.",
+          "The mythical prequel diving into the ancient origins of the Panjurli folklore. Shot in IMAX with intense traditional action.",
+        slug: "/news/kantara-chapter-1-shooting-kundapura-rishab-shetty-look",
       };
     }
-    if (selectedMood === "cerebral" || selectedIndustry === "kollywood") {
+    if (selectedMood === "spectacle") {
       return {
-        title: "Coolie & RangiTaranga Archive",
-        industry: selectedIndustry.toUpperCase(),
-        status: "Curated Theatrical / Streaming",
-        director: "Lokesh Kanagaraj / Anup Bhandari",
-        verdict: "Must-Watch Suspense Thriller",
-        rating: "4.8 / 5.0",
-        slug: "/reviews/kantara-chapter-1-first-look-breakdown-analysis",
+        title: "Toxic: A Fairy Tale for Grown-ups",
+        industry: "Sandalwood / Pan-India",
+        status: "In Theatres 2026",
+        director: "Geetu Mohandas",
+        rating: "High-Octane Masterpiece",
         summary:
-          "Matched for your analytical taste in high-stakes mystery, technical cinematography, and edge-of-the-seat tension.",
+          "Rocking Star Yash returns in an international gangster drama set against the retro drug cartel underworld of 1970s coastal India.",
+        slug: "/news/toxic-rocking-star-yash-geetu-mohandas-release-date-censor",
       };
     }
     return {
       title: "Ramayana: Part 1",
-      industry: "Pan-India / Bollywood",
-      status: "National Cultural Monument",
+      industry: "Pan-Indian / Bollywood",
+      status: "Diwali 2026 Worldwide",
       director: "Nitesh Tiwari",
-      verdict: "Revered Cinematic Milestone (Part 1)",
-      rating: "Historic Reverence",
-      slug: "/reviews/ramayana-part-1-ranbir-kapoor-yash-first-look-analysis",
+      rating: "Cultural Monument",
       summary:
-        "The definitive Indian cultural cinematic epic crafted with zero sensationalism and uncompromised dignity.",
+        "The definitive cinematic retelling featuring Ranbir Kapoor as Lord Rama, Sai Pallavi as Mata Sita, and Yash as Ravana in IMAX 70mm.",
+      slug: "/reviews/ramayana-part-1-ranbir-kapoor-yash-first-look-analysis",
     };
   };
 
   const rec = getRecommendation();
-  const q = questions[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-void/80 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-xs font-sans">
       {/* Background Dim click */}
       <div className="fixed inset-0" onClick={onClose} />
 
-      {/* Layered Card Container (dark glass stack) */}
-      <div className="relative w-full max-w-lg">
-        {/* Layered Under-Cards for Card Stack Effect */}
-        <div className="absolute inset-0 bg-screen/90 rounded-3xl translate-y-2 scale-[0.98] -rotate-1 pointer-events-none border border-glow-line" />
-        <div className="absolute inset-0 bg-revealed rounded-3xl translate-y-1 scale-[0.99] rotate-1 pointer-events-none border border-glow-line" />
-
-        {/* Main Card (Dark Glass) */}
-        <div className="relative rounded-3xl bg-hall/95 backdrop-blur-2xl border border-glow-line text-popcorn p-6 sm:p-8 shadow-2xl flex flex-col min-h-[460px] justify-between z-10">
+      {/* Main Ticket Stack Card */}
+      <div className="relative w-full max-w-lg z-10">
+        <div className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 flex flex-col min-h-[480px] justify-between">
           {/* Top Bar: Progress Dashes & Close Button */}
           <div>
-            <div className="flex items-center justify-between pb-6">
+            <div className="flex items-center justify-between pb-6 border-b-2 border-ink mb-6">
               {/* Segmented Progress Dashes */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-2">
                 {[0, 1, 2].map((stepIdx) => (
                   <div
                     key={stepIdx}
-                    className={`h-1.5 rounded-full transition-all duration-200 ${
+                    className={`h-2 border border-ink transition-all duration-200 ${
                       currentStep === stepIdx
-                        ? "w-8 bg-signal animate-glow-pulse"
+                        ? "w-10 bg-poster-red"
                         : currentStep > stepIdx
-                        ? "w-8 bg-ultra"
-                        : "w-8 bg-glow-line"
+                        ? "w-10 bg-ink"
+                        : "w-10 bg-band"
                     }`}
                   />
                 ))}
@@ -201,7 +187,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-screen hover:bg-signal-deep text-popcorn-dim hover:text-popcorn flex items-center justify-center transition-spring text-sm border border-glow-line"
+                className="w-8 h-8 bg-paper hover:bg-band text-ink flex items-center justify-center border-2 border-ink shadow-sticker text-sm btn-press-interactive"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -211,23 +197,20 @@ export default function CinephileDiscoveryModal({
             {/* Question Screen */}
             {currentStep < totalSteps ? (
               <div className="space-y-4">
-                {/* Step Pill */}
-                <span className="text-[11px] font-bold tracking-widest text-popcorn-muted font-mono uppercase block">
+                <span className="text-[11px] font-black tracking-widest text-poster-red font-mono-tabular uppercase block">
                   {q.stepLabel}
                 </span>
 
-                {/* Headline */}
-                <h3 className="text-xl sm:text-2xl font-extrabold text-popcorn tracking-tight leading-snug font-display-latin">
+                <h3 className="text-xl sm:text-2xl font-black text-ink uppercase tracking-tight leading-snug">
                   {q.title}
                 </h3>
 
-                {/* Select Only One helper */}
-                <p className="text-[10px] font-bold tracking-widest text-signal-soft font-mono uppercase">
+                <p className="text-[10px] font-black tracking-widest text-ink-muted font-mono-tabular uppercase">
                   {q.subtitle}
                 </p>
 
                 {/* Options List */}
-                <div className="space-y-2.5 pt-2">
+                <div className="space-y-2.5 pt-1">
                   {q.options.map((opt) => {
                     const isSelected = q.selected === opt.id;
                     return (
@@ -235,31 +218,31 @@ export default function CinephileDiscoveryModal({
                         key={opt.id}
                         type="button"
                         onClick={() => q.onChange(opt.id)}
-                        className={`w-full text-left p-3.5 rounded-2xl border transition-spring flex items-start gap-3.5 group ${
+                        className={`w-full text-left p-3.5 border-2 transition-all flex items-start gap-3.5 card-press-interactive ${
                           isSelected
-                            ? "bg-screen border-signal ring-1 ring-signal/40 shadow-[0_0_20px_rgba(255,46,80,0.15)]"
-                            : "bg-revealed border-glow-line hover:border-glow-line-strong hover:bg-screen/50"
+                            ? "bg-band border-ink shadow-press scale-[1.01]"
+                            : "bg-paper border-ink/40 hover:border-ink hover:bg-sheet"
                         }`}
                       >
-                        {/* Radio Circle */}
+                        {/* Radio Checkbox Stamp */}
                         <div
-                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 transition-colors ${
+                          className={`w-5 h-5 border-2 border-ink flex items-center justify-center mt-0.5 shrink-0 transition-colors shadow-sticker ${
                             isSelected
-                              ? "border-signal bg-signal-deep text-popcorn"
-                              : "border-glow-line-strong group-hover:border-popcorn-muted"
+                              ? "bg-poster-red text-paper"
+                              : "bg-paper"
                           }`}
                         >
                           {isSelected && (
-                            <div className="w-2 h-2 rounded-full bg-popcorn" />
+                            <div className="w-2 h-2 bg-paper" />
                           )}
                         </div>
 
                         {/* Label & Description */}
                         <div>
-                          <div className="text-sm font-bold text-popcorn">
+                          <div className="text-sm font-black text-ink uppercase">
                             {opt.label}
                           </div>
-                          <div className="text-xs text-popcorn-muted mt-0.5 font-normal leading-relaxed">
+                          <div className="text-xs text-ink-muted mt-0.5 font-medium leading-relaxed">
                             {opt.desc}
                           </div>
                         </div>
@@ -270,37 +253,37 @@ export default function CinephileDiscoveryModal({
               </div>
             ) : (
               /* Recommendation Screen (Result) */
-              <div className="space-y-4 py-2 animate-fadeIn">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ultra-faint border border-ultra/30 text-ultra-soft text-xs font-bold font-mono uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-ultra-soft" />
+              <div className="space-y-4 py-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-band border-2 border-ink text-ink text-xs font-black font-mono-tabular uppercase tracking-wider shadow-sticker">
+                  <Sparkles className="w-3.5 h-3.5 text-poster-red" />
                   <span>Cinephile Match Verified</span>
                 </div>
 
-                <h3 className="text-2xl font-black text-popcorn font-display-latin">
+                <h3 className="text-2xl sm:text-3xl font-black text-ink uppercase tracking-tight">
                   {rec.title}
                 </h3>
 
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="px-2.5 py-0.5 rounded-full bg-hall text-popcorn-dim font-bold uppercase font-mono border border-glow-line">
+                  <span className="px-2.5 py-0.5 bg-paper text-ink font-mono-tabular font-black uppercase border border-ink shadow-sticker">
                     {rec.industry}
                   </span>
-                  <span className="text-popcorn-muted">•</span>
-                  <span className="text-marquee-soft font-semibold">{rec.status}</span>
+                  <span className="text-ink-muted">•</span>
+                  <span className="text-poster-red font-black uppercase">{rec.status}</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-screen border border-glow-line text-xs text-popcorn-dim space-y-2">
-                  <p className="leading-relaxed font-normal">{rec.summary}</p>
-                  <div className="flex items-center justify-between pt-2 border-t border-glow-line text-popcorn-muted">
-                    <span>Director: <strong className="text-popcorn">{rec.director}</strong></span>
-                    <span className="font-bold text-marquee-soft font-mono-tabular">{rec.rating}</span>
+                <div className="p-4 bg-paper border-2 border-ink shadow-sticker text-xs text-ink space-y-2">
+                  <p className="leading-relaxed font-medium">{rec.summary}</p>
+                  <div className="flex items-center justify-between pt-2 border-t border-ink/20 font-mono-tabular">
+                    <span>Director: <strong className="text-ink uppercase">{rec.director}</strong></span>
+                    <span className="font-black text-poster-red uppercase">{rec.rating}</span>
                   </div>
                 </div>
 
                 <div className="pt-2">
                   <Link
-                    href={localizeUrl(rec.slug)}
+                    href={rec.slug}
                     onClick={onClose}
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-signal-deep hover:bg-signal text-popcorn font-bold text-sm tracking-tight transition-spring shadow-[0_0_28px_rgba(255,46,80,0.25)]"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
                   >
                     <span>Read Full Editorial Dossier</span>
                     <ArrowRight className="w-4 h-4" />
@@ -312,12 +295,12 @@ export default function CinephileDiscoveryModal({
 
           {/* Bottom Action Bar */}
           {currentStep < totalSteps ? (
-            <div className="flex items-center justify-between pt-6 border-t border-glow-line mt-6">
+            <div className="flex items-center justify-between pt-6 border-t-2 border-ink mt-6">
               {currentStep > 0 ? (
                 <button
                   type="button"
                   onClick={() => setCurrentStep((s) => s - 1)}
-                  className="text-xs font-bold text-popcorn-dim hover:text-popcorn tracking-wide uppercase font-mono transition-colors"
+                  className="text-xs font-black text-ink-muted hover:text-ink tracking-wider uppercase font-mono-tabular transition-colors"
                 >
                   Back
                 </button>
@@ -325,24 +308,24 @@ export default function CinephileDiscoveryModal({
                 <span />
               )}
 
-              {/* Next Button (marquee gold pill) */}
+              {/* Next Button */}
               <button
                 type="button"
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="px-6 py-2.5 rounded-2xl bg-marquee hover:bg-marquee-soft text-void text-xs sm:text-sm font-extrabold tracking-tight shadow-[0_0_24px_rgba(255,176,32,0.3)] active:scale-95 transition-spring flex items-center gap-1.5"
+                className="px-6 py-2.5 bg-ink text-paper hover:bg-poster-red text-xs font-black uppercase tracking-wider border-2 border-ink shadow-sticker active:scale-95 transition-all flex items-center gap-1.5 btn-press-interactive"
               >
                 <span>{currentStep === totalSteps - 1 ? "Discover Match" : "Next"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           ) : (
-            <div className="flex items-center justify-between pt-4 border-t border-glow-line mt-4">
+            <div className="flex items-center justify-between pt-4 border-t-2 border-ink mt-4">
               <button
                 type="button"
                 onClick={() => {
                   setCurrentStep(0);
                 }}
-                className="text-xs font-bold text-popcorn-dim hover:text-popcorn inline-flex items-center gap-1.5 font-mono"
+                className="text-xs font-black text-ink-muted hover:text-ink inline-flex items-center gap-1.5 font-mono-tabular uppercase"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Start Over</span>
@@ -350,7 +333,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="text-xs font-bold text-popcorn hover:underline"
+                className="text-xs font-black text-ink uppercase hover:underline"
               >
                 Done
               </button>

@@ -16,7 +16,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.imageUrl && ad.isActive) {
     const bannerContent = (
       <div
-        className={`relative overflow-hidden rounded-xl border border-glow-line group ${
+        className={`relative overflow-hidden bg-sheet border-2 border-ink shadow-press card-press-interactive group ${
           isLeaderboard ? "h-24 sm:h-28 max-w-4xl" : isSidebar ? "h-64 max-w-sm" : "h-32"
         } w-full mx-auto my-6`}
       >
@@ -27,11 +27,11 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
           className="object-cover group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 768px) 100vw, 800px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/40 to-transparent flex flex-col justify-end p-3">
-          <span className="text-[9px] uppercase tracking-widest text-marquee-soft font-display-latin font-bold mb-0.5">
-            SPONSORED
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent flex flex-col justify-end p-3">
+          <span className="text-[9px] uppercase tracking-widest text-poster-gold font-mono-tabular font-black mb-0.5">
+            SPONSORED DISPATCH
           </span>
-          <p className="text-xs sm:text-sm font-bold text-popcorn font-kannada drop-shadow">
+          <p className="text-xs sm:text-sm font-black text-paper uppercase drop-shadow">
             {ad.title}
           </p>
         </div>
@@ -58,13 +58,13 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.adCode && ad.isActive) {
     return (
       <div className={`w-full my-4 text-center ${className}`}>
-        <span className="text-[10px] uppercase tracking-widest text-popcorn-muted font-display-latin block mb-1">
+        <span className="text-[10px] uppercase tracking-widest text-ink-muted font-bold block mb-1">
           Advertisement
         </span>
         <iframe
           srcDoc={`<!DOCTYPE html><html><head><style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style></head><body>${ad.adCode}</body></html>`}
           sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
-          className="w-full border-0 mx-auto"
+          className="w-full border-2 border-dashed border-ink/40 bg-sheet mx-auto"
           style={{ height: isLeaderboard ? "90px" : isSidebar ? "250px" : "100px" }}
           title={ad.title || "Advertisement"}
         />
@@ -72,6 +72,6 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
     );
   }
 
-  // Case 3: If no active ad is scheduled, render nothing to keep the layout clean and uncluttered
+  // Case 3: If no active ad is scheduled, render nothing to keep the layout clean
   return null;
 }
