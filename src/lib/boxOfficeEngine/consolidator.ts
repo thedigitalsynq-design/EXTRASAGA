@@ -10,7 +10,7 @@ import {
 import { normalizeRawReport } from "./normalizer";
 import { detectAndFlagOutliers, calculateSourceDispersion } from "./outlierDetector";
 import { MovieSeedConfig } from "./providers";
-import { formatKannadaNumber } from "@/lib/utils";
+import { formatCineNumber } from "@/lib/utils";
 
 /**
  * Intelligent Box Office Consolidator.
@@ -153,7 +153,7 @@ export function consolidateMovieBoxOffice(
 
   // 9. Backward-compatible formatted string collections
   const isKn = movie.language === "kn";
-  const crSuffix = isKn ? " ಕೋಟಿ" : " Cr";
+  const crSuffix = isKn ? " Cr" : " Cr";
   const day1Collection = `₹${formatNumber(day1InCrores, isKn)}${crSuffix}`;
   const weekendCollection = `₹${formatNumber(weekendInCrores, isKn)}${crSuffix}`;
   const worldwideCollection = `₹${formatNumber(grossInCrores, isKn)}${crSuffix}+`;
@@ -196,7 +196,7 @@ export function consolidateMovieBoxOffice(
 
 function formatNumber(val: number, isKn: boolean): string {
   if (isKn) {
-    return formatKannadaNumber(Math.round(val));
+    return formatCineNumber(Math.round(val));
   }
   return val.toLocaleString("en-IN");
 }
@@ -236,12 +236,12 @@ function buildTerritories(
   };
 
   return [
-    makeRow("Karnataka", "ಕರ್ನಾಟಕ", Number((domesticGross * kaShare).toFixed(2)), 78.4),
-    makeRow("AP / Telangana", "ಆಂಧ್ರ & ತೆಲಂಗಾಣ", Number((domesticGross * apTgShare).toFixed(2)), 82.1),
-    makeRow("Tamil Nadu", "ತಮಿಳುನಾಡು", Number((domesticGross * tnShare).toFixed(2)), 74.0),
-    makeRow("Kerala", "ಕೇರಳ", Number((domesticGross * kerShare).toFixed(2)), 76.5),
-    makeRow("North India / Hindi Belt", "ಉತ್ತರ ಭಾರತ / ಹಿಂದಿ", Number((domesticGross * northShare).toFixed(2)), 71.2),
-    makeRow("Overseas (International)", "ವಿದೇಶಿ ಗಳಿಕೆ (Overseas)", overseasGross, 69.8),
+    makeRow("Karnataka", "Karnataka", Number((domesticGross * kaShare).toFixed(2)), 78.4),
+    makeRow("AP / Telangana", "Andhra Pradesh & Telangana", Number((domesticGross * apTgShare).toFixed(2)), 82.1),
+    makeRow("Tamil Nadu", "Tamil Nadu", Number((domesticGross * tnShare).toFixed(2)), 74.0),
+    makeRow("Kerala", "Kerala", Number((domesticGross * kerShare).toFixed(2)), 76.5),
+    makeRow("North India / Hindi Belt", "North India / Hindi", Number((domesticGross * northShare).toFixed(2)), 71.2),
+    makeRow("Overseas (International)", "Overseas (International)", overseasGross, 69.8),
   ];
 }
 
@@ -256,7 +256,7 @@ function buildCityTelemetry(
   return [
     {
       city: "Bengaluru",
-      nativeName: "ಬೆಂಗಳೂರು",
+      nativeName: "Bengaluru",
       state: "Karnataka",
       trackedTheatres: 148,
       trackedShows: Math.round(720 * scale),
@@ -269,7 +269,7 @@ function buildCityTelemetry(
     },
     {
       city: "Hyderabad",
-      nativeName: "హైదరాబాద్",
+      nativeName: "Hyderabad",
       state: "Telangana",
       trackedTheatres: 184,
       trackedShows: Math.round(890 * scale),
@@ -282,7 +282,7 @@ function buildCityTelemetry(
     },
     {
       city: "Chennai",
-      nativeName: "சென்னை",
+      nativeName: "Chennai",
       state: "Tamil Nadu",
       trackedTheatres: 126,
       trackedShows: Math.round(590 * scale),
@@ -295,7 +295,7 @@ function buildCityTelemetry(
     },
     {
       city: "Mumbai & MMR",
-      nativeName: "मुंबई",
+      nativeName: "Mumbai",
       state: "Maharashtra",
       trackedTheatres: 215,
       trackedShows: Math.round(980 * scale),
@@ -308,7 +308,7 @@ function buildCityTelemetry(
     },
     {
       city: "Delhi-NCR",
-      nativeName: "दिल्ली-एनसीआर",
+      nativeName: "Delhi-NCR",
       state: "Delhi",
       trackedTheatres: 192,
       trackedShows: Math.round(860 * scale),
@@ -321,7 +321,7 @@ function buildCityTelemetry(
     },
     {
       city: "Kochi",
-      nativeName: "കൊച്ചി",
+      nativeName: "Kochi",
       state: "Kerala",
       trackedTheatres: 54,
       trackedShows: Math.round(240 * scale),

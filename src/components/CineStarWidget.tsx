@@ -20,7 +20,7 @@ export default function CineStarWidget() {
             <Crown className="w-4 h-4 text-marquee-soft" />
           </div>
           <div>
-            <h3 className="text-sm font-black text-popcorn tracking-tight leading-none">ಸಿನಿಸ್ಟಾರ್ ಟಾಪ್ 5</h3>
+            <h3 className="text-sm font-black text-popcorn tracking-tight leading-none">CineStar Top 5</h3>
             <p className="text-[10px] text-popcorn-muted font-medium mt-0.5 font-display-latin uppercase tracking-widest">Power Rankings</p>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function CineStarWidget() {
           className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-signal-deep hover:bg-signal text-popcorn text-xs font-black transition-all group"
         >
           <Zap className="w-3.5 h-3.5" />
-          <span>50 ಸಿನಿಸ್ಟಾರ್ ರ‍್ಯಾಂಕಿಂಗ್ ನೋಡಿ (Full Leaderboard)</span>
+          <span>View the Full 50-Star Leaderboard</span>
           <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>

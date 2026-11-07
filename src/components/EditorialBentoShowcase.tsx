@@ -7,79 +7,20 @@ import { useLanguage } from "@/context/LanguageContext";
 import CinephileDiscoveryModal from "@/components/CinephileDiscoveryModal";
 
 export default function EditorialBentoShowcase() {
-  const { language, config, localizeUrl } = useLanguage();
+  const { config, localizeUrl } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const content: Record<string, any> = {
-    kn: {
-      pill: "ಸಿನಿಮಾ ಇನೋವೇಶನ್",
-      title: "ಸಿನಿಮಾ ಪ್ರೇಮಿಗಳು ಸಿನಿ ಜಾತ್ರೆ ಏಕೆ ಆಯ್ಕೆ ಮಾಡುತ್ತಾರೆ",
-      subtitle: "ನಿಷ್ಪಕ್ಷಪಾತ ವಿಮರ್ಶೆಗಳು, ಡ್ಯುಯಲ್-ಆಕ್ಸಿಸ್ ತಾಂತ್ರಿಕ ಮೌಲ್ಯಮಾಪನ ಮತ್ತು ನೈಜ ಸಮಯದ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಇಂಟೆಲಿಜೆನ್ಸ್.",
-      card1Title: "ಅತ್ಯುನ್ನತ ಸಿನಿಮಾ ವಿಮರ್ಶಕರಿಂದ ರಚಿತವಾದ ನಿಷ್ಪಕ್ಷಪಾತ ವಿಶ್ಲೇಷಣೆ.",
-      card1Cta: "ವಿಶೇಷ ಲೇಖನಗಳು",
-      card2Title: "6 ಭಾರತೀಯ ಚಿತ್ರರಂಗದ 120+ ಚಿತ್ರಕರ್ತರು ಮತ್ತು ವಿಮರ್ಶಕರಿಂದ ದೃಢೀಕೃತ.",
-      card3Metric: "100%",
-      card3Subtitle: "ಸ್ಪಾಯ್ಲರ್-ಮುಕ್ತ ವಿಶ್ವಾಸಾರ್ಹತೆ & ಕಥಾಹಂದರದ ತಾಂತ್ರಿಕ ಆಡಿಟ್.",
-      card4Title: "ಸಿನಿಮಾ ಚರ್ಚೆಯನ್ನು ಉನ್ನತೀಕರಿಸಿ, ನಿಮ್ಮ ಸಿನಿಮಾ ಅನುಭವವನ್ನು ಇನ್ನಷ್ಟು ಶ್ರೀಮಂತಗೊಳಿಸಿ.",
-    },
-    te: {
-      pill: "సినిమా ఇన్నోవేషన్",
-      title: "సినిమా ప్రేమికులు ఫిల్మీ గ్యారేజ్ ఎందుకు ఎంచుకుంటారు",
-      subtitle: "నిష్పాక్షిక రివ్యూలు, డ్యూయల్-యాక్సిస్ సాంకేతిక విశ్లేషణ మరియు రియల్-టైమ్ బాక్సాఫీస్ ఇంటెలిజెన్స్.",
-      card1Title: "అగ్రశ్రేణి ఫిల్మ్ క్రిటిక్స్ అందించే లోతైన నిష్పాక్షిక విశ్లేషణ.",
-      card1Cta: "ప్రత్యేక కథనాలు",
-      card2Title: "6 చిత్రపరిశ్రమల 120+ దర్శకులు, నటులు మరియు ట్రేడ్ నిపుణుల నమ్మకం.",
-      card3Metric: "100%",
-      card3Subtitle: "స్పాయిలర్-రహిత సమగ్రత & ఆర్టిస్టిక్ స్టోరీటెల్లింగ్ ఆడిట్.",
-      card4Title: "సినిమా వీక్షణను ఉన్నత స్థాయికి తీసుకువెళ్ళి, పరిపూర్ణ అనుభూతిని అందిస్తుంది.",
-    },
-    ta: {
-      pill: "சினிமா புத்தாக்கம்",
-      title: "சினிமா ஆர்வலர்கள் ஏன் பில்மி கேரேஜை தேர்ந்தெடுக்கிறார்கள்",
-      subtitle: "நடுநிலையான விமர்சனங்கள், இரட்டை-அச்சு தொழில்நுட்ப மதிப்பீடு மற்றும் நேரலை பாக்ஸ் ஆபீஸ் தகவல்.",
-      card1Title: "தலைசிறந்த சினிமா விமர்சகர்களால் வடிவமைக்கப்பட்ட நடுநிலையான ஆழமான ஆய்வுகள்.",
-      card1Cta: "பிரத்யேக கட்டுரைகள்",
-      card2Title: "6 திரைப்படத் துறைகளைச் சேர்ந்த 120+ இயக்குநர்கள் மற்றும் ஆய்வாளர்களால் நம்பப்படுகிறது.",
-      card3Metric: "100%",
-      card3Subtitle: "ஸ்பாய்லர் இல்லாத நம்பகத்தன்மை & கதை சொல்லல் தர மதிப்பீடு.",
-      card4Title: "திரைப்பட விவாதங்களை அடுத்த தளத்திற்கு உயர்த்தி, முழுமையான சினிமா அனுபவத்தை உருவாக்குகிறது.",
-    },
-    ml: {
-      pill: "സിനിമ ഇന്നൊവേഷൻ",
-      title: "സിനിമാപ്രേമികൾ ഫിലിമി ഗാരേജ് തിരഞ്ഞെടുക്കുന്നത് എന്തുകൊണ്ട്",
-      subtitle: "നിഷ്പക്ഷ നിരൂപണങ്ങൾ, ഡ്യുവൽ-ആക്സിസ് സാങ്കേതിക വിശകലനം, തത്സമയ ബോക്സ് ഓഫീസ് വിവരങ്ങൾ.",
-      card1Title: "പ്രമുഖ ചലച്ചിത്ര നിരൂപകർ ഒരുക്കുന്ന ആധികాരികവും സമഗ്രവുമായ വിലയിരുത്തലുകൾ.",
-      card1Cta: "പ്രത്യേക ലേഖനങ്ങൾ",
-      card2Title: "6 ചലച്ചിത്ര മേഖലകളിലെ 120+ സംവിധായകരും നിരൂപകരും വിശ്വസിക്കുന്നു.",
-      card3Metric: "100%",
-      card3Subtitle: "സ്പോയിലർ രഹിത വിശ്വാസ്യത & സാങ്കേതിക മികവിന്റെ ഓഡിറ്റ്.",
-      card4Title: "സിനിമാ ചർച്ചകളെ കൂടുതൽ സമ്പന്നമാക്കി നിങ്ങളുടെ സിനിമാ അനുഭവത്തെ അടുത്ത തലത്തിലേക്ക് മാറ്റുന്നു.",
-    },
-    hi: {
-      pill: "सिनेमा इनोवेशन",
-      title: "सिनेमा प्रेमी फ़िल्मी गैराज को क्यों चुनते हैं",
-      subtitle: "सटीक फिल्म पत्रकारिता, डुअल-एक्सिस तकनीकी समीक्षा और निष्पक्ष रियल-टाइम बॉक्स ऑफिस इंटेलिजेंस.",
-      card1Title: "वरिष्ठ समीक्षकों द्वारा तैयार निष्पक्ष, गंभीर और गहन सिनेमा विश्लेषण.",
-      card1Cta: "विशेष आलेख पढ़ें",
-      card2Title: "6 फिल्म इंडस्ट्रीज के 120+ फिल्मकारों और क्रिटिक्स द्वारा प्रमाणित.",
-      card3Metric: "100%",
-      card3Subtitle: "स्पॉइलर-मुक्त प्रामाणिकता और दोहरी स्टोरीटेलिंग तकनीकी ऑडिट.",
-      card4Title: "सिनेमाई संवाद को नई ऊंचाई देता है और दर्शकों को फिल्म देखने का एक नया नजरिया प्रदान करता है.",
-    },
-    en: {
-      pill: "INNOVATION & CRAFT",
-      title: "Why cinephiles choose EXTRASAGA",
-      subtitle: "Exceptional film journalism, dual-axis reviews, and real-time box office intelligence that set the benchmark for modern entertainment media.",
-      card1Title: "Handcrafted by veteran film journalists to deliver timeless depth and unmatched credibility.",
-      card1Cta: "Explore Editorial",
-      card2Title: "Trusted by 120+ filmmakers, national critics & trade analysts across 6 industries.",
-      card3Metric: "100%",
-      card3Subtitle: "Spoiler-free integrity & dual-axis storytelling audits.",
-      card4Title: "Elevates film discourse and transforms everyday cinema viewing into a deeper cinematic journey.",
-    },
+  const t = {
+    pill: "INNOVATION & CRAFT",
+    title: "Why cinephiles choose EXTRASAGA",
+    subtitle: "Exceptional film journalism, dual-axis reviews, and real-time box office intelligence covering all Indian film industries under one destination.",
+    card1Title: "Handcrafted by veteran film journalists to deliver timeless depth and unmatched credibility across all film industries.",
+    card1Cta: "Explore Editorial",
+    card2Title: "Trusted by 120+ filmmakers, national critics & trade analysts across all Indian cinema.",
+    card3Metric: "100%",
+    card3Subtitle: "Spoiler-free integrity & dual-axis storytelling audits.",
+    card4Title: "Elevates film discourse and transforms everyday cinema viewing into a deeper cinematic journey.",
   };
-
-  const t = content[language] || content.en;
 
   return (
     <section aria-label="Editorial Innovation" className="w-full py-8">

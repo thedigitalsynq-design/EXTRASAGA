@@ -6,6 +6,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [4.0.0] - 2026-11-07 — ENGLISH-ONLY EDITION
+
+**The plates change, the agenda holds:** EXTRASAGA becomes a single-language publication — every page, label, headline, review, seed and metadata string renders in **English**. The per-language edition axis (`?lang=kn|te|ta|ml|hi`, `SUPPORTED_LANGUAGES`, per-language dictionaries) is retired; films keep their own language identity (`Movie.language` remains the film's language, a fact — not a UI setting).
+
+### The Conversion
+- **Language core collapsed**: `languages.ts` ships one `ENGLISH_CONFIG` (`DEFAULT_LANGUAGE = "en"`); `getLanguageConfig()` resolves every input to the English edition. `translations.ts` maps every `LanguageCode` to the same English dictionary, so legacy `lang` plumbing keeps compiling while rendering English. `LanguageContext` now pins `language = "en"` and `setLanguage` is a no-op.
+- **UI copy translated**: all native-script interface strings across components, pages (home, movies, reviews, news, box office, OTT, live, search, admin) and default badges (date engine: "Releasing Today!", "Now in Theatres…") rewritten to natural, Gen-Z cine-press English.
+- **Editorial seeds translated**: `mockData.ts`, `multilingualSeeds.ts`, `liveUpdatesData.ts`, `cineStarData.ts`, `cinemaReleasesData.ts`, `ramayanaReviewData.ts`, `discoveryEngine.ts` — every article, review, movie, live-item and gallery copy now English; article/review/live edition tags set to `language: "en"`; film-language fields on `Movie`/`OttRelease`/`BoxOfficeEntry` preserved.
+- **Type system**: English font stacks only (`DM Sans` / `Space Grotesk` / `Archivo Black`), `html lang="en"`, per-language `data-lang` font switches removed; content storage keys renamed (`extrasaga_*`) so stale native-script browser data cannot resurface.
+- **Ingest internals untouched**: `src/lib/ingest/**` scrapers and keyword classifiers still classify external Kannada/Telugu/Tamil sources; their output will not surface in the English edition views.
+- **Tests rewritten**: multilingual + editorial + categories suites now assert the English-only contract (single config, legacy codes collapse to `en`, everything renders ASCII/Latin).
+
+### Preserved Without Dilution (the agenda holds)
+- Six industries stay: Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood and Hollywood — reported in English now.
+- Asia/Kolkata release engine (30-day In-Theatres window, Next 7/30/60/90 buckets, permanent archive) — untouched.
+- Ramayana Part 1 runs on reverence only: **NO RATINGS, ONLY RESPECT!** — verbatim.
+- Verified-source journalism, publisher attribution, approval workflow, admin portal, CSP/HSTS, HMAC-SHA256 tokens, sliding-window rate limits, `CRON_SECRET` gates — untouched.
+
+---
+
+## [3.0.0] - 2026-11-07 — AFTER-DARK / EMISSION EDITION
+
+**Wordmark unchanged, microphone lowered into the dark:** EXTRASAGA relaunches its *copy and voice* as the **AFTER-DARK / EMISSION EDITION** — Gen Z-native, certified film-brain journalism. **Zero visual changes.** The screen stays exactly as the House Full Press v4 fanzine system prints it (`docs/DESIGN-SYSTEM.md`); only the words changed schedule.
+
+### The Voice
+- **Certified film-brain, not corporate fam-speak.** Headlines are information-first and capped at ~12 words. The desk reports like a trade insider who has been in the projection room since Day 1 — receipts, verdicts, lore — without ever becoming a hype account.
+- **New section vocabulary across all six languages** (strings in `translations.ts`): *Sirens — Breaking*, *The Receipts Desk*, *Now Streaming / OTT Radar*, *First Look*. Search now invites: "Search the six industries — movies, stars, verdicts, receipts...". Buttons read like a cinephile: *Pull up the whole feed*, *Read the thread*, *Roll the First Look*, *Read the verdict*.
+- **Synced data copy**: `mockData.ts`, `multilingualSeeds.ts`, `liveUpdatesData.ts` headlines rewritten in the After-Dark voice across every industry; Ramayana Part 1 coverage polished under stricter reverence (poetic, serious, zero memes, zero star ratings).
+- **Seed-attributed and verified lines untouched**: article IDs, slugs, URLs, timestamps, `languages` fields, ratings data, category fields, and array shapes are byte-identical; only display strings moved.
+
+### Preserved Without Dilution (the agenda holds)
+- Six industries, six native scripts, `data-lang` switching — untouched.
+- Asia/Kolkata release engine (30-day In-Theatres window, Next 7/30/60/90 buckets, permanent archive) — untouched.
+- Ramayana Part 1 runs on reverence only: **NO RATINGS, ONLY RESPECT!** — the closing line and the rule survive verbatim.
+- Verified-source journalism, publisher attribution, approval workflow, admin portal, CSP/HSTS, HMAC-SHA256 tokens, sliding-window rate limits, `CRON_SECRET` gates — untouched.
+- Numbers and verdicts stay dead-serious: no spin on grosses, no ratings inflation, no clickbait lies.
+
+### Naming Reconciliation Note
+`docs/DESIGN-SYSTEM.md` narrates the visual-history timeline in which an earlier "After-Dark" design concept was superseded by **HOUSE FULL PRESS v4.0**. This release reuses the *After-Dark* name for the editorial copy voice only; it is not a design-era regression. Visual authority remains the House Full Press v4 system.
+
+---
+
 ## [2.0.0] - 2026-11-07 — The House Full Press Edition
 
 **Full edition change:** from After-Dark / Emission v3.0 to **HOUSE FULL PRESS (Fandom-Webzine Brutalism, v4.0)** — `docs/DESIGN-SYSTEM.md`.

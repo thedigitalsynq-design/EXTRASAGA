@@ -35,7 +35,7 @@ export type CategorySlug =
 
 export interface Category {
   id: string;
-  name: string; // Kannada name e.g. "ಸ್ಯಾಂಡಲ್ವುಡ್"
+  name: string; // Display name e.g. "Sandalwood"
   englishName: string;
   slug: CategorySlug;
   description?: string;
@@ -110,8 +110,8 @@ export interface MovieReview {
   trailerYoutubeId?: string;
   genres: string[];
   censorRating: string; // U/A, U, A
-  runtime: string; // e.g. "2 ಗಂಟೆ 35 ನಿಮಿಷ"
-  verdict: string; // Kannada verdict badge e.g. "ಬ್ಲಾಕ್‌ಬಸ್ಟರ್ ಸಿನಿಮಾ!", "ಮಸ್ತ್ ಮನರಂಜನೆ"
+  runtime: string; // e.g. "2 hours 35 mins"
+  verdict: string; // Verdict badge e.g. "Blockbuster Movie!", "Total Entertainment!"
   summary: string;
   storyAnalysis: string;
   performanceAnalysis: string;
@@ -153,11 +153,11 @@ export interface BoxOfficeEntry {
   releaseYear: number;
   language?: LanguageCode;
   industry?: FilmIndustry;
-  day1Collection: string; // e.g. "₹25 ಕೋಟಿ"
-  weekendCollection: string; // e.g. "₹70 ಕೋಟಿ"
-  worldwideCollection: string; // e.g. "₹450 ಕೋಟಿ+"
-  budget: string; // e.g. "₹100 ಕೋಟಿ"
-  verdict: "ಆಲ್ ಟೈಮ್ ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಸೂಪರ್ ಹಿಟ್" | "ಹಿಟ್" | "ಸರಾಸರಿ" | string;
+  day1Collection: string; // e.g. "₹25 Cr"
+  weekendCollection: string; // e.g. "₹70 Cr"
+  worldwideCollection: string; // e.g. "₹450 Cr+"
+  budget: string; // e.g. "₹100 Cr"
+  verdict: "All-Time Blockbuster" | "Blockbuster" | "Super Hit" | "Hit" | "Average" | string;
   verdictBadgeColor: string;
   territoryBreakdown: {
     territory: string;
@@ -229,7 +229,7 @@ export interface OttRelease {
   movieTitleEn: string;
   platform: OttPlatform;
   platformBadgeColor: string;
-  releaseDate: string; // e.g. "21 ನವೆಂಬರ್ 2024"
+  releaseDate: string; // e.g. "21 November 2024"
   languages: string[];
   genre: string;
   posterImage: string;
@@ -247,7 +247,7 @@ export interface OttRelease {
 export interface VideoItem {
   id: string;
   title: string;
-  category: "ಟ್ರೇಲರ್" | "ಟೀಸರ್" | "ಹಾಡುಗಳು" | "ಸಂದರ್ಶನ";
+  category: "Trailer" | "Teaser" | "Songs" | "Interview" | string;
   youtubeId: string;
   thumbnailUrl: string;
   duration: string;
@@ -264,7 +264,7 @@ export interface GalleryItem {
   slug: string;
   coverImage: string;
   celebrityName: string;
-  category: "ನಟರು" | "ನಟಿಯರು" | "ಸಿನಿಮಾ ಇವೆಂಟ್";
+  category: "Actors" | "Actresses" | "Cinema Event" | string;
   photoCount: number;
   photos: {
     url: string;

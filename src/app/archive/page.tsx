@@ -15,9 +15,9 @@ import { DataService } from "@/lib/dataService";
 import { formatReleaseDateIST } from "@/lib/cinemaDateUtils";
 
 export const metadata: Metadata = {
-  title: "ಶಾಶ್ವತ ಸಿನಿಮಾ & ಲೇಖನಗಳ ಆರ್ಕೈವ್ (Permanent Archive) | EXTRASAGA",
+  title: "Permanent Cinema & Articles Archive | EXTRASAGA",
   description:
-    "EXTRASAGA ಶಾಶ್ವತ ಸಿನಿಮಾ ಲೇಖನಗಳು, ಹಿಂದಿನ ಬಿಡುಗಡೆಗಳು ಮತ್ತು ಐತಿಹಾಸಿಕ ಬಾಕ್ಸ್ ಆಫೀಸ್ ದಾಖಲೆಗಳ ಸಮಗ್ರ ಡಿಜಿಟಲ್ ಆರ್ಕೈವ್.",
+    "EXTRASAGA's comprehensive digital archive of permanent cinema articles, past releases and historical box office records.",
 };
 
 export default async function PermanentArchivePage() {
@@ -40,18 +40,18 @@ export default async function PermanentArchivePage() {
             </span>
           </div>
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight max-w-3xl animate-flicker">
-            ಶಾಶ್ವತ ಸಿನಿಮಾ ಆರ್ಕೈವ್ (Permanent Archive)
+            Permanent Archive
           </h1>
           <p className="text-sm text-popcorn-dim mt-2 max-w-2xl leading-relaxed">
-            30 ದಿನಗಳ ಗಡುವು ಮೀರಿದ ಎಲ್ಲಾ ಸಿನಿಮಾ ಲೇಖನಗಳು, ಹಿಂದಿನ ರಿಲೀಸ್‌ಗಳು ಮತ್ತು ವಿಮರ್ಶೆಗಳನ್ನು ಅವುಗಳ ಮೂಲ URL ನಲ್ಲೇ ಶಾಶ್ವತವಾಗಿ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ. ಯಾವುದೇ ಲೇಖನವನ್ನು ಎಂದಿಗೂ ಡಿಲೀಟ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.
+            Every cinema article, past release and review that has aged beyond its 30-day window is preserved permanently at its original URL. No article is ever deleted.
           </p>
 
           <div className="flex items-center gap-3 pt-6 text-xs text-popcorn-dim">
             <span className="px-3 py-1.5 rounded-lg bg-revealed border border-glow-line font-bold font-mono-tabular">
-              ಸಂರಕ್ಷಿತ ಸಿನಿಮಾಗಳು: {archivedMovies.length}
+              Archived Films: {archivedMovies.length}
             </span>
             <span className="px-3 py-1.5 rounded-lg bg-revealed border border-glow-line font-bold font-mono-tabular">
-              ಶಾಶ್ವತ ಲೇಖನಗಳು: {allArticles.length}
+              Permanent Articles: {allArticles.length}
             </span>
           </div>
         </div>
@@ -63,10 +63,10 @@ export default async function PermanentArchivePage() {
           <div className="flex items-center justify-between pb-4 border-b border-glow-line mb-6">
             <h2 className="text-xl font-bold text-popcorn flex items-center gap-2">
               <Archive className="w-5 h-5 text-ultra-soft" />
-              <span>ಹಿಂದಿನ ಬಿಡುಗಡೆಗಳು (Past Releases &gt; 30 Days)</span>
+              <span>Past Releases &gt; 30 Days</span>
             </h2>
             <span className="text-xs text-popcorn-muted font-sans">
-              ಮೂಲ URL ಸಂರಕ್ಷಣೆ ಸಕ್ರಿಯವಾಗಿದೆ
+              Original-URL preservation active
             </span>
           </div>
 
@@ -105,7 +105,7 @@ export default async function PermanentArchivePage() {
                       href={`/movies/${movie.slug}`}
                       className="w-full py-1.5 rounded-lg bg-hall hover:bg-signal-deep text-popcorn-dim hover:text-popcorn text-xs font-bold flex items-center justify-center gap-1 transition-colors border border-glow-line"
                     >
-                      <span>ಆರ್ಕೈವ್ ವೀಕ್ಷಿಸಿ</span>
+                      <span>View Archive</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -120,10 +120,10 @@ export default async function PermanentArchivePage() {
           <div className="flex items-center justify-between pb-4 border-b border-glow-line mb-6">
             <h2 className="text-xl font-bold text-popcorn flex items-center gap-2">
               <FileText className="w-5 h-5 text-marquee-soft" />
-              <span>ಸಂಪೂರ್ಣ ಲೇಖನಗಳ ಆರ್ಕೈವ್ (Permanent Articles Archive)</span>
+              <span>Permanent Articles Archive</span>
             </h2>
             <span className="text-xs text-popcorn-muted font-sans">
-              ಶಾಶ್ವತ ಪ್ರಕಟಣಾ ಲಾಗ್‌ಗಳು
+              Permanent publication log
             </span>
           </div>
 

@@ -16,22 +16,18 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liveItems, setLiveItems] = useState<{ id: string; title: string; slug: string }[]>([]);
 
-  // Filter breaking news matching active language / industry
-  const languageFiltered = articles.filter(
-    (a) => a.language === language || (!a.language && language === "kn")
-  );
-
-  const activeList = languageFiltered.length > 0 ? languageFiltered : articles;
+  // Unified breaking news across all Indian film industries
+  const activeList = articles;
 
   const defaultList = [
     {
       id: "b-default",
-      title: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1: ಕುಂದಾಪುರದಲ್ಲಿ ಬಿರುಸಿನ ಚಿತ್ರೀಕರಣ ಆರಂಭ - ರಿಷಬ್ ಶೆಟ್ಟಿ ರಗಡ್ ಲುಕ್ ವೈರಲ್!",
+      title: "Kantara Chapter 1: Intense Shoot Kicks Off in Kundapura — Rishab Shetty's Rutha Look Goes Viral!",
       slug: "kantara-chapter-1-shooting-kundapura-rishab-shetty-look",
     },
     {
       id: "b-default-2",
-      title: "ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ 'ಟಾಕ್ಸಿಕ್' ಚಿತ್ರಕ್ಕಾಗಿ ಹಾಲಿವುಡ್ ಜಾನ್ ವಿಕ್ ಸ್ಟಂಟ್ ಮಾಸ್ಟರ್ ಆಗಮನ!",
+      title: "Rocking Star Yash's 'Toxic' Brings in a Hollywood John Wick Stunt Master!",
       slug: "yash-toxic-movie-hollywood-stunt-master-geetu-mohandas",
     },
   ];
@@ -46,7 +42,7 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
     let isMounted = true;
     const fetchLatest = async () => {
       try {
-        const res = await fetch(`/api/live-updates?lang=${language}&category=breaking&limit=5`);
+        const res = await fetch(`/api/live-updates?category=breaking&limit=5`);
         if (res.ok && isMounted) {
           const data = await res.json();
           if (data.updates && data.updates.length > 0) {

@@ -36,10 +36,19 @@
 ## 4. Typography Mapping Matrix
 | Language | Code | Primary Font Family | Fallback |
 | :--- | :--- | :--- | :--- |
-| **Tamil** | `ta` | `Baloo Thambi 2` (Weights 400-800) | sans-serif |
-| **Kannada** | `kn` | `Hubballi` | sans-serif |
-| **Telugu** | `te` | `Baloo Tammudu 2` (Weights 400-800) | sans-serif |
-| **Malayalam** | `ml` | `Chilanka` | cursive, sans-serif |
-| **Hindi** | `hi` | `Khand` (Weights 300-700) | sans-serif |
-| **English** | `en` | `DM Sans` (Weights 400-700) | sans-serif |
+| **English** | `en` | `DM Sans` (Weights 400-700) | system sans-serif |
+| Display / Poster | — | `Space Grotesk` / `Archivo Black` | sans-serif |
+
+---
+
+## 5. After-Dark Copy Voice Styleguide (v3.0.0 — Emission Edition)
+- **Voice**: Certified film-brain. Write like the trade insider at the back of the projection room, not like a hype account.
+- **Headlines**: Information-first, ~12 words max. Numbers and verdicts stay dead-serious; never inflate, never hide.
+- **Standing section names** (`translations.ts`, English edition): *Sirens — Breaking*, *The Receipts Desk*, *Now Streaming / OTT Radar*, *First Look*, *Trending Today*.
+- **Banned register**: corporate fam-speak ("excited to announce"), emoji-spam, meme-speak, clickbait lies, "slay"-adjacent filler.
+- **Sacrosanct copy**: Ramayana Part 1 coverage runs reverent, poetic and serious with `NO RATINGS, ONLY RESPECT!` as the closing line; no meme treatment, no ratings.
+
+### Version-name reconciliation
+- `docs/DESIGN-SYSTEM.md` uses "After-Dark" for a superseded *visual* concept (pre-House Full Press v4.0). CHANGELOG `v3.0.0` reuses "AFTER-DARK / EMISSION EDITION" strictly as the editorial **copy-voice** release name. No visual changes shipped with it; if confusion resurfaces in PR review, link to CHANGELOG §3.0.0 "Naming Reconciliation Note".
+- Test-asserted literals are contract: before rewriting voice strings, re-check `tests/ramayana-review.test.ts`, `tests/multilingual.test.ts`, and `tests/editorial-design-references.test.ts` for asserted text (e.g. `Trending Today`, `NO RATINGS, ONLY RESPECT!`).
 

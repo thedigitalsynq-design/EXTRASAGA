@@ -2,19 +2,13 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ChevronDown,
   ChevronUp,
-  ExternalLink,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
-  Activity,
-  Layers,
 } from "lucide-react";
 import { ConsolidatedBoxOfficeRecord } from "@/types/boxOffice";
-import { useLanguage } from "@/context/LanguageContext";
 import BoxOfficeTerritoryRadar from "./BoxOfficeTerritoryRadar";
 
 interface BoxOfficeInteractiveTableProps {
@@ -28,7 +22,6 @@ export default function BoxOfficeInteractiveTable({
   viewMode,
   currency,
 }: BoxOfficeInteractiveTableProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
   const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const [expandedMovieSlug, setExpandedMovieSlug] = useState<string | null>(null);
 
@@ -52,28 +45,28 @@ export default function BoxOfficeInteractiveTable({
   };
 
   const industries = [
-    { id: "all", label: "ಎಲ್ಲಾ ಚಿತ್ರರಂಗಗಳು (All)" },
-    { id: "sandalwood", label: "ಸ್ಯಾಂಡಲ್‌ವುಡ್ (Kannada)" },
-    { id: "tollywood", label: "ಟಾಲಿವುಡ್ (Telugu)" },
-    { id: "kollywood", label: "ಕಾಲಿವುಡ್ (Tamil)" },
-    { id: "mollywood", label: "ಮಾಲಿವುಡ್ (Malayalam)" },
-    { id: "bollywood", label: "ಬಾಲಿವುಡ್ (Hindi)" },
-    { id: "hollywood", label: "ಹಾಲಿವುಡ್ (Global)" },
+    { id: "all", label: "All Industries" },
+    { id: "sandalwood", label: "Sandalwood (Kannada)" },
+    { id: "tollywood", label: "Tollywood (Telugu)" },
+    { id: "kollywood", label: "Kollywood (Tamil)" },
+    { id: "mollywood", label: "Mollywood (Malayalam)" },
+    { id: "bollywood", label: "Bollywood (Hindi)" },
+    { id: "hollywood", label: "Hollywood (Global)" },
   ];
 
   return (
     <div className="space-y-6">
       {/* Industry Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 text-xs font-sans">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 text-xs">
         {industries.map((ind) => (
           <button
             key={ind.id}
             type="button"
             onClick={() => setSelectedIndustry(ind.id)}
-            className={`px-4 py-2 rounded-2xl font-bold transition-all whitespace-nowrap border ${
+            className={`px-3.5 py-1.5 font-grotesk font-bold uppercase transition-all whitespace-nowrap border-2 border-ink ${
               selectedIndustry === ind.id
-                ? "bg-[#A92732] text-white border-[#A92732] shadow-sm"
-                : "bg-white text-gray-700 hover:text-gray-950 border-gray-200 hover:border-gray-300"
+                ? "bg-ink text-paper shadow-press -translate-y-0.5"
+                : "bg-sheet text-ink hover:bg-band shadow-sticker"
             }`}
           >
             {ind.label}
@@ -82,32 +75,32 @@ export default function BoxOfficeInteractiveTable({
       </div>
 
       {/* Main Table Card */}
-      <div className="bg-white rounded-3xl border border-gray-200/90 shadow-sm overflow-hidden">
+      <div className="bg-sheet border-2 border-ink shadow-press overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-gray-200 text-gray-500 uppercase font-mono tracking-wider bg-gray-50/80">
-                <th className="py-3.5 px-4 font-semibold w-12 text-center">ಸ್ಥಾನ</th>
-                <th className="py-3.5 px-4 font-semibold">ಸಿನಿಮಾ & ಸ್ಥಿತಿ (Movie)</th>
-                <th className="py-3.5 px-4 font-semibold">ಡೇ-1</th>
-                <th className="py-3.5 px-4 font-semibold">ಮೊದಲ ವಾರಾಂತ್ಯ</th>
-                <th className="py-3.5 px-4 font-semibold text-[#A92732]">
+              <tr className="border-b-2 border-ink text-ink uppercase font-poster tracking-wider bg-band">
+                <th className="py-3 px-4 font-bold w-12 text-center">Rank</th>
+                <th className="py-3 px-4 font-bold">Movie &amp; Status</th>
+                <th className="py-3 px-4 font-bold">Day 1</th>
+                <th className="py-3 px-4 font-bold">Opening Weekend</th>
+                <th className="py-3 px-4 font-bold text-press-deep">
                   {viewMode === "gross"
-                    ? "ಸಾರ್ವಕಾಲಿಕ ಗ್ರಾಸ್"
+                    ? "Worldwide Gross"
                     : viewMode === "net"
-                    ? "ನಿವ್ವಳ (Net)"
-                    : "ವಿತರಕರ ಪಾಲು (Share)"}
+                    ? "Net"
+                    : "Distributor Share"}
                 </th>
-                <th className="py-3.5 px-4 font-semibold">ತೀರ್ಪು</th>
-                <th className="py-3.5 px-4 font-semibold">ವಿಶ್ವಾಸಾರ್ಹತೆ</th>
-                <th className="py-3.5 px-4 text-right font-semibold">ವಿಶ್ಲೇಷಣೆ</th>
+                <th className="py-3 px-4 font-bold">Verdict</th>
+                <th className="py-3 px-4 font-bold">Confidence</th>
+                <th className="py-3 px-4 text-right font-bold">Analysis</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 font-sans">
+            <tbody className="divide-y border-t border-line font-grotesk">
               {filteredRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-12 text-gray-400">
-                    ಯಾವುದೇ ಸಿನಿಮಾಗಳು ಲಭ್ಯವಿಲ್ಲ (No movies found)
+                  <td colSpan={8} className="text-center py-12 text-ink-dim font-poster uppercase">
+                    No movies found for selected industry
                   </td>
                 </tr>
               ) : (
@@ -117,50 +110,41 @@ export default function BoxOfficeInteractiveTable({
 
                   const statusBadge =
                     item.figureStatus === "verified" ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
-                        <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                        <span>ದೃಢೀಕೃತ ಲೆಕ್ಕಾಚಾರ</span>
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-paper text-ink text-[10px] font-bold border border-ink uppercase">
+                        <ShieldCheck className="w-3 h-3 text-press-deep" />
+                        <span>Verified Audit</span>
                       </span>
                     ) : item.figureStatus === "live_estimate" ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-50 text-rose-800 text-[10px] font-bold border border-rose-200">
-                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                        <span>ಲೈವ್ ಅಂದಾಜು</span>
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-marquee text-ink text-[10px] font-bold border border-ink uppercase">
+                        <span className="w-1.5 h-1.5 bg-ink animate-ping" />
+                        <span>Live Estimate</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sky-50 text-sky-800 text-[10px] font-bold border border-sky-200">
-                        <span>ಕ್ರೋಢೀಕೃತ ಅಂಕಿಅಂಶ</span>
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-band text-ink text-[10px] font-bold border border-ink uppercase">
+                        <span>Consolidated</span>
                       </span>
                     );
 
-                  const classBadge =
-                    item.dataClass === "measured" ? (
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-amber-50 text-amber-900 border border-amber-200">
-                        ಟೆಲಿಮೆಟ್ರಿ
-                      </span>
-                    ) : item.dataClass === "reported" ? (
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-gray-100 text-gray-700 border border-gray-200">
-                        ವರದಿ
-                      </span>
-                    ) : (
-                      <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-gray-50 text-gray-600 border border-gray-200">
-                        ಅಂದಾಜು
-                      </span>
-                    );
+                  const classBadge = (
+                    <span className="px-1.5 py-0.5 border border-ink text-[9px] font-mono font-bold uppercase bg-paper text-ink">
+                      {item.dataClass}
+                    </span>
+                  );
 
                   return (
                     <React.Fragment key={item.id}>
-                      <tr className="hover:bg-gray-50/70 transition-colors group">
+                      <tr className="hover:bg-band/40 transition-colors group">
                         {/* Rank */}
                         <td className="py-3.5 px-4 text-center">
                           <span
-                            className={`w-7 h-7 rounded-full inline-flex items-center justify-center font-black text-xs font-mono shadow-2xs ${
+                            className={`w-7 h-7 border-2 border-ink inline-flex items-center justify-center font-poster text-xs ${
                               idx === 0
-                                ? "bg-amber-400 text-gray-950 ring-2 ring-amber-300"
+                                ? "bg-marquee text-ink shadow-sticker"
                                 : idx === 1
-                                ? "bg-gray-200 text-gray-900"
+                                ? "bg-sheet text-ink shadow-sticker"
                                 : idx === 2
-                                ? "bg-amber-100 text-amber-900"
-                                : "bg-gray-100 text-gray-700"
+                                ? "bg-violet text-paper shadow-sticker"
+                                : "bg-band text-ink"
                             }`}
                           >
                             {idx + 1}
@@ -168,9 +152,9 @@ export default function BoxOfficeInteractiveTable({
                         </td>
 
                         {/* Title & Poster */}
-                        <td className="py-3.5 px-4 font-bold text-gray-950">
+                        <td className="py-3.5 px-4 font-bold text-ink">
                           <div className="flex items-center gap-3">
-                            <div className="relative w-11 h-14 rounded-lg overflow-hidden shrink-0 hidden sm:block bg-gray-100 border border-gray-200 shadow-2xs">
+                            <div className="relative w-11 h-14 border-2 border-ink overflow-hidden shrink-0 hidden sm:block bg-band shadow-sticker">
                               <Image
                                 src={item.posterImage}
                                 alt={item.movieTitle}
@@ -180,11 +164,11 @@ export default function BoxOfficeInteractiveTable({
                               />
                             </div>
                             <div className="min-w-0">
-                              <div className="text-sm font-black text-gray-950 truncate font-sans">
-                                {language === "kn" ? item.movieTitle : item.movieTitleEn}
+                              <div className="text-sm font-poster uppercase text-ink truncate">
+                                {item.movieTitleEn || item.movieTitle}
                               </div>
-                              <div className="text-[11px] text-gray-400 font-sans truncate font-normal">
-                                {item.movieTitleEn} ({item.releaseYear})
+                              <div className="text-[11px] text-ink-dim truncate font-normal">
+                                {item.movieTitleEn} ({item.releaseYear}) · {item.industry.toUpperCase()}
                               </div>
                               <div className="flex items-center gap-1.5 mt-1">
                                 {statusBadge}
@@ -195,23 +179,23 @@ export default function BoxOfficeInteractiveTable({
                         </td>
 
                         {/* Day 1 */}
-                        <td className="py-3.5 px-4 font-mono font-medium text-gray-800">
+                        <td className="py-3.5 px-4 font-mono font-bold text-ink">
                           {formatAmount(item.trajectory.day1InCrores)}
                         </td>
 
                         {/* Weekend */}
-                        <td className="py-3.5 px-4 font-mono font-medium text-gray-800">
+                        <td className="py-3.5 px-4 font-mono font-bold text-ink">
                           {formatAmount(item.trajectory.openingWeekendInCrores)}
                         </td>
 
                         {/* Consolidated Main Metric */}
-                        <td className="py-3.5 px-4 font-mono font-black text-sm text-[#A92732]">
+                        <td className="py-3.5 px-4 font-mono font-black text-sm text-press-deep">
                           {formatAmount(activeTotal)}
                         </td>
 
                         {/* Verdict */}
                         <td className="py-3.5 px-4">
-                          <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 font-sans">
+                          <span className="inline-block px-2.5 py-0.5 text-[10px] font-poster uppercase bg-marquee text-ink border-2 border-ink shadow-sticker">
                             {item.verdict}
                           </span>
                         </td>
@@ -219,12 +203,12 @@ export default function BoxOfficeInteractiveTable({
                         {/* Confidence Indicator */}
                         <td className="py-3.5 px-4">
                           <div className="space-y-1">
-                            <span className="font-mono font-bold text-xs text-gray-900 block">
+                            <span className="font-mono font-bold text-xs text-ink block">
                               {item.confidenceScore}%
                             </span>
-                            <div className="w-16 h-1 rounded-full bg-gray-200 overflow-hidden">
+                            <div className="w-16 h-2 border border-ink bg-paper overflow-hidden">
                               <div
-                                className="h-full bg-emerald-500 rounded-full"
+                                className="h-full bg-press"
                                 style={{ width: `${item.confidenceScore}%` }}
                               />
                             </div>
@@ -238,12 +222,12 @@ export default function BoxOfficeInteractiveTable({
                             onClick={() =>
                               setExpandedMovieSlug(isExpanded ? null : item.slug)
                             }
-                            className={`p-2 rounded-xl transition-all border ${
+                            className={`p-2 border-2 border-ink shadow-sticker transition-all ${
                               isExpanded
-                                ? "bg-[#A92732] text-white border-[#A92732]"
-                                : "bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-200"
+                                ? "bg-press text-paper"
+                                : "bg-ink hover:bg-press text-paper"
                             }`}
-                            title="ಪ್ರಾದೇಶಿಕ ವಿವರ ವೀಕ್ಷಿಸಿ"
+                            title="View territory breakdown"
                           >
                             {isExpanded ? (
                               <ChevronUp className="w-3.5 h-3.5" />
@@ -257,57 +241,57 @@ export default function BoxOfficeInteractiveTable({
                       {/* Expanded Drawer: Trajectory & Territory Radar */}
                       {isExpanded && (
                         <tr>
-                          <td colSpan={8} className="p-4 sm:p-6 bg-gray-50/70 border-b border-gray-200">
+                          <td colSpan={8} className="p-4 sm:p-6 bg-paper border-t-2 border-b-2 border-ink">
                             <div className="space-y-6">
                               {/* Trajectory Tracker */}
-                              <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-2xs space-y-3">
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 font-mono flex items-center gap-1.5">
-                                  <TrendingUp className="w-3.5 h-3.5 text-[#A92732]" />
-                                  <span>ದೈನಂದಿನ ಮತ್ತು ಜೀವಮಾನದ ಆದಾಯ ಪಥ (Lifecycle Trajectory)</span>
+                              <div className="p-4 bg-sheet border-2 border-ink shadow-sticker space-y-3">
+                                <h4 className="text-xs font-poster uppercase tracking-wider text-ink flex items-center gap-1.5">
+                                  <TrendingUp className="w-3.5 h-3.5 text-press" />
+                                  <span>LIFECYCLE TRAJECTORY</span>
                                 </h4>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center font-mono text-xs">
-                                  <div className="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                                    <span className="text-[10px] text-gray-400 block font-sans">
-                                      ಡೇ 1
+                                  <div className="p-2.5 bg-paper border-2 border-ink">
+                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                      Day 1
                                     </span>
-                                    <span className="font-bold text-gray-900 mt-0.5 block">
+                                    <span className="font-bold text-ink mt-0.5 block">
                                       {formatAmount(item.trajectory.day1InCrores)}
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                                    <span className="text-[10px] text-gray-400 block font-sans">
-                                      ಡೇ 2
+                                  <div className="p-2.5 bg-paper border-2 border-ink">
+                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                      Day 2
                                     </span>
-                                    <span className="font-bold text-gray-900 mt-0.5 block">
+                                    <span className="font-bold text-ink mt-0.5 block">
                                       {formatAmount(item.trajectory.day2InCrores)}
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                                    <span className="text-[10px] text-gray-400 block font-sans">
-                                      ವಾರಾಂತ್ಯ (Weekend)
+                                  <div className="p-2.5 bg-paper border-2 border-ink">
+                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                      Weekend
                                     </span>
-                                    <span className="font-bold text-gray-900 mt-0.5 block">
+                                    <span className="font-bold text-ink mt-0.5 block">
                                       {formatAmount(item.trajectory.openingWeekendInCrores)}
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 rounded-xl bg-gray-50 border border-gray-100">
-                                    <span className="text-[10px] text-gray-400 block font-sans">
-                                      ಮೊದಲ ವಾರ (Week 1)
+                                  <div className="p-2.5 bg-paper border-2 border-ink">
+                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                      Week 1
                                     </span>
-                                    <span className="font-bold text-gray-900 mt-0.5 block">
+                                    <span className="font-bold text-ink mt-0.5 block">
                                       {formatAmount(item.trajectory.week1InCrores)}
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200">
-                                    <span className="text-[10px] text-amber-800 block font-sans font-bold">
-                                      ಜೀವಮಾನ ಅಂದಾಜು
+                                  <div className="p-2.5 bg-marquee text-ink border-2 border-ink">
+                                    <span className="text-[10px] text-ink block font-poster uppercase">
+                                      Lifetime Est.
                                     </span>
-                                    <span className="font-bold text-amber-900 mt-0.5 block">
+                                    <span className="font-bold text-ink mt-0.5 block">
                                       {formatAmount(item.trajectory.projectedLifetimeInCrores)}
                                     </span>
                                   </div>
@@ -335,4 +319,3 @@ export default function BoxOfficeInteractiveTable({
     </div>
   );
 }
-

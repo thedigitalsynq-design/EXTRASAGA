@@ -67,9 +67,9 @@ export default function EditorialStoryDeck() {
 
   const headerText = {
     kn: {
-      pill: "ಕ್ಯೂರೇಟೆಡ್ ಸ್ಟೋರಿ ಡೆಕ್",
-      title: "ಸಿನಿಮಾ ಸ್ಟೋರಿ ಸ್ಟ್ಯಾಕ್ಸ್: ದೀರ್ಘಾವಧಿಯ ವಿಶ್ಲೇಷಣೆಗಳು",
-      subtitle: "ಪ್ರತಿ ವಾರ ನಮ್ಮ ಹಿರಿಯ ಸಂಪಾದಕರು ಸಿದ್ಧಪಡಿಸುವ ಆಳವಾದ ಸಿನಿಮೀಯ ಪ್ರಬಂಧಗಳು ಮತ್ತು ಸಂಶೋಧನಾ ವರದಿಗಳು.",
+      pill: "CURATED STORY DECK",
+      title: "Cinema Story Stacks: The Deep-Dive Collection",
+      subtitle: "Tactile, long-form film essays and investigative retrospectives published weekly by our senior editorial board.",
     },
     en: {
       pill: "CURATED STORY DECK",

@@ -42,13 +42,13 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 EXTRASAGA CRITICAL EVALUATION
               </span>
               <h3 className="text-lg sm:text-xl font-black text-popcorn tracking-tight">
-                Dual-Axis Review Matrix (ದ್ವಿಮುಖ ವಿಮರ್ಶಾ ಮಾಪಕ)
+                Dual-Axis Review Matrix
               </h3>
             </div>
           </div>
 
           <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="text-xs text-popcorn-muted">ಶಿಫಾರಸು ಸ್ಕ್ರೀನ್:</span>
+            <span className="text-xs text-popcorn-muted">Recommended Screen:</span>
             <span className="px-3 py-1 rounded-full bg-ultra-faint text-ultra-soft border border-ultra/30 font-bold text-xs shadow-[0_0_16px_rgba(155,109,255,0.2)]">
               🎬 {formatRec}
             </span>
@@ -70,13 +70,13 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </span>
               </div>
               <p className="text-xs text-popcorn-muted mb-4 leading-relaxed">
-                ಕಥಾವಸ್ತು, ಸಂಭಾಷಣೆ, ನಟ-ನಟಿಯರ ಅಭಿನಯ ಮತ್ತು ಭಾವನಾತ್ಮಕ ನಿರೂಪಣಾ ಸಾಮರ್ಥ್ಯ.
+                Story, dialogue, acting performances, and emotional narrative power.
               </p>
 
               <div className="space-y-3 text-xs">
                 <div>
                   <div className="flex justify-between text-popcorn-dim mb-1">
-                    <span>ಕಥೆ & ಚಿತ್ರಕಥೆ (Story & Screenplay)</span>
+                    <span>Story & Screenplay</span>
                     <span className="font-bold text-popcorn font-mono-tabular">{narrative.story * 10}%</span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
@@ -89,7 +89,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
 
                 <div>
                   <div className="flex justify-between text-popcorn-dim mb-1">
-                    <span>ಪಾತ್ರ ಚಿತ್ರಣ & ನಟನೆ (Acting Performances)</span>
+                    <span>Acting Performances</span>
                     <span className="font-bold text-popcorn font-mono-tabular">{narrative.performances * 10}%</span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
@@ -116,13 +116,13 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </span>
               </div>
               <p className="text-xs text-popcorn-muted mb-4 leading-relaxed">
-                ಛಾಯಾಗ್ರಹಣ (Camera), ಹಿನ್ನೆಲೆ ಸಂಗೀತ, ಶಬ್ದ ಗ್ರಹಣ ಮತ್ತು ದೃಶ್ಯ ವೈಭವ (VFX).
+                Cinematography, background score, sound design & visual scale (VFX).
               </p>
 
               <div className="space-y-3 text-xs">
                 <div>
                   <div className="flex justify-between text-popcorn-dim mb-1">
-                    <span>ಛಾಯಾಗ್ರಹಣ (Cinematography)</span>
+                    <span>Cinematography</span>
                     <span className="font-bold text-popcorn font-mono-tabular">{craft.cinematography * 10}%</span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
@@ -135,7 +135,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
 
                 <div>
                   <div className="flex justify-between text-popcorn-dim mb-1">
-                    <span>ಹಿನ್ನೆಲೆ ಸಂಗೀತ & ಸೌಂಡ್ (Sound & Score)</span>
+                    <span>Sound & Score</span>
                     <span className="font-bold text-popcorn font-mono-tabular">{craft.soundAndScore * 10}%</span>
                   </div>
                   <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
@@ -156,7 +156,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-signal-soft" />
               <span className="text-xs font-bold text-popcorn">
-                ಇಂಟರ್ಯಾಕ್ಟಿವ್ ಸ್ಪಾಯ್ಲರ್ ಶೀಲ್ಡ್ (Spoiler Shield Protection)
+                Spoiler Shield Protection
               </span>
             </div>
             <button
@@ -167,12 +167,12 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
               {showSpoilers ? (
                 <>
                   <EyeOff className="w-3.5 h-3.5 text-signal-soft" />
-                  <span>ಸ್ಪಾಯ್ಲರ್ ಮರೆಮಾಡಿ (Hide Spoilers)</span>
+                  <span>Hide Spoilers</span>
                 </>
               ) : (
                 <>
                   <Eye className="w-3.5 h-3.5 change-positive" />
-                  <span>ಸ್ಪಾಯ್ಲರ್ ವೀಕ್ಷಿಸಿ (Reveal Spoilers)</span>
+                  <span>Reveal Spoilers</span>
                 </>
               )}
             </button>
@@ -189,7 +189,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
             <p className="text-xs sm:text-sm leading-relaxed font-kannada">
               {review.spoilers && review.spoilers.length > 0
                 ? review.spoilers.join(" ")
-                : "ಕ್ಲೈಮ್ಯಾಕ್ಸ್ ಟ್ವಿಸ್ಟ್ ಹಾಗೂ ವಿಶೇಷ ಅತಿಥಿ ಪಾತ್ರಗಳ ಕುರಿತು ಗೌಪ್ಯ ವಿಮರ್ಶಾ ವಿವರಗಳು ಇಲ್ಲಿ ಅಡಕವಾಗಿವೆ. ಮೊದಲ ಬಾರಿಗೆ ಚಿತ್ರಮಂದಿರದಲ್ಲಿ ವೀಕ್ಷಿಸುವ ಅನುಭವವನ್ನು ಹಾಳುಮಾಡದಂತೆ ರಕ್ಷಿಸಲಾಗಿದೆ."}
+                : "Hidden review details on the climax twist and surprise cameo appearances are locked away here — sealed so your first theatrical viewing stays unspoiled."}
             </p>
           </div>
         </div>

@@ -164,8 +164,8 @@ describe("Intelligent Multi-Source Box Office Engine", () => {
 
       // Check legacy fields expected by existing pages
       expect(top.movieTitle).toBeTruthy();
-      expect(top.day1Collection).toContain("ಕೋಟಿ");
-      expect(top.worldwideCollection).toContain("ಕೋಟಿ");
+      expect(top.day1Collection).toContain("Cr");
+      expect(top.worldwideCollection).toContain("Cr");
       expect(top.territoryBreakdown.length).toBeGreaterThan(0);
 
       // Check new multi-source fields

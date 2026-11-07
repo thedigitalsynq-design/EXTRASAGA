@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, Newspaper, Sparkles } from "lucide-react";
+import { ChevronRight, Newspaper, Sparkles, Layers } from "lucide-react";
 import { Article, AdSpot } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 import { DataService } from "@/lib/dataService";
@@ -23,9 +23,10 @@ export default function HomeNewsFeed({
   sidebarAd,
   hideSidebar = false,
 }: HomeNewsFeedProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
+  const { language, t, localizeUrl } = useLanguage();
   const [articles, setArticles] = useState<Article[]>(initialArticles);
   const [trending, setTrending] = useState<Article[]>(initialTrending);
+  const [selectedIndustry, setSelectedIndustry] = useState<string>("all");
   const isInitialRef = React.useRef(true);
 
   useEffect(() => {
@@ -53,103 +54,119 @@ export default function HomeNewsFeed({
     };
   }, [language]);
 
-  const latestNews = articles.slice(0, 6);
+  const filteredArticles = selectedIndustry === "all"
+    ? articles
+    : articles.filter((a) => {
+        if (a.industry === selectedIndustry) return true;
+        const cat = a.category as string;
+        if (selectedIndustry === "bollywood" && (cat === "bollywood" || a.title.includes("Bollywood") || a.title.includes("Ranbir") || a.title.includes("War"))) return true;
+        if (selectedIndustry === "tollywood" && (cat === "tollywood" || a.title.includes("Pushpa") || a.title.includes("Mahesh") || a.title.includes("Devara"))) return true;
+        if (selectedIndustry === "sandalwood" && (cat === "sandalwood" || a.title.includes("Kantara") || a.title.includes("Yash") || a.title.includes("UI") || a.title.includes("Bagheera"))) return true;
+        if (selectedIndustry === "kollywood" && (cat === "kollywood" || a.title.includes("Coolie") || a.title.includes("Vettaiyan") || a.title.includes("Rajinikanth"))) return true;
+        if (selectedIndustry === "mollywood" && (cat === "mollywood" || a.title.includes("Empuraan") || a.title.includes("Mohanlal"))) return true;
+        return false;
+      });
 
-  // Industry special news: for Sandalwood filter by category 'sandalwood'; for other languages filter by language or take articles
-  const industrySpecial =
-    language === "kn"
-      ? articles.filter((a) => a.category === "sandalwood").slice(0, 3)
-      : articles.filter((a) => a.language === language || a.industry === config.industry).slice(0, 3);
-
-  const finalSpecial = industrySpecial.length > 0 ? industrySpecial : articles.slice(0, 3);
-
-  const latestSectionTitle = `${t("sec_latest_news")} (${config.industryName})`;
+  const latestNews = filteredArticles.slice(0, 6);
+  const industrySpecial = filteredArticles.slice(6, 12).length > 0 ? filteredArticles.slice(6, 12) : filteredArticles.slice(0, 3);
 
   const newsGridContent = (
-    <div>
-      <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-signal/10 text-signal border border-signal/25">
+    <div className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-7">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b-2 border-ink gap-4">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 bg-press border-2 border-ink shadow-sticker flex items-center justify-center -rotate-3 text-paper shrink-0">
             <Newspaper className="w-5 h-5" />
           </div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-popcorn font-sans">
-              {latestSectionTitle}
-            </h2>
-            <span
-              className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-              {config.industryName}
-            </span>
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-xl sm:text-2xl font-poster font-bold text-ink uppercase tracking-tight">
+                THE FEED — INDIAN CINEMA WIRE
+              </h2>
+            </div>
+            <p className="text-[11px] text-ink-dim font-medium font-sans">
+              All 6 industries · Verified trade dispatches · Zero promotional fluff
+            </p>
           </div>
         </div>
 
-        <Link
-          href={localizeUrl("/category/latest")}
-          className="text-xs sm:text-sm font-semibold text-signal hover:text-signal-soft flex items-center gap-1 transition-colors"
-        >
-          <span>{t("btn_all_news")}</span>
-          <ChevronRight className="w-4 h-4" />
-        </Link>
+        {/* Industry Filter Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs">
+          <span className="text-[10px] text-ink font-poster font-bold uppercase tracking-widest shrink-0 flex items-center gap-1">
+            <Layers className="w-3.5 h-3.5 text-press" />
+            <span>FILTER:</span>
+          </span>
+          {[
+            { id: "all", label: "All Cinema" },
+            { id: "bollywood", label: "Bollywood" },
+            { id: "tollywood", label: "Tollywood" },
+            { id: "sandalwood", label: "Sandalwood" },
+            { id: "kollywood", label: "Kollywood" },
+            { id: "mollywood", label: "Mollywood" },
+          ].map((ind) => (
+            <button
+              key={ind.id}
+              type="button"
+              onClick={() => setSelectedIndustry(ind.id)}
+              className={`px-3 py-1 text-[11px] font-poster font-bold uppercase tracking-wider shrink-0 transition-all border-2 border-ink ${
+                selectedIndustry === ind.id
+                  ? "bg-press text-paper shadow-sticker -rotate-1"
+                  : "bg-paper text-ink hover:bg-marquee shadow-2xs"
+              }`}
+            >
+              {ind.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Grid of latest articles */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {latestNews.map((article) => (
           <ArticleCard key={article.id} article={article} variant="grid" />
         ))}
       </div>
 
-      {/* Load more button in glass styling */}
-      <div className="mt-8 text-center">
+      {/* Load more button in ticket-stub styling */}
+      <div className="mt-8 text-center pt-5 border-t-2 border-dashed border-ink/20">
         <Link
           href={localizeUrl("/category/latest")}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-revealed hover:bg-screen text-popcorn text-sm font-bold transition-all border border-glow-line hover:border-glow-line-strong active:scale-95"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-ink text-paper hover:bg-press border-2 border-ink shadow-sticker hover:shadow-press text-xs font-poster font-bold uppercase tracking-widest transition-all -rotate-1 active:scale-95"
         >
-          <span>{t("btn_more_news")}</span>
-          <ChevronRight className="w-4 h-4 text-signal" />
+          <span>PULL UP THE WHOLE FEED</span>
+          <ChevronRight className="w-4 h-4 text-marquee" />
         </Link>
       </div>
     </div>
   );
 
   const industrySpecialContent = (
-    <div className="pt-2">
-      <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
+    <div className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-7">
+      <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-ink gap-3 flex-wrap">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-marquee/10 text-marquee border border-marquee/25 flex items-center justify-center shrink-0">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-8 h-8 bg-violet border-2 border-ink shadow-sticker flex items-center justify-center rotate-2 text-paper shrink-0">
+            <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-popcorn font-sans">
-                {config.newsSectionTitle}
-              </h2>
-              <span
-                className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                {config.industryName}
-              </span>
-            </div>
-            <p className="text-xs text-popcorn-dim mt-0.5">{config.tagline}</p>
+            <h2 className="text-lg sm:text-xl font-poster font-bold text-ink uppercase tracking-tight">
+              TRADE DOSSIER — MULTI-INDUSTRY DESK
+            </h2>
+            <p className="text-[11px] text-ink-dim font-medium font-sans">
+              Exclusive production scoops, shooting schedules, and casting confirmations
+            </p>
           </div>
         </div>
 
         <Link
-          href={localizeUrl(language === "kn" ? "/category/sandalwood" : "/category/latest")}
-          className="text-xs sm:text-sm font-semibold text-marquee hover:text-marquee-soft hover:underline flex items-center gap-1 transition-colors"
+          href={localizeUrl("/category/latest")}
+          className="px-3.5 py-1.5 bg-marquee text-ink hover:bg-paper border-2 border-ink text-xs font-poster font-bold uppercase tracking-wider shadow-sticker flex items-center gap-1 transition-colors"
         >
-          <span>
-            {config.industryName} {t("btn_view_all")}
-          </span>
-          <ChevronRight className="w-4 h-4" />
+          <span>FULL WIRE</span>
+          <ChevronRight className="w-3.5 h-3.5" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {finalSpecial.map((article) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {industrySpecial.map((article) => (
           <ArticleCard key={article.id} article={article} variant="grid" />
         ))}
       </div>
@@ -167,7 +184,6 @@ export default function HomeNewsFeed({
 
   return (
     <>
-      {/* Main Content Grid: Latest News (Col 8) + Trending Sidebar (Col 4) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 my-10">
         <div className="lg:col-span-8">{newsGridContent}</div>
         <div className="lg:col-span-4 space-y-6">
@@ -176,7 +192,6 @@ export default function HomeNewsFeed({
         </div>
       </div>
 
-      {/* Industry Special News Section */}
       <section className="my-12">{industrySpecialContent}</section>
     </>
   );

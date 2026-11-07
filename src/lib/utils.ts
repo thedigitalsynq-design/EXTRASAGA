@@ -5,33 +5,33 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Convert numbers to Kannada numerals if needed or format currency
-export function formatKannadaNumber(num: number): string {
-  return new Intl.NumberFormat("kn-IN").format(num);
+// Number formatting for the English edition (Indian numbering for ₹ figures)
+export function formatCineNumber(num: number): string {
+  return new Intl.NumberFormat("en-IN").format(num);
 }
 
-// Format date into natural Kannada string (e.g. "31 ಅಕ್ಟೋಬರ್ 2026")
-const KANNADA_MONTHS = [
-  "ಜನವರಿ",
-  "ಫೆಬ್ರವರಿ",
-  "ಮಾರ್ಚ್",
-  "ಏಪ್ರಿಲ್",
-  "ಮೇ",
-  "ಜೂನ್",
-  "ಜುಲೈ",
-  "ಆಗಸ್ಟ್",
-  "ಸೆಪ್ಟೆಂಬರ್",
-  "ಅಕ್ಟೋಬರ್",
-  "ನವೆಂಬರ್",
-  "ಡಿಸೆಂಬರ್",
+// Format date into natural English string (e.g. "31 October 2026")
+const ENGLISH_MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-export function formatKannadaDate(dateString: string): string {
+export function formatEditorialDate(dateString: string): string {
   try {
     const d = new Date(dateString);
     if (isNaN(d.getTime())) return dateString;
     const day = d.getDate();
-    const month = KANNADA_MONTHS[d.getMonth()];
+    const month = ENGLISH_MONTHS[d.getMonth()];
     const year = d.getFullYear();
     return `${day} ${month} ${year}`;
   } catch {
@@ -39,8 +39,8 @@ export function formatKannadaDate(dateString: string): string {
   }
 }
 
-// Relative time in Kannada (e.g. "2 ಗಂಟೆಗಳ ಹಿಂದೆ", "ನಿನ್ನೆ")
-export function formatKannadaTimeAgo(dateString: string): string {
+// Relative time in English (e.g. "2 hours ago", "Yesterday")
+export function formatEditorialTimeAgo(dateString: string): string {
   try {
     const date = new Date(dateString);
     const now = new Date();
@@ -50,27 +50,26 @@ export function formatKannadaTimeAgo(dateString: string): string {
     const diffHours = Math.floor(diffMin / 60);
     const diffDays = Math.floor(diffHours / 24);
 
-    if (diffMin < 1) return "ಈಗಷ್ಟೇ";
-    if (diffMin < 60) return `${diffMin} ನಿಮಿಷಗಳ ಹಿಂದೆ`;
-    if (diffHours < 24) return `${diffHours} ಗಂಟೆಗಳ ಹಿಂದೆ`;
-    if (diffDays === 1) return "ನಿನ್ನೆ";
-    if (diffDays < 7) return `${diffDays} ದಿನಗಳ ಹಿಂದೆ`;
-    return formatKannadaDate(dateString);
+    if (diffMin < 1) return "Just now";
+    if (diffMin < 60) return `${diffMin} min${diffMin === 1 ? "" : "s"} ago`;
+    if (diffHours < 24) return `${diffHours} hour${diffHours === 1 ? "" : "s"} ago`;
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays < 7) return `${diffDays} days ago`;
+    return formatEditorialDate(dateString);
   } catch {
     return dateString;
   }
 }
 
-// Slug generator for Kannada & English titles
+// Slug generator for English titles (keeps legacy Kannada chars out by default)
 export function slugify(text: string): string {
   return text
     .toString()
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-")
-    .replace(/[^\w\u0C80-\u0CFF-]+/g, "") // Keep alphanumeric, hyphen, and Kannada Unicode range (\u0C80-\u0CFF)
+    .replace(/[^\w\u0C80-\u0CFF-]+/g, "") // Keep alphanumeric, hyphen (legacy native-script range tolerated for stored slugs)
     .replace(/--+/g, "-")
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 }
-

@@ -4,16 +4,16 @@ import { toArticleRow, toArticleUpdateRow } from "@/lib/ingest/store";
 
 const article: NormalizedArticle = {
   sourceId: "filmibeat",
-  sourceName: "ಫಿಲ್ಮಿಬೀಟ್ ಕನ್ನಡ",
+  sourceName: "Filmibeat Kannada",
   sourceUrl: "https://kannada.filmibeat.com/news/kantara-123.html",
-  title: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ಚಿತ್ರೀಕರಣ ಆರಂಭ",
-  excerpt: "ಕುಂದಾಪುರದಲ್ಲಿ ಚಿತ್ರೀಕರಣ ಆರಂಭವಾಗಿದ್ದು ಅಭಿಮಾನಿಗಳಲ್ಲಿ ಕುತೂಹಲ ಮೂಡಿಸಿದೆ.",
+  title: "Kantara Chapter 1 Shooting Begins",
+  excerpt: "Filming has begun in Kundapura, sparking massive curiosity among fans.",
   imageUrl: "https://images.filmibeat.com/kantara.jpg",
   publishedAt: "2026-10-31T08:30:00Z",
   publishedAtEstimated: false,
   fetchedAt: "2026-10-31T09:00:00Z",
   category: "sandalwood",
-  tags: ["ಸ್ಯಾಂಡಲ್ವುಡ್"],
+  tags: ["Sandalwood"],
   slug: "kantara-123",
 };
 

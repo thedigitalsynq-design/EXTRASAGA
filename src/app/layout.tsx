@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | EXTRASAGA — House Full Indian Cinema Press",
   },
   description:
-    "EXTRASAGA is the front page of Indian cinema fandom: verified release dates, receipt-backed box office, unbiased verdicts, OTT radar and the loudest cine conversations across Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood and Hollywood — typeset in six native scripts.",
+    "EXTRASAGA is the front page of Indian cinema fandom, reported in English: verified release dates, receipt-backed box office, unbiased verdicts and OTT radar across Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood and Hollywood.",
   keywords: [
     "EXTRASAGA",
     "Indian Cinema",
@@ -69,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kn">
+    <html lang="en">
       <head>
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -78,7 +78,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Serif+Kannada:wght@400;500;600;700;800;900&family=Benne&family=Anek+Kannada:wght@300;400;500;600;700;800&family=Noto+Sans+Kannada:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Catamaran:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Baloo+Tammudu+2:wght@400;500;600;700;800&family=Baloo+Thambi+2:wght@400;500;600;700;800&family=Chilanka&family=Hubballi&family=Khand:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Catamaran:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Khand:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>

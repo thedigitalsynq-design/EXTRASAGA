@@ -38,9 +38,10 @@ nightclub. So the page behaves like a zine dropped fresh off the risograph:
 
 ## 2. Non-Negotiables (the original agenda — carried through every edition, never removed)
 
-1. **Six industries, six native scripts** — `kn` Kannada, `te` Telugu, `ta` Tamil,
-   `ml` Malayalam, `hi` Hindi, `en` English. Regional font stacks & `data-lang`
-   switching untouched.
+1. **Six industries, one English desk** — Sandalwood, Tollywood, Kollywood,
+   Mollywood, Bollywood and Hollywood. The per-language edition axis
+   (`data-lang` switching, regional font stacks) is retired; films keep their
+   language identity as a fact (`kn`, `te`, …) while every page reads English.
 2. **Automated `Asia/Kolkata` release engine** — Released Today / Tomorrow / In
    Theatres (30-day run) / Next 7-30-60-90 / permanent Archive.
 3. **Ramayana Part 1 clearance rule** — zero commercial star rating; reverent
@@ -93,14 +94,9 @@ nightclub. So the page behaves like a zine dropped fresh off the risograph:
 | Poster display | **Archivo Black** (400) | Masthead, section titles, stamps, buttons. Never below 24px. |
 | Grotesk UI | **Space Grotesk** (400–700) | Sticker chips, tickers, numerals, tabular data. |
 | Body | **DM Sans** (400–700) | Article body, captions. |
-| Kannada | Noto Serif Kannada / Benne / Anek Kannada stacks | unchanged |
-| Telugu | Baloo Tammudu 2 | unchanged |
-| Tamil | Catamaran / Baloo Thambi 2 | unchanged |
-| Malayalam | Chilanka | unchanged |
-| Hindi | Khand | unchanged |
+| Accent | **Catamaran / Plus Jakarta Sans / Khand** (400–800) | Secondary accents inherited from the v1–v3 stacks; loaded for compat. |
 
-Native-script headlines always render in the **regional font even inside EN display
-sets** — never let Latin typography colonise Indian scripts. Poster-caps headlines
+Headlines always render in the **Latin press type system**. Poster-caps headlines
 mix one solid ink word + one accent-ink word (e.g. **NOW SHOW** + red **ING**).
 
 ---
@@ -115,7 +111,7 @@ mix one solid ink word + one accent-ink word (e.g. **NOW SHOW** + red **ING**).
 | **Ticket-stub CTA** | Full-width `bg-ink text-paper border-2 border-ink shadow-sticker`, uppercase, hover → `bg-press`. Perforated dividers around it (`.ticket-cut-x`). |
 | **Ticket-stub tabs** | Attached pair of stub buttons sharing one border; active = `bg-press text-paper shadow-press`, tilted `-1deg`. |
 | **Marquee strip** | `.marquee-strip` — ink band with paper type; the breaking ticker is the canonical example with a rotated red `BREAKING` plate. |
-| **Front-page strip** | Ink band inside the header (`bg-ink text-paper`) with native-script date, red LIVE plate and gold admin sticker. |
+| **Front-page strip** | Ink band inside the header (`bg-ink text-paper`) with Latin-script date, red LIVE plate and gold admin sticker. |
 | **Print texture** | `.halftone` / `.halftone-faint` dot plates on hero stills and band sections; `.jade-grid-bg`-named registration grid survives as the press grid. |
 | **Live dot** | Red square-dot with `press-ping` ring; `LIVE ·` prefix in gold on ink strips. |
 | **Film media** | Poster/grab images never float free: ink border on top, halftone dots at 40–60% over the still, ink scrim gradient for caption plates. |
@@ -139,7 +135,7 @@ soft 40px blur shadows on editorial surfaces.
   service of real information, never filler.
 - **Credibility clause:** numbers, review verdicts, and Ramayana reverence copy stay
   dead-serious. Gen Z tone is for *packaging*; facts ship at face-value precision.
-- Non-English decks are authored in the native voice of that language.
+- All decks are authored in English (press register); film-language identity stays a data fact, never a font switch.
 
 ---
 
@@ -161,9 +157,9 @@ soft 40px blur shadows on editorial surfaces.
 
 - [x] Every public route prints on paper canvas (`bg-paper` via layout shell).
 - [x] Max 1 red fill band per viewport region; violet & gold share the rest.
-- [x] All 6 script families render in native fonts with `data-lang` switching.
+- [x] The English edition renders in the DM Sans / Space Grotesk / Archivo Black press type system (per-language script stacks retired with the edition axis).
 - [x] Ramayana spotlight uses a marquee-gold reverence badge; no star rating near it.
 - [x] Header prints as a press ribbon + poster masthead; 12 agenda slots intact.
 - [x] Legacy v1–v3 tokens resolve to press values; suite green against the v4 era.
-- [ ] Remaining hub pages (news, reviews, box-office, ott, live, archive, cstors)
-      migrate raw-hex internals to press tokens (tracked in TODO.md).
+- [x] Remaining hub pages (news, reviews, box-office, ott, live, archive, cinestars)
+      migrated to House Full Press v4.0 brutalism with unified all-industry desks.

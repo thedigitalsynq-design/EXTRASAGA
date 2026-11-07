@@ -1,99 +1,53 @@
 import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Radio, RefreshCw, Zap, ShieldCheck } from "lucide-react";
 import LiveUpdatesFeed from "@/components/LiveUpdatesFeed";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
 import { DataService } from "@/lib/dataService";
 import { getLanguageConfig } from "@/lib/languages";
 import { getTranslation } from "@/lib/translations";
-import { LanguageCode } from "@/types";
 
-interface LivePageProps {
-  searchParams?: {
-    lang?: string;
-  };
-}
-
-export async function generateMetadata({ searchParams }: LivePageProps): Promise<Metadata> {
-  const lang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(lang);
+export async function generateMetadata(): Promise<Metadata> {
+  const config = getLanguageConfig("en");
 
   return {
-    title: `EXTRASAGA Live Wire | Real-Time ${config.industryName} Updates`,
-    description: `Real-time minute-by-minute cinema breaking news, live box office tracking, and shooting updates for ${config.industryName}.`,
+    title: `EXTRASAGA Live Wire | Real-Time All Indian Cinema Updates`,
+    description: `Real-time minute-by-minute cinema breaking news, live box office tracking, and shooting updates across all Indian film industries.`,
   };
 }
 
-export default async function LiveWirePage({ searchParams }: LivePageProps) {
-  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(activeLang);
-
-  const trendingArticles = await DataService.getTrendingArticles(5, activeLang);
-
-  const pageHeaders: Record<string, { title: string; desc: string }> = {
-    kn: {
-      title: "ರಿಯಲ್-ಟೈಮ್ ಲೈವ್ ಸಿನಿಮಾ ವೈರ್ (Live Cinema Wire)",
-      desc: "ಪ್ರತಿ ನಿಮಿಷದ ಅಧಿಕೃತ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಗಳಿಕೆ, ಚಿತ್ರೀಕರಣದ ಅಪ್ಡೇಟ್ಸ್, ಟ್ರೇಲರ್ ಡ್ರಾಪ್ಸ್ ಹಾಗೂ ಬ್ರೇಕಿಂಗ್ ಸಿನಿಮಾ ಸಮಾಚಾರ.",
-    },
-    te: {
-      title: "రియల్-టైమ్ లైవ్ సినిమా వైర్ (Live Cinema Wire)",
-      desc: "టాలీవుడ్ తాజా అధికారిక బాక్సాఫీస్ రిపోర్ట్స్, షూటింగ్ విశేషాలు మరియు బ్రేకింగ్ వార్తలు క్షణక్షణం.",
-    },
-    ta: {
-      title: "ரியல்-டைம் லைவ் சினிமா வயர் (Live Cinema Wire)",
-      desc: "கோலிவுட் அதிகாரப்பூர்வ பாக்ஸ் ஆபீஸ் வசூல் விவரங்கள், படப்பிடிப்பு தகவல்கள் மற்றும் பிரேக்கிங் அப்டேட்ஸ்.",
-    },
-    ml: {
-      title: "തത്സമയ ലൈവ് സിനിമാ വയർ (Live Cinema Wire)",
-      desc: "മോളിവുഡ് പുതിയ കളക്ഷൻ റിപ്പോർട്ടുകൾ, ഷൂട്ടിംഗ് വിവരങ്ങൾ, ട്രെയിലർ ലോഞ്ചുകൾ തത്സമയം.",
-    },
-    hi: {
-      title: "रियल-टाइम लाइव सिनेमा वायर (Live Cinema Wire)",
-      desc: "बॉलीवुड की मिनट-दर-मिनट ताज़ा बॉक्स ऑफिस रिपोर्ट, शूटिंग अपडेट्स और ब्रेकिंग न्यूज़.",
-    },
-    en: {
-      title: "Real-Time Cinema Live Wire",
-      desc: "Minute-by-minute verified box office records, shooting buzz, trailer launches, and trade intelligence.",
-    },
-  };
-
-  const header = pageHeaders[activeLang] || pageHeaders.en;
+export default async function LiveWirePage() {
+  const trendingArticles = await DataService.getTrendingArticles(5, "en");
 
   return (
-    <div className="w-full">
-      {/* The Live Wire — Hero Band */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+    <div className="w-full bg-paper min-h-screen text-ink">
+      {/* The Live Wire — Broadsheet Hero Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
-              {getTranslation(activeLang, "nav_home")}
+          <div className="flex items-center gap-2 text-xs text-ink-dim mb-2 font-mono">
+            <Link href="/" className="hover:text-press font-bold transition-colors">
+              {getTranslation("en", "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-signal-soft font-bold">LIVE WIRE</span>
+            <span className="text-press-deep font-bold">LIVE WIRE</span>
           </div>
 
-          <div className="flex items-center gap-2 mb-3">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-signal"></span>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-paper animate-ping"></span>
+              <span>LIVE WIRE</span>
             </span>
-            <span className="uppercase font-display-latin text-[10px] tracking-[0.25em] text-signal-soft border border-signal/25 bg-signal/10 rounded-full px-3 py-0.5">
-              The Live Wire
-            </span>
-            <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
-            >
-              {config.industryName} Real-Time Feed
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+              ALL INDIAN FILM INDUSTRIES
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
-            {header.title}
+          <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
+            REAL-TIME CINEMA <span className="text-press">LIVE WIRE</span>
           </h1>
-          <p className="mt-2 text-xs sm:text-sm text-popcorn-dim max-w-2xl leading-relaxed">
-            {header.desc}
+          <p className="mt-2 text-xs sm:text-sm text-ink-dim max-w-2xl leading-relaxed font-grotesk font-medium">
+            Minute-by-minute verified box office records, shooting buzz, trailer launches, breaking movie news, and trade intelligence.
           </p>
         </div>
       </div>
@@ -113,4 +67,3 @@ export default async function LiveWirePage({ searchParams }: LivePageProps) {
     </div>
   );
 }
-

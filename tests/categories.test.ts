@@ -24,9 +24,9 @@ describe("categories", () => {
     expect(MAIN_NAV_ITEMS[11].englishLabel).toBe("Events");
   });
 
-  it("returns the Kannada name for a known slug and falls back safely", () => {
-    expect(categoryName("sandalwood")).toBe("ಸ್ಯಾಂಡಲ್ವುಡ್");
-    expect(categoryName("does-not-exist")).toBe("ಸುದ್ದಿ");
+  it("returns the English name for a known slug and falls back safely", () => {
+    expect(categoryName("sandalwood")).toBe("Sandalwood");
+    expect(categoryName("does-not-exist")).toBe("News");
   });
 
   it("builds the home link for mukhaputa and category links for everything else", () => {

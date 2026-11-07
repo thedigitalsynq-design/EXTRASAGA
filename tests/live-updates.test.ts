@@ -1,20 +1,29 @@
 import { describe, it, expect } from "vitest";
 import { LIVE_CINEMA_UPDATES } from "../src/data/liveUpdatesData";
-import { LanguageCode } from "../src/types";
 
 describe("Real-Time Live Cinema Updates Engine", () => {
-  it("should have verified live updates for all 6 cinema industries", () => {
-    const requiredLanguages: LanguageCode[] = ["kn", "te", "ta", "ml", "hi", "en"];
+  it("should have English-only verified live updates for all 6 cinema industries", () => {
+    const requiredIndustries = [
+      "sandalwood",
+      "tollywood",
+      "kollywood",
+      "mollywood",
+      "bollywood",
+      "hollywood",
+    ] as const;
 
-    requiredLanguages.forEach((lang) => {
-      const updates = LIVE_CINEMA_UPDATES.filter((u) => u.language === lang);
+    requiredIndustries.forEach((industry) => {
+      const updates = LIVE_CINEMA_UPDATES.filter((u) => u.industry === industry);
       expect(updates.length).toBeGreaterThan(0);
       updates.forEach((item) => {
         expect(item.id).toBeTruthy();
         expect(item.title).toBeTruthy();
         expect(item.timestamp).toBeTruthy();
         expect(item.source).toBeTruthy();
-        expect(item.industry).toBeTruthy();
+        expect(item.industry).toBe(industry);
+        // Unified English-only platform: edition artifacts ship as "en";
+        // the film-language fact (Kannada/Telugu/...) is carried by the industry rail.
+        expect(item.language).toBe("en");
         expect(item.verified).toBe(true);
         expect(item.badgeText).toBeTruthy();
       });
@@ -29,27 +38,27 @@ describe("Real-Time Live Cinema Updates Engine", () => {
 
     // Toxic
     const toxic = LIVE_CINEMA_UPDATES.find((u) => u.id === "live-kn-2");
-    expect(toxic?.title).toContain("ಯಶ್");
-    expect(toxic?.title).toContain("ಟಾಕ್ಸಿಕ್");
+    expect(toxic?.title).toContain("Yash");
+    expect(toxic?.title).toContain("Toxic");
 
     // Pushpa 2
     const pushpa = LIVE_CINEMA_UPDATES.find((u) => u.id === "live-te-1");
-    expect(pushpa?.title).toContain("పుష్ప 2");
+    expect(pushpa?.title).toContain("Pushpa 2");
     expect(pushpa?.industry).toBe("tollywood");
 
     // Coolie
     const coolie = LIVE_CINEMA_UPDATES.find((u) => u.id === "live-ta-1");
-    expect(coolie?.title).toContain("கூலி");
+    expect(coolie?.title).toContain("Coolie");
     expect(coolie?.industry).toBe("kollywood");
 
     // Empuraan
     const empuraan = LIVE_CINEMA_UPDATES.find((u) => u.id === "live-ml-1");
-    expect(empuraan?.title).toContain("എമ്പുരാൻ");
+    expect(empuraan?.title).toContain("Empuraan");
     expect(empuraan?.industry).toBe("mollywood");
 
     // Stree 2
     const stree = LIVE_CINEMA_UPDATES.find((u) => u.id === "live-hi-1");
-    expect(stree?.title).toContain("स्त्री 2");
+    expect(stree?.title).toContain("Stree 2");
     expect(stree?.industry).toBe("bollywood");
 
     // Deadpool & Wolverine
@@ -58,4 +67,3 @@ describe("Real-Time Live Cinema Updates Engine", () => {
     expect(deadpool?.industry).toBe("hollywood");
   });
 });
-

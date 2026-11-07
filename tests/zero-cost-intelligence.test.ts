@@ -32,12 +32,12 @@ describe("Zero-Cost Engineering & Deterministic Intelligence Suite", () => {
   });
 
   describe("2. Deterministic Headline Optimization", () => {
-    it("generates compelling headline variations in Kannada without external API calls", () => {
-      const base = "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ಬಿಡುಗಡೆ ದಿನಾಂಕ";
-      const suggestions = ZeroCostIntelligence.generateHeadlineSuggestions(base, "sandalwood", "kn");
+    it("generates compelling English headline variations without external API calls", () => {
+      const base = "Kantara Chapter 1 Release Date";
+      const suggestions = ZeroCostIntelligence.generateHeadlineSuggestions(base, "sandalwood", "en");
 
       expect(suggestions.length).toBeGreaterThanOrEqual(3);
-      expect(suggestions[0].headline).toContain("ಬ್ರೇಕಿಂಗ್");
+      expect(suggestions[0].headline).toContain("Breaking");
       expect(suggestions[0].estimatedEngagementScore).toBeGreaterThanOrEqual(80);
     });
 
@@ -51,14 +51,15 @@ describe("Zero-Cost Engineering & Deterministic Intelligence Suite", () => {
   });
 
   describe("3. Deterministic Entity Extraction & Smart Tagging", () => {
-    it("identifies celebrities and production houses from bilingual text", () => {
-      const title = "ಯಶ್ ಮತ್ತು ರಿಷಬ್ ಶೆಟ್ಟಿ ಭೇಟಿ: ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್ ಹೊಸ ಮಹಾ ಯೋಜನೆ";
-      const content = "ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ ಮತ್ತು ಕಾಂತಾರ ಖ್ಯಾತಿಯ ರಿಷಬ್ ಶೆಟ್ಟಿ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಭೇಟಿಯಾಗಿದ್ದಾರೆ. Hombale Films ಬ್ಯಾನರ್ ಅಡಿಯಲ್ಲಿ ಮಾತುಕತೆ ನಡೆದಿದೆ.";
+    it("identifies celebrities and production houses from English text", () => {
+      const title = "Yash and Rishab Shetty Meet: Hombale Films' New Magnum Opus Plan";
+      const content =
+        "Rocking Star Yash and Kantara-famed Rishab Shetty met in Bengaluru. Talks were held under the Hombale Films banner for a new magnum opus.";
 
       const extracted = ZeroCostIntelligence.extractEntities(title, content);
 
-      expect(extracted.celebrities).toContain("ಯಶ್");
-      expect(extracted.celebrities).toContain("ರಿಷಬ್ ಶೆಟ್ಟಿ");
+      expect(extracted.celebrities).toContain("Yash");
+      expect(extracted.celebrities).toContain("Rishab Shetty");
       expect(extracted.filmBanners).toContain("Hombale Films");
       expect(extracted.suggestedTags).toContain("Cinema News");
     });
@@ -66,16 +67,16 @@ describe("Zero-Cost Engineering & Deterministic Intelligence Suite", () => {
 
   describe("4. Content Quality & Editorial Compliance Evaluator", () => {
     it("grades rich structured cinema review appropriately", () => {
-      const title = "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1: ದೈವ ಮತ್ತು ಮನುಷ್ಯನ ಸಂಬಂಧದ ಅದ್ಭುತ ಕಲಾಕೃತಿ";
+      const title = "Kantara Chapter 1: A Spectacular Craft on the Bond Between Daiva and Man";
       const content = `
-## ಸಿನಿಮಾ ವಿಮರ್ಶೆ
-ರಿಷಬ್ ಶೆಟ್ಟಿ ನಿರ್ದೇಶಿಸಿ ನಟಿಸಿರುವ ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ಚಿತ್ರವು ಕರಾವಳಿ ಕರ್ನಾಟಕದ ದೈವಾರಾಧನೆ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಇತಿಹಾಸವನ್ನು ಭವ್ಯವಾಗಿ ತೆರೆದಿಡುತ್ತದೆ.
+## Cinema Review
+Directed by and starring Rishab Shetty, Kantara Chapter 1 grandly unveils the daiva aradhane (spirit worship) and cultural history of coastal Karnataka on an epic canvas.
 
-## ಕಥಾ ಸಾರಾಂಶ
-ಚಿತ್ರದ ಆರಂಭದಿಂದ ಅಂತ್ಯದವರೆಗೂ ಬಿಗಿಯಾದ ಚಿತ್ರಕಥೆ ಮತ್ತು ದೈವ ನರ್ತನದ ರೋಚಕ ದೃಶ್ಯಗಳು ಪ್ರೇಕ್ಷಕರನ್ನು ಮಂತ್ರಮುಗ್ಧರನ್ನಾಗಿಸುತ್ತವೆ.
+## Story Synopsis
+From the first frame to the final cut, the taut screenplay and the thrilling daiva dance sequences leave audiences spellbound in the theatre halls.
 
-## ತಾಂತ್ರಿಕ ಅಂಶಗಳು
-ಅಜನೀಶ್ ಲೋಕನಾಥ್ ಅವರ ಹಿನ್ನೆಲೆ ಸಂಗೀತ ಮತ್ತು ಅರವಿಂದ್ ಕಶ್ಯಪ್ ಛಾಯಾಗ್ರಹಣ ಅದ್ಭುತವಾಗಿದೆ. ಚಿತ್ರಮಂದಿರದಲ್ಲೇ ನೋಡಬೇಕಾದ ಅಪರೂಪದ ದೃಶ್ಯಕಾವ್ಯ.
+## Technical Aspects
+Ajanish Lokanath's background score and Arvind Kashyap's cinematography are spectacular, making this a rare visual poetry best experienced on the big screen only.
       `.trim();
 
       const report = ZeroCostIntelligence.evaluateContentQuality(title, content);
@@ -86,8 +87,8 @@ describe("Zero-Cost Engineering & Deterministic Intelligence Suite", () => {
     });
 
     it("flags thin content with actionable editorial suggestions", () => {
-      const title = "ಸಣ್ಣ ಸುದ್ದಿ";
-      const thinContent = "ಚಿತ್ರ ಬಿಡುಗಡೆಯಾಗಿದೆ.";
+      const title = "Short News";
+      const thinContent = "The film has released.";
 
       const report = ZeroCostIntelligence.evaluateContentQuality(title, thinContent);
 
@@ -111,4 +112,3 @@ describe("Zero-Cost Engineering & Deterministic Intelligence Suite", () => {
     });
   });
 });
-

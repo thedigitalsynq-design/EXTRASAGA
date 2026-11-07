@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { DollarSign, ChevronRight, Sparkles } from "lucide-react";
+import { DollarSign, ChevronRight, TrendingUp } from "lucide-react";
 import { BoxOfficeEntry } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 import { DataService } from "@/lib/dataService";
@@ -41,57 +41,59 @@ export default function BoxOfficeTable({
 
   if (compact) {
     return (
-      <aside className="rounded-[28px] bg-revealed border border-glow-line shadow-sm p-5 sm:p-6">
+      <aside className="bg-sheet border-2 border-ink shadow-press p-5">
         <div>
-          <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-glow-line">
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-2xl bg-marquee-faint text-marquee-soft border border-marquee/25">
-                <DollarSign className="w-4 h-4" />
-              </div>
-              <h3 className="text-sm sm:text-base font-black text-popcorn tracking-tight">
-                {config.boxOfficeTitle}
+          <div className="flex items-center justify-between pb-3 mb-3.5 border-b-2 border-ink">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 bg-marquee border border-ink rotate-45 shrink-0" />
+              <h3 className="text-xs sm:text-sm font-poster font-bold text-ink uppercase tracking-wide">
+                THE RECEIPTS · TOP 5
               </h3>
             </div>
             <Link
               href={localizeUrl("/box-office")}
-              className="text-[11px] font-bold text-signal-soft hover:text-signal flex items-center gap-0.5 transition-colors group/link shrink-0"
+              className="text-[10px] font-poster font-bold text-press hover:underline uppercase flex items-center gap-0.5 tracking-wider"
             >
-              <span>{t("btn_full_report")}</span>
-              <ChevronRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+              <span>FULL DESK</span>
+              <ChevronRight className="w-3 h-3" />
             </Link>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {displayEntries.slice(0, 5).map((entry, idx) => (
               <div
                 key={entry.id}
-                className={`flex items-center justify-between gap-2 p-3 rounded-2xl border transition-all text-xs ${
+                className={`flex items-center justify-between gap-2 p-2.5 border-2 border-ink transition-all ${
                   idx === 0
-                    ? "bg-marquee-faint border-marquee/40 hover:border-marquee/70"
-                    : "bg-hall border-glow-line hover:bg-screen hover:border-glow-line-strong"
+                    ? "bg-marquee/30 shadow-sticker font-bold"
+                    : "bg-paper hover:bg-band shadow-2xs"
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span
-                    className={`w-6 h-6 rounded-full flex items-center justify-center font-black text-[11px] font-display-latin shrink-0 border ${
+                    className={`w-5 h-5 flex items-center justify-center font-poster font-bold text-[10px] shrink-0 border border-ink ${
                       idx === 0
-                        ? "bg-marquee-deep text-void border-marquee/60 font-mono-tabular"
-                        : "bg-revealed text-popcorn-dim border-glow-line font-mono-tabular"
+                        ? "bg-marquee text-ink shadow-2xs"
+                        : "bg-band text-ink font-mono-tabular"
                     }`}
                   >
                     {idx + 1}
                   </span>
-                  <span className="font-bold text-popcorn truncate">{entry.movieTitle}</span>
+                  <span className="font-poster font-bold text-xs text-ink truncate uppercase">
+                    {entry.movieTitle}
+                  </span>
                 </div>
                 <div className="text-right shrink-0">
                   <span
-                    className={`font-black block text-xs font-mono-tabular ${
-                      idx === 0 ? "text-marquee-soft" : "text-popcorn"
+                    className={`font-poster font-bold text-xs font-mono-tabular block ${
+                      idx === 0 ? "text-press font-black" : "text-ink"
                     }`}
                   >
                     {entry.worldwideCollection}
                   </span>
-                  <span className="text-[10px] text-popcorn-muted font-bold">{entry.verdict}</span>
+                  <span className="text-[9px] font-mono font-bold text-ink-mute uppercase tracking-wide">
+                    {entry.verdict}
+                  </span>
                 </div>
               </div>
             ))}
@@ -102,107 +104,106 @@ export default function BoxOfficeTable({
   }
 
   return (
-    <section className="my-10 bg-revealed rounded-[32px] border border-glow-line p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 border-b border-glow-line">
+    <section className="my-10 bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 relative overflow-hidden">
+      {/* Halftone watermark */}
+      <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-15 pointer-events-none" />
+
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 border-b-2 border-ink relative z-10">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-2xl bg-marquee-faint text-marquee-soft border border-marquee/25 flex items-center justify-center shrink-0">
-            <DollarSign className="w-5 h-5" />
+          <div className="w-10 h-10 bg-marquee border-2 border-ink shadow-sticker flex items-center justify-center shrink-0 -rotate-2">
+            <DollarSign className="w-5 h-5 text-ink" />
           </div>
           <div className="min-w-0">
-            <div className="flex items-center gap-2.5">
-              <h2 className="text-xl sm:text-2xl font-black text-popcorn tracking-tight truncate">
-                {config.boxOfficeTitle}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h2 className="text-xl sm:text-2xl font-poster font-bold text-ink uppercase tracking-tight truncate">
+                THE RECEIPTS — CONSOLIDATED INDIAN BOX OFFICE
               </h2>
-              <span
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-display-latin font-bold uppercase tracking-widest bg-marquee-faint text-marquee-soft border border-marquee/25 shrink-0"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-marquee animate-pulse"></span>
-                {config.industryName}
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[9px] font-poster font-bold uppercase tracking-wider bg-press text-paper border-2 border-ink shadow-sticker">
+                <span className="w-1.5 h-1.5 rounded-full bg-paper animate-pulse"></span>
+                RECEIPTS ATTACHED
               </span>
             </div>
-            <p className="text-xs text-popcorn-muted font-medium mt-0.5">
-              {config.industryName} {t("sec_boxoffice")} • ಅಧಿಕೃತ ಗಲ್ಲಾಪೆಟ್ಟಿಗೆ ಲೆಕ್ಕಾಚಾರ
+            <p className="text-xs text-ink-dim font-medium mt-1 font-sans">
+              Consolidated theatrical figures verified against booking networks, distributor slips, and multiplex telemetry
             </p>
           </div>
         </div>
-        {/* Theatre rule continues through the title zone */}
-        <div className="hidden sm:flex-1 sm:mx-4 h-px bg-glow-line" />
 
         {showAllLink && (
           <Link
             href={localizeUrl("/box-office")}
-            className="px-4 py-1.5 rounded-full bg-hall hover:bg-screen text-xs font-bold text-popcorn-dim hover:text-marquee-soft border border-glow-line hover:border-glow-line-strong flex items-center gap-1.5 transition-all self-start sm:self-auto shrink-0"
+            className="px-4 py-2 bg-paper text-ink hover:bg-press hover:text-paper border-2 border-ink shadow-sticker text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
           >
-            <span>{t("btn_full_report")}</span>
-            <ChevronRight className="w-3.5 h-3.5 text-marquee-soft" />
+            <span>FULL AUDITED REPORT</span>
+            <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         )}
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+      <div className="overflow-x-auto relative z-10">
+        <table className="w-full text-left border-collapse border-2 border-ink bg-paper">
           <thead>
-            <tr className="border-b border-glow-line text-xs text-popcorn-dim font-display-latin font-bold uppercase tracking-widest bg-hall rounded-xl">
-              <th className="py-3.5 px-4 rounded-l-xl">{t("bo_rank")}</th>
-              <th className="py-3.5 px-4">{t("bo_movie")}</th>
-              <th className="py-3.5 px-4">{t("bo_day1")}</th>
-              <th className="py-3.5 px-4">{t("bo_weekend")}</th>
-              <th className="py-3.5 px-4 text-marquee-soft font-black">{t("bo_worldwide")}</th>
-              <th className="py-3.5 px-4 rounded-r-xl">{t("bo_verdict")}</th>
+            <tr className="border-b-2 border-ink text-xs text-ink font-poster font-bold uppercase tracking-wider bg-band">
+              <th className="py-3 px-4 border-r-2 border-ink">RANK</th>
+              <th className="py-3 px-4 border-r-2 border-ink">MOVIE / TITLE</th>
+              <th className="py-3 px-4 border-r-2 border-ink">OPENING DAY</th>
+              <th className="py-3 px-4 border-r-2 border-ink">WEEKEND</th>
+              <th className="py-3 px-4 border-r-2 border-ink bg-marquee/20 text-ink">WORLDWIDE GROSS</th>
+              <th className="py-3 px-4">TRADE VERDICT</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-glow-line text-sm font-mono-tabular">
+          <tbody className="divide-y-2 divide-ink text-sm font-mono-tabular">
             {displayEntries.map((item) => (
               <tr
                 key={item.id}
-                className={`transition-colors group ${
-                  item.rank === 1
-                    ? "bg-marquee-faint hover:bg-marquee/10"
-                    : "hover:bg-screen"
+                className={`transition-colors group hover:bg-band/50 ${
+                  item.rank === 1 ? "bg-marquee/15 font-bold" : "bg-paper"
                 }`}
               >
-                <td className="py-4 px-4">
+                <td className="py-3.5 px-4 border-r-2 border-ink text-center">
                   <span
-                    className={`w-7 h-7 rounded-full border font-black text-xs font-display-latin flex items-center justify-center group-hover:scale-105 transition-transform ${
+                    className={`inline-flex w-7 h-7 border-2 border-ink font-poster font-bold text-xs items-center justify-center shadow-sticker ${
                       item.rank === 1
-                        ? "bg-marquee-deep text-void border-marquee/60 shadow-[0_0_18px_rgba(255,176,32,0.3)]"
-                        : "bg-hall border-glow-line text-popcorn-dim"
+                        ? "bg-marquee text-ink font-black -rotate-2"
+                        : "bg-band text-ink"
                     }`}
                   >
                     {item.rank}
                   </span>
                 </td>
-                <td className="py-4 px-4 font-bold text-popcorn group-hover:text-marquee-soft transition-colors">
+                <td className="py-3.5 px-4 border-r-2 border-ink font-bold text-ink">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-14 rounded-xl overflow-hidden shrink-0 hidden sm:block bg-hall border border-glow-line">
+                    <div className="relative w-9 h-12 border-2 border-ink shrink-0 hidden sm:block bg-band overflow-hidden">
                       <Image
                         src={item.posterImage}
                         alt={item.movieTitle}
                         fill
                         className="object-cover"
-                        sizes="40px"
+                        sizes="36px"
                       />
                     </div>
                     <div>
-                      <div className="text-popcorn font-bold group-hover:text-marquee-soft">{item.movieTitle}</div>
-                      <div className="text-[11px] text-popcorn-muted font-mono-tabular font-normal">
+                      <div className="text-ink font-poster uppercase font-bold text-sm group-hover:text-press transition-colors">
+                        {item.movieTitle}
+                      </div>
+                      <div className="text-[11px] text-ink-mute font-mono font-medium">
                         {item.movieTitleEn} ({item.releaseYear})
                       </div>
                     </div>
                   </div>
                 </td>
-                <td className="py-4 px-4 text-popcorn-muted font-medium">{item.day1Collection}</td>
-                <td className="py-4 px-4 text-popcorn-muted font-medium">{item.weekendCollection}</td>
+                <td className="py-3.5 px-4 border-r-2 border-ink text-ink-dim font-bold">{item.day1Collection}</td>
+                <td className="py-3.5 px-4 border-r-2 border-ink text-ink-dim font-bold">{item.weekendCollection}</td>
                 <td
-                  className={`py-4 px-4 font-black text-base ${
-                    item.rank === 1 ? "text-marquee-soft font-display-latin" : "text-popcorn"
+                  className={`py-3.5 px-4 border-r-2 border-ink font-black text-base ${
+                    item.rank === 1 ? "text-press font-poster" : "text-ink font-poster"
                   }`}
                 >
                   {item.worldwideCollection}
                 </td>
-                <td className="py-4 px-4">
+                <td className="py-3.5 px-4">
                   <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-hall text-popcorn-dim border border-glow-line"
+                    className="inline-block px-2.5 py-0.5 text-xs font-poster font-bold uppercase bg-band text-ink border-2 border-ink shadow-2xs"
                   >
                     {item.verdict}
                   </span>

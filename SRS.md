@@ -7,10 +7,10 @@ This Software Requirements Specification defines the functional, non-functional,
 
 ## 2. Functional Requirements
 
-### FR-01: Multilingual Script & Language Switching
-- The system shall support six language codes: `kn`, `te`, `ta`, `ml`, `hi`, `en`.
-- Active language must be persisted via URL parameter (`?lang=`), client cookie (`cinijaatre_lang`), and `localStorage`.
-- The root document element must update `lang` and `data-lang` attributes upon switching.
+### FR-01: English-Only Edition
+- The system shall render every page, label and metadata string in English (the `html lang` attribute is fixed to `en`).
+- Legacy `?lang=` parameters, `cinijaatre_lang` cookie and `localStorage` edition keys are accepted for compatibility and resolved to the English edition (`getLanguageConfig()` always returns the English config).
+- Films keep their language identity as a data fact (`Movie.language` etc.), never as a UI setting.
 
 ### FR-02: Edge Security Middleware & Headers
 - The edge middleware (`src/middleware.ts`) shall enforce the following HTTP response headers on every request:
@@ -44,6 +44,13 @@ This Software Requirements Specification defines the functional, non-functional,
   - `formatKolkataDate(date)` converts ISO strings to `YYYY-MM-DD`.
   - `isMovieInTheatres(releaseDate, today)` evaluates `0 <= (today - releaseDate) <= 30 days`.
   - `isMovieUpcoming(releaseDate, today)` evaluates `releaseDate > today`.
+
+### FR-07: After-Dark Copy Voice Compliance (v3.0.0)
+- All user-facing string seeds and editorial copy shall observe the After-Dark / Emission copy voice:
+  - Headlines information-first and capped at ~12 words; verified numbers preserved exactly as reported.
+  - No invented claims, no clickbait lies, no corporate fam-speak; box office verdicts remain dead-serious.
+  - Ramayana Part 1 coverage remains reverent and poetic, free of commercial star ratings, preserving the `NO RATINGS, ONLY RESPECT!` closing line.
+- Voice changes must never alter data identity: slugs, ids, URLs, timestamps, release dates, category/language fields, and array shapes stay intact.
 
 ---
 

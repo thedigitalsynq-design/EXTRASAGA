@@ -4,69 +4,39 @@ import {
   DEFAULT_LANGUAGE,
   getLanguageConfig,
   isLanguageCode,
+  getIndustryForFilmLanguage,
 } from "../src/lib/languages";
 import { DataService } from "../src/lib/dataService";
 import { LanguageCode } from "../src/types";
 
-describe("Multi-Language and Multi-Industry System", () => {
-  it("should support all 6 required languages and industries", () => {
-    const requiredCodes: LanguageCode[] = ["kn", "te", "ta", "ml", "hi", "en"];
-    const foundCodes = SUPPORTED_LANGUAGES.map((l) => l.code);
+describe("English-Only Edition with Multi-Industry Content", () => {
+  it("ships a single English publication configuration", () => {
+    expect(DEFAULT_LANGUAGE).toBe("en");
+    expect(SUPPORTED_LANGUAGES).toHaveLength(1);
+    expect(SUPPORTED_LANGUAGES[0].code).toBe("en");
 
-    requiredCodes.forEach((code) => {
-      expect(foundCodes).toContain(code);
-    });
-
-    expect(SUPPORTED_LANGUAGES).toHaveLength(6);
+    const conf = getLanguageConfig("en");
+    expect(conf.name).toBe("English");
+    expect(conf.englishName).toBe("English");
+    expect(conf.brandNameNative).toBeTruthy();
+    expect(conf.industry).toBeTruthy();
+    expect(conf.industryName).toBeTruthy();
+    expect(conf.badgeColor).toBeTruthy();
+    expect(conf.tagline).toBeTruthy();
+    expect(conf.headerTagline).toBeTruthy();
+    expect(conf.newsSectionTitle).toBeTruthy();
+    expect(conf.reviewsSectionTitle).toBeTruthy();
+    expect(conf.trailersSectionTitle).toBeTruthy();
+    expect(conf.boxOfficeTitle).toBeTruthy();
+    expect(conf.ottTitle).toBeTruthy();
+    expect(conf.hotTopics.length).toBeGreaterThan(0);
   });
 
-  it("should have complete industry configurations for each language", () => {
-    SUPPORTED_LANGUAGES.forEach((lang) => {
-      expect(lang.code).toBeTruthy();
-      expect(lang.name).toBeTruthy();
-      expect(lang.englishName).toBeTruthy();
-      expect(lang.brandNameNative).toBeTruthy();
-      expect(lang.industry).toBeTruthy();
-      expect(lang.industryName).toBeTruthy();
-      expect(lang.industryNameNative).toBeTruthy();
-      expect(lang.badgeColor).toBeTruthy();
-      expect(lang.flagEmoji).toBeTruthy();
-      expect(lang.tagline).toBeTruthy();
-      expect(lang.headerTagline).toBeTruthy();
-      expect(lang.newsSectionTitle).toBeTruthy();
-      expect(lang.reviewsSectionTitle).toBeTruthy();
-      expect(lang.trailersSectionTitle).toBeTruthy();
-      expect(lang.boxOfficeTitle).toBeTruthy();
-      expect(lang.ottTitle).toBeTruthy();
-      expect(lang.hotTopics.length).toBeGreaterThan(0);
-    });
-
-    // Test specific native EXTRASAGA brand names (AFTER-DARK era)
-    const kn = getLanguageConfig("kn");
-    expect(kn.brandNameNative).toBe("ಎಕ್ಸ್ಟ್ರಾಸಾಗ");
-    expect(kn.headerTagline).toContain("ಸ್ಯಾಂಡಲ್ವುಡ್");
-
-    const ta = getLanguageConfig("ta");
-    expect(ta.brandNameNative).toBe("எக்ஸ்ட்ராசாக");
-    expect(ta.headerTagline).toContain("கோலிவுட்");
-    // Ensure Tamil header tagline has NO Kannada characters
-    expect(/[\u0C80-\u0CFF]/.test(ta.headerTagline)).toBe(false);
-    expect(/[\u0C80-\u0CFF]/.test(ta.brandNameNative)).toBe(false);
-
-    const te = getLanguageConfig("te");
-    expect(te.brandNameNative).toBe("ఎక్స్ట్రాసాగా");
-    expect(/[\u0C80-\u0CFF]/.test(te.headerTagline)).toBe(false);
-
-    const hi = getLanguageConfig("hi");
-    expect(hi.brandNameNative).toBe("एक्स्ट्रासागा");
-    expect(/[\u0C80-\u0CFF]/.test(hi.headerTagline)).toBe(false);
-  });
-
-  it("should default to Kannada (kn) / Sandalwood", () => {
-    expect(DEFAULT_LANGUAGE).toBe("kn");
-    const defaultConf = getLanguageConfig("kn");
-    expect(defaultConf.industry).toBe("sandalwood");
-    expect(defaultConf.name).toBe("ಕನ್ನಡ");
+  it("collapses every legacy language code to the English edition", () => {
+    for (const legacy of ["kn", "te", "ta", "ml", "hi", "unknown_code"] as const) {
+      expect(getLanguageConfig(legacy).code).toBe("en");
+      expect(getLanguageConfig(legacy).industry).toBe("hollywood");
+    }
   });
 
   it("should validate language codes before using URL or stored values", () => {
@@ -75,116 +45,72 @@ describe("Multi-Language and Multi-Industry System", () => {
     }
 
     expect(isLanguageCode(null)).toBe(false);
+    expect(isLanguageCode("kn")).toBe(false);
     expect(isLanguageCode("xx")).toBe(false);
   });
 
-  it("should fallback safely to Kannada for invalid or unknown language code", () => {
-    const fallback = getLanguageConfig("unknown_code");
-    expect(fallback.code).toBe("kn");
-    expect(fallback.industry).toBe("sandalwood");
+  it("keeps the legacy film-language -> industry mapping intact", () => {
+    for (const legacy of ["kn", "te", "ta", "ml", "hi"] as const) {
+      expect(typeof getIndustryForFilmLanguage(legacy)).toBe("string");
+    }
+    // Unknown or absent film languages resolve to undefined (a data-fact
+    // lookup, not an edition switcher).
+    expect(getIndustryForFilmLanguage(undefined)).toBeUndefined();
+    expect(getIndustryForFilmLanguage("kn")).toBe("sandalwood");
+    expect(getIndustryForFilmLanguage("te")).toBe("tollywood");
   });
 
-  it("should fetch Telugu / Tollywood articles and content", async () => {
-    const articles = await DataService.getArticles("te");
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.language === "te")).toBe(true);
-
-    const reviews = await DataService.getReviews("te");
-    expect(reviews.length).toBeGreaterThan(0);
-    expect(reviews.every((r) => r.language === "te")).toBe(true);
-
-    const boxOffice = await DataService.getBoxOffice("te");
-    expect(boxOffice.length).toBeGreaterThan(0);
-    expect(boxOffice.every((b) => b.language === "te")).toBe(true);
-
-    const videos = await DataService.getVideos("te");
-    expect(videos.length).toBeGreaterThan(0);
-    expect(videos.every((v) => v.language === "te")).toBe(true);
-
-    const ott = await DataService.getOttReleases("te");
-    expect(ott.length).toBeGreaterThan(0);
-    expect(ott.every((o) => o.language === "te")).toBe(true);
-  });
-
-  it("should fetch Tamil / Kollywood articles and content", async () => {
-    const articles = await DataService.getArticles("ta");
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.language === "ta")).toBe(true);
-
-    const reviews = await DataService.getReviews("ta");
-    expect(reviews.length).toBeGreaterThan(0);
-    expect(reviews.every((r) => r.language === "ta")).toBe(true);
-
-    const boxOffice = await DataService.getBoxOffice("ta");
-    expect(boxOffice.length).toBeGreaterThan(0);
-    expect(boxOffice.every((b) => b.language === "ta")).toBe(true);
-  });
-
-  it("should fetch Malayalam / Mollywood articles and content", async () => {
-    const articles = await DataService.getArticles("ml");
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.language === "ml")).toBe(true);
-
-    const boxOffice = await DataService.getBoxOffice("ml");
-    expect(boxOffice.length).toBeGreaterThan(0);
-    expect(boxOffice.every((b) => b.language === "ml")).toBe(true);
-  });
-
-  it("should fetch Hindi / Bollywood articles and content", async () => {
-    const articles = await DataService.getArticles("hi");
-    expect(articles.length).toBeGreaterThan(0);
-    expect(articles.every((a) => a.language === "hi")).toBe(true);
-
-    const boxOffice = await DataService.getBoxOffice("hi");
-    expect(boxOffice.length).toBeGreaterThan(0);
-    expect(boxOffice.every((b) => b.language === "hi")).toBe(true);
-  });
-
-  it("should fetch English / Hollywood articles and content", async () => {
-    const articles = await DataService.getArticles("en");
+  it("should fetch English edition articles across every industry", async () => {
+    const articles = await DataService.getArticles();
     expect(articles.length).toBeGreaterThan(0);
     expect(articles.every((a) => a.language === "en")).toBe(true);
+    // Six-industry agenda: every industry keeps at least one story
+    const industries = new Set(articles.map((a) => a.industry));
+    for (const industry of ["sandalwood", "tollywood", "kollywood", "mollywood", "bollywood", "hollywood"]) {
+      expect(industries.has(industry as never)).toBe(true);
+    }
+  });
+
+  it("should fetch English edition reviews and box office", async () => {
+    const reviews = await DataService.getReviews("en");
+    expect(reviews.length).toBeGreaterThan(0);
+    expect(reviews.every((r) => r.language === "en")).toBe(true);
 
     const boxOffice = await DataService.getBoxOffice("en");
     expect(boxOffice.length).toBeGreaterThan(0);
-    expect(boxOffice.every((b) => b.language === "en")).toBe(true);
+
+    const videos = await DataService.getVideos("en");
+    expect(videos.length).toBeGreaterThan(0);
+
+    const ott = await DataService.getOttReleases("en");
+    expect(ott.length).toBeGreaterThan(0);
   });
 
-  it("should fetch language-specific celebrity photo galleries", async () => {
-    const teGalleries = await DataService.getGalleries("te");
-    expect(teGalleries.length).toBeGreaterThan(0);
-    expect(teGalleries.every((g) => g.language === "te")).toBe(true);
-
-    const taGalleries = await DataService.getGalleries("ta");
-    expect(taGalleries.length).toBeGreaterThan(0);
-    expect(taGalleries.every((g) => g.language === "ta")).toBe(true);
-
-    const hiGalleries = await DataService.getGalleries("hi");
-    expect(hiGalleries.length).toBeGreaterThan(0);
-    expect(hiGalleries.every((g) => g.language === "hi")).toBe(true);
+  it("should fetch English edition celebrity photo galleries", async () => {
+    const galleries = await DataService.getGalleries("en");
+    expect(galleries.length).toBeGreaterThan(0);
+    expect(galleries.every((g) => g.language === "en")).toBe(true);
   });
 
-  it("should provide language-specific breaking news and trending items", async () => {
-    const teBreaking = await DataService.getBreakingNews("te");
-    expect(teBreaking.length).toBeGreaterThan(0);
-    expect(teBreaking[0].language).toBe("te");
+  it("should provide English breaking news and trending items", async () => {
+    const breaking = await DataService.getBreakingNews("en");
+    expect(breaking.length).toBeGreaterThan(0);
+    expect(breaking[0].language).toBe("en");
 
-    const hiTrending = await DataService.getTrendingArticles(5, "hi");
-    expect(hiTrending.length).toBeGreaterThan(0);
-    expect(hiTrending[0].language).toBe("hi");
+    const trending = await DataService.getTrendingArticles(5, "en");
+    expect(trending.length).toBeGreaterThan(0);
+    expect(trending[0].language).toBe("en");
   });
 
-  it("should provide localized category labels for all 12 navigation items in all 6 languages", async () => {
+  it("should provide the 12 navigation category labels in English", async () => {
     const { MAIN_NAV_ITEMS } = await import("../src/lib/categories");
     const { getLocalizedCategoryName } = await import("../src/lib/translations");
-    const langCodes: LanguageCode[] = ["kn", "te", "ta", "ml", "hi", "en"];
 
-    langCodes.forEach((lang) => {
-      MAIN_NAV_ITEMS.forEach((item) => {
-        const localized = getLocalizedCategoryName(item.slug, lang);
-        expect(localized).toBeTruthy();
-        expect(typeof localized).toBe("string");
-      });
+    MAIN_NAV_ITEMS.forEach((item) => {
+      const localized = getLocalizedCategoryName(item.slug, "en");
+      expect(localized).toBeTruthy();
+      expect(typeof localized).toBe("string");
+      expect(/[\u0C80-\u0CFF\u0900-\u097F]/.test(localized)).toBe(false);
     });
 
     // Verify English matches exact user specification
@@ -200,5 +126,15 @@ describe("Multi-Language and Multi-Industry System", () => {
     expect(getLocalizedCategoryName("gallery", "en")).toBe("Photos");
     expect(getLocalizedCategoryName("videos", "en")).toBe("Videos");
     expect(getLocalizedCategoryName("events", "en")).toBe("Events");
+  });
+
+  it("resolves seeded categories to English names", async () => {
+    const { categoryName } = await import("../src/lib/categories");
+    for (const slug of ["sandalwood", "bollywood", "hollywood", "gossip", "gallery", "box-office"]) {
+      const name = categoryName(slug);
+      expect(name).toBeTruthy();
+      expect(/[\u0C80-\u0CFF\u0900-\u097F]/.test(name)).toBe(false);
+    }
+    expect(categoryName("sandalwood")).toBe("Sandalwood");
   });
 });

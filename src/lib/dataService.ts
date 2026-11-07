@@ -39,15 +39,15 @@ import { supabase, isSupabaseConfigured } from "./supabase";
 
 // Storage keys for browser persistence
 const STORAGE_KEYS = {
-  articles: "sini_kannada_articles",
-  reviews: "sini_kannada_reviews",
-  comments: "sini_kannada_comments",
-  ads: "sini_kannada_ads",
-  videos: "sini_kannada_videos",
-  galleries: "sini_kannada_galleries",
-  boxOffice: "sini_kannada_box_office",
-  movies: "filmygarage_cinema_movies",
-  automationLogs: "filmygarage_automation_logs",
+  articles: "extrasaga_articles",
+  reviews: "extrasaga_reviews",
+  comments: "extrasaga_comments",
+  ads: "extrasaga_ads",
+  videos: "extrasaga_videos",
+  galleries: "extrasaga_galleries",
+  boxOffice: "extrasaga_box_office",
+  movies: "extrasaga_cinema_movies",
+  automationLogs: "extrasaga_automation_logs",
 };
 
 // In-memory runtime cache for server-side operations
@@ -121,7 +121,7 @@ export const DataService = {
           (a) =>
             a.category === "television" ||
             a.category === "ott" ||
-            (a.tags && a.tags.some((t: string) => /tv|tele|serial|show|ಧಾರಾವಾಹಿ|ಕಿರುತೆರೆ/i.test(t)))
+            (a.tags && a.tags.some((t: string) => /tv|tele|serial|show/i.test(t)))
         );
       } else if (effectiveCategory === "celebrity") {
         result = result.filter(
@@ -134,7 +134,7 @@ export const DataService = {
         result = result.filter(
           (a) =>
             a.category === "events" ||
-            (a.tags && a.tags.some((t: string) => /event|audio|launch|trailer|festival|ಇವೆಂಟ್|ಮುಹೂರ್ತ|ಸೈಮಾ/i.test(t)))
+            (a.tags && a.tags.some((t: string) => /event|audio|launch|trailer|festival/i.test(t)))
         );
       } else if (effectiveCategory === "latest") {
         result = result.filter(
@@ -226,19 +226,19 @@ export const DataService = {
 
     const completeArticle: Article = {
       id: article.id || `art-${Date.now()}`,
-      title: article.title || "ಹೊಸ ಶೀರ್ಷಿಕೆ",
+      title: article.title || "New Article",
       titleEn: article.titleEn || "New Article",
       slug: article.slug || `article-${Date.now()}`,
       summary: article.summary || "",
       content: article.content || "",
       category: article.category || "sandalwood",
-      categoryName: cat?.name || "ಸ್ಯಾಂಡಲ್ವುಡ್",
-      tags: article.tags || ["ಸಿನಿಮಾ"],
+      categoryName: cat?.name || "Sandalwood",
+      tags: article.tags || ["Cinema"],
       featuredImage:
         article.featuredImage ||
         "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
       imageCaption: article.imageCaption || "",
-      author: article.author || { id: "auth-1", name: "EXTRASAGA ಬ್ಯೂರೋ", role: "ಸಂಪಾದಕರು" },
+      author: article.author || { id: "auth-1", name: "EXTRASAGA Bureau", role: "Editor" },
       publishedAt: article.publishedAt || now,
       updatedAt: now,
       readTimeMinutes: article.readTimeMinutes || 3,
@@ -332,13 +332,10 @@ export const DataService = {
     const exact = all.find((r) => r.slug === slug);
     if (exact) return exact;
 
-    // 2. Generic Ramayana alias (/reviews/ramayana-part-1 or /reviews/ramayana)
-    if (
-      slug === "ramayana-part-1" ||
-      slug === "ramayana-part-1-review" ||
-      slug === "ramayana"
-    ) {
-      const preferredLang = lang || "kn";
+    // 2. Ramayana aliases — the canonical English review serves every legacy
+    //    per-language slug (kannada/telugu/tamil/hindi/malayalam review URLs).
+    if (slug.startsWith("ramayana-part-1") || slug.startsWith("ramayana")) {
+      const preferredLang = lang || "en";
       const matched = all.find(
         (r) => r.slug.startsWith("ramayana-part-1") && r.language === preferredLang
       );
@@ -353,25 +350,25 @@ export const DataService = {
     const isNew = !review.id;
     const complete: MovieReview = {
       id: review.id || `rev-${Date.now()}`,
-      movieTitle: review.movieTitle || "ಹೊಸ ಸಿನಿಮಾ",
+      movieTitle: review.movieTitle || "New Movie",
       movieTitleEn: review.movieTitleEn || "New Movie",
       slug: review.slug || `review-${Date.now()}`,
       rating: review.rating || 4.0,
       maxRating: 5.0,
       releaseDate: review.releaseDate || new Date().toISOString().slice(0, 10),
-      director: review.director || "ನಿರ್ದೇಶಕರು",
-      producers: review.producers || ["ನಿರ್ಮಾಪಕರು"],
-      musicDirector: review.musicDirector || "ಸಂಗೀತ ನಿರ್ದೇಶಕರು",
+      director: review.director || "Director",
+      producers: review.producers || ["Producer"],
+      musicDirector: review.musicDirector || "Music Director",
       cast: review.cast || [],
       posterImage:
         review.posterImage ||
         "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop",
       bannerImage: review.bannerImage,
       trailerYoutubeId: review.trailerYoutubeId || "8MR9Ohbv3KM",
-      genres: review.genres || ["ಆಕ್ಷನ್", "ಡ್ರಾಮಾ"],
+      genres: review.genres || ["Action", "Drama"],
       censorRating: review.censorRating || "U/A",
-      runtime: review.runtime || "2 ಗಂಟೆ 30 ನಿಮಿಷ",
-      verdict: review.verdict || "ಉತ್ತಮ ಮನರಂಜನೆ",
+      runtime: review.runtime || "2h 30m",
+      verdict: review.verdict || "Good Entertainer",
       summary: review.summary || "",
       storyAnalysis: review.storyAnalysis || "",
       performanceAnalysis: review.performanceAnalysis || "",
@@ -381,7 +378,7 @@ export const DataService = {
       cons: review.cons || [],
       boxOfficeSummary: review.boxOfficeSummary || "",
       publishedAt: review.publishedAt || new Date().toISOString(),
-      author: review.author || "ಸಿನಿಮಾ ಡೆಸ್ಕ್",
+      author: review.author || "Cinema Desk",
     };
 
     if (isNew) {
@@ -521,9 +518,7 @@ export const DataService = {
   // --- GALLERIES ---
   async getGalleries(language?: LanguageCode): Promise<GalleryItem[]> {
     if (language) {
-      const filtered = memoryGalleries.filter(
-        (g) => g.language === language || (!g.language && language === "kn")
-      );
+      const filtered = memoryGalleries.filter((g) => g.language === language);
       if (filtered.length > 0) return filtered;
     }
     return memoryGalleries;
@@ -579,7 +574,7 @@ export const DataService = {
     const newCom: Comment = {
       id: `com-${Date.now()}`,
       articleId: comment.articleId,
-      authorName: comment.authorName || "ಅನಾಮಧೇಯ ಓದುಗರು",
+      authorName: comment.authorName || "Anonymous Reader",
       content: comment.content,
       createdAt: new Date().toISOString(),
       likes: 0,
@@ -744,7 +739,7 @@ export const DataService = {
 
     const completeMovie: Movie = {
       id: movie.id || `mov-${Date.now()}`,
-      title: movie.title || "ಹೊಸ ಸಿನಿಮಾ",
+      title: movie.title || "New Movie",
       titleEn: movie.titleEn || "New Movie",
       slug: movie.slug || `movie-${Date.now()}`,
       synopsis: movie.synopsis || "",
@@ -752,11 +747,11 @@ export const DataService = {
       theatricalReleaseDate: movie.theatricalReleaseDate || getTodayIST(),
       releaseDateConfidence: movie.releaseDateConfidence || "confirmed",
       releaseStatus: dynamicStatus,
-      language: movie.language || "kn",
+      language: movie.language || "en",
       industry: movie.industry || "sandalwood",
-      genres: movie.genres || ["ಆಕ್ಷನ್", "ಡ್ರಾಮಾ"],
-      director: movie.director || "ಅಪರಿಚಿತ ನಿರ್ದೇಶಕರು",
-      producers: movie.producers || ["ಪ್ರೊಡಕ್ಷನ್ ಹೌಸ್"],
+      genres: movie.genres || ["Action", "Drama"],
+      director: movie.director || "Unknown Director",
+      producers: movie.producers || ["Production House"],
       cast: movie.cast || [],
       crew: movie.crew || [],
       productionCompany: movie.productionCompany || "",
@@ -813,40 +808,40 @@ export const DataService = {
 
 ${movie.introduction || movie.synopsis}
 
-## ಸಿನಿಮಾ ಸಂಕ್ಷಿಪ್ತ ವಿವರ (Synopsis)
+## Synopsis
 ${movie.synopsis}
 
-## ಚಿತ್ರತಂಡ (Cast & Crew)
-- **ನಿರ್ದೇಶನ (Director):** ${movie.director}
-- **ನಿರ್ಮಾಪಕರು (Producers):** ${movie.producers.join(", ")}
-- **ಪ್ರಮುಖ ತಾರಾಗಣ (Main Cast):** ${castList || "ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ"}
-- **ಚಿತ್ರರಂಗ (Industry):** ${movie.industry.toUpperCase()} (${movie.language.toUpperCase()})
-- **ಪ್ರಕಾರ (Genres):** ${movie.genres.join(", ")}
-- **ಸೆನ್ಸಾರ್ ಪ್ರಮಾಣಪತ್ರ (Censor Rating):** ${movie.censorRating || "U/A"}
-- **ಅವಧಿ (Runtime):** ${movie.runtimeFormatted || `${movie.runtimeMinutes} ನಿಮಿಷ`}
+## Cast & Crew
+- **Director:** ${movie.director}
+- **Producers:** ${movie.producers.join(", ")}
+- **Main Cast:** ${castList || "To be announced"}
+- **Industry:** ${movie.industry.toUpperCase()} (${movie.language.toUpperCase()})
+- **Genres:** ${movie.genres.join(", ")}
+- **Censor Rating:** ${movie.censorRating || "U/A"}
+- **Runtime:** ${movie.runtimeFormatted || `${movie.runtimeMinutes} minutes`}
 
-## ಬಿಡುಗಡೆ ವಿವರ (Theatrical Release Details)
-- **ಬಿಡುಗಡೆ ದಿನಾಂಕ:** ${movie.theatricalReleaseDate} (${movie.releaseDateConfidence === "confirmed" ? "ದೃಢೀಕೃತ (Confirmed)" : "ತಾತ್ಕಾಲಿಕ (Tentative)"})
-- **ಸ್ಥಿತಿ:** ${movie.releaseStatus === "in_theatres" ? "ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ ಪ್ರದರ್ಶನ ಕಾಣುತ್ತಿದೆ" : movie.releaseStatus === "upcoming" ? "ಮುಂಬರುವ ಬಿಡುಗಡೆ" : "ಆರ್ಕೈವ್ ಬಿಡುಗಡೆ"}
-- **ನಿರ್ಮಾಣ ಸಂಸ್ಥೆ:** ${movie.productionCompany || "ಪ್ರಮುಖ ನಿರ್ಮಾಣ ಸಂಸ್ಥೆ"}
-- **ವಿತರಣಾ ಸಂಸ್ಥೆ:** ${movie.distributionCompany || "ಆಲ್ ಇಂಡಿಯಾ ಡಿಸ್ಟ್ರಿಬ್ಯೂಷನ್"}
+## Theatrical Release Details
+- **Release Date:** ${movie.theatricalReleaseDate} (${movie.releaseDateConfidence === "confirmed" ? "Confirmed" : "Tentative"})
+- **Status:** ${movie.releaseStatus === "in_theatres" ? "Now showing in theatres" : movie.releaseStatus === "upcoming" ? "Upcoming release" : "Archived release"}
+- **Production House:** ${movie.productionCompany || "Leading production house"}
+- **Distribution:** ${movie.distributionCompany || "All-India Distribution"}
     `.trim();
 
     const movieArticle: Partial<Article> = {
       id: existingArticle?.id || `art-mov-${movie.id}`,
-      title: `${movie.title} - ಚಿತ್ರ ಬಿಡುಗಡೆ, ತಾರಾಗಣ, ಟ್ರೇಲರ್ ಮತ್ತು ಸಂಪೂರ್ಣ ಮಾಹಿತಿ`,
+      title: `${movie.title} - Theatrical Release, Cast, Trailer & Full Synopsis`,
       titleEn: `${movie.titleEn} - Theatrical Release, Cast, Trailer & Full Synopsis`,
       slug: movie.slug,
       summary: movie.synopsis.slice(0, 200) + "...",
       content: fullArticleContent,
       category: "upcoming",
-      categoryName: "ಮುಂಬರುವ ಚಿತ್ರಗಳು",
+      categoryName: "Upcoming Movies",
       tags: [movie.titleEn, ...movie.genres, movie.industry, "Cinema Release"],
       featuredImage: movie.posterImage,
       imageCaption: `Official Poster: ${movie.titleEn} (${movie.theatricalReleaseDate})`,
       author: {
         id: "cinema-release-desk",
-        name: "EXTRASAGA ಸಿನಿರಂಗ ಡೆಸ್ಕ್",
+        name: "EXTRASAGA Cinema Releases Desk",
         role: "Chief Cinema Releases Editor",
       },
       publishedAt: existingArticle?.publishedAt || now,

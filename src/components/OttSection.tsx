@@ -12,36 +12,40 @@ interface OttSectionProps {
 }
 
 export default function OttSection({ releases }: OttSectionProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
-
-  const langFiltered = releases.filter(
-    (o) => o.language === language || (!o.language && language === "kn")
-  );
-  const activeReleases = langFiltered.length > 0 ? langFiltered : releases;
+  const { config, t, localizeUrl } = useLanguage();
+  const activeReleases = releases;
 
   return (
-    <section className="bg-hall rounded-[32px] border border-glow-line p-6 sm:p-8 relative">
-      <div className="flex items-center justify-between pb-5 mb-6 border-b border-glow-line">
+    <section className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 relative">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b-2 border-ink gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-ultra/10 text-ultra border border-ultra/25 flex items-center justify-center">
+          <div className="w-10 h-10 bg-violet text-paper border-2 border-ink shadow-sticker flex items-center justify-center shrink-0">
             <Tv className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-black text-popcorn font-sans tracking-tight">
-              {config.ottTitle}
+            <div className="flex items-center gap-2 mb-1">
+              <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+                DIGITAL STREAMING WIRE
+              </span>
+              <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
+                VERIFIED RELEASE RADAR
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink">
+              NOW STREAM<span className="text-violet">ING</span>
             </h2>
-            <p className="text-xs text-popcorn-dim font-sans font-medium">
-              {config.industryName} {t("sec_ott")} • ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ಸ್ಟ್ರೀಮಿಂಗ್
+            <p className="text-xs text-ink-dim font-grotesk font-medium">
+              Consolidated OTT drops across Netflix, Prime Video, Hotstar, ZEE5 &amp; regional platforms
             </p>
           </div>
         </div>
 
         <Link
           href={localizeUrl("/ott")}
-          className="px-4 py-1.5 rounded-full bg-revealed hover:bg-screen text-xs font-bold text-popcorn-dim hover:text-popcorn border border-glow-line hover:border-glow-line-strong flex items-center gap-1.5 transition-all font-sans"
+          className="self-start sm:self-auto px-4 py-2 bg-ink text-paper hover:bg-violet border-2 border-ink shadow-sticker text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all"
         >
           <span>{t("btn_all_ott")}</span>
-          <ChevronRight className="w-3.5 h-3.5 text-ultra" />
+          <ChevronRight className="w-3.5 h-3.5 text-paper" />
         </Link>
       </div>
 
@@ -49,10 +53,10 @@ export default function OttSection({ releases }: OttSectionProps) {
         {activeReleases.slice(0, 3).map((item) => (
           <div
             key={item.id}
-            className="group bg-revealed rounded-[24px] overflow-hidden border border-glow-line hover:border-glow-line-strong hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(155,109,255,0.16)] transition-all duration-300 flex flex-col justify-between"
+            className="group bg-paper border-2 border-ink shadow-press hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform flex flex-col justify-between"
           >
             <div>
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-hall">
+              <div className="relative aspect-[16/10] w-full overflow-hidden border-b-2 border-ink bg-band">
                 <Image
                   src={item.posterImage}
                   alt={item.movieTitle}
@@ -60,26 +64,24 @@ export default function OttSection({ releases }: OttSectionProps) {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-void/85 via-void/25 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div>
 
-                {/* Platform chip */}
-                <span
-                  className="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold font-sans bg-void/85 backdrop-blur-md text-popcorn border border-glow-line"
-                >
+                {/* Platform sticker */}
+                <span className="absolute top-3 left-3 px-2.5 py-0.5 text-[10px] font-bold font-grotesk uppercase tracking-wider bg-violet text-paper border-2 border-ink shadow-sticker">
                   {item.platform}
                 </span>
 
-                <div className="absolute bottom-2.5 left-3.5 flex items-center gap-1.5 text-[11px] text-popcorn-dim font-medium font-mono-tabular">
+                <div className="absolute bottom-2.5 left-3.5 flex items-center gap-1.5 text-[11px] text-paper font-bold font-mono">
                   <Calendar className="w-3.5 h-3.5 text-marquee" />
                   <span>{item.releaseDate}</span>
                 </div>
               </div>
 
-              <div className="p-5 bg-revealed">
-                <h3 className="text-base font-bold text-popcorn group-hover:text-ultra transition-colors line-clamp-1">
+              <div className="p-5">
+                <h3 className="text-base font-poster uppercase text-ink group-hover:text-violet transition-colors line-clamp-1">
                   {item.movieTitle}
                 </h3>
-                <p className="mt-1.5 text-xs text-popcorn-dim line-clamp-2 leading-relaxed">
+                <p className="mt-1.5 text-xs text-ink-dim line-clamp-2 leading-relaxed font-sans">
                   {item.description}
                 </p>
 
@@ -87,7 +89,7 @@ export default function OttSection({ releases }: OttSectionProps) {
                   {item.languages.map((lang) => (
                     <span
                       key={lang}
-                      className="px-2.5 py-0.5 rounded-full bg-screen text-popcorn-dim text-[10px] font-semibold border border-glow-line"
+                      className="px-2 py-0.5 bg-band text-ink text-[10px] font-bold border border-ink uppercase font-grotesk"
                     >
                       {lang}
                     </span>
@@ -101,10 +103,10 @@ export default function OttSection({ releases }: OttSectionProps) {
                 href={item.watchUrl || "https://www.netflix.com"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-full bg-screen hover:bg-ultra-deep text-popcorn font-bold text-xs flex items-center justify-center gap-2 transition-all border border-glow-line hover:border-ultra-deep"
+                className="w-full py-2.5 px-4 bg-ink hover:bg-press text-paper font-poster uppercase text-xs flex items-center justify-center gap-2 transition-all border-2 border-ink shadow-sticker"
               >
-                <span>ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ</span>
-                <ExternalLink className="w-3.5 h-3.5 text-current" />
+                <span>Stream on {item.platform}</span>
+                <ExternalLink className="w-3.5 h-3.5 text-paper" />
               </a>
             </div>
           </div>

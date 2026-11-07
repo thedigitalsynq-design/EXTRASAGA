@@ -1,6 +1,6 @@
 # COST & DEPENDENCY REGISTER & DESIGN PRESERVATION AUDIT
 
-**Project:** Cini Jaatre (ಸಿನಿ ಜಾತ್ರೆ) / EXTRASAGA  
+**Project:** EXTRASAGA  
 **Target:** Zero Additional Recurring Software, Hosting & AI Expenses  
 **Audit Date:** November 2026  
 **Status:** 100% Zero-Cost Compliant · 100% Theme & Brand Preserved
@@ -58,9 +58,9 @@ The platform strictly adheres to a **Zero-Cost-First Development Architecture**.
 
 | Design Element | Baseline Identity | Preservation & Improvement Status |
 | :--- | :--- | :--- |
-| **Brand Identity** | EXTRASAGA / ಸಿನಿಮಾ ಜಾತ್ರೆ | **Preserved:** Original logo, Kannada native subtitle, and industry badge maintained. |
+| **Brand Identity** | EXTRASAGA | **Preserved:** Original logo and industry badge maintained; the publication renders English-only. |
 | **Color System** | Light Mode, Crimson `#A92732`, Gold/Amber `#D97706`, Emerald `#059669` | **Preserved:** Light backgrounds (`#FFFFFF`, `#F8F9FA`), crimson accents, accessible contrast. |
-| **Typography** | Anek Kannada, Hubballi, Plus Jakarta Sans | **Preserved:** Dual Kannada & English typography hierarchy intact across all viewports. |
+| **Typography** | DM Sans, Space Grotesk, Archivo Black, Plus Jakarta Sans | **Preserved:** Single English typography hierarchy intact across all viewports (per-language script stacks retired with the edition axis). |
 | **Header Design** | Top utility bar (IST Date, Language/Industry Switcher, Quick Links) + Main Brand Bar | **Preserved:** Complete structure, mobile drawer, and search modal functioning seamlessly. |
 | **Homepage Template** | Breaking Ticker &rarr; Top Stories &rarr; Release Radar &rarr; Magazine Stream &rarr; Sticky Rail | **Preserved:** All 8 homepage zones preserved in exact intended editorial sequence. |
 | **Article Page** | Hero image, metadata, formatted text, social share, comments, related stories | **Preserved:** High readability, schema markup, and responsive typography preserved. |

@@ -9,26 +9,26 @@ export interface MainNavItem {
 }
 
 export const CATEGORIES: Category[] = [
-  { id: "1", name: "ಮುಖಪುಟ", englishName: "Home", slug: "mukhaputa", description: "ಸಿನಿ ಕನ್ನಡ ಮುಖಪುಟ - ಇತ್ತೀಚಿನ ತಾಜಾ ಸುದ್ದಿ ಮತ್ತು ಮನರಂಜನೆ" },
-  { id: "2", name: "ಇತ್ತೀಚಿನ ಸುದ್ದಿ", englishName: "Latest News", slug: "latest", description: "ಸ್ಯಾಂಡಲ್ವುಡ್ ಮತ್ತು ಭಾರತೀಯ ಚಿತ್ರರಂಗದ ಕ್ಷಣಕ್ಷಣದ ಸುದ್ದಿ" },
-  { id: "3", name: "ಸಿನಿಮಾ ವಿಮರ್ಶೆ", englishName: "Movie Reviews", slug: "reviews", description: "ಕನ್ನಡ ಸಿನಿಮಾಗಳ ನೈಜ ಹಾಗೂ ನಿಷ್ಪಕ್ಷಪಾತ ವಿಮರ್ಶೆಗಳು" },
-  { id: "4", name: "ಸ್ಯಾಂಡಲ್ವುಡ್", englishName: "Sandalwood", slug: "sandalwood", description: "ಕನ್ನಡ ಚಿತ್ರರಂಗದ ಸಂಪೂರ್ಣ ಸಮಾಚಾರ ಮತ್ತು ವಿಶೇಷ ವರದಿಗಳು" },
-  { id: "5", name: "ಬಾಲಿವುಡ್", englishName: "Bollywood", slug: "bollywood", description: "ಹಿಂದಿ ಸಿನಿ ಜಗತ್ತಿನ ತಾಜಾ ಗಾಸಿಪ್ ಮತ್ತು ಅಪ್ಡೇಟ್ಸ್" },
-  { id: "6", name: "ಹಾಲಿವುಡ್", englishName: "Hollywood", slug: "hollywood", description: "ವಿಶ್ವ ಸಿನಿಮಾಗಳ ಸಮಾಚಾರ ಮತ್ತು ಅಂತರರಾಷ್ಟ್ರೀಯ ಚಿತ್ರಗಳು" },
-  { id: "7", name: "ನಟರು", englishName: "Actors", slug: "actors", description: "ಕನ್ನಡದ ಸ್ಟಾರ್ ನಟರ ವೈಯಕ್ತಿಕ ಮತ್ತು ವೃತ್ತಿ ಬದುಕಿನ ಸುದ್ದಿ" },
-  { id: "8", name: "ನಟಿಯರು", englishName: "Actresses", slug: "actresses", description: "ಖ್ಯಾತ ನಟಿಯರ ಹೊಸ ಪ್ರಾಜೆಕ್ಟ್, ಫ್ಯಾಷನ್ ಮತ್ತು ಸಂದರ್ಶನಗಳು" },
-  { id: "9", name: "ಸಂದರ್ಶನ", englishName: "Interviews", slug: "interviews", description: "ತಾರೆಯರೊಂದಿಗೆ ನೇರ ಮಾತುಕತೆ ಮತ್ತು ವಿಶೇಷ ಸಂದರ್ಶನಗಳು" },
-  { id: "10", name: "ಗಾಸಿಪ್", englishName: "Gossip", slug: "gossip", description: "ಗಾಂಧಿನಗರದ ಒಳಗುಟ್ಟು ಮತ್ತು ಸಿನಿಮಾ ಜಗತ್ತಿನ ಬಿಸಿಬಿಸಿ ಚರ್ಚೆಗಳು" },
-  { id: "11", name: "ಫೋಟೋ ಗ್ಯಾಲರಿ", englishName: "Photo Gallery", slug: "gallery", description: "ತಾರೆಯರ ಆಕರ್ಷಕ ಫೋಟೋಗಳು ಮತ್ತು ಸಿನಿಮಾ ಇವೆಂಟ್ಸ್" },
-  { id: "12", name: "ವಿಡಿಯೋಗಳು", englishName: "Videos", slug: "videos", description: "ಹೊಸ ಟ್ರೇಲರ್‌ಗಳು, ಟೀಸರ್‌ಗಳು ಮತ್ತು ಹಾಡುಗಳ ವಿಡಿಯೋಗಳು" },
-  { id: "13", name: "OTT ಅಪ್ಡೇಟ್", englishName: "OTT Updates", slug: "ott", description: "ನೆಟ್‌ಫ್ಲಿಕ್ಸ್, ಅಮೆಜಾನ್ ಪ್ರೈಮ್, ಜೀ5 ನಲ್ಲಿ ಕನ್ನಡ ಸಿನಿಮಾಗಳು" },
-  { id: "14", name: "ಬಾಕ್ಸ್ ಆಫೀಸ್", englishName: "Box Office", slug: "box-office", description: "ಕನ್ನಡ ಸಿನಿಮಾಗಳ ಗಳಿಕೆ ಮತ್ತು ಬಾಕ್ಸ್ ಆಫೀಸ್ ವರದಿಗಳು" },
-  { id: "15", name: "ಮುಂಬರುವ ಸಿನಿಮಾಗಳು", englishName: "Upcoming Movies", slug: "upcoming", description: "ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ತೆರೆಕಾಣಲಿರುವ ನಿರೀಕ್ಷಿತ ಚಿತ್ರಗಳು" },
-  { id: "16", name: "ಟ್ರೆಂಡಿಂಗ್", englishName: "Trending Today", slug: "trending", description: "ಇಂದಿನ ಟ್ರೆಂಡಿಂಗ್ ಸಿನಿಮಾ ವಿಷಯಗಳು ಮತ್ತು ಬಿಸಿಬಿಸಿ ಸುದ್ದಿಗಳು" },
-  { id: "17", name: "ಕಿರುತೆರೆ", englishName: "Television", slug: "television", description: "ಕಿರುತೆರೆ ಧಾರಾವಾಹಿಗಳು, ರಿಯಾಲಿಟಿ ಶೋ ಮತ್ತು ಟೆಲಿವಿಷನ್ ಲೋಕದ ಸಮಾಚಾರ" },
-  { id: "18", name: "ಸೆಲೆಬ್ರಿಟಿ", englishName: "Celebrity", slug: "celebrity", description: "ತಾರೆಯರ ಜೀವನ ಶೈಲಿ, ಪ್ರಸಿದ್ಧ ಸೆಲೆಬ್ರಿಟಿ ವಿಶೇಷಗಳು" },
-  { id: "19", name: "ಇವೆಂಟ್ಸ್", englishName: "Events", slug: "events", description: "ಸಿನಿಮಾ ಇವೆಂಟ್ಸ್, ಪ್ರಶಸ್ತಿ ಪ್ರದಾನ, ಆಡಿಯೋ ಮತ್ತು ಟ್ರೇಲರ್ ಲಾಂಚ್" },
-  { id: "20", name: "ಸಿನಿಮಾಗಳು", englishName: "Movies", slug: "movies", description: "ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು, ಹೊಸ ಚಿತ್ರಗಳು ಮತ್ತು ಮುಂಬರುವ ಚಿತ್ರಗಳ ವಿವರ" },
+  { id: "1", name: "Home", englishName: "Home", slug: "mukhaputa", description: "Cinema frontpage — the latest breaking stories and entertainment" },
+  { id: "2", name: "Latest News", englishName: "Latest News", slug: "latest", description: "Real-time news from Sandalwood and the Indian film world" },
+  { id: "3", name: "Movie Reviews", englishName: "Movie Reviews", slug: "reviews", description: "Honest, receipts-checked and strictly unbiased film verdicts" },
+  { id: "4", name: "Sandalwood", englishName: "Sandalwood", slug: "sandalwood", description: "Complete coverage and insider reports from the Kannada film industry" },
+  { id: "5", name: "Bollywood", englishName: "Bollywood", slug: "bollywood", description: "Hot tea and updates from the Hindi film world" },
+  { id: "6", name: "Hollywood", englishName: "Hollywood", slug: "hollywood", description: "Global cinema news and international releases" },
+  { id: "7", name: "Actors", englishName: "Actors", slug: "actors", description: "Star actor news — on screen and off screen" },
+  { id: "8", name: "Actresses", englishName: "Actresses", slug: "actresses", description: "New projects, fashion and interviews from the leading ladies" },
+  { id: "9", name: "Interviews", englishName: "Interviews", slug: "interviews", description: "Up-front conversations and exclusive sit-downs with the stars" },
+  { id: "10", name: "Gossip", englishName: "Gossip", slug: "gossip", description: "Hot tea from Gandhinagar and the wider cinema world" },
+  { id: "11", name: "Photo Gallery", englishName: "Photo Gallery", slug: "gallery", description: "Star photo drops and cinema event galleries" },
+  { id: "12", name: "Videos", englishName: "Videos", slug: "videos", description: "New trailers, teasers and song video drops" },
+  { id: "13", name: "OTT Updates", englishName: "OTT Updates", slug: "ott", description: "Verified streams on Netflix, Amazon Prime, JioHotstar and more" },
+  { id: "14", name: "Box Office", englishName: "Box Office", slug: "box-office", description: "Receipts-backed collections and box office reports" },
+  { id: "15", name: "Upcoming Movies", englishName: "Upcoming Movies", slug: "upcoming", description: "Every verified release heading to theatres next" },
+  { id: "16", name: "Trending Today", englishName: "Trending Today", slug: "trending", description: "What the cine feed is arguing about right now" },
+  { id: "17", name: "Television", englishName: "Television", slug: "television", description: "TV serials, reality shows and the television beat" },
+  { id: "18", name: "Celebrity", englishName: "Celebrity", slug: "celebrity", description: "Star lifestyles and celebrity spotlight specials" },
+  { id: "19", name: "Events", englishName: "Events", slug: "events", description: "Movie events, award nights, audio and trailer launches" },
+  { id: "20", name: "Movies", englishName: "Movies", slug: "movies", description: "Cinema releases, new titles and upcoming film details" },
 ];
 
 export const MAIN_NAV_ITEMS: MainNavItem[] = [
@@ -49,7 +49,7 @@ export const MAIN_NAV_ITEMS: MainNavItem[] = [
 const BY_SLUG = new Map(CATEGORIES.map((category) => [category.slug, category]));
 
 export function categoryName(slug: string): string {
-  return BY_SLUG.get(slug as CategorySlug)?.name ?? "ಸುದ್ದಿ";
+  return BY_SLUG.get(slug as CategorySlug)?.name ?? "News";
 }
 
 export function categoryHref(slug: string): string {

@@ -38,7 +38,7 @@ export default function LiveUpdatesFeed({
   const fetchLiveUpdates = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/live-updates?lang=${language}&category=${selectedCategory}`);
+      const res = await fetch(`/api/live-updates?category=${selectedCategory}`);
       if (res.ok) {
         const data = await res.json();
         if (data.updates && data.updates.length > 0) {
@@ -79,44 +79,44 @@ export default function LiveUpdatesFeed({
     {
       id: "all",
       label: {
-        kn: "ಎಲ್ಲವೂ",
-        te: "అన్నీ",
-        ta: "அனைத்தும்",
-        ml: "എല്ലാം",
-        hi: "सभी",
+        kn: "All Wire",
+        te: "All Wire",
+        ta: "All Wire",
+        ml: "All Wire",
+        hi: "All Wire",
         en: "All Wire",
       },
     },
     {
       id: "breaking",
       label: {
-        kn: "ಬ್ರೇಕಿಂಗ್",
-        te: "బ్రేకింగ్",
-        ta: "பிரேக்கிங்",
-        ml: "ബ്രേക്കിംഗ്",
-        hi: "ब्रेकिंग",
+        kn: "Breaking",
+        te: "Breaking",
+        ta: "Breaking",
+        ml: "Breaking",
+        hi: "Breaking",
         en: "Breaking",
       },
     },
     {
       id: "boxoffice",
       label: {
-        kn: "ಬಾಕ್ಸ್ ಆಫೀಸ್",
-        te: "బాక్సాఫీస్",
-        ta: "பாக்ஸ் ஆபீஸ்",
-        ml: "ബോക്സ് ഓഫീസ്",
-        hi: "बॉक्स ऑफिस",
+        kn: "Box Office",
+        te: "Box Office",
+        ta: "Box Office",
+        ml: "Box Office",
+        hi: "Box Office",
         en: "Box Office",
       },
     },
     {
       id: "shooting",
       label: {
-        kn: "ಶೂಟಿಂಗ್",
-        te: "షూటింగ్",
-        ta: "படப்பிடிப்பு",
-        ml: "ഷൂട്ടിംഗ്",
-        hi: "शूटिंग",
+        kn: "Shooting",
+        te: "Shooting",
+        ta: "Shooting",
+        ml: "Shooting",
+        hi: "Shooting",
         en: "Shooting",
       },
     },
@@ -135,29 +135,29 @@ export default function LiveUpdatesFeed({
 
   const headers: Record<string, { title: string; subtitle: string; verified: string }> = {
     kn: {
-      title: "ರಿಯಲ್-ಟೈಮ್ ಲೈವ್ ಸಿನಿಮಾ ವೈರ್",
-      subtitle: "ಕ್ಷಣಕ್ಷಣದ ಅಧಿಕೃತ ಸಿನಿಮಾ ಸಮಾಚಾರ, ಬಾಕ್ಸ್ ಆಫೀಸ್ ಹಾಗೂ ಶೂಟಿಂಗ್ ಅಪ್ಡೇಟ್ಸ್",
-      verified: "ಅಧಿಕೃತ ಟ್ರೇಡ್ ರಿಪೋರ್ಟ್",
+      title: "Real-Time Cinema Live Wire",
+      subtitle: "Minute-by-minute verified box office records, shooting buzz and trade headlines",
+      verified: "Verified Trade Intelligence",
     },
     te: {
-      title: "రియల్-టైమ్ లైవ్ సినిమా వైర్",
-      subtitle: "తాజా టాలీవుడ్ అధికారిక సినిమా వార్తలు, బాక్సాఫీస్ & ఈవెంట్స్",
-      verified: "ధృవీకరించబడిన ట్రేడ్ నివేదిక",
+      title: "Real-Time Cinema Live Wire",
+      subtitle: "Minute-by-minute verified box office records, shooting buzz and trade headlines",
+      verified: "Verified Trade Intelligence",
     },
     ta: {
-      title: "ரியல்-டைம் லைவ் சினிமா வயர்",
-      subtitle: "கோலிவுட் அதிகாரப்பூர்வ திரைப்பட செய்திகள் மற்றும் பாக்ஸ் ஆபீஸ்",
-      verified: "உறுதிப்படுத்தப்பட்ட வர்த்தக அறிக்கை",
+      title: "Real-Time Cinema Live Wire",
+      subtitle: "Minute-by-minute verified box office records, shooting buzz and trade headlines",
+      verified: "Verified Trade Intelligence",
     },
     ml: {
-      title: "തത്സമയ സിനിമാ വാർത്തകൾ",
-      subtitle: "മോളിവുഡ് പുതിയ വാർത്തകൾ, ഷൂട്ടിംഗ് വിശേഷങ്ങൾ & കളക്ഷൻ",
-      verified: "സ്ഥിരീകരിച്ച ട്രേഡ് റിപ്പോർട്ട്",
+      title: "Real-Time Cinema Live Wire",
+      subtitle: "Minute-by-minute verified box office records, shooting buzz and trade headlines",
+      verified: "Verified Trade Intelligence",
     },
     hi: {
-      title: "रियल-टाइम लाइव सिनेमा वायर",
-      subtitle: "ताज़ा बॉलीवुड खबरें, बॉक्स ऑफिस और एक्सक्लूसिव अपडेट्स",
-      verified: "सत्यापित ट्रेड रिपोर्ट",
+      title: "Real-Time Cinema Live Wire",
+      subtitle: "Minute-by-minute verified box office records, shooting buzz and trade headlines",
+      verified: "Verified Trade Intelligence",
     },
     en: {
       title: "Real-Time Cinema Live Wire",
@@ -235,7 +235,7 @@ export default function LiveUpdatesFeed({
               href={localizeUrl("/live")}
               className="text-[11px] font-bold text-signal-soft hover:text-signal underline-offset-2 hover:underline inline-flex items-center gap-1 transition-colors group/link"
             >
-              <span>Open Live Wire ({config.industryName})</span>
+              <span>Open Live Cinema Wire (All Industries)</span>
               <ChevronRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
             </Link>
           </div>

@@ -27,7 +27,7 @@ export default function SocialShare({ title, url }: SocialShareProps) {
     <div className="flex flex-wrap items-center gap-2 py-3.5 border-y border-glow-line my-6">
       <span className="text-xs font-bold text-popcorn-dim font-kannada flex items-center gap-1.5 mr-2">
         <Share2 className="w-4 h-4 text-signal-soft" />
-        ಹಂಚಿಕೊಳ್ಳಿ (Share):
+        Share:
       </span>
 
       {/* WhatsApp */}
@@ -86,12 +86,12 @@ export default function SocialShare({ title, url }: SocialShareProps) {
         {copied ? (
           <>
             <Check className="w-3.5 h-3.5 change-positive" />
-            <span className="font-kannada change-positive">ಕಾಪಿ ಆಯಿತು!</span>
+            <span className="font-kannada change-positive">Copied!</span>
           </>
         ) : (
           <>
             <Copy className="w-3.5 h-3.5" />
-            <span className="font-kannada">ಲಿಂಕ್ ಕಾಪಿ</span>
+            <span className="font-kannada">Copy Link</span>
           </>
         )}
       </button>

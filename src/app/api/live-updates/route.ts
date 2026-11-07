@@ -5,7 +5,7 @@ import { FilmIndustry, LanguageCode } from "@/types";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-function formatRelativeTime(dateString: string, lang: string): string {
+function formatRelativeTime(dateString: string): string {
   try {
     const date = new Date(dateString);
     const now = new Date();
@@ -14,32 +14,6 @@ function formatRelativeTime(dateString: string, lang: string): string {
     const diffMin = Math.floor(diffSec / 60);
     const diffHours = Math.floor(diffMin / 60);
 
-    if (lang === "kn") {
-      if (diffMin < 2) return "ಈಗಷ್ಟೇ";
-      if (diffMin < 60) return `${diffMin} ನಿಮಿಷದ ಹಿಂದೆ`;
-      return `${diffHours} ಗಂಟೆ ಹಿಂದೆ`;
-    }
-    if (lang === "te") {
-      if (diffMin < 2) return "ఇప్పుడే";
-      if (diffMin < 60) return `${diffMin} నిమిషాల క్రితం`;
-      return `${diffHours} గంటల క్రితం`;
-    }
-    if (lang === "ta") {
-      if (diffMin < 2) return "சற்று முன்";
-      if (diffMin < 60) return `${diffMin} நிமிடங்களுக்கு முன்`;
-      return `${diffHours} மணி நேரத்திற்கு முன்`;
-    }
-    if (lang === "ml") {
-      if (diffMin < 2) return "ഇപ്പോൾ തന്നെ";
-      if (diffMin < 60) return `${diffMin} മിനിറ്റ് മുൻപ്`;
-      return `${diffHours} മണിക്കൂർ മുൻപ്`;
-    }
-    if (lang === "hi") {
-      if (diffMin < 2) return "अभी-अभी";
-      if (diffMin < 60) return `${diffMin} मिनट पहले`;
-      return `${diffHours} घंटे पहले`;
-    }
-    // English default
     if (diffMin < 2) return "Just now";
     if (diffMin < 60) return `${diffMin}m ago`;
     return `${diffHours}h ago`;
@@ -81,7 +55,7 @@ export async function GET(request: NextRequest) {
   // Format human-readable relative time
   const enriched = updates.slice(0, limit).map((item) => ({
     ...item,
-    timeAgoText: formatRelativeTime(item.timestamp, lang || item.language || "en"),
+    timeAgoText: formatRelativeTime(item.timestamp),
   }));
 
   return NextResponse.json(

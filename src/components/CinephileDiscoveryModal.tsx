@@ -87,27 +87,27 @@ export default function CinephileDiscoveryModal({
       options: [
         {
           id: "sandalwood",
-          label: "Sandalwood (ಕನ್ನಡ ಸಿನಿಮಾ)",
+          label: "Sandalwood (Kannada Cinema)",
           desc: "Home of Kantara, Toxic, KGF & rooted narrative epics",
         },
         {
           id: "tollywood",
-          label: "Tollywood (తెలుగు సినిమా)",
+          label: "Tollywood (Telugu Cinema)",
           desc: "Pan-Indian grandiosity, Kalki 2898 AD & Pushpa 2",
         },
         {
           id: "kollywood",
-          label: "Kollywood (தமிழ் சினிமா)",
+          label: "Kollywood (Tamil Cinema)",
           desc: "Gritty realism, Coolie, Vettaiyan & auteur craft",
         },
         {
           id: "mollywood",
-          label: "Mollywood (മലയാളം സിനിമ)",
+          label: "Mollywood (Malayalam Cinema)",
           desc: "Unmatched scriptwriting, Manjummel Boys & Aavesham",
         },
         {
           id: "bollywood",
-          label: "Bollywood (हिन्दी सिनेमा)",
+          label: "Bollywood (Hindi Cinema)",
           desc: "Grand mythologies, Ramayana Part 1 & War 2",
         },
         {
@@ -125,7 +125,7 @@ export default function CinephileDiscoveryModal({
   const getRecommendation = () => {
     if (selectedIndustry === "sandalwood" || selectedMood === "soulful") {
       return {
-        title: "ಕಾಂತಾರ: ಚಾಪ್ಟರ್ 1 (Kantara: Chapter 1)",
+        title: "Kantara: Chapter 1",
         industry: "Sandalwood",
         status: "In Theatres / Pre-Release Radar",
         director: "Rishab Shetty",
@@ -138,7 +138,7 @@ export default function CinephileDiscoveryModal({
     }
     if (selectedMood === "cerebral" || selectedIndustry === "kollywood") {
       return {
-        title: "ಕೂಲಿ (Coolie) & ರಂಗಿತರಂಗ (RangiTaranga Archive)",
+        title: "Coolie & RangiTaranga Archive",
         industry: selectedIndustry.toUpperCase(),
         status: "Curated Theatrical / Streaming",
         director: "Lokesh Kanagaraj / Anup Bhandari",
@@ -150,7 +150,7 @@ export default function CinephileDiscoveryModal({
       };
     }
     return {
-      title: "ರಾಮಾಯಣ: ಭಾಗ 1 (Ramayana: Part 1)",
+      title: "Ramayana: Part 1",
       industry: "Pan-India / Bollywood",
       status: "National Cultural Monument",
       director: "Nitesh Tiwari",

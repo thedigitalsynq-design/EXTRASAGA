@@ -1,12 +1,12 @@
 -- ==========================================================
--- Cini Jaatre (ಸಿನಿ ಜಾತ್ರೆ) - Supabase & PostgreSQL Database Schema
+-- EXTRASAGA - Supabase & PostgreSQL Database Schema
 -- Production Ready Tables, RLS Policies, and Triggers
 -- ==========================================================
 
 -- 1. Categories Table
 CREATE TABLE IF NOT EXISTS public.categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL, -- e.g. "ಸ್ಯಾಂಡಲ್ವುಡ್"
+    name TEXT NOT NULL, -- e.g. "Sandalwood"
     english_name TEXT NOT NULL, -- e.g. "Sandalwood"
     slug TEXT UNIQUE NOT NULL,
     description TEXT,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS public.articles (
     featured_image TEXT NOT NULL,
     image_caption TEXT,
     author_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL,
-    author_name TEXT NOT NULL DEFAULT 'ಸಿನಿ ಜಾತ್ರೆ ಬ್ಯೂರೋ',
+    author_name TEXT NOT NULL DEFAULT 'EXTRASAGA Bureau',
     published_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
     read_time_minutes INT DEFAULT 3,
@@ -67,8 +67,8 @@ CREATE TABLE IF NOT EXISTS public.movies (
     trailer_youtube_id TEXT,
     genres TEXT[] DEFAULT '{}',
     censor_rating TEXT DEFAULT 'U/A',
-    runtime TEXT, -- e.g. '2 ಗಂಟೆ 40 ನಿಮಿಷ'
-    verdict TEXT, -- e.g. 'ಬ್ಲಾಕ್‌ಬಸ್ಟರ್ ಸಿನಿಮಾ'
+    runtime TEXT, -- e.g. '2h 40m'
+    verdict TEXT, -- e.g. 'All-Time Blockbuster'
     summary TEXT,
     story_analysis TEXT,
     performance_analysis TEXT,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS public.movies (
     pros TEXT[] DEFAULT '{}',
     cons TEXT[] DEFAULT '{}',
     box_office_summary TEXT,
-    author TEXT DEFAULT 'ಸಿನಿಮಾ ಡೆಸ್ಕ್',
+    author TEXT DEFAULT 'Cinema Desk',
     published_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS public.ott_releases (
     platform TEXT NOT NULL,
     platform_badge_color TEXT NOT NULL,
     release_date TEXT NOT NULL,
-    languages TEXT[] DEFAULT '{"ಕನ್ನಡ"}',
+    languages TEXT[] DEFAULT '{"English"}',
     genre TEXT NOT NULL,
     poster_image TEXT NOT NULL,
     watch_url TEXT,
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS public.ott_releases (
 CREATE TABLE IF NOT EXISTS public.videos (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     title TEXT NOT NULL,
-    category TEXT NOT NULL CHECK (category IN ('ಟ್ರೇಲರ್', 'ಟೀಸರ್', 'ಹಾಡುಗಳು', 'ಸಂದರ್ಶನ')),
+    category TEXT NOT NULL CHECK (category IN ('Trailer', 'Teaser', 'Songs', 'Interview')),
     youtube_id TEXT NOT NULL,
     thumbnail_url TEXT NOT NULL,
     duration TEXT,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS public.photo_galleries (
     slug TEXT UNIQUE NOT NULL,
     cover_image TEXT NOT NULL,
     celebrity_name TEXT NOT NULL,
-    category TEXT NOT NULL CHECK (category IN ('ನಟರು', 'ನಟಿಯರು', 'ಸಿನಿಮಾ ಇವೆಂಟ್')),
+    category TEXT NOT NULL CHECK (category IN ('Actors', 'Actresses', 'Cinema Event')),
     photo_count INT DEFAULT 0,
     photos JSONB DEFAULT '[]'::jsonb,
     published_at TIMESTAMPTZ DEFAULT NOW()
@@ -214,7 +214,7 @@ ON CONFLICT (id) DO NOTHING;
 -- 11.1 Theatres Table
 CREATE TABLE IF NOT EXISTS public.theatres (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL, -- e.g. "ಊರ್ವಶಿ ಸಿನಿಮಾಸ್ (Urvashi Cinema)"
+    name TEXT NOT NULL, -- e.g. "Urvashi Cinema"
     name_en TEXT NOT NULL,
     slug TEXT UNIQUE NOT NULL,
     city TEXT NOT NULL DEFAULT 'Bengaluru',
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS public.theatres (
 CREATE TABLE IF NOT EXISTS public.screens (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     theatre_id UUID NOT NULL REFERENCES public.theatres(id) ON DELETE CASCADE,
-    screen_name TEXT NOT NULL, -- e.g. "ಸ್ಕ್ರೀನ್ 1 (Audi 1)"
+    screen_name TEXT NOT NULL, -- e.g. "Audi 1"
     screen_type TEXT DEFAULT '4K Laser RGB',
     sound_system TEXT DEFAULT 'Dolby Atmos 64 Channel',
     total_seats INT NOT NULL DEFAULT 250,
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS public.showtimes (
     screen_id UUID NOT NULL REFERENCES public.screens(id) ON DELETE CASCADE,
     show_date DATE NOT NULL,
     show_time TIME NOT NULL,
-    language TEXT NOT NULL DEFAULT 'ಕನ್ನಡ (Kannada)',
+    language TEXT NOT NULL DEFAULT 'Kannada',
     format TEXT NOT NULL DEFAULT '2D', -- 2D, 3D, IMAX
     base_price NUMERIC(10, 2) NOT NULL DEFAULT 200.00,
     status TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'filling_fast', 'almost_full', 'sold_out', 'cancelled')),
@@ -341,7 +341,7 @@ BEGIN
       AND seat_ids && p_seat_ids;
 
     IF v_confirmed_bookings > 0 THEN
-        RETURN QUERY SELECT FALSE, 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಸೀಟುಗಳು ಈಗಾಗಲೇ ಬುಕ್ ಆಗಿವೆ (One or more seats already booked)';
+        RETURN QUERY SELECT FALSE, 'One or more seats already booked';
         RETURN;
     END IF;
 
@@ -354,7 +354,7 @@ BEGIN
       AND expires_at > v_now;
 
     IF v_conflicting_locks > 0 THEN
-        RETURN QUERY SELECT FALSE, 'ಸೀಟುಗಳನ್ನು ಬೇರೆ ಗ್ರಾಹಕರು ಲಾಕ್ ಮಾಡಿದ್ದಾರೆ (Seats currently locked by another customer)';
+        RETURN QUERY SELECT FALSE, 'Seats currently locked by another customer';
         RETURN;
     END IF;
 
@@ -367,7 +367,7 @@ BEGIN
         DO UPDATE SET expires_at = v_expires, session_id = p_session_id;
     END LOOP;
 
-    RETURN QUERY SELECT TRUE, 'ಸೀಟುಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಲಾಕ್ ಮಾಡಲಾಗಿದೆ (Seats locked successfully for 8 minutes)';
+    RETURN QUERY SELECT TRUE, 'Seats locked successfully for 8 minutes';
 END;
 $$;
 
@@ -405,11 +405,11 @@ CREATE TABLE IF NOT EXISTS public.languages (
 );
 
 INSERT INTO public.languages (code, name, native_name, industry) VALUES
-('kn', 'Kannada', 'ಕನ್ನಡ', 'sandalwood'),
-('te', 'Telugu', 'తెలుగు', 'tollywood'),
-('ta', 'Tamil', 'தமிழ்', 'kollywood'),
-('ml', 'Malayalam', 'മലയാളം', 'mollywood'),
-('hi', 'Hindi', 'हिन्दी', 'bollywood'),
+('kn', 'Kannada', 'Kannada', 'sandalwood'),
+('te', 'Telugu', 'Telugu', 'tollywood'),
+('ta', 'Tamil', 'Tamil', 'kollywood'),
+('ml', 'Malayalam', 'Malayalam', 'mollywood'),
+('hi', 'Hindi', 'Hindi', 'bollywood'),
 ('en', 'English', 'English', 'hollywood')
 ON CONFLICT (code) DO NOTHING;
 

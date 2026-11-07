@@ -31,7 +31,7 @@ interface MoviePageProps {
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
   const movie = await DataService.getMovieBySlug(params.slug);
   if (!movie) {
-    return { title: "ಸಿನಿಮಾ ವಿವರಗಳು ಕಂಡುಬಂದಿಲ್ಲ (Movie Not Found) | EXTRASAGA" };
+    return { title: "Movie Not Found | EXTRASAGA" };
   }
 
   const siteUrl = getSiteUrl();
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: MoviePageProps): Promise<Meta
 
   return {
     title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Full Synopsis | EXTRASAGA`,
-    description: `${movie.title} (${movie.titleEn}) ಸಿನಿಮಾ ಬಿಡುಗಡೆ ವಿವರ. ನಿರ್ದೇಶನ: ${movie.director}. ತಾರಾಗಣ: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. ಬಿಡುಗಡೆ ದಿನಾಂಕ: ${movie.theatricalReleaseDate}.`,
+    description: `${movie.title} (${movie.titleEn}) theatrical release details. Director: ${movie.director}. Cast: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. Release date: ${movie.theatricalReleaseDate}.`,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -168,9 +168,9 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
           {/* Breadcrumb Navigation */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <nav className="flex items-center gap-2 text-xs text-popcorn-dim" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-popcorn transition-colors font-medium">ಮುಖಪುಟ (Home)</Link>
+              <Link href="/" className="hover:text-popcorn transition-colors font-medium">Home</Link>
               <ChevronRight className="w-3.5 h-3.5 text-popcorn-muted" />
-              <Link href="/movies" className="hover:text-popcorn transition-colors font-medium">ಸಿನಿಮಾಗಳು (Now Showing)</Link>
+              <Link href="/movies" className="hover:text-popcorn transition-colors font-medium">Now Showing</Link>
               <ChevronRight className="w-3.5 h-3.5 text-popcorn-muted" />
               <span className="text-popcorn font-bold truncate max-w-xs">{movie.titleEn}</span>
             </nav>
@@ -268,7 +268,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               <div className="p-4 rounded-2xl bg-marquee/10 border border-marquee/25 flex flex-wrap items-center justify-between gap-4 max-w-xl shadow-2xs">
                 <div>
                   <span className="text-[11px] text-marquee-soft uppercase font-bold tracking-wider block">
-                    ದೃಢೀಕೃತ ಚಿತ್ರಮಂದಿರ ಬಿಡುಗಡೆ ದಿನಾಂಕ (Theatrical Release Date)
+                    Theatrical Release Date
                   </span>
                   <div className="text-xl font-black font-mono-tabular text-popcorn flex items-center gap-2 mt-0.5">
                     <Calendar className="w-5 h-5 text-marquee-soft" />
@@ -280,12 +280,12 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   {isConfirmed ? (
                     <span className="px-3 py-1 rounded-full bg-ultra/10 text-ultra-soft border border-ultra/25 text-xs font-bold flex items-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-ultra-soft" />
-                      <span>ಖಚಿತಪಡಿಸಿದ ದಿನಾಂಕ (Confirmed)</span>
+                      <span>Confirmed</span>
                     </span>
                   ) : (
                     <span className="px-3 py-1 rounded-full bg-marquee/10 text-marquee-soft border border-marquee/25 text-xs font-bold flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4 text-marquee-soft" />
-                      <span>ತಾತ್ಕಾಲಿಕ ದಿನಾಂಕ (Tentative)</span>
+                      <span>Tentative</span>
                     </span>
                   )}
                 </div>
@@ -306,11 +306,11 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               {/* Director & Producers quick list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
                 <div className="p-3.5 rounded-xl bg-revealed border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">ನಿರ್ದೇಶನ (Director)</span>
+                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">Director</span>
                   <span className="text-popcorn font-bold text-sm mt-0.5 block">{movie.director}</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-revealed border border-glow-line shadow-2xs">
-                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">ನಿರ್ಮಾಣ (Producers)</span>
+                  <span className="text-popcorn-muted block text-[10px] uppercase font-bold">Producers</span>
                   <span className="text-popcorn font-bold text-sm mt-0.5 block truncate">
                     {movie.producers.join(", ")}
                   </span>
@@ -331,7 +331,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
               <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
                 <Film className="w-5 h-5 text-signal-soft" />
-                <span>ಸಿನಿಮಾ ಸಂಕ್ಷಿಪ್ತ ವಿವರ & ಕಥಾಹಂದರ (Synopsis)</span>
+                <span>Synopsis &amp; Storyline</span>
               </h2>
 
               {movie.introduction && (
@@ -350,7 +350,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
                 <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
                   <Play className="w-5 h-5 text-signal-soft fill-current" />
-                  <span>ಅಧಿಕೃತ ಟ್ರೇಲರ್ & ಟೀಸರ್ (Official Theatrical Trailer)</span>
+                  <span>Official Theatrical Trailer</span>
                 </h2>
 
                 <div className="relative aspect-video rounded-2xl overflow-hidden border border-glow-line shadow-lg bg-void">
@@ -369,7 +369,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
               <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
                 <User className="w-5 h-5 text-signal-soft" />
-                <span>ಪ್ರಮುಖ ತಾರಾಗಣ & ಪಾತ್ರವರ್ಗ (Main Cast & Characters)</span>
+                <span>Main Cast &amp; Characters</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -386,7 +386,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       <p className="text-xs text-marquee-soft font-medium truncate">{actor.role}</p>
                       {actor.characterName && (
                         <p className="text-[11px] text-popcorn-muted truncate">
-                          ಪಾತ್ರ: {actor.characterName}
+                          Character: {actor.characterName}
                         </p>
                       )}
                     </div>
@@ -399,24 +399,24 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <section className="bg-revealed p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
               <h2 className="text-xl font-bold text-popcorn flex items-center gap-2 border-b border-glow-line pb-3">
                 <Building className="w-5 h-5 text-signal-soft" />
-                <span>ನಿರ್ಮಾಣ & ವಿತರಣಾ ವಿವರಗಳು (Production & Distribution)</span>
+                <span>Production &amp; Distribution</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div className="p-4 rounded-2xl bg-hall border border-glow-line shadow-2xs">
                   <span className="text-popcorn-muted uppercase text-[10px] font-bold block">
-                    ನಿರ್ಮಾಣ ಸಂಸ್ಥೆ (Production House)
+                    Production House
                   </span>
                   <span className="text-popcorn font-bold text-sm mt-1 block">
-                    {movie.productionCompany || "ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ (To be announced)"}
+                    {movie.productionCompany || "To be announced"}
                   </span>
                 </div>
                 <div className="p-4 rounded-2xl bg-hall border border-glow-line shadow-2xs">
                   <span className="text-popcorn-muted uppercase text-[10px] font-bold block">
-                    ವಿತರಣಾ ಸಂಸ್ಥೆ (Distribution Network)
+                    Distribution Network
                   </span>
                   <span className="text-popcorn font-bold text-sm mt-1 block">
-                    {movie.distributionCompany || "ಆಲ್ ಇಂಡಿಯಾ ಥಿಯೇಟ್ರಿಕಲ್ ಡಿಸ್ಟ್ರಿಬ್ಯೂಷನ್"}
+                    {movie.distributionCompany || "All-India Theatrical Distribution"}
                   </span>
                 </div>
               </div>
@@ -426,10 +426,10 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <section className="p-5 rounded-2xl bg-revealed border border-glow-line text-xs text-popcorn-dim space-y-2 shadow-xs">
               <div className="flex items-center gap-2 text-popcorn font-bold">
                 <ShieldCheck className="w-4 h-4 text-ultra-soft" />
-                <span>ದೃಢೀಕರಣ ಮತ್ತು ಮೂಲಗಳು (Verified Editorial References)</span>
+                <span>Verified Editorial References</span>
               </div>
               <p className="leading-relaxed">
-                ಈ ಚಿತ್ರದ ಬಿಡುಗಡೆ ವಿವರಗಳು, ತಾರಾಗಣ ಹಾಗೂ ಸೆನ್ಸಾರ್ ಮಾಹಿತಿಗಳನ್ನು ಅಧಿಕೃತ ಪ್ರೊಡಕ್ಷನ್ ಹೌಸ್ ಪ್ರಕಟಣೆಗಳು ಮತ್ತು ಅಧಿಕೃತ ವಿತರಕ ನೆಟ್‌ವರ್ಕ್‌ನಿಂದ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.
+                This film&apos;s release details, cast and censor information have been independently checked against official production-house publications and the authorized distributor network.
               </p>
               {movie.sourceReferences && movie.sourceReferences.length > 0 && (
                 <div className="flex flex-wrap gap-2 pt-1">
@@ -448,7 +448,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                 </div>
               )}
               <div className="pt-2 text-[11px] text-popcorn-muted border-t border-glow-line">
-                ಕೊನೆಯ ನವೀಕರಣ: {new Date(movie.updatedAt).toLocaleDateString()} · ಏಷ್ಯಾ/ಕೋಲ್ಕತ್ತಾ ಸಮಯ
+                Last updated: {new Date(movie.updatedAt).toLocaleDateString()} · Asia/Kolkata time
               </div>
             </section>
           </div>
@@ -459,10 +459,10 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <div className="bg-revealed p-5 sm:p-6 rounded-3xl border border-glow-line space-y-3 shadow-sm">
               <h3 className="text-sm font-bold text-popcorn uppercase tracking-wider flex items-center gap-2">
                 <Share2 className="w-4 h-4 text-signal-soft" />
-                <span>ಹಂಚಿಕೊಳ್ಳಿ (Share Movie)</span>
+                <span>Share Movie</span>
               </h3>
               <p className="text-xs text-popcorn-dim">
-                ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಈ ಸಿನಿಮಾದ ಬಿಡುಗಡೆ ದಿನಾಂಕವನ್ನು ಶೇರ್ ಮಾಡಿ:
+                Share this film&apos;s release date with your friends:
               </p>
               <div className="flex items-center gap-2">
                 <a
@@ -488,7 +488,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             <div className="bg-revealed p-5 sm:p-6 rounded-3xl border border-glow-line space-y-4 shadow-sm">
               <h3 className="text-sm font-bold text-popcorn uppercase tracking-wider flex items-center gap-2">
                 <Clapperboard className="w-4 h-4 text-marquee-soft" />
-                <span>ಸಂಬಂಧಿಸಿದ ಲೇಖನಗಳು (Related Stories)</span>
+                <span>Related Stories</span>
               </h3>
               <div className="space-y-3">
                 {relatedArticles.map((art) => (
@@ -520,15 +520,15 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
 
             {/* Permanent Archive Notice */}
             <div className="p-5 rounded-3xl bg-marquee/10 border border-marquee/25 text-xs text-marquee-soft space-y-2 shadow-2xs">
-              <div className="font-bold text-popcorn">ಶಾಶ್ವತ ಆರ್ಕೈವ್ ಖಾತರಿ (Permanent Archive)</div>
+              <div className="font-bold text-popcorn">Permanent Archive</div>
               <p className="text-[11px] leading-relaxed text-popcorn-dim">
-                30 ದಿನಗಳ ನಂತರವೂ ಈ ಸಿನಿಮಾದ ವಿವರ, ವಿಮರ್ಶೆ ಮತ್ತು ಪೋಸ್ಟರ್ ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಶಾಶ್ವತವಾಗಿ ಸಂರಕ್ಷಿಸಲ್ಪಡುತ್ತದೆ.
+                Long after the 30-day window closes, this film&apos;s details, reviews and posters stay permanently preserved in the archive.
               </p>
               <Link
                 href="/archive"
                 className="text-marquee-soft font-bold text-[11px] hover:underline block pt-1"
               >
-                ಸಂಪೂರ್ಣ ಸಿನಿಮಾ ಆರ್ಕೈವ್ ಬ್ರೌಸ್ ಮಾಡಿ &rarr;
+                Browse the full cinema archive &rarr;
               </Link>
             </div>
           </div>

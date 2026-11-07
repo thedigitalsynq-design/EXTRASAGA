@@ -18,24 +18,22 @@ import {
   Zap,
 } from "lucide-react";
 import { MAIN_NAV_ITEMS, MainNavItem } from "@/lib/categories";
-import { formatKannadaDate } from "@/lib/utils";
+import { formatEditorialDate } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
-import { Globe } from "lucide-react";
 import CinephileDiscoveryModal from "@/components/CinephileDiscoveryModal";
 
 export default function Header() {
   const pathname = usePathname();
-  const { language, setLanguage, config, languages, t, tCategory, localizeUrl } = useLanguage();
+  const { language, config, t, tCategory, localizeUrl } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isDiscoveryModalOpen, setIsDiscoveryModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSticky, setIsSticky] = useState(false);
   const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
-    setCurrentDate(formatKannadaDate(new Date().toISOString()));
+    setCurrentDate(formatEditorialDate(new Date().toISOString()));
 
     let ticking = false;
     const handleScroll = () => {
@@ -115,64 +113,21 @@ export default function Header() {
             </span>
             <span className="text-paper/30 hidden md:inline">|</span>
             <span className="text-[10px] font-poster text-paper hidden md:inline-flex items-center gap-1.5 bg-violet px-2.5 py-0.5 border border-paper/40 font-bold tracking-widest uppercase -rotate-1">
-              SIX INDUSTRIES · ONE CINEMA · HOUSE FULL
+              ALL INDIAN CINEMA · ONE UNIFIED DESTINATION · HOUSE FULL
             </span>
           </div>
 
-          {/* Right: Quick Links, Language Switcher & Admin */}
+          {/* Right: Quick Links, Unified Platform Badge & Admin */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Interactive Language & Industry Switcher */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-1.5 px-3 py-1 bg-paper text-ink text-[11px] font-semibold border-2 border-paper hover:bg-marquee hover:border-marquee transition-all -rotate-1"
-                aria-label="ಭಾಷೆ / ಚಿತ್ರರಂಗ ಆಯ್ಕೆ"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span className="font-bold">{config.name}</span>
-                <span className="text-[9px] font-poster uppercase font-bold tracking-wider hidden sm:inline">
-                  {config.industryName}
-                </span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
-
-              {isLangMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-sheet border-2 border-ink shadow-press-lg py-2 z-50 animate-print-roll">
-                  <div className="px-3.5 py-1.5 text-[9px] uppercase font-bold text-ink-dim tracking-[0.2em] border-b-2 border-ink font-poster bg-band">
-                    {t("nav_select_industry")}
-                  </div>
-                  {languages.map((item) => (
-                    <button
-                      key={item.code}
-                      type="button"
-                      onClick={() => {
-                        setLanguage(item.code);
-                        setIsLangMenuOpen(false);
-                      }}
-                      className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${
-                        language === item.code
-                          ? "bg-press text-paper font-bold"
-                          : "text-ink-dim hover:bg-band hover:text-ink"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <span>{item.flagEmoji}</span>
-                        <span className="font-medium">{item.name}</span>
-                      </div>
-                      <span
-                        className={`text-[9px] px-2 py-0.5 font-poster uppercase font-bold tracking-wider border ${
-                          language === item.code
-                            ? "bg-paper text-ink border-paper"
-                            : "text-ink-dim bg-band border-ink/20"
-                        }`}
-                      >
-                        {item.industryName}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
+            {/* Unified Platform Badge (Replaces Regional Switcher) */}
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-paper text-ink text-[11px] font-semibold border-2 border-paper -rotate-1 select-none shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-press animate-pulse"></span>
+              <span className="font-poster font-bold tracking-wider uppercase text-[10px]">
+                All Indian Film Industries
+              </span>
+              <span className="text-[9px] font-mono-tabular text-ink-dim hidden sm:inline">
+                · Unified Desk
+              </span>
             </div>
 
             <span className="text-paper/30 hidden sm:inline">•</span>
@@ -266,7 +221,7 @@ export default function Header() {
                 <span
                   className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-poster font-bold tracking-[0.18em] uppercase bg-violet text-paper border-2 border-ink shadow-sticker select-none rotate-1"
                 >
-                  ALL SIX INDUSTRIES
+                  ALL INDIAN CINEMA · UNIFIED PLATFORM
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] text-ink-dim font-medium tracking-wide mt-1 flex items-center gap-1.5 line-clamp-1">
@@ -275,7 +230,7 @@ export default function Header() {
                 </span>
                 <span className="text-ink/30">·</span>
                 <span className="text-ink-mute font-medium">
-                  All 6 Industries · Native Scripts · Zero Fake Tea
+                  All Indian Film Industries · One Unified Platform · Real-Time Coverage
                 </span>
               </p>
             </div>
@@ -358,7 +313,7 @@ export default function Header() {
                 type="button"
                 onClick={() => {
                   setSearchQuery(tag);
-                  window.location.href = `/search?q=${encodeURIComponent(tag)}&lang=${language}`;
+                  window.location.href = `/search?q=${encodeURIComponent(tag)}`;
                 }}
                 className="bg-sheet hover:bg-violet hover:text-paper px-3 py-1 border-2 border-ink hover:border-violet font-semibold transition-colors"
               >
@@ -444,13 +399,13 @@ export default function Header() {
                     <span
                       className="px-2 py-0.5 text-[9px] font-poster font-bold uppercase bg-violet text-paper border-2 border-ink"
                     >
-                      {config.industryName}
+                      ALL CINEMA
                     </span>
                   </div>
                   <p className="text-[10px] text-ink-dim font-medium line-clamp-1 mt-0.5 flex items-center gap-1">
-                    <span className="font-bold text-ink">{config.brandNameNative}</span>
+                    <span className="font-bold text-ink">EXTRASAGA</span>
                     <span className="text-ink/30">·</span>
-                    <span className="text-ink-mute">{config.headerTagline}</span>
+                    <span className="text-ink-mute">Unified Indian Cinema</span>
                   </p>
                 </div>
               </div>
@@ -462,31 +417,14 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Language Selector */}
-            <div className="py-3 border-b-2 border-ink">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-ink-dim font-poster font-bold px-2 mb-2">
-                {t("nav_select_industry")}
+            {/* Mobile Unified Platform Banner (Replaces Regional Switcher) */}
+            <div className="py-2.5 px-3 border-b-2 border-ink bg-band">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-ink font-poster font-bold">
+                Unified Indian Cinema Desk
               </p>
-              <div className="grid grid-cols-2 gap-1.5 px-1">
-                {languages.map((item) => (
-                  <button
-                    key={item.code}
-                    type="button"
-                    onClick={() => {
-                      setLanguage(item.code);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-1.5 px-2.5 py-2 text-xs font-bold transition-all ${
-                      language === item.code
-                        ? "bg-ink text-paper shadow-sticker"
-                        : "bg-sheet text-ink-dim hover:bg-band border-2 border-dashed border-ink/30 hover:border-ink"
-                    }`}
-                  >
-                    <span>{item.flagEmoji}</span>
-                    <span>{item.name}</span>
-                  </button>
-                ))}
-              </div>
+              <p className="text-[10px] text-ink-dim font-medium mt-0.5">
+                Bollywood · Tollywood · Sandalwood · Kollywood · Mollywood · Regional
+              </p>
             </div>
 
             {/* Mobile Navigation Categories */}

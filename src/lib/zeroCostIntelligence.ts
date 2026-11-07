@@ -32,23 +32,23 @@ export interface EntityExtractionResult {
 
 // Known Cinema Entities for Instant Deterministic Recognition
 const KNOWN_CELEBRITIES = [
-  "ಯಶ್", "Yash", "ರಿಷಬ್ ಶೆಟ್ಟಿ", "Rishab Shetty", "ಶಿವರಾಜಕುಮಾರ್", "Shivarajkumar",
-  "ಉಪೇಂದ್ರ", "Upendra", "ದರ್ಶನ್", "Darshan", "ಸುದೀಪ್", "Sudeep", "ಅಲ್ಲು ಅರ್ಜುನ್", "Allu Arjun",
-  "ರಾಮ್ ಚರಣ್", "Ram Charan", "ಎನ್‌ಟಿಆರ್", "NTR", "ಪ್ರಭಾಸ್", "Prabhas", "ರಜನೀಕಾಂತ್", "Rajinikanth",
-  "ಕಮಲ್ ಹಾಸನ್", "Kamal Haasan", "ವಿಜಯ್", "Thalapathy Vijay", "ಅಜಿತ್", "Ajith", "ಶಿವಕಾರ್ತಿಕೇಯನ್", "Sivakarthikeyan",
-  "ಮೋಹನ್‌ಲಾಲ್", "Mohanlal", "ಮಮ್ಮುಟ್ಟಿ", "Mammootty", "ಫಹಾದ್ ಫಾಸಿಲ್", "Fahadh Faasil",
-  "ಶಾರುಖ್ ಖಾನ್", "Shah Rukh Khan", "ಸಲ್ಮಾನ್ ಖಾನ್", "Salman Khan", "ಅಮೀರ್ ಖಾನ್", "Aamir Khan",
-  "ರಣಬೀರ್ ಕಪೂರ್", "Ranbir Kapoor", "ರಣವೀರ್ ಸಿಂಗ್", "Ranveer Singh", "ದೀಪಿಕಾ ಪಡುಕೋಣೆ", "Deepika Padukone",
-  "ಆಲಿಯಾ ಭಟ್", "Alia Bhatt", "ಸಾಯಿ ಪಲ್ಲವಿ", "Sai Pallavi", "ರಶ್ಮಿಕಾ ಮಂದಣ್ಣ", "Rashmika Mandanna",
-  "ರುಕ್ಮಿಣಿ ವಸಂತ್", "Rukmini Vasant"
+  "Yash", "Rishab Shetty", "Shivarajkumar",
+  "Upendra", "Darshan", "Sudeep", "Allu Arjun",
+  "Ram Charan", "NTR", "Prabhas", "Rajinikanth",
+  "Kamal Haasan", "Thalapathy Vijay", "Ajith", "Sivakarthikeyan",
+  "Mohanlal", "Mammootty", "Fahadh Faasil",
+  "Shah Rukh Khan", "Salman Khan", "Aamir Khan",
+  "Ranbir Kapoor", "Ranveer Singh", "Deepika Padukone",
+  "Alia Bhatt", "Sai Pallavi", "Rashmika Mandanna",
+  "Rukmini Vasant"
 ];
 
 const KNOWN_BANNERS = [
-  "Hombale Films", "ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್", "Mythri Movie Makers", "ಮೈತ್ರಿ ಮೂವಿ ಮೇಕರ್ಸ್",
-  "KRG Studios", "ಕೆಆರ್‌ಜಿ ಸ್ಟುಡಿಯೋಸ್", "Geetha Pictures", "ಗೀತಾ ಪಿಕ್ಚರ್ಸ್",
-  "KVN Productions", "ಕೆವಿಎನ್ ಪ್ರೊಡಕ್ಷನ್ಸ್", "Lyca Productions", "ಲೈಕಾ ಪ್ರೊಡಕ್ಷನ್ಸ್",
-  "Red Giant Movies", "ರೆಡ್ ಜೈಂಟ್ ಮೂವೀಸ್", "Yash Raj Films", "ಯಶ್ ರಾಜ್ ಫಿಲ್ಮ್ಸ್",
-  "Dharma Productions", "ಧರ್ಮಾ ಪ್ರೊಡಕ್ಷನ್ಸ್", "Jio Studios", "ಜಿಯೋ ಸ್ಟುಡಿಯೋಸ್"
+  "Hombale Films", "Mythri Movie Makers",
+  "KRG Studios", "Geetha Pictures",
+  "KVN Productions", "Lyca Productions",
+  "Red Giant Movies", "Yash Raj Films",
+  "Dharma Productions", "Jio Studios"
 ];
 
 export class ZeroCostIntelligence {
@@ -66,17 +66,17 @@ export class ZeroCostIntelligence {
     if (language === "kn") {
       return [
         {
-          headline: `ಬ್ರೇಕಿಂಗ್: ${clean} ಬಗ್ಗೆ ಹೊರಬಿತ್ತು ಅಧಿಕೃತ ಅಪ್ಡೇಟ್!`,
+          headline: `Breaking: Official Update on ${clean} Is Out!`,
           style: "breaking",
           estimatedEngagementScore: 92,
         },
         {
-          headline: `${clean}: ಸಿನಿರಂಗದಲ್ಲಿ ಸೃಷ್ಟಿಯಾದ ಹೊಸ ಸಂಚಲನ; ಇಲ್ಲಿದೆ ಪೂರ್ಣ ವಿವರ`,
+          headline: `${clean}: A New Storm Hits the Industry — Here's the Full Story`,
           style: "analytical",
           estimatedEngagementScore: 88,
         },
         {
-          headline: `ಗಲ್ಲಾಪೆಟ್ಟಿಗೆಯಲ್ಲಿ ಧೂಳೆಬ್ಬಿಸಲು ಸಜ್ಜಾದ ${clean}!`,
+          headline: `${clean} Is Ready to Storm the Box Office!`,
           style: "box_office",
           estimatedEngagementScore: 85,
         },
@@ -161,19 +161,19 @@ export class ZeroCostIntelligence {
     } else if (wordCount >= 50) {
       score += 15;
     } else {
-      suggestions.push("ಲೇಖನದಲ್ಲಿ ಕನಿಷ್ಠ 50 ಪದಗಳಿರಲಿ (Add more substantive depth).");
+      suggestions.push("Add more substance — aim for at least 50 words (add more substantive depth).");
     }
 
     if (hasHeadings) {
       score += 15;
     } else {
-      suggestions.push("ಉಪಶೀರ್ಷಿಕೆಗಳನ್ನು (Sub-headings) ಬಳಸಿ ಓದುಗರಿಗೆ ಅನುಕೂಲ ಮಾಡಿಕೊಡಿ.");
+      suggestions.push("Use sub-headings to make the piece easier to scan for readers.");
     }
 
     if (title.length >= 10 && title.length <= 120) {
       score += 10;
     } else if (title.length < 10) {
-      suggestions.push("ಶೀರ್ಷಿಕೆ ತುಂಬಾ ಚಿಕ್ಕದಾಗಿದೆ (Make title more descriptive).");
+      suggestions.push("Title is too short (make it more descriptive).");
     }
 
     score = Math.min(100, score);

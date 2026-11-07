@@ -27,9 +27,9 @@ interface CategoryPageProps {
 
 export async function generateMetadata({ params, searchParams }: CategoryPageProps): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === params.slug);
-  if (!cat) return { title: "ವಿಭಾಗ ಕಂಡುಬಂದಿಲ್ಲ" };
+  if (!cat) return { title: "Category not found" };
 
-  const lang = (searchParams?.lang || "kn") as LanguageCode;
+  const lang = (searchParams?.lang || "en") as LanguageCode;
   const catName = getLocalizedCategoryName(params.slug, lang);
 
   return {
@@ -45,36 +45,27 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     notFound();
   }
 
-  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
+  const activeLang = (searchParams?.lang || "en") as LanguageCode;
   const config = getLanguageConfig(activeLang);
 
-  const isIndustrySlug = params.slug === "sandalwood";
-  const localizedTitle =
-    isIndustrySlug && activeLang !== "kn"
-      ? config.industryName
-      : getLocalizedCategoryName(params.slug, activeLang);
+  const localizedTitle = getLocalizedCategoryName(params.slug, activeLang);
 
   const [articles, trendingArticles, reviews, boxOffice, ottReleases, videos, galleries] =
     await Promise.all([
       DataService.getArticles(params.slug as CategorySlug, activeLang),
       DataService.getTrendingArticles(5, activeLang),
-      DataService.getReviews(activeLang),
-      DataService.getBoxOffice(activeLang),
-      DataService.getOttReleases(activeLang),
+      DataService.getReviews(),
+      DataService.getBoxOffice(),
+      DataService.getOttReleases(),
       DataService.getVideos(activeLang),
       DataService.getGalleries(activeLang),
     ]);
 
   const emptyTextMap: Record<string, { msg: string; back: string }> = {
-    kn: { msg: "ಈ ವಿಭಾಗದಲ್ಲಿ ಸದ್ಯಕ್ಕೆ ಯಾವುದೇ ಲೇಖನಗಳಿಲ್ಲ.", back: "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ" },
-    te: { msg: "ఈ విభాగంలో ప్రస్తుతం ఎలాంటి వ్యాసాలు లేవు.", back: "హోమ్ పేజీకి వెళ్లండి" },
-    ta: { msg: "இந்த பகுதியில் தற்போது செய்திகள் எதுவும் இல்லை.", back: "முகப்புக்குச் செல்லவும்" },
-    ml: { msg: "ഈ വിഭാഗത്തിൽ ഇപ്പോൾ ಲേഖനങ്ങളൊന്നുമില്ല.", back: "ഹോം പേജിലേക്ക് പോകുക" },
-    hi: { msg: "इस अनुभाग में फ़िलहाल कोई लेख उपलब्ध नहीं हैं।", back: "होम पेज पर वापस जाएं" },
     en: { msg: "No articles available in this category yet.", back: "Back to Home" },
   };
 
-  const emptyText = emptyTextMap[activeLang] || emptyTextMap.kn;
+  const emptyText = emptyTextMap[activeLang] || emptyTextMap.en;
 
   return (
     <div className="w-full">
@@ -83,7 +74,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-3 font-mono-tabular">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium transition-colors">
+            <Link href="/" className="hover:text-popcorn font-medium transition-colors">
               {getTranslation(activeLang, "nav_home")}
             </Link>
             <span>/</span>
@@ -156,7 +147,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
                     {emptyText.msg}
                   </p>
                   <Link
-                    href={`/?lang=${activeLang}`}
+                    href="/"
                     className="inline-block px-5 py-2.5 rounded-lg bg-signal-deep text-popcorn text-xs font-bold hover:bg-signal transition-colors"
                   >
                     {emptyText.back}
@@ -183,7 +174,7 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
         {["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && articles.length > 0 && (
           <div className="mt-12 pt-8 border-t border-glow-line">
             <h3 className="text-lg font-bold text-popcorn mb-5 border-l-4 border-signal pl-3 font-sans">
-              {localizedTitle} - ವಿಶೇಷ ವರದಿಗಳು ({articles.length})
+              {localizedTitle} — Special Reports ({articles.length})
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {articles.map((article) => (

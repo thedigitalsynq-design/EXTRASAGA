@@ -7,64 +7,54 @@ import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
 import { getLanguageConfig } from "@/lib/languages";
 import { getTranslation } from "@/lib/translations";
-import { LanguageCode } from "@/types";
 
-interface OttPageProps {
-  searchParams?: {
-    lang?: string;
-  };
-}
-
-export async function generateMetadata({ searchParams }: OttPageProps): Promise<Metadata> {
-  const lang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(lang);
+export async function generateMetadata(): Promise<Metadata> {
+  const config = getLanguageConfig("en");
 
   return {
     title: `${config.ottTitle} | EXTRASAGA`,
-    description: `${config.industryName} OTT streaming dates and upcoming digital releases.`,
+    description: `All Indian cinema verified OTT streaming dates and upcoming digital premiere radar.`,
   };
 }
 
-export default async function OttPage({ searchParams }: OttPageProps) {
-  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(activeLang);
+export default async function OttPage() {
+  const config = getLanguageConfig("en");
 
   const [ottReleases, trendingArticles] = await Promise.all([
-    DataService.getOttReleases(activeLang),
-    DataService.getTrendingArticles(5, activeLang),
+    DataService.getOttReleases(),
+    DataService.getTrendingArticles(5, "en"),
   ]);
 
   return (
-    <div className="w-full">
-      {/* Now Streaming — Hero Band */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+    <div className="w-full bg-paper min-h-screen text-ink">
+      {/* Now Streaming — Broadsheet Hero Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
-              {getTranslation(activeLang, "nav_home")}
+          <div className="flex items-center gap-2 text-xs text-ink-dim mb-2 font-mono">
+            <Link href="/" className="hover:text-press font-bold transition-colors">
+              {getTranslation("en", "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-signal-soft font-bold">
-              {getTranslation(activeLang, "nav_ott")}
+            <span className="text-press-deep font-bold">
+              {getTranslation("en", "nav_ott")}
             </span>
           </div>
-
-          <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
-            Now Streaming
-          </span>
 
           <div className="flex items-center gap-2 mb-2">
-            <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-              {config.industryName}
+            <span className="sticker bg-violet text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+              NOW STREAMING
+            </span>
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+              ALL INDIAN FILM INDUSTRIES
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
-            {config.ottTitle}
+          <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
+            DIGITAL STREAM<span className="text-violet">ING</span> WIRE
           </h1>
+          <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
+            Verified release dates and streaming platforms across Netflix, Prime Video, Hotstar, ZEE5, SonyLIV and regional OTT distributors.
+          </p>
         </div>
       </div>
 

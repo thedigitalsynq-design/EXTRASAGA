@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Eye, Clock, Calendar } from "lucide-react";
 import { Article } from "@/types";
-import { formatKannadaDate, formatKannadaNumber, formatKannadaTimeAgo } from "@/lib/utils";
+import { formatEditorialDate, formatCineNumber, formatEditorialTimeAgo } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface ArticleCardProps {
@@ -52,11 +52,11 @@ export default function ArticleCard({ article, variant = "grid" }: ArticleCardPr
             <div className="mt-3 flex items-center gap-3 text-[11px] text-popcorn-muted font-sans">
               <span className="text-popcorn-dim font-medium">{article.author.name}</span>
               <span>•</span>
-              <span>{formatKannadaTimeAgo(article.publishedAt)}</span>
+              <span>{formatEditorialTimeAgo(article.publishedAt)}</span>
               <span>•</span>
               <span className="flex items-center gap-1 font-medium">
                 <Eye className="w-3 h-3 text-signal" />
-                {formatKannadaNumber(article.views)}
+                {formatCineNumber(article.views)}
               </span>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function ArticleCard({ article, variant = "grid" }: ArticleCardPr
           <div className="flex items-center gap-2 text-[10px] text-popcorn-muted mt-1 font-sans">
             <span className="text-signal font-bold">{article.categoryName}</span>
             <span>•</span>
-            <span>{formatKannadaTimeAgo(article.publishedAt)}</span>
+            <span>{formatEditorialTimeAgo(article.publishedAt)}</span>
           </div>
         </div>
       </article>
@@ -133,11 +133,11 @@ export default function ArticleCard({ article, variant = "grid" }: ArticleCardPr
               {article.author.name}
             </span>
             <div className="flex items-center gap-2 font-medium">
-              <span>{formatKannadaTimeAgo(article.publishedAt)}</span>
+              <span>{formatEditorialTimeAgo(article.publishedAt)}</span>
               <span>•</span>
               <span className="flex items-center gap-1">
                 <Eye className="w-3 h-3 text-signal" />
-                {formatKannadaNumber(article.views)}
+                {formatCineNumber(article.views)}
               </span>
             </div>
           </div>

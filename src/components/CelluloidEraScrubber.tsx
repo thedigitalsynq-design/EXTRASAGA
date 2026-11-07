@@ -28,7 +28,7 @@ export default function CelluloidEraScrubber() {
       id: "era-1970",
       years: "1970 — 1989",
       title: "The Mythological & Cultural Epoch",
-      titleNative: "ಪೌರಾಣಿಕ ಸುವರ್ಣ ಯುಗ",
+      titleNative: "The Mythological & Cultural Epoch",
       tagline: "Epic Storytelling & Timeless Folklore Roots",
       keyFilms: ["Mayura (1975)", "Babruvahana (1977)", "Bhakta Prahlada (1983)", "Sholay (1975)"],
       description:
@@ -42,7 +42,7 @@ export default function CelluloidEraScrubber() {
       id: "era-1990",
       years: "1990 — 2009",
       title: "Auteur Awakening & Gangster Realism",
-      titleNative: "ನವ್ಯ ಸಿನಿಮಾ & ರಿಯಲಿಸಂ ಕ್ರಾಂತಿ",
+      titleNative: "Auteur Awakening & Gangster Realism",
       tagline: "The Reinvention of Narrative Form and Music",
       keyFilms: ["Om (1995)", "A (1998)", "Sparsha (2000)", "Mungaru Male (2006)"],
       description:
@@ -56,7 +56,7 @@ export default function CelluloidEraScrubber() {
       id: "era-2010",
       years: "2010 — 2024",
       title: "The Pan-Indian Frontier",
-      titleNative: "ಪ್ಯಾನ್-ಇಂಡಿಯಾ ಹೆಬ್ಬಾಗಿಲು",
+      titleNative: "The Pan-Indian Frontier",
       tagline: "Regional Stories Conquering the Global Stage",
       keyFilms: ["KGF: Chapter 1 & 2", "Kantara", "777 Charlie", "Kantara: Chapter 1"],
       description:
@@ -70,7 +70,7 @@ export default function CelluloidEraScrubber() {
       id: "era-2026",
       years: "2026 & Beyond",
       title: "The Global Celluloid Vanguard",
-      titleNative: "ಜಾಗತಿಕ ಸಿನಿಮಾ ಮುಂಚೂಣಿ",
+      titleNative: "The Global Celluloid Vanguard",
       tagline: "IMAX Epics, Cultural Reverence & Dual-Axis Craft",
       keyFilms: ["Ramayana: Part 1", "Toxic: A Fairy Tale", "Kantara: Chapter 1", "Max"],
       description:

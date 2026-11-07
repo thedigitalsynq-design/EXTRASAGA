@@ -41,20 +41,20 @@ export default function PhotoGallerySection({
   };
 
   const gallerySubtitles: Record<string, string> = {
-    kn: "ಕನ್ನಡ ತಾರೆಯರ ಗ್ಲಾಮರಸ್ ಫೋಟೋಗಳು ಮತ್ತು ಸಿನಿಮಾ ಸಂಭ್ರಮದ ಕ್ಷಣಗಳು",
-    te: "టాలీవుడ్ ప్రముఖుల గ్లామరస్ ఫోటోలు మరియు సినిమా ఈవెంట్స్",
-    ta: "கோலிவுட் நட்சத்திரங்களின் பிரத்யேக புகைப்படங்கள் மற்றும் திரைப்பட நிகழ்வுகள்",
-    ml: "മോളിവുഡ് താരങ്ങളുടെ ഗ്ലാമറസ് ഫോട്ടോകളും സിനിമാ വിശേഷങ്ങളും",
-    hi: "बॉलीवुड सितारों के ग्लैमरस फोटोशूट और सिनेमाई पलों की खास तस्वीरें",
+    kn: "Glamorous Sandalwood star photoshoots & movie-launch moments",
+    te: "Glamorous Tollywood celebrity photoshoots & movie events",
+    ta: "Exclusive Kollywood star photoshoots & film events",
+    ml: "Glamorous Mollywood star photoshoots & cinema moments",
+    hi: "Glamorous Bollywood star photoshoots & cinematic moments",
     en: "Glamorous celebrity photoshoots, movie launches and red carpet moments",
   };
 
   const photoCountWord: Record<string, string> = {
-    kn: "ಫೋಟೋಗಳು",
-    te: "ఫోటోలు",
-    ta: "படங்கள்",
-    ml: "ഫോട്ടോകൾ",
-    hi: "तस्वीरें",
+    kn: "Photos",
+    te: "Photos",
+    ta: "Photos",
+    ml: "Photos",
+    hi: "Photos",
     en: "Photos",
   };
 

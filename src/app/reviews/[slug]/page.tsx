@@ -9,21 +9,14 @@ import {
   XCircle,
   Play,
   Crown,
-  Shield,
-  Heart,
-  Globe,
-  Sparkles,
 } from "lucide-react";
 import { DataService } from "@/lib/dataService";
-import { formatKannadaDate } from "@/lib/utils";
+import { formatEditorialDate } from "@/lib/utils";
 import { getSiteUrl } from "@/lib/siteUrl";
 import SocialShare from "@/components/SocialShare";
 import CommentSection from "@/components/CommentSection";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
-import { getLanguageConfig, SUPPORTED_LANGUAGES } from "@/lib/languages";
-import { getTranslation } from "@/lib/translations";
-import { LanguageCode } from "@/types";
 import { RAMAYANA_REVIEWS_BY_LANGUAGE } from "@/data/ramayanaReviewData";
 import DualAxisReviewScore from "@/components/DualAxisReviewScore";
 import DualLuminousDiscs from "@/components/DualLuminousDiscs";
@@ -32,14 +25,11 @@ interface ReviewPageProps {
   params: {
     slug: string;
   };
-  searchParams?: {
-    lang?: string;
-  };
 }
 
-export async function generateMetadata({ params, searchParams }: ReviewPageProps): Promise<Metadata> {
-  const review = await DataService.getReviewBySlug(params.slug, searchParams?.lang);
-  if (!review) return { title: "ವಿಮರ್ಶೆ ಕಂಡುಬಂದಿಲ್ಲ" };
+export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
+  const review = await DataService.getReviewBySlug(params.slug, "en");
+  if (!review) return { title: "Review Not Found" };
 
   const siteUrl = getSiteUrl();
 
@@ -55,148 +45,74 @@ export async function generateMetadata({ params, searchParams }: ReviewPageProps
   };
 }
 
-export default async function MovieReviewPage({ params, searchParams }: ReviewPageProps) {
-  const review = await DataService.getReviewBySlug(params.slug, searchParams?.lang);
+export default async function MovieReviewPage({ params }: ReviewPageProps) {
+  const review = await DataService.getReviewBySlug(params.slug, "en");
 
   if (!review) {
     notFound();
   }
 
-  const activeLang = (review.language || searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(activeLang);
   const isRamayana = review.slug.startsWith("ramayana-part-1") || params.slug.startsWith("ramayana");
-  const ramayanaData = isRamayana ? RAMAYANA_REVIEWS_BY_LANGUAGE[activeLang] || RAMAYANA_REVIEWS_BY_LANGUAGE.kn : null;
+  const ramayanaData = isRamayana ? RAMAYANA_REVIEWS_BY_LANGUAGE.en || RAMAYANA_REVIEWS_BY_LANGUAGE.kn : null;
 
-  const trendingArticles = await DataService.getTrendingArticles(5, activeLang);
-  const siteUrl = getSiteUrl();
+  const trendingArticles = await DataService.getTrendingArticles(5, "en");
 
   const reviewJsonLd = {
     "@context": "https://schema.org",
     "@type": "Review",
     name: `${review.movieTitle} Review`,
     reviewBody: review.summary,
-    datePublished: review.publishedAt,
-    author: {
-      "@type": "Person",
-      name: review.author || `EXTRASAGA ${config.industryName} Desk`,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "EXTRASAGA",
-      url: siteUrl,
-    },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: review.rating,
-      bestRating: review.maxRating || 5,
-      worstRating: 1,
-    },
     itemReviewed: {
       "@type": "Movie",
-      name: review.movieTitle,
+      name: review.movieTitleEn,
+      image: review.posterImage,
       director: {
         "@type": "Person",
         name: review.director,
       },
-      image: review.posterImage,
       dateCreated: review.releaseDate,
+    },
+    reviewRating: isRamayana
+      ? undefined
+      : {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+    author: {
+      "@type": "Organization",
+      name: "EXTRASAGA",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EXTRASAGA",
+      url: getSiteUrl(),
     },
   };
 
-  const reviewBadges: Record<string, string> = {
-    kn: "ವಿಶೇಷ ಸಿನಿಮಾ ವಿಮರ್ಶೆ",
-    te: "ప్రత్యేక సినిమా రివ్యూ",
-    ta: "பிரத்தியேக திரைப்பட விமர்சனம்",
-    ml: "പ്രത്യേക സിനിമാ റിവ്യൂ",
-    hi: "एक्सक्लूसिव मूवी रिव्यू",
-    en: "Exclusive Movie Review",
-  };
-
-  const storyLabel: Record<string, string> = {
-    kn: "ಕಥೆ ಮತ್ತು ಚಿತ್ರಕಥೆ (Story & Screenplay)",
-    te: "కథ మరియు స్క్రీన్‌ప్లే (Story & Screenplay)",
-    ta: "கதை மற்றும் திரைக்கதை (Story & Screenplay)",
-    ml: "കഥയും തിരക്കഥയും (Story & Screenplay)",
-    hi: "कहानी और पटकथा (Story & Screenplay)",
-    en: "Story & Screenplay",
-  };
-
-  const perfLabel: Record<string, string> = {
-    kn: "ಕಲಾವಿದರ ಅಭಿನಯ (Performances)",
-    te: "నటీనటుల నటన (Performances)",
-    ta: "நடிகர்களின் நடிப்பு (Performances)",
-    ml: "താരങ്ങളുടെ പ്രകടനം (Performances)",
-    hi: "कलाकारों का अभिनय (Performances)",
-    en: "Performances",
-  };
-
-  const dirLabel: Record<string, string> = {
-    kn: "ನಿರ್ದೇಶನ ಮತ್ತು ತಾಂತ್ರಿಕತೆ (Direction & Technicalities)",
-    te: "దర్శకత్వం మరియు సాంకేతిక వర్గం (Direction & Technicalities)",
-    ta: "இயக்கம் மற்றும் தொழில்நுட்பம் (Direction & Technicalities)",
-    ml: "സംവിധാനവും സാങ്കേതിക മികവും (Direction & Technicalities)",
-    hi: "निर्देशन और तकनीकी पहलू (Direction & Technicalities)",
-    en: "Direction & Technical Aspects",
-  };
-
-  const musicLabel: Record<string, string> = {
-    kn: "ಸಂಗೀತ ಮತ್ತು ಹಿನ್ನೆಲೆ ಧ್ವನಿ (Music & BGM)",
-    te: "సంగీతం మరియు నేపథ్య సంగీతం (Music & BGM)",
-    ta: "இசை மற்றும் பின்னணி இசை (Music & BGM)",
-    ml: "സംഗീതവും പശ്ചാത്തല സംഗീതവും (Music & BGM)",
-    hi: "संगीत और बैकग्राउंड स्कोर (Music & BGM)",
-    en: "Music & Background Score",
-  };
-
-  const prosLabel: Record<string, string> = {
-    kn: "ಮೆಚ್ಚುಗೆಯ ಅಂಶಗಳು (Pros)",
-    te: "ప్లస్ పాయింట్లు (Pros)",
-    ta: "படத்தின் பலங்கள் (Pros)",
-    ml: "പോസിറ്റീവ് വശങ്ങൾ (Pros)",
-    hi: "सकारात्मक पहलू (Pros)",
-    en: "Strengths (Pros)",
-  };
-
-  const consLabel: Record<string, string> = {
-    kn: "ಹಿನ್ನಡೆಯ ಅಂಶಗಳು (Cons)",
-    te: "మైనస్ పాయింట్లు (Cons)",
-    ta: "படத்தின் பலவீனங்கள் (Cons)",
-    ml: "നെഗറ്റീവ് വശങ്ങൾ (Cons)",
-    hi: "कमज़ोर कड़ियाँ (Cons)",
-    en: "Weaknesses (Cons)",
-  };
-
-  const verdictLabel: Record<string, string> = {
-    kn: "ಅಂತಿಮ ತೀರ್ಪು (FINAL VERDICT)",
-    te: "తుది తీర్పు (FINAL VERDICT)",
-    ta: "இறுதி தீர்ப்பு (FINAL VERDICT)",
-    ml: "അന്തിമ വിധി (FINAL VERDICT)",
-    hi: "अंतिम फैसला (FINAL VERDICT)",
-    en: "FINAL VERDICT",
-  };
-
   return (
-    <div className="w-full">
+    <div className="w-full bg-paper min-h-screen text-ink">
       {/* Schema.org Review & Movie structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewJsonLd) }}
       />
       {/* Breadcrumb */}
-      <div className="bg-hall border-b border-glow-line py-3 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-popcorn-dim">
-          <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium transition-colors">
-            {getTranslation(activeLang, "nav_home")}
+      <div className="bg-sheet border-b-2 border-ink py-3 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-mono text-ink-dim">
+          <Link href="/" className="hover:text-press font-bold transition-colors">
+            Home
           </Link>
           <span>/</span>
           <Link
-            href={`/category/reviews?lang=${activeLang}`}
-            className="hover:text-marquee-soft text-popcorn-dim font-medium transition-colors"
+            href="/reviews"
+            className="hover:text-press font-bold transition-colors"
           >
-            {getTranslation(activeLang, "nav_reviews")}
+            Reviews
           </Link>
           <span>/</span>
-          <span className="text-popcorn-muted truncate max-w-xs sm:max-w-md">{review.movieTitle}</span>
+          <span className="text-ink-mute truncate max-w-xs sm:max-w-md">{review.movieTitle}</span>
         </div>
       </div>
 
@@ -204,88 +120,48 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Review Column (Col 8) */}
           <main className="lg:col-span-8 space-y-8">
-            <article className="bg-revealed rounded-3xl border border-glow-line p-5 sm:p-8 shadow-sm">
-              {/* Language Toolbar if Ramayana */}
-              {isRamayana && (
-                <div className="mb-6 p-3.5 rounded-2xl bg-marquee/10 border border-marquee/25 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
-                  <div className="flex items-center gap-1.5 text-xs text-marquee-soft font-bold">
-                    <Crown className="w-4 h-4 text-marquee-soft" />
-                    <span>ರಾಮಾಯಣ ಭಾಗ 1 – ಎಲ್ಲಾ 6 ಭಾಷೆಗಳಲ್ಲಿ ವಿಮರ್ಶೆ ಓದಿ:</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {SUPPORTED_LANGUAGES.map((l) => {
-                      const isCurrent = activeLang === l.code;
-                      const langSlugMap: Record<string, string> = {
-                        kn: "ramayana-part-1-kannada-review",
-                        te: "ramayana-part-1-telugu-review",
-                        ta: "ramayana-part-1-tamil-review",
-                        hi: "ramayana-part-1-hindi-review",
-                        ml: "ramayana-part-1-malayalam-review",
-                        en: "ramayana-part-1-english-review",
-                      };
-                      return (
-                        <Link
-                          key={l.code}
-                          href={`/reviews/${langSlugMap[l.code]}?lang=${l.code}`}
-                          className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1 ${
-                            isCurrent
-                              ? "bg-marquee-deep text-void shadow-xs font-black"
-                              : "bg-hall text-popcorn-dim hover:text-popcorn border border-glow-line"
-                          }`}
-                        >
-                          <span>{l.flagEmoji}</span>
-                          <span>{l.name}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
+            <article className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-8">
               {/* Header Badges */}
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
                   {isRamayana ? (
-                    <span className="inline-flex items-center gap-1.5 py-1 px-3 text-xs font-black uppercase rounded-full border border-marquee/40 bg-marquee/15 text-marquee-soft shadow-2xs select-none">
-                      <Crown className="w-3.5 h-3.5 text-marquee-soft" />
+                    <span className="sticker bg-marquee text-ink border-2 border-ink px-3 py-1 text-xs font-poster uppercase shadow-sticker flex items-center gap-1.5">
+                      <Crown className="w-3.5 h-3.5" />
                       <span>MAGNUM OPUS SPECIAL REVIEW</span>
                     </span>
                   ) : (
-                    <span className="px-3 py-1 rounded-full bg-ultra/10 text-ultra-soft border border-ultra/25 text-xs font-bold shadow-2xs">
-                      {reviewBadges[activeLang] || reviewBadges.kn}
+                    <span className="sticker bg-violet text-paper border-2 border-ink px-3 py-1 text-xs font-bold uppercase shadow-sticker">
+                      CRITICAL VERDICT
                     </span>
                   )}
-                  <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                    {config.industryName}
+                  <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase bg-band text-ink border-2 border-ink shadow-sticker">
+                    {review.language ? review.language.toUpperCase() : "CINEMA"}
                   </span>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-popcorn-dim font-sans">
-                  <span>📅 {formatKannadaDate(review.releaseDate)}</span>
+                <div className="flex items-center gap-3 text-xs font-mono text-ink-dim font-bold">
+                  <span>📅 {formatEditorialDate(review.releaseDate)}</span>
                   <span>•</span>
                   <span>⏱️ {review.runtime}</span>
                   <span>•</span>
-                  <span className="px-2 py-0.5 rounded-md bg-hall border border-glow-line text-popcorn-dim font-bold">
+                  <span className="px-2 py-0.5 bg-paper border border-ink text-ink font-bold">
                     {review.censorRating}
                   </span>
                 </div>
               </div>
 
               {/* Title */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display-latin text-popcorn leading-tight tracking-tight">
-                {review.movieTitle} {isRamayana ? "– NOT JUST A MOVIE, IT'S OUR PRIDE!" : activeLang === "en" ? "Movie Review" : "ರಿವ್ಯೂ"}
+              <h1 className="text-2xl sm:text-4xl font-poster uppercase text-ink leading-tight tracking-tight">
+                {review.movieTitle} {isRamayana ? "– NOT JUST A MOVIE, IT'S OUR PRIDE!" : "MOVIE REVIEW"}
               </h1>
-              <p className="text-sm text-marquee-soft font-sans font-bold mt-1">
+              <p className="text-xs sm:text-sm text-press-deep font-grotesk font-bold mt-1 uppercase tracking-wider">
                 {isRamayana ? "A MAGNUM OPUS CELEBRATION OF INDIAN CINEMA" : `${review.movieTitleEn} Detailed Review & Analysis`}
               </p>
 
               {/* Hero Movie Card: Poster + Star Rating + Quick Specs */}
-              <div className={`my-6 p-5 sm:p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center md:items-start ${
-                isRamayana ? "bg-marquee/10 border border-marquee/25 shadow-sm" : "bg-hall border border-glow-line shadow-2xs"
+              <div className={`my-6 p-5 sm:p-6 border-2 border-ink shadow-sticker flex flex-col md:flex-row gap-6 items-center md:items-start ${
+                isRamayana ? "bg-marquee" : "bg-paper"
               }`}>
-                <div className="relative w-48 h-64 shrink-0 rounded-2xl overflow-hidden shadow-lg border border-glow-line">
+                <div className="relative w-48 h-64 shrink-0 border-2 border-ink shadow-press overflow-hidden bg-band">
                   <Image
                     src={review.posterImage}
                     alt={review.movieTitle}
@@ -300,49 +176,49 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
                   {/* Rating Showcase */}
                   {isRamayana ? (
                     <div className="space-y-2">
-                      <div className="inline-flex items-center gap-2 bg-marquee/15 px-4 py-2 rounded-xl border border-marquee/30 shadow-2xs">
-                        <Crown className="w-5 h-5 text-marquee-soft" />
-                        <span className="text-base sm:text-lg font-black text-marquee-soft font-sans">
+                      <div className="inline-flex items-center gap-2 bg-ink text-paper px-4 py-2 border-2 border-ink shadow-sticker">
+                        <Crown className="w-5 h-5 text-marquee" />
+                        <span className="text-base sm:text-lg font-poster uppercase tracking-wider text-paper">
                           NO RATINGS • ONLY RESPECT!
                         </span>
                       </div>
-                      <p className="text-xs text-popcorn-dim font-medium">
-                        {ramayanaData?.reviewScoreNote || "ರಾಮಾಯಣಕ್ಕೆ ಸ್ಟಾರ್ ರೇಟಿಂಗ್ ನೀಡುವ ಅಗತ್ಯವೇ ಇಲ್ಲ. ಇದು ನಮ್ಮ ಹೆಮ್ಮೆ. ನಮ್ಮ ಪರಂಪರೆ."}
+                      <p className="text-xs text-ink font-grotesk font-bold">
+                        {ramayanaData?.reviewScoreNote || "Ramayana needs no star rating. It is our pride. Our heritage."}
                       </p>
                     </div>
                   ) : (
                     <div className="flex items-center justify-center md:justify-start gap-3">
-                      <div className="flex items-center gap-1.5 bg-revealed px-4 py-2 rounded-xl border border-marquee/25 shadow-sm">
-                        <Star className="w-6 h-6 text-marquee-soft fill-marquee animate-pulse" />
-                        <span className="text-2xl font-black font-mono-tabular text-popcorn font-sans">
+                      <div className="flex items-center gap-1.5 bg-paper px-4 py-2 border-2 border-ink shadow-sticker">
+                        <Star className="w-5 h-5 text-marquee fill-marquee" />
+                        <span className="text-2xl font-poster uppercase text-ink">
                           {review.rating.toFixed(1)}
                         </span>
-                        <span className="text-xs text-popcorn-muted font-sans">/ 5.0</span>
+                        <span className="text-xs text-ink-mute font-mono">/ 5.0</span>
                       </div>
 
-                      <div className="px-3 py-2 rounded-xl bg-signal/10 text-signal-soft font-bold text-xs border border-signal/25">
+                      <div className="px-3.5 py-2 bg-press text-paper font-poster uppercase text-xs border-2 border-ink shadow-sticker">
                         {review.verdict}
                       </div>
                     </div>
                   )}
 
                   {/* Cast & Crew Specs */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-popcorn-dim pt-2 border-t border-glow-line">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-ink-dim pt-3 border-t-2 border-ink font-grotesk">
                     <div>
-                      <span className="text-popcorn-muted">{activeLang === "en" ? "Director:" : "ನಿರ್ದೇಶನ:"}</span>{" "}
-                      <strong className="text-popcorn">{review.director}</strong>
+                      <span className="font-bold text-ink">Director:</span>{" "}
+                      <strong className="text-ink font-poster uppercase">{review.director}</strong>
                     </div>
                     <div>
-                      <span className="text-popcorn-muted">{activeLang === "en" ? "Music:" : "ಸಂಗೀತ:"}</span>{" "}
-                      <strong className="text-popcorn">{review.musicDirector}</strong>
+                      <span className="font-bold text-ink">Music:</span>{" "}
+                      <strong className="text-ink font-poster uppercase">{review.musicDirector}</strong>
                     </div>
                     <div>
-                      <span className="text-popcorn-muted">{activeLang === "en" ? "Cinematography:" : "ಛಾಯಾಗ್ರಹಣ:"}</span>{" "}
-                      <strong className="text-popcorn">{review.cinematography || "Tech Crew"}</strong>
+                      <span className="font-bold text-ink">Cinematography:</span>{" "}
+                      <strong className="text-ink font-poster uppercase">{review.cinematography || "Tech Crew"}</strong>
                     </div>
                     <div>
-                      <span className="text-popcorn-muted">{activeLang === "en" ? "Producers:" : "ನಿರ್ಮಾಣ:"}</span>{" "}
-                      <strong className="text-popcorn">{review.producers.join(", ")}</strong>
+                      <span className="font-bold text-ink">Producers:</span>{" "}
+                      <strong className="text-ink font-poster uppercase">{review.producers.join(", ")}</strong>
                     </div>
                   </div>
 
@@ -351,7 +227,7 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
                     {review.genres.map((g) => (
                       <span
                         key={g}
-                        className="px-2.5 py-1 rounded-full bg-revealed text-xs text-popcorn-dim border border-glow-line shadow-2xs font-medium"
+                        className="px-2.5 py-1 bg-band text-xs text-ink border border-ink shadow-sticker font-grotesk font-bold uppercase"
                       >
                         {g}
                       </span>
@@ -361,14 +237,16 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               </div>
 
               {/* Social Share */}
-              <SocialShare title={`${review.movieTitle} Review`} />
+              <div className="my-4">
+                <SocialShare title={`${review.movieTitle} Review`} />
+              </div>
 
               {/* Summary */}
-              <div className="my-6 p-4 rounded-2xl bg-marquee/10 border-l-4 border-marquee border border-marquee/20 shadow-2xs">
-                <h3 className="text-base font-bold text-marquee-soft mb-1">
-                  {activeLang === "en" ? "Synopsis" : "ಕಥಾಸಾರಾಂಶ"}
+              <div className="my-6 p-4 bg-paper border-2 border-ink shadow-sticker">
+                <h3 className="text-base font-poster uppercase text-ink mb-1">
+                  SYNOPSIS
                 </h3>
-                <p className="text-sm sm:text-base text-popcorn leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-ink leading-relaxed font-grotesk font-medium">
                   {review.summary}
                 </p>
               </div>
@@ -377,76 +255,76 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               {isRamayana && ramayanaData ? (
                 <div className="space-y-6">
                   {/* Star Cast Spotlight */}
-                  <div className="p-5 sm:p-6 rounded-2xl bg-marquee/10 border border-marquee/25 shadow-xs">
-                    <h3 className="text-base font-black text-marquee-soft uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <Crown className="w-4 h-4 text-marquee-soft" />
-                      <span>ಪ್ರಮುಖ ಪಾತ್ರಧಾರಿಗಳ ಅದ್ಭುತ ಚಿತ್ರಣ (Star Cast & Characters)</span>
+                  <div className="p-5 sm:p-6 bg-paper border-2 border-ink shadow-sticker">
+                    <h3 className="text-base font-poster uppercase tracking-wider text-ink mb-4 flex items-center gap-2">
+                      <Crown className="w-4 h-4 text-press" />
+                      <span>STAR CAST &amp; CHARACTERS</span>
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {ramayanaData.characterHighlights.map((char, idx) => (
-                        <div key={idx} className="p-3.5 rounded-xl bg-revealed border border-marquee/25 shadow-2xs">
+                        <div key={idx} className="p-3.5 bg-sheet border-2 border-ink shadow-sticker">
                           <div className="flex items-center justify-between gap-1 mb-1">
-                            <span className="text-sm font-black text-marquee-soft font-sans">{char.actor}</span>
-                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-marquee/15 text-marquee-soft font-bold border border-marquee/30">
+                            <span className="text-sm font-poster uppercase text-ink">{char.actor}</span>
+                            <span className="text-[10px] px-2 py-0.5 bg-marquee text-ink font-bold border border-ink font-mono uppercase">
                               {char.character}
                             </span>
                           </div>
-                          <p className="text-xs text-popcorn-dim leading-relaxed">{char.description}</p>
+                          <p className="text-xs text-ink-dim leading-relaxed font-grotesk">{char.description}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Reverence Full Review Text */}
-                  <div className="prose max-w-none text-sm sm:text-base text-popcorn leading-relaxed space-y-4 whitespace-pre-line p-5 sm:p-6 rounded-2xl bg-revealed border border-glow-line shadow-2xs font-normal">
+                  <div className="prose max-w-none text-sm sm:text-base text-ink leading-relaxed space-y-4 whitespace-pre-line p-5 sm:p-6 bg-sheet border-2 border-ink shadow-press font-grotesk">
                     {ramayanaData.fullReviewText.trim()}
                   </div>
 
                   {/* Reverence Declaration Banner */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-r from-marquee/15 via-marquee/5 to-signal/10 border border-marquee/30 text-center shadow-xs">
-                    <div className="text-xs uppercase tracking-widest text-marquee-soft font-bold mb-2">
+                  <div className="p-6 bg-marquee text-ink border-2 border-ink shadow-press text-center">
+                    <div className="text-xs uppercase tracking-widest font-poster mb-2">
                       🚩 OUR FAITH • OUR CULTURE • OUR PRIDE
                     </div>
-                    <div className="text-xl sm:text-2xl font-black text-marquee-soft">
+                    <div className="text-xl sm:text-2xl font-poster uppercase text-ink">
                       {ramayanaData.closingLine}
                     </div>
-                    <p className="mt-3 text-xs sm:text-sm text-marquee-soft/80 font-medium max-w-xl mx-auto">
+                    <p className="mt-3 text-xs sm:text-sm text-ink-dim font-grotesk font-bold max-w-xl mx-auto">
                       {ramayanaData.reviewScoreNote}
                     </p>
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6 text-sm sm:text-base text-popcorn leading-relaxed font-normal">
-                  <div>
-                    <h3 className="text-xl font-bold text-popcorn mb-2 flex items-center gap-2">
-                      <span className="w-2 h-5 bg-signal rounded"></span>
-                      {storyLabel[activeLang] || storyLabel.kn}
+                <div className="space-y-6 text-sm sm:text-base text-ink leading-relaxed font-grotesk">
+                  <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                    <h3 className="text-lg font-poster uppercase text-ink mb-2 flex items-center gap-2">
+                      <span className="w-2 h-5 bg-press"></span>
+                      Story &amp; Screenplay
                     </h3>
-                    <p>{review.storyAnalysis}</p>
+                    <p className="text-ink-dim">{review.storyAnalysis}</p>
                   </div>
 
-                  <div>
-                    <h3 className="text-xl font-bold text-popcorn mb-2 flex items-center gap-2">
-                      <span className="w-2 h-5 bg-marquee rounded"></span>
-                      {perfLabel[activeLang] || perfLabel.kn}
+                  <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                    <h3 className="text-lg font-poster uppercase text-ink mb-2 flex items-center gap-2">
+                      <span className="w-2 h-5 bg-marquee"></span>
+                      Performances
                     </h3>
-                    <p>{review.performanceAnalysis}</p>
+                    <p className="text-ink-dim">{review.performanceAnalysis}</p>
                   </div>
 
-                  <div>
-                    <h3 className="text-xl font-bold text-popcorn mb-2 flex items-center gap-2">
-                      <span className="w-2 h-5 bg-ultra rounded"></span>
-                      {dirLabel[activeLang] || dirLabel.kn}
+                  <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                    <h3 className="text-lg font-poster uppercase text-ink mb-2 flex items-center gap-2">
+                      <span className="w-2 h-5 bg-violet"></span>
+                      Direction &amp; Craft
                     </h3>
-                    <p>{review.directionAnalysis}</p>
+                    <p className="text-ink-dim">{review.directionAnalysis}</p>
                   </div>
 
-                  <div>
-                    <h3 className="text-xl font-bold text-popcorn mb-2 flex items-center gap-2">
-                      <span className="w-2 h-5 bg-ultra/70 rounded"></span>
-                      {musicLabel[activeLang] || musicLabel.kn}
+                  <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
+                    <h3 className="text-lg font-poster uppercase text-ink mb-2 flex items-center gap-2">
+                      <span className="w-2 h-5 bg-ink"></span>
+                      Music &amp; Background Score
                     </h3>
-                    <p>{review.musicAnalysis}</p>
+                    <p className="text-ink-dim">{review.musicAnalysis}</p>
                   </div>
                 </div>
               )}
@@ -454,7 +332,7 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               {/* Dual-Axis Critical Review Matrix & Interactive Spoiler Shield */}
               <DualAxisReviewScore review={review} />
 
-              {/* Overlapping Dual Luminous Discs (Direct Design Reference Implementation) */}
+              {/* Overlapping Dual Luminous Discs */}
               <DualLuminousDiscs
                 sectionIndex="01"
                 totalSections="06"
@@ -469,15 +347,15 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               {/* Pros and Cons Matrix */}
               <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Pros */}
-                <div className="p-5 rounded-2xl bg-ultra/10 border border-ultra/25 shadow-2xs">
-                  <h4 className="text-sm font-bold text-ultra-soft flex items-center gap-2 mb-3">
-                    <CheckCircle2 className="w-4 h-4 text-ultra-soft" />
-                    {prosLabel[activeLang] || prosLabel.kn}
+                <div className="p-5 bg-paper border-2 border-ink shadow-sticker">
+                  <h4 className="text-sm font-poster uppercase text-ink flex items-center gap-2 mb-3">
+                    <CheckCircle2 className="w-4 h-4 text-press-deep" />
+                    <span>POSITIVES &amp; HIGHLIGHTS</span>
                   </h4>
-                  <ul className="space-y-2 text-xs sm:text-sm text-popcorn-dim">
+                  <ul className="space-y-2 text-xs sm:text-sm text-ink-dim font-grotesk">
                     {review.pros.map((p, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="text-ultra-soft font-bold">•</span>
+                        <span className="text-press-deep font-bold">•</span>
                         <span>{p}</span>
                       </li>
                     ))}
@@ -485,15 +363,15 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
                 </div>
 
                 {/* Cons */}
-                <div className="p-5 rounded-2xl bg-signal/10 border border-signal/25 shadow-2xs">
-                  <h4 className="text-sm font-bold text-signal-soft flex items-center gap-2 mb-3">
-                    <XCircle className="w-4 h-4 text-signal-soft" />
-                    {consLabel[activeLang] || consLabel.kn}
+                <div className="p-5 bg-paper border-2 border-ink shadow-sticker">
+                  <h4 className="text-sm font-poster uppercase text-ink flex items-center gap-2 mb-3">
+                    <XCircle className="w-4 h-4 text-press" />
+                    <span>DOWNSIDES &amp; FRICTION</span>
                   </h4>
-                  <ul className="space-y-2 text-xs sm:text-sm text-popcorn-dim">
+                  <ul className="space-y-2 text-xs sm:text-sm text-ink-dim font-grotesk">
                     {review.cons.map((c, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="text-signal-soft font-bold">•</span>
+                        <span className="text-press font-bold">•</span>
                         <span>{c}</span>
                       </li>
                     ))}
@@ -502,15 +380,15 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               </div>
 
               {/* Final Verdict Card */}
-              <div className="my-8 p-6 rounded-2xl bg-gradient-to-r from-signal/10 via-revealed to-signal/10 border border-signal/25 text-center shadow-xs">
-                <span className="text-xs uppercase tracking-wider text-marquee-soft font-bold block mb-1">
-                  {verdictLabel[activeLang] || verdictLabel.kn}
+              <div className="my-8 p-6 bg-paper border-2 border-ink shadow-press text-center">
+                <span className="text-xs uppercase tracking-wider font-poster text-press-deep block mb-1">
+                  FINAL CRITICAL VERDICT
                 </span>
-                <p className="text-lg sm:text-xl font-extrabold text-popcorn">
+                <p className="text-lg sm:text-2xl font-poster uppercase text-ink">
                   &ldquo;{review.verdict}&rdquo;
                 </p>
                 {review.boxOfficeSummary && (
-                  <p className="mt-2 text-xs text-popcorn-dim font-medium">
+                  <p className="mt-2 text-xs text-ink-dim font-mono font-bold">
                     💰 {review.boxOfficeSummary}
                   </p>
                 )}
@@ -519,11 +397,11 @@ export default async function MovieReviewPage({ params, searchParams }: ReviewPa
               {/* Embedded Trailer if available */}
               {review.trailerYoutubeId && (
                 <div className="my-8">
-                  <h3 className="text-lg font-bold text-popcorn mb-3 flex items-center gap-2">
-                    <Play className="w-4 h-4 text-signal-soft" />
-                    {getTranslation(activeLang, "btn_watch_trailer")}
+                  <h3 className="text-lg font-poster uppercase text-ink mb-3 flex items-center gap-2">
+                    <Play className="w-4 h-4 text-press" />
+                    <span>Watch Official Trailer</span>
                   </h3>
-                  <div className="relative aspect-video w-full rounded-2xl overflow-hidden border border-glow-line shadow-md bg-void">
+                  <div className="relative aspect-video w-full border-2 border-ink shadow-press overflow-hidden bg-band">
                     <iframe
                       src={`https://www.youtube.com/embed/${review.trailerYoutubeId}`}
                       title={`${review.movieTitle} Trailer`}

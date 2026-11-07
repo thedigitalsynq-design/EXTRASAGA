@@ -47,7 +47,7 @@ import {
 } from "@/types";
 import { CATEGORIES } from "@/data/mockData";
 import { DataService } from "@/lib/dataService";
-import { formatKannadaDate, formatKannadaNumber, slugify } from "@/lib/utils";
+import { formatEditorialDate, formatCineNumber, slugify } from "@/lib/utils";
 import { TRUSTED_NEWS_SOURCES, TrustedNewsSource } from "@/lib/ingest/trustedSources";
 
 const ADMIN_EMAIL_ALIASES = [
@@ -69,14 +69,14 @@ const LANGUAGE_TO_INDUSTRY: Record<LanguageCode, FilmIndustry> = {
 };
 
 const ADMIN_TABS = [
-  { id: "articles", label: "ಮ್ಯಾನುಯಲ್ ಲೇಖನಗಳು (Manual)", icon: FileText },
-  { id: "releases", label: "ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು (Releases)", icon: Clapperboard },
-  { id: "sources", label: "ಸುದ್ದಿ ಮೂಲಗಳು (Trusted Sources)", icon: Radio },
-  { id: "imported", label: "ಆಟೋ ಆಮದು ಲೇಖನಗಳು (Imported)", icon: RefreshCw },
-  { id: "reviews", label: "ಸಿನಿಮಾ ವಿಮರ್ಶೆ (Reviews)", icon: Star },
-  { id: "ads", label: "ಜಾಹೀರಾತುಗಳು (Ads)", icon: DollarSign },
-  { id: "comments", label: "ಕಾಮೆಂಟ್ಸ್ (Comments)", icon: MessageSquare },
-  { id: "settings", label: "SEO & ಸೆಟ್ಟಿಂಗ್ಸ್", icon: Settings },
+  { id: "articles", label: "Manual Articles", icon: FileText },
+  { id: "releases", label: "Cinema Releases", icon: Clapperboard },
+  { id: "sources", label: "Trusted Sources", icon: Radio },
+  { id: "imported", label: "Imported Articles (Auto)", icon: RefreshCw },
+  { id: "reviews", label: "Movie Reviews", icon: Star },
+  { id: "ads", label: "Ads", icon: DollarSign },
+  { id: "comments", label: "Comments", icon: MessageSquare },
+  { id: "settings", label: "SEO & Settings", icon: Settings },
 ] as const;
 
 type AdminTabId = (typeof ADMIN_TABS)[number]["id"];
@@ -181,12 +181,12 @@ export default function AdminPage() {
       introduction: "",
       theatricalReleaseDate: new Date().toISOString().split("T")[0],
       releaseDateConfidence: "confirmed",
-      language: "kn",
+      language: "en",
       industry: "sandalwood",
-      genres: ["ಆಕ್ಷನ್", "ಡ್ರಾಮಾ"],
+      genres: ["Action", "Drama"],
       director: "",
       producers: [""],
-      cast: [{ name: "", role: "ನಾಯಕ" }],
+      cast: [{ name: "", role: "Lead Actor" }],
       productionCompany: "",
       distributionCompany: "",
       posterImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop",
@@ -203,25 +203,25 @@ export default function AdminPage() {
   };
 
   const handleDeleteMovie = async (id: string) => {
-    if (confirm("ನೀವು ಖಚಿತವಾಗಿ ಈ ಸಿನಿಮಾವನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ?")) {
+    if (confirm("Are you sure you want to delete this movie?")) {
       await DataService.deleteMovie(id);
       const updated = await DataService.getMovies();
       setMovies(updated);
-      showToast("ಸಿನಿಮಾವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ!");
+      showToast("Movie deleted successfully!");
     }
   };
 
   const handleSaveMovie = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingMovie?.title || !editingMovie?.theatricalReleaseDate) {
-      alert("ದಯವಿಟ್ಟು ಶೀರ್ಷಿಕೆ ಮತ್ತು ಬಿಡುಗಡೆ ದಿನಾಂಕವನ್ನು ನಮೂದಿಸಿ");
+      alert("Please enter a title and a release date");
       return;
     }
     const saved = await DataService.saveMovie(editingMovie);
     const updated = await DataService.getMovies();
     setMovies(updated);
     setIsMovieEditorOpen(false);
-    showToast(`"${saved.title}" ಸಿನಿಮಾವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸೇವ್ ಮಾಡಲಾಗಿದೆ!`);
+    showToast(`Movie "${saved.title}" saved successfully!`);
   };
 
   const handleRunDailyRollover = async () => {
@@ -234,7 +234,7 @@ export default function AdminPage() {
       const logs = await DataService.getAutomationLogs();
       setAutomationLogs(logs);
       showToast(
-        data.message || `ರೋಲ್‌ಓವರ್ ಪೂರ್ಣಗೊಂಡಿದೆ! ${data.movedToTheatres || 0} ಸಿನಿಮಾ ಥಿಯೇಟರ್‌ಗೆ, ${data.movedToArchive || 0} ಆರ್ಕೈವ್‌ಗೆ ವರ್ಗಾವಣೆಗೊಂಡಿದೆ.`
+        data.message || `Rollover complete! ${data.movedToTheatres || 0} movie(s) moved to In Theatres, ${data.movedToArchive || 0} moved to Archive.`
       );
     } catch {
       const log = await DataService.runDailyCinemaRollover();
@@ -242,7 +242,7 @@ export default function AdminPage() {
       setMovies(updated);
       const logs = await DataService.getAutomationLogs();
       setAutomationLogs(logs);
-      showToast(`ರೋಲ್‌ಓವರ್ ಪೂರ್ಣಗೊಂಡಿದೆ! ${log.inTheatresCount} ಸಿನಿಮಾ ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ, ${log.archivedCount} ಆರ್ಕೈವ್‌ನಲ್ಲಿ.`);
+      showToast(`Rollover complete! ${log.inTheatresCount} movie(s) now in theatres, ${log.archivedCount} archived.`);
     } finally {
       setIsRolloverRunning(false);
     }
@@ -259,7 +259,7 @@ export default function AdminPage() {
         setArticles((prev) =>
           prev.map((a) => (a.id === id ? { ...a, status: "published" } : a))
         );
-        showToast("ಲೇಖನ ಯಶಸ್ವಿಯಾಗಿ ಅನುಮೋದಿಸಲಾಗಿದೆ ಮತ್ತು ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಲೈವ್ ಆಗಿದೆ!");
+        showToast("Article approved successfully and now live on the website!");
         return;
       }
     } catch {
@@ -269,7 +269,7 @@ export default function AdminPage() {
     setArticles((prev) =>
       prev.map((a) => (a.id === id ? { ...a, status: "published" } : a))
     );
-    showToast("ಲೇಖನ ಯಶಸ್ವಿಯಾಗಿ ಅನುಮೋದಿಸಲಾಗಿದೆ ಮತ್ತು ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಲೈವ್ ಆಗಿದೆ!");
+    showToast("Article approved successfully and now live on the website!");
   };
 
   const handleApproveAllPending = async () => {
@@ -284,7 +284,7 @@ export default function AdminPage() {
         setArticles((prev) =>
           prev.map((a) => ({ ...a, status: "published" }))
         );
-        showToast(`${data.count || "ಎಲ್ಲಾ"} ಬಾಕಿ ಲೇಖನಗಳನ್ನು ಅನುಮೋದಿಸಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!`);
+        showToast(`${data.count || "All"} pending article(s) approved and published!`);
         return;
       }
     } catch {
@@ -294,7 +294,7 @@ export default function AdminPage() {
     setArticles((prev) =>
       prev.map((a) => ({ ...a, status: "published" }))
     );
-    showToast(`${count} ಬಾಕಿ ಲೇಖನಗಳನ್ನು ಅನುಮೋದಿಸಿ ಪ್ರಕಟಿಸಲಾಗಿದೆ!`);
+    showToast(`${count} pending article(s) approved and published!`);
   };
 
   const loadSources = async () => {
@@ -326,10 +326,10 @@ export default function AdminPage() {
         setSources((prev) =>
           prev.map((s) => (s.id === sourceId ? { ...s, enabled: !currentEnabled } : s))
         );
-        showToast(`ಮೂಲ ${sourceId} ${!currentEnabled ? "ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ" : "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"}`);
+        showToast(`Source ${sourceId} ${!currentEnabled ? "enabled" : "disabled"}`);
       }
     } catch {
-      showToast("ಮೂಲ ಬದಲಾವಣೆ ವಿಫಲವಾಗಿದೆ");
+      showToast("Failed to update source");
     }
   };
 
@@ -343,12 +343,12 @@ export default function AdminPage() {
       if (res.ok) {
         const data = await res.json();
         await loadData();
-        showToast(`ಸಿಂಕ್ ಪೂರ್ಣಗೊಂಡಿದೆ! ${data.report?.articlesImported || 0} ಹೊಸ ನೈಜ ಲೇಖನಗಳು ಆಮದಾಗಿವೆ.`);
+        showToast(`Sync complete! ${data.report?.articlesImported || 0} new article(s) imported.`);
       } else {
-        showToast("ಸಿಂಕ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಕಂಡುಬಂದಿದೆ");
+        showToast("An error occurred while syncing");
       }
     } catch {
-      showToast("ಸಿಂಕ್ ಪ್ರಕ್ರಿಯೆ ವಿಫಲವಾಗಿದೆ");
+      showToast("Sync failed");
     } finally {
       setIsSyncing(false);
     }
@@ -372,7 +372,7 @@ export default function AdminPage() {
       }
 
       const data = await res.json().catch(() => ({}));
-      setAuthError(data.error || `ತಪ್ಪಾದ ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್. (ಡೆಮೊ: ${DEFAULT_ADMIN_EMAIL} / admin123)`);
+      setAuthError(data.error || `Incorrect email or password. (Demo: ${DEFAULT_ADMIN_EMAIL} / admin123)`);
     } catch {
       // Offline fallback
       if (
@@ -384,7 +384,7 @@ export default function AdminPage() {
         setIsAuthenticated(true);
         setAuthError("");
       } else {
-        setAuthError(`ತಪ್ಪಾದ ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್. (ಡೆಮೊ: ${DEFAULT_ADMIN_EMAIL} / admin123)`);
+        setAuthError(`Incorrect email or password. (Demo: ${DEFAULT_ADMIN_EMAIL} / admin123)`);
       }
     }
   };
@@ -415,8 +415,8 @@ export default function AdminPage() {
       summary: "",
       content: "",
       category: "sandalwood",
-      categoryName: "ಸ್ಯಾಂಡಲ್ವುಡ್",
-      tags: ["ಸ್ಯಾಂಡಲ್ವುಡ್"],
+      categoryName: "Sandalwood",
+      tags: ["Sandalwood"],
       featuredImage:
         "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
       imageCaption: "",
@@ -436,10 +436,10 @@ export default function AdminPage() {
   };
 
   const handleDeleteArticle = async (id: string) => {
-    if (confirm("ನೀವು ಖಚಿತವಾಗಿ ಈ ಲೇಖನವನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ?")) {
+    if (confirm("Are you sure you want to delete this article?")) {
       await DataService.deleteArticle(id);
       await loadData();
-      showToast("ಲೇಖನವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ!");
+      showToast("Article deleted successfully!");
     }
   };
 
@@ -453,13 +453,13 @@ export default function AdminPage() {
     await DataService.saveArticle({
       ...editingArticle,
       slug,
-      categoryName: cat?.name || "ಸ್ಯಾಂಡಲ್ವುಡ್",
+      categoryName: cat?.name || "Sandalwood",
     });
 
     setIsEditorOpen(false);
     setEditingArticle(null);
     await loadData();
-    showToast("ಲೇಖನ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ / ನವೀಕರಿಸಲಾಗಿದೆ!");
+    showToast("Article published / updated successfully!");
   };
 
   // Filtered articles
@@ -489,7 +489,7 @@ export default function AdminPage() {
               FILMY <span className="text-brand-crimson">GARAGE</span>
             </h1>
             <p className="text-xs text-popcorn-dim font-kannada">
-              ಎಕ್ಸ್ಟ್ರಾಸಾಗ - ಅಡ್ಮಿನ್ ಲಾಗಿನ್ (ಲೇಖನಗಳು, ವಿಮರ್ಶೆಗಳು, ಜಾಹೀರಾತುಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್ಸ್ ನಿರ್ವಹಣಾ ಫಲಕ)
+              EXTRASAGA — Admin Login (article, review, ads and settings management desk)
             </p>
           </div>
 
@@ -503,7 +503,7 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-popcorn-dim font-sans mb-1">
-                ಇಮೇಲ್ (Admin Email)
+                Admin Email
               </label>
               <input
                 type="email"
@@ -516,7 +516,7 @@ export default function AdminPage() {
 
             <div>
               <label className="block text-xs font-bold text-popcorn-dim font-sans mb-1">
-                ಪಾಸ್‌ವರ್ಡ್ (Password)
+                Password
               </label>
               <input
                 type="password"
@@ -531,16 +531,16 @@ export default function AdminPage() {
               type="submit"
               className="w-full py-3 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold text-sm font-kannada transition-colors shadow-md"
             >
-              ಪ್ರವೇಶಿಸಿ (Sign In to Dashboard)
+              Sign In to Dashboard
             </button>
           </form>
 
           <div className="p-3.5 bg-hall rounded-2xl border border-glow-line text-[11px] text-popcorn-dim space-y-1 shadow-2xs">
-            <span className="font-semibold text-popcorn block">ಡೆಮೊ ಪ್ರವೇಶ ವಿವರ:</span>
+            <span className="font-semibold text-popcorn block">Demo credentials:</span>
             <div>
-              ಇಮೇಲ್: <code className="text-amber-400 font-bold">{DEFAULT_ADMIN_EMAIL}</code>
+              Email: <code className="text-amber-400 font-bold">{DEFAULT_ADMIN_EMAIL}</code>
             </div>
-            <div>ಪಾಸ್‌ವರ್ಡ್: <code className="text-amber-400 font-bold">admin123</code></div>
+            <div>Password: <code className="text-amber-400 font-bold">admin123</code></div>
           </div>
         </div>
       </div>
@@ -567,14 +567,14 @@ export default function AdminPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black text-popcorn font-sans tracking-tight">
-                  FILMY <span className="text-brand-crimson">GARAGE</span> - ಸಂಪಾದಕೀಯ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್
+                  FILMY <span className="text-brand-crimson">GARAGE</span> — Editorial Dashboard
                 </h1>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold font-sans border border-emerald-500/30">
                   PROD ACTIVE
                 </span>
               </div>
               <p className="text-xs text-popcorn-dim font-kannada">
-                ಸುದ್ದಿ ಪ್ರಕಟಣೆ, ವಿಮರ್ಶೆ, ಜಾಹೀರಾತು ಮತ್ತು ಓದುಗರ ಅನಿಸಿಕೆಗಳ ನಿರ್ವಹಣೆ
+                Manage news publishing, reviews, ads and reader feedback
               </p>
             </div>
           </div>
@@ -586,12 +586,12 @@ export default function AdminPage() {
               className="px-3 py-1.5 rounded-xl bg-hall hover:bg-screen text-popcorn text-xs font-kannada flex items-center gap-1.5 border border-glow-line transition-colors shadow-2xs font-semibold"
             >
               <Eye className="w-3.5 h-3.5 text-brand-crimson" />
-              <span>ಲೈವ್ ವೆಬ್‌ಸೈಟ್ ನೋಡಿ</span>
+              <span>View Live Site</span>
             </Link>
             <button
               onClick={handleLogout}
               className="p-1.5 rounded-xl bg-hall hover:bg-red-500/10 text-popcorn-dim hover:text-brand-crimson border border-glow-line transition-colors"
-              title="ಲಾಗ್‌ಔಟ್"
+              title="Log Out"
             >
               <LogOut className="w-4 h-4" />
             </button>
@@ -603,29 +603,29 @@ export default function AdminPage() {
         {/* Analytics Highlights Banner */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">ಒಟ್ಟು ಲೇಖನಗಳು</span>
+            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Total Articles</span>
             <div className="text-2xl font-black text-popcorn font-sans mt-1">{totalArticles}</div>
-            <span className="text-[10px] text-emerald-400 font-sans font-bold">✓ ಎಲ್ಲಾ ಪ್ರಕಟಿತ</span>
+            <span className="text-[10px] text-emerald-400 font-sans font-bold">✓ All Published</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು</span>
+            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Total Views</span>
             <div className="text-2xl font-black text-amber-400 font-sans mt-1">
-              {formatKannadaNumber(totalViews)}
+              {formatCineNumber(totalViews)}
             </div>
-            <span className="text-[10px] text-popcorn-dim font-sans">+18% ಈ ವಾರ</span>
+            <span className="text-[10px] text-popcorn-dim font-sans">+18% This Week</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">ಬ್ರೇಕಿಂಗ್ ನ್ಯೂಸ್</span>
+            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Breaking News</span>
             <div className="text-2xl font-black text-brand-crimson font-sans mt-1">{breakingCount}</div>
-            <span className="text-[10px] text-brand-crimson font-sans font-bold">ಲೈವ್ ಟಿಕ್ಕರ್‌ನಲ್ಲಿ</span>
+            <span className="text-[10px] text-brand-crimson font-sans font-bold">On the Live Ticker</span>
           </div>
 
           <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">ಸಿನಿಮಾ ವಿಮರ್ಶೆಗಳು</span>
+            <span className="text-[11px] text-popcorn-dim font-kannada block font-medium">Movie Reviews</span>
             <div className="text-2xl font-black text-emerald-400 font-sans mt-1">{reviews.length}</div>
-            <span className="text-[10px] text-emerald-400 font-sans font-bold">ಸ್ಟಾರ್ ರೇಟಿಂಗ್ಸ್</span>
+            <span className="text-[10px] text-emerald-400 font-sans font-bold">Star Ratings</span>
           </div>
         </div>
 
@@ -658,7 +658,7 @@ export default function AdminPage() {
               <div className="relative w-full sm:w-72">
                 <input
                   type="text"
-                  placeholder="ಲೇಖನ ಹುಡುಕಿ..."
+                  placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full bg-sheet border border-glow-line rounded-xl pl-9 pr-4 py-2.5 text-xs text-popcorn placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada shadow-2xs"
@@ -671,7 +671,7 @@ export default function AdminPage() {
                 className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold text-xs font-kannada flex items-center justify-center gap-2 transition-all shadow-md shadow-brand-crimson/20 active:scale-95"
               >
                 <PlusCircle className="w-4 h-4" />
-                <span>ಹೊಸ ಸುದ್ದಿ ಲೇಖನ ಬರೆಯಿರಿ</span>
+                <span>Write New Article</span>
               </button>
             </div>
 
@@ -680,12 +680,12 @@ export default function AdminPage() {
               <table className="w-full text-left border-collapse font-kannada">
                 <thead>
                   <tr className="bg-hall text-popcorn-dim text-[11px] uppercase tracking-wider border-b border-glow-line font-mono">
-                    <th className="py-3.5 px-4 font-semibold">ಚಿತ್ರ</th>
-                    <th className="py-3.5 px-4 font-semibold">ಶೀರ್ಷಿಕೆ (Headline)</th>
-                    <th className="py-3.5 px-4 font-semibold">ವಿಭಾಗ</th>
-                    <th className="py-3.5 px-4 font-semibold">ವೀಕ್ಷಣೆ</th>
-                    <th className="py-3.5 px-4 font-semibold">ಸ್ಥಿತಿ</th>
-                    <th className="py-3.5 px-4 text-right font-semibold">ಕ್ರಿಯೆಗಳು</th>
+                    <th className="py-3.5 px-4 font-semibold">Image</th>
+                    <th className="py-3.5 px-4 font-semibold">Headline</th>
+                    <th className="py-3.5 px-4 font-semibold">Category</th>
+                    <th className="py-3.5 px-4 font-semibold">Views</th>
+                    <th className="py-3.5 px-4 font-semibold">Status</th>
+                    <th className="py-3.5 px-4 text-right font-semibold">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-glow-line text-xs">
@@ -714,22 +714,22 @@ export default function AdminPage() {
                         </span>
                       </td>
                       <td className="py-3 px-4 font-sans text-popcorn-dim font-medium">
-                        {formatKannadaNumber(art.views)}
+                        {formatCineNumber(art.views)}
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-1.5">
                           {art.isBreaking && (
                             <span className="px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/30 text-[10px] font-bold">
-                              ಬ್ರೇಕಿಂಗ್
+                              Breaking
                             </span>
                           )}
                           {art.isTopStory && (
                             <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold">
-                              ಟಾಪ್
+                              Top
                             </span>
                           )}
                           <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">
-                            ಪ್ರಕಟಿತ
+                            Published
                           </span>
                         </div>
                       </td>
@@ -739,21 +739,21 @@ export default function AdminPage() {
                             href={`/news/${art.slug}`}
                             target="_blank"
                             className="p-1.5 rounded-lg hover:bg-screen text-popcorn-dim hover:text-popcorn transition-colors border border-transparent hover:border-glow-line"
-                            title="ನೋಡಿ"
+                            title="View"
                           >
                             <Eye className="w-3.5 h-3.5" />
                           </Link>
                           <button
                             onClick={() => handleEditArticle(art)}
                             className="p-1.5 rounded-lg hover:bg-sky-500/10 text-sky-400 hover:text-sky-400 transition-colors border border-transparent hover:border-sky-500/30"
-                            title="ತಿದ್ದುಪಡಿ"
+                            title="Edit"
                           >
                             <Edit className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => handleDeleteArticle(art.id)}
                             className="p-1.5 rounded-lg hover:bg-rose-500/10 text-rose-400 hover:text-rose-400 transition-colors border border-transparent hover:border-rose-500/30"
-                            title="ಅಳಿಸಿ"
+                            title="Delete"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -791,7 +791,7 @@ export default function AdminPage() {
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-popcorn flex items-center gap-2">
                     <Clapperboard className="w-5 h-5 text-brand-crimson" />
-                    <span>ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು ಮತ್ತು ದೈನಂದಿನ ರೋಲ್‌ಓವರ್ (Cinema Releases Hub)</span>
+                    <span>Cinema Releases & Daily Rollover (Releases Hub)</span>
                   </h3>
                   <p className="text-xs text-popcorn-dim mt-1 font-sans">
                     Real-time date classification (Asia/Kolkata): Last 30 days In Theatres, Upcoming Radar, and Permanent Archive across 6 industries.
@@ -805,14 +805,14 @@ export default function AdminPage() {
                     title="Move movies whose confirmed release date has arrived to released, and archive older than 30 days"
                   >
                     <RefreshCw className={`w-4 h-4 text-emerald-400 ${isRolloverRunning ? "animate-spin" : ""}`} />
-                    <span>{isRolloverRunning ? "ಚಲಾಯಿಸಲಾಗುತ್ತಿದೆ..." : "ದೈನಂದಿನ ರೋಲ್‌ಓವರ್ ಚಲಾಯಿಸಿ"}</span>
+                    <span>{isRolloverRunning ? "Running..." : "Run Daily Rollover"}</span>
                   </button>
                   <button
                     onClick={handleOpenNewMovie}
                     className="px-4 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white text-xs font-bold font-sans flex items-center gap-2 transition-all shadow-md shadow-brand-crimson/20"
                   >
                     <PlusCircle className="w-4 h-4" />
-                    <span>ಹೊಸ ಸಿನಿಮಾ ಸೇರಿಸಿ (Add Movie)</span>
+                    <span>Add New Movie</span>
                   </button>
                 </div>
               </div>
@@ -820,30 +820,30 @@ export default function AdminPage() {
               {/* Status Counters */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-sans">
                 <div className="p-4 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
-                  <span className="text-[11px] text-popcorn-dim font-medium block">ಒಟ್ಟು ಸಿನಿಮಾಗಳು (Total)</span>
+                  <span className="text-[11px] text-popcorn-dim font-medium block">Total Movies</span>
                   <div className="text-2xl font-black text-popcorn mt-1">{movies.length}</div>
-                  <span className="text-[10px] text-popcorn-dim font-kannada">6 ಭಾಷಾ ಚಿತ್ರರಂಗಗಳು</span>
+                  <span className="text-[10px] text-popcorn-dim font-kannada">Across 6 film industries</span>
                 </div>
                 <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 shadow-2xs">
                   <span className="text-[11px] text-emerald-400 font-bold block flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ (Last 30 Days)</span>
+                    <span>In Theatres (Last 30 Days)</span>
                   </span>
                   <div className="text-2xl font-black text-emerald-400 mt-1">{inTheatresCount}</div>
-                  <span className="text-[10px] text-emerald-400 font-kannada">ಕಳೆದ 30 ದಿನಗಳ ಬಿಡುಗಡೆ</span>
+                  <span className="text-[10px] text-emerald-400 font-kannada">Released in the last 30 days</span>
                 </div>
                 <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/30 shadow-2xs">
                   <span className="text-[11px] text-sky-400 font-bold block flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-sky-400" />
-                    <span>ಮುಂಬರುವ ಸಿನಿಮಾಗಳು (Upcoming)</span>
+                    <span>Upcoming Movies</span>
                   </span>
                   <div className="text-2xl font-black text-sky-400 mt-1">{upcomingCount}</div>
-                  <span className="text-[10px] text-sky-400 font-kannada">ದಿನಾಂಕ ಲೆಕ್ಕಾಚಾರದಲ್ಲಿ</span>
+                  <span className="text-[10px] text-sky-400 font-kannada">Counting down by date</span>
                 </div>
                 <div className="p-4 rounded-2xl bg-hall border border-glow-line shadow-2xs">
-                  <span className="text-[11px] text-popcorn-dim font-medium block">ಶಾಶ್ವತ ಆರ್ಕೈವ್ (Permanent Archive)</span>
+                  <span className="text-[11px] text-popcorn-dim font-medium block">Permanent Archive</span>
                   <div className="text-2xl font-black text-popcorn-dim mt-1">{archivedCount}</div>
-                  <span className="text-[10px] text-popcorn-dim font-kannada">30 ದಿನ ಮೀರಿದವು</span>
+                  <span className="text-[10px] text-popcorn-dim font-kannada">Older than 30 days</span>
                 </div>
               </div>
 
@@ -881,19 +881,19 @@ export default function AdminPage() {
                     onChange={(e) => setMovieLangFilter(e.target.value)}
                     className="bg-sheet border border-glow-line rounded-xl px-3 py-1.5 text-xs text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-sans shadow-2xs"
                   >
-                    <option value="all">ಎಲ್ಲಾ ಭಾಷೆಗಳು (All)</option>
-                    <option value="kn">ಕನ್ನಡ (Sandalwood)</option>
-                    <option value="te">ತೆಲುಗು (Tollywood)</option>
-                    <option value="ta">ತಮಿಳು (Kollywood)</option>
-                    <option value="ml">ಮಲಯಾಳಂ (Mollywood)</option>
-                    <option value="hi">ಹಿಂದಿ (Bollywood)</option>
+                    <option value="all">All Languages</option>
+                    <option value="kn">Kannada (Sandalwood)</option>
+                    <option value="te">Telugu (Tollywood)</option>
+                    <option value="ta">Tamil (Kollywood)</option>
+                    <option value="ml">Malayalam (Mollywood)</option>
+                    <option value="hi">Hindi (Bollywood)</option>
                     <option value="en">English (Hollywood)</option>
                   </select>
 
                   <div className="relative flex-1 sm:w-60">
                     <input
                       type="text"
-                      placeholder="ಸಿನಿಮಾ ಹುಡುಕಿ..."
+                      placeholder="Search movies..."
                       value={movieSearch}
                       onChange={(e) => setMovieSearch(e.target.value)}
                       className="w-full bg-sheet border border-glow-line rounded-xl pl-8 pr-3 py-1.5 text-xs text-popcorn placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson shadow-2xs"
@@ -908,20 +908,20 @@ export default function AdminPage() {
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr className="bg-hall text-popcorn-dim text-[11px] uppercase tracking-wider border-b border-glow-line font-mono">
-                      <th className="py-3.5 px-4 font-semibold">ಪೋಸ್ಟರ್</th>
-                      <th className="py-3.5 px-4 font-semibold">ಸಿನಿಮಾ ಹೆಸರು (Title)</th>
-                      <th className="py-3.5 px-4 font-semibold">ಬಿಡುಗಡೆ ದಿನಾಂಕ (Release Date)</th>
-                      <th className="py-3.5 px-4 font-semibold">ಚಿತ್ರರಂಗ</th>
-                      <th className="py-3.5 px-4 font-semibold">ಸ್ಥಿತಿ (Status)</th>
-                      <th className="py-3.5 px-4 font-semibold">ದಿನಾಂಕ ವಿಶ್ವಾಸ</th>
-                      <th className="py-3.5 px-4 text-right font-semibold">ಕ್ರಮಗಳು (Actions)</th>
+                      <th className="py-3.5 px-4 font-semibold">Poster</th>
+                      <th className="py-3.5 px-4 font-semibold">Title</th>
+                      <th className="py-3.5 px-4 font-semibold">Release Date</th>
+                      <th className="py-3.5 px-4 font-semibold">Industry</th>
+                      <th className="py-3.5 px-4 font-semibold">Status</th>
+                      <th className="py-3.5 px-4 font-semibold">Date Confidence</th>
+                      <th className="py-3.5 px-4 text-right font-semibold">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-glow-line">
                     {filteredMovies.length === 0 ? (
                       <tr>
                         <td colSpan={7} className="text-center py-12 text-popcorn-muted">
-                          ಯಾವುದೇ ಸಿನಿಮಾಗಳು ಕಂಡುಬಂದಿಲ್ಲ. &ldquo;ಹೊಸ ಸಿನಿಮಾ ಸೇರಿಸಿ&rdquo; ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ.
+                          No movies found. Click &ldquo;Add New Movie&rdquo; to get started.
                         </td>
                       </tr>
                     ) : (
@@ -933,9 +933,9 @@ export default function AdminPage() {
                         };
 
                         const statusLabels: Record<string, string> = {
-                          in_theatres: "ಪ್ರದರ್ಶನಗೊಳ್ಳುತ್ತಿದೆ",
-                          upcoming: "ಮುಂಬರುವ ಬಿಡುಗಡೆ",
-                          archived: "ಆರ್ಕೈವ್",
+                          in_theatres: "In Theatres",
+                          upcoming: "Upcoming Release",
+                          archived: "Archived",
                         };
 
                         return (
@@ -963,7 +963,7 @@ export default function AdminPage() {
                             <td className="py-3 px-4 whitespace-nowrap font-sans">
                               <div className="font-bold text-popcorn">{mov.theatricalReleaseDate}</div>
                               <div className="text-[10px] text-popcorn-dim font-kannada">
-                                {formatKannadaDate(mov.theatricalReleaseDate)}
+                                {formatEditorialDate(mov.theatricalReleaseDate)}
                               </div>
                             </td>
                             <td className="py-3 px-4">
@@ -1032,7 +1032,7 @@ export default function AdminPage() {
                 <div className="p-5 rounded-2xl bg-sheet border border-glow-line shadow-2xs">
                   <h4 className="text-sm font-bold text-popcorn flex items-center gap-2 mb-3">
                     <Sparkles className="w-4 h-4 text-amber-400" />
-                    <span>ದೈನಂದಿನ ಆಟೋಮೇಷನ್ ಲಾಗ್‌ಗಳು (Recent Automation Runs)</span>
+                    <span>Daily Automation Logs (Recent Runs)</span>
                   </h4>
                   <div className="space-y-2 text-xs font-mono">
                     {automationLogs.slice(0, 5).map((log) => (
@@ -1192,21 +1192,21 @@ export default function AdminPage() {
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-popcorn font-sans flex items-center gap-2">
                     <RefreshCw className="w-5 h-5 text-emerald-400" />
-                    <span>ಆಟೋ ಆಮದು ಲೇಖನಗಳು & ಸಂಪಾದಕೀಯ ಅನುಮೋದನೆ (Admin Approval Hub)</span>
+                    <span>Imported Articles & Editorial Approval (Approval Hub)</span>
                   </h3>
                   <p className="text-xs text-popcorn-dim mt-1 font-sans">
-                    ನೈಜ ಸುದ್ದಿ ಪೋರ್ಟಲ್‌ಗಳಿಂದ ಆಟೋ-ಆಮದಾದ ಲೇಖನಗಳ ಪರಿಶೀಲನೆ, ಅನುಮೋದನೆ ಮತ್ತು ಲೈವ್ ಪ್ರಕಟಣೆ.
+                    Review, approve and publish articles auto-imported from real news portals.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="px-3 py-1.5 rounded-xl bg-hall text-popcorn-dim text-xs font-sans font-bold border border-glow-line">
-                    ಒಟ್ಟು: {importedArticles.length}
+                    Total: {importedArticles.length}
                   </span>
                   <span className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-400 text-xs font-sans font-bold border border-amber-500/30">
-                    ಬಾಕಿ: {pendingArticles.length}
+                    Pending: {pendingArticles.length}
                   </span>
                   <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-sans font-bold border border-emerald-500/30">
-                    ಲೈವ್: {approvedArticles.length}
+                    Live: {approvedArticles.length}
                   </span>
                 </div>
               </div>
@@ -1222,7 +1222,7 @@ export default function AdminPage() {
                         : "bg-sheet text-popcorn-dim hover:text-popcorn border-glow-line hover:border-glow-line-strong"
                     }`}
                   >
-                    ಎಲ್ಲಾ ಆಮದು ({importedArticles.length})
+                    All Imported ({importedArticles.length})
                   </button>
                   <button
                     onClick={() => setImportedFilter("pending")}
@@ -1232,7 +1232,7 @@ export default function AdminPage() {
                         : "bg-amber-500/10 text-amber-400 hover:bg-amber-500/15 border-amber-500/30"
                     }`}
                   >
-                    <span>⏳ ಅನುಮೋದನೆ ಬಾಕಿ ({pendingArticles.length})</span>
+                    <span>⏳ Pending Approval ({pendingArticles.length})</span>
                   </button>
                   <button
                     onClick={() => setImportedFilter("published")}
@@ -1242,7 +1242,7 @@ export default function AdminPage() {
                         : "bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/15 border-emerald-500/30"
                     }`}
                   >
-                    ✓ ಲೈವ್ ಪ್ರಕಟಿತ ({approvedArticles.length})
+                    ✓ Live & Published ({approvedArticles.length})
                   </button>
                 </div>
 
@@ -1253,7 +1253,7 @@ export default function AdminPage() {
                       className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all active:scale-95"
                     >
                       <CheckCircle className="w-4 h-4" />
-                      <span>ಎಲ್ಲಾ ಬಾಕಿ ಅನುಮೋದಿಸಿ ({pendingArticles.length})</span>
+                      <span>Approve All Pending ({pendingArticles.length})</span>
                     </button>
                   )}
                   <button
@@ -1262,7 +1262,7 @@ export default function AdminPage() {
                     className="px-3.5 py-1.5 rounded-xl bg-hall hover:bg-screen text-popcorn text-xs font-bold flex items-center gap-1.5 border border-glow-line transition-all disabled:opacity-50"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? "animate-spin text-brand-crimson" : ""}`} />
-                    <span>{isSyncing ? "ಸಿಂಕ್ ಆಗುತ್ತಿದೆ..." : "ಫೀಡ್ ಸಿಂಕ್"}</span>
+                    <span>{isSyncing ? "Syncing..." : "Sync Feeds"}</span>
                   </button>
                 </div>
               </div>
@@ -1284,7 +1284,7 @@ export default function AdminPage() {
                     {displayedArticles.length === 0 ? (
                       <tr>
                         <td colSpan={6} className="py-8 text-center text-popcorn-muted font-sans text-xs">
-                          ಯಾವುದೇ ಲೇಖನಗಳು ಕಂಡುಬಂದಿಲ್ಲ. &quot;ಫೀಡ್ ಸಿಂಕ್&quot; ಕ್ಲಿಕ್ ಮಾಡಿ ಹೊಸ ಲೇಖನಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ.
+                          No articles found. Click &quot;Sync Feeds&quot; to import new articles.
                         </td>
                       </tr>
                     ) : (
@@ -1315,12 +1315,12 @@ export default function AdminPage() {
                               {isPending ? (
                                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
                                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-                                  ಅನುಮೋದನೆ ಬಾಕಿ
+                                  Pending Approval
                                 </span>
                               ) : (
                                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                                  ಲೈವ್ ಆಗಿದೆ
+                                  Live
                                 </span>
                               )}
                             </td>
@@ -1333,7 +1333,7 @@ export default function AdminPage() {
                                     title="Approve & Publish Live"
                                   >
                                     <CheckCircle className="w-3.5 h-3.5" />
-                                    <span>ಅನುಮೋದಿಸಿ</span>
+                                    <span>Approve</span>
                                   </button>
                                 )}
                                 {art.source?.url && (
@@ -1342,7 +1342,7 @@ export default function AdminPage() {
                                     target="_blank"
                                     rel="noreferrer"
                                     className="p-1.5 rounded-lg hover:bg-screen text-popcorn-dim hover:text-popcorn transition-colors border border-glow-line"
-                                    title="ಮೂಲ ಲೇಖನ ಲಿಂಕ್ (Original Canonical Source)"
+                                    title="Original Article (Canonical Source)"
                                   >
                                     <ExternalLink className="w-3.5 h-3.5" />
                                   </a>
@@ -1352,7 +1352,7 @@ export default function AdminPage() {
                                     href={`/news/${art.slug}`}
                                     target="_blank"
                                     className="p-1.5 rounded-lg hover:bg-sky-500/10 text-sky-400 hover:text-sky-400 transition-colors border border-transparent hover:border-sky-500/30"
-                                    title="ಸೈಟ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಿ"
+                                    title="View on Site"
                                   >
                                     <Eye className="w-3.5 h-3.5" />
                                   </Link>
@@ -1360,7 +1360,7 @@ export default function AdminPage() {
                                 <button
                                   onClick={() => handleDeleteArticle(art.id)}
                                   className="p-1.5 rounded-lg hover:bg-rose-500/10 text-rose-400 hover:text-rose-400 transition-colors border border-transparent hover:border-rose-500/30"
-                                  title="ತಿರಸ್ಕರಿಸಿ / ಅಳಿಸಿ"
+                                  title="Reject / Delete"
                                 >
                                   <Trash2 className="w-3.5 h-3.5" />
                                 </button>
@@ -1382,7 +1382,7 @@ export default function AdminPage() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-popcorn font-kannada">
-                ಸಿನಿಮಾ ವಿಮರ್ಶೆಗಳ ನಿರ್ವಹಣೆ ({reviews.length})
+                Movie Review Management ({reviews.length})
               </h3>
             </div>
 
@@ -1404,7 +1404,7 @@ export default function AdminPage() {
                     {rev.summary}
                   </p>
                   <div className="text-[11px] text-popcorn-dim font-kannada">
-                    ನಿರ್ದೇಶನ: <strong className="text-popcorn">{rev.director}</strong>
+                    Directed by: <strong className="text-popcorn">{rev.director}</strong>
                   </div>
                   <div className="pt-2 border-t border-glow-line flex items-center justify-between">
                     <span className="text-[10px] text-emerald-400 font-bold font-kannada bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
@@ -1415,7 +1415,7 @@ export default function AdminPage() {
                       target="_blank"
                       className="text-xs text-brand-crimson hover:underline font-kannada font-bold"
                     >
-                      ವಿಮರ್ಶೆ ವೀಕ್ಷಿಸಿ
+                      View Review
                     </Link>
                   </div>
                 </div>
@@ -1428,33 +1428,33 @@ export default function AdminPage() {
         {activeTab === "ads" && (
           <div className="space-y-6">
             <h3 className="text-base font-bold text-popcorn font-kannada">
-              ಜಾಹೀರಾತು ಸ್ಥಳಗಳ ನಿರ್ವಹಣೆ (Ad Placements)
+              Ad Placement Management
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
                 {
                   id: "head",
-                  placement: "ಹೆಡರ್ ಲೀಡರ್‌ಬೋರ್ಡ್ (728x90)",
-                  status: "ಸಕ್ರಿಯವಾಗಿದೆ (Active)",
-                  target: "ಮುಖಪುಟದ ಪ್ರಮುಖ ಹೆಡರ್",
+                  placement: "Header Leaderboard (728x90)",
+                  status: "Active",
+                  target: "Main homepage header",
                 },
                 {
                   id: "side",
-                  placement: "ಸೈಡ್‌ಬಾರ್ ರೆಕ್ಟ್ಯಾಂಗಲ್ (300x250)",
-                  status: "ಸಕ್ರಿಯವಾಗಿದೆ (Active)",
-                  target: "ಎಲ್ಲಾ ಸುದ್ದಿ ಪುಟಗಳು ಮತ್ತು ಮುಖಪುಟ",
+                  placement: "Sidebar Rectangle (300x250)",
+                  status: "Active",
+                  target: "All news pages and the homepage",
                 },
                 {
                   id: "in",
-                  placement: "ಇನ್-ಆರ್ಟಿಕಲ್ ಬ್ಯಾನರ್",
-                  status: "ಸಕ್ರಿಯವಾಗಿದೆ (Active)",
-                  target: "ಸುದ್ದಿ ಲೇಖನದ ಮಧ್ಯಭಾಗದಲ್ಲಿ",
+                  placement: "In-Article Banner",
+                  status: "Active",
+                  target: "Mid-body of news articles",
                 },
                 {
                   id: "foot",
-                  placement: "ಫೂಟರ್ ಬ್ಯಾನರ್",
-                  status: "ಸಕ್ರಿಯವಾಗಿದೆ (Active)",
-                  target: "ಪುಟದ ಕೊನೆಯಲ್ಲಿ",
+                  placement: "Footer Banner",
+                  status: "Active",
+                  target: "Bottom of every page",
                 },
               ].map((ad) => (
                 <div
@@ -1472,7 +1472,7 @@ export default function AdminPage() {
                   <p className="text-xs text-popcorn-dim font-kannada">{ad.target}</p>
                   <div className="pt-2 flex items-center gap-2">
                     <button className="px-3 py-1 rounded-xl bg-hall hover:bg-screen text-popcorn text-xs font-kannada transition-colors border border-glow-line">
-                      ಜಾಹೀರಾತು ಕೋಡ್ ಬದಲಿಸಿ
+                      Change Ad Code
                     </button>
                   </div>
                 </div>
@@ -1485,11 +1485,11 @@ export default function AdminPage() {
         {activeTab === "comments" && (
           <div className="space-y-6">
             <h3 className="text-base font-bold text-popcorn font-kannada">
-              ಓದುಗರ ಕಾಮೆಂಟ್‌ಗಳ ಸಮಗ್ರ ಪರಿಶೀಲನೆ
+              Reader Comments Review
             </h3>
             <div className="p-6 rounded-2xl bg-sheet border border-glow-line text-center space-y-2 shadow-2xs">
               <p className="text-xs sm:text-sm text-popcorn-dim font-kannada">
-                ಎಲ್ಲಾ ಸಾರ್ವಜನಿಕ ಕಾಮೆಂಟ್‌ಗಳು ಸ್ವಯಂ ಅನುಮೋದನೆ ಪಡೆದು ಲೈವ್ ಆಗಿವೆ. ದುರುದ್ದೇಶಪೂರಿತ ಅಥವಾ ಅಶ್ಲೀಲ ಪದಗಳನ್ನು ಆಟೋಮ್ಯಾಟಿಕ್ ಫಿಲ್ಟರ್ ಮಾಡಲಾಗುತ್ತದೆ.
+                All public comments are auto-approved and go live instantly. Malicious or abusive language is filtered automatically.
               </p>
             </div>
           </div>
@@ -1499,27 +1499,27 @@ export default function AdminPage() {
         {activeTab === "settings" && (
           <div className="space-y-6 max-w-2xl bg-sheet p-6 sm:p-8 rounded-2xl border border-glow-line shadow-2xs">
             <h3 className="text-base font-bold text-popcorn font-kannada">
-              ವೆಬ್‌ಸೈಟ್ & SEO ಸೆಟ್ಟಿಂಗ್ಸ್
+              Website & SEO Settings
             </h3>
             <div className="space-y-4 text-xs font-kannada">
               <div>
                 <label className="block text-popcorn-dim mb-1 font-semibold">
-                  ಪೋರ್ಟಲ್ ಶೀರ್ಷಿಕೆ (Site Title):
+                  Site Title:
                 </label>
                 <input
                   type="text"
-                  defaultValue="CINI JAATRE - ಪ್ರೀಮಿಯಂ ಬಹುಭಾಷಾ ಸಿನಿಮಾ ಜರ್ನಲಿಸಂ"
+                  defaultValue="CINI JAATRE — Premium Multilingual Cinema Journalism"
                   className="w-full bg-sheet border border-glow-line rounded-xl p-2.5 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                 />
               </div>
 
               <div>
                 <label className="block text-popcorn-dim mb-1 font-semibold">
-                  ಮೆಟಾ ವಿವರಣೆ (Meta Description):
+                  Meta Description:
                 </label>
                 <textarea
                   rows={3}
-                  defaultValue="ಸ್ಯಾಂಡಲ್ವುಡ್ ಇತ್ತೀಚಿನ ಸುದ್ದಿ, ಸಿನಿಮಾ ವಿಮರ್ಶೆ, ಬಾಕ್ಸ್ ಆಫೀಸ್, ಒಟಿಟಿ ಅಪ್ಡೇಟ್ಸ್ ಮತ್ತು ಫೋಟೋ ಗ್ಯಾಲರಿ."
+                  defaultValue="Latest Sandalwood news, movie reviews, box office, OTT updates and photo galleries."
                   className="w-full bg-sheet border border-glow-line rounded-xl p-2.5 text-popcorn resize-none focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                 />
               </div>
@@ -1536,10 +1536,10 @@ export default function AdminPage() {
               </div>
 
               <button
-                onClick={() => showToast("ಸೆಟ್ಟಿಂಗ್ಸ್ ಉಳಿಸಲಾಗಿದೆ!")}
+                onClick={() => showToast("Settings saved!")}
                 className="px-5 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold transition-all shadow-md shadow-brand-crimson/20 active:scale-95"
               >
-                ಸೆಟ್ಟಿಂಗ್ಸ್ ಉಳಿಸಿ (Save Settings)
+                Save Settings
               </button>
             </div>
           </div>
@@ -1553,7 +1553,7 @@ export default function AdminPage() {
             <div className="flex items-center justify-between pb-4 border-b border-glow-line mb-6">
               <h2 className="text-lg font-bold text-popcorn flex items-center gap-2">
                 <Clapperboard className="w-5 h-5 text-brand-crimson" />
-                <span>{editingMovie.id ? "ಸಿನಿಮಾ ವಿವರ ತಿದ್ದುಪಡಿ (Edit Movie)" : "ಹೊಸ ಸಿನಿಮಾ ಸೇರಿಸಿ (Add New Movie)"}</span>
+                <span>{editingMovie.id ? "Edit Movie" : "Add New Movie"}</span>
               </h2>
               <button
                 onClick={() => setIsMovieEditorOpen(false)}
@@ -1568,14 +1568,14 @@ export default function AdminPage() {
                 {/* Title (Regional / Kannada) */}
                 <div>
                   <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                    ಸಿನಿಮಾ ಹೆಸರು (Title - Native Script) *
+                    Movie Title *
                   </label>
                   <input
                     type="text"
                     required
                     value={editingMovie.title || ""}
                     onChange={(e) => setEditingMovie({ ...editingMovie, title: e.target.value })}
-                    placeholder="ಉದಾ: ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1"
+                    placeholder="e.g. Kantara Chapter 1"
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                   />
                 </div>
@@ -1638,8 +1638,8 @@ export default function AdminPage() {
                     }}
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                   >
-                    <option value="confirmed">ಖಚಿತ ದಿನಾಂಕ (Confirmed)</option>
-                    <option value="tentative">ತಾತ್ಕಾಲಿಕ ದಿನಾಂಕ (Tentative)</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="tentative">Tentative</option>
                   </select>
                 </div>
 
@@ -1665,11 +1665,11 @@ export default function AdminPage() {
                     }}
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                   >
-                    <option value="kn">ಕನ್ನಡ (Sandalwood)</option>
-                    <option value="te">తెలుగు (Tollywood)</option>
-                    <option value="ta">தமிழ் (Kollywood)</option>
-                    <option value="ml">മലയാളം (Mollywood)</option>
-                    <option value="hi">हिन्दी (Bollywood)</option>
+                    <option value="kn">Kannada (Sandalwood)</option>
+                    <option value="te">Telugu (Tollywood)</option>
+                    <option value="ta">Tamil (Kollywood)</option>
+                    <option value="ml">Malayalam (Mollywood)</option>
+                    <option value="hi">Hindi (Bollywood)</option>
                     <option value="en">English (Hollywood)</option>
                   </select>
                 </div>
@@ -1679,19 +1679,19 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                    ನಿರ್ದೇಶಕರು (Director)
+                    Director
                   </label>
                   <input
                     type="text"
                     value={editingMovie.director || ""}
                     onChange={(e) => setEditingMovie({ ...editingMovie, director: e.target.value })}
-                    placeholder="ಉದಾ: ರಿಷಬ್ ಶೆಟ್ಟಿ"
+                    placeholder="e.g. Rishab Shetty"
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                   />
                 </div>
                 <div>
                   <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                    ಪ್ರಮುಖ ತಾರಾಗಣ (Main Cast - Comma separated)
+                    Main Cast (Comma separated)
                   </label>
                   <input
                     type="text"
@@ -1700,10 +1700,10 @@ export default function AdminPage() {
                       const names = e.target.value.split(",").map((s) => s.trim()).filter(Boolean);
                       setEditingMovie({
                         ...editingMovie,
-                        cast: names.map((name) => ({ name, role: "ಮುಖ್ಯ ಪಾತ್ರ" })),
+                        cast: names.map((name) => ({ name, role: "Lead Role" })),
                       });
                     }}
-                    placeholder="ಉದಾ: ರಿಷಬ್ ಶೆಟ್ಟಿ, ರುಕ್ಮಿಣಿ ವಸಂತ್, ಜಯರಾಮ್"
+                    placeholder="e.g. Rishab Shetty, Rukmini Vasant, Jayaram"
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                   />
                 </div>
@@ -1713,7 +1713,7 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                    ಜಾನರ್ (Genres - Comma separated)
+                    Genres (Comma separated)
                   </label>
                   <input
                     type="text"
@@ -1724,13 +1724,13 @@ export default function AdminPage() {
                         genres: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
                       })
                     }
-                    placeholder="ಉದಾ: ಆಕ್ಷನ್, ಮೈಥಾಲಾಜಿಕಲ್ ಥ್ರಿಲ್ಲರ್, ಡ್ರಾಮಾ"
+                    placeholder="e.g. Action, Mythological Thriller, Drama"
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                   />
                 </div>
                 <div>
                   <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                    ನಿರ್ಮಾಣ ಸಂಸ್ಥೆ (Production House)
+                    Production House
                   </label>
                   <input
                     type="text"
@@ -1738,7 +1738,7 @@ export default function AdminPage() {
                     onChange={(e) =>
                       setEditingMovie({ ...editingMovie, productionCompany: e.target.value })
                     }
-                    placeholder="ಉದಾ: ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್"
+                    placeholder="e.g. Hombale Films"
                     className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                   />
                 </div>
@@ -1786,13 +1786,13 @@ export default function AdminPage() {
               {/* Synopsis */}
               <div>
                 <label className="block font-bold text-popcorn-dim mb-1 font-kannada">
-                  ಸಿನಿಮಾ ಕಥಾಸಾರಾಂಶ (Synopsis & Overview)
+                  Synopsis & Overview
                 </label>
                 <textarea
                   rows={4}
                   value={editingMovie.synopsis || ""}
                   onChange={(e) => setEditingMovie({ ...editingMovie, synopsis: e.target.value })}
-                  placeholder="ಸಿನಿಮಾದ ವಿವರವಾದ ಕಥಾಸಾರಾಂಶ, ತಾಂತ್ರಿಕ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ..."
+                  placeholder="Enter a detailed plot synopsis and technical details..."
                   className="w-full bg-sheet border border-glow-line rounded-xl px-3.5 py-2 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                 />
               </div>
@@ -1804,14 +1804,14 @@ export default function AdminPage() {
                   onClick={() => setIsMovieEditorOpen(false)}
                   className="px-4 py-2 rounded-xl bg-hall hover:bg-screen text-popcorn-dim font-bold transition-colors border border-glow-line"
                 >
-                  ರದ್ದುಮಾಡಿ (Cancel)
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   className="px-6 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold transition-all shadow-md shadow-brand-crimson/20 flex items-center gap-1.5 active:scale-95"
                 >
                   <Save className="w-4 h-4" />
-                  <span>ಸಿನಿಮಾ ಸೇವ್ ಮಾಡಿ (Save Movie)</span>
+                  <span>Save Movie</span>
                 </button>
               </div>
             </form>
@@ -1825,7 +1825,7 @@ export default function AdminPage() {
           <div className="relative w-full max-w-3xl bg-sheet rounded-3xl border border-glow-line shadow-2xl p-6 sm:p-8 my-8 font-kannada text-popcorn">
             <div className="flex items-center justify-between pb-4 border-b border-glow-line mb-6">
               <h2 className="text-lg font-bold text-popcorn">
-                {editingArticle.id ? "ಸುದ್ದಿ ಲೇಖನ ತಿದ್ದುಪಡಿ (Edit)" : "ಹೊಸ ಸುದ್ದಿ ಲೇಖನ ರಚನೆ (Create)"}
+                {editingArticle.id ? "Edit Article" : "Create New Article"}
               </h2>
               <button
                 onClick={() => setIsEditorOpen(false)}
@@ -1839,13 +1839,13 @@ export default function AdminPage() {
               {/* Title */}
               <div>
                 <label className="block font-bold text-popcorn-dim mb-1">
-                  ಕನ್ನಡ ಶೀರ್ಷಿಕೆ (Headline) *
+                  Headline *
                 </label>
                 <input
                   type="text"
                   value={editingArticle.title || ""}
                   onChange={(e) => setEditingArticle({ ...editingArticle, title: e.target.value })}
-                  placeholder="ಉದಾ: ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ಹೊಸ ಅಪ್ಡೇಟ್..."
+                  placeholder="e.g. New update on Kantara Chapter 1..."
                   required
                   className="w-full bg-sheet border border-glow-line rounded-xl p-2.5 text-sm text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson font-kannada"
                 />
@@ -1886,7 +1886,7 @@ export default function AdminPage() {
               {/* Category & Status */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold text-popcorn-dim mb-1">ವಿಭಾಗ (Category)</label>
+                  <label className="block font-semibold text-popcorn-dim mb-1">Category</label>
                   <select
                     value={editingArticle.category || "sandalwood"}
                     onChange={(e) =>
@@ -1906,7 +1906,7 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-popcorn-dim mb-1">ಸ್ಥಿತಿ (Status)</label>
+                  <label className="block font-semibold text-popcorn-dim mb-1">Status</label>
                   <select
                     value={editingArticle.status || "published"}
                     onChange={(e) => {
@@ -1924,9 +1924,9 @@ export default function AdminPage() {
                     }}
                     className="w-full bg-sheet border border-glow-line rounded-xl p-2.5 text-popcorn focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                   >
-                    <option value="published">ಈಗಲೇ ಪ್ರಕಟಿಸಿ (Publish Now)</option>
-                    <option value="draft">ಡ್ರಾಫ್ಟ್ (Draft)</option>
-                    <option value="scheduled">ಶೆಡ್ಯೂಲ್ (Schedule)</option>
+                    <option value="published">Publish Now</option>
+                    <option value="draft">Draft</option>
+                    <option value="scheduled">Schedule</option>
                   </select>
                 </div>
               </div>
@@ -1934,7 +1934,7 @@ export default function AdminPage() {
               {/* Featured Image */}
               <div>
                 <label className="block font-semibold text-popcorn-dim mb-1">
-                  ಮುಖ್ಯ ಚಿತ್ರದ URL (Featured Image URL)
+                  Featured Image URL
                 </label>
                 <input
                   type="url"
@@ -1950,7 +1950,7 @@ export default function AdminPage() {
               {/* Summary */}
               <div>
                 <label className="block font-semibold text-popcorn-dim mb-1">
-                  ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ (Summary / Excerpt) *
+                  Summary / Excerpt *
                 </label>
                 <textarea
                   rows={2}
@@ -1958,7 +1958,7 @@ export default function AdminPage() {
                   onChange={(e) =>
                     setEditingArticle({ ...editingArticle, summary: e.target.value })
                   }
-                  placeholder="ಸುದ್ದಿಯ ಪ್ರಮುಖ ಸಾರಾಂಶವನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."
+                  placeholder="Write the key takeaway of the story here..."
                   required
                   className="w-full bg-sheet border border-glow-line rounded-xl p-2.5 text-popcorn font-kannada resize-none focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                 />
@@ -1967,7 +1967,7 @@ export default function AdminPage() {
               {/* Rich Content */}
               <div>
                 <label className="block font-semibold text-popcorn-dim mb-1">
-                  ಸಂಪೂರ್ಣ ಕನ್ನಡ ಲೇಖನ (Full Rich Article) *
+                  Full Article Body *
                 </label>
                 <textarea
                   rows={8}
@@ -1975,7 +1975,7 @@ export default function AdminPage() {
                   onChange={(e) =>
                     setEditingArticle({ ...editingArticle, content: e.target.value })
                   }
-                  placeholder="ಪೂರ್ಣ ವಿವರಗಳು, ಉಪಶೀರ್ಷಿಕೆಗಳಿಗೆ ### ಬಳಸಿ, ದಪ್ಪ ಅಕ್ಷರಗಳಿಗೆ **ಬಳಸಿ**..."
+                  placeholder="Full details. Use ### for sub-headings and **bold** for emphasis..."
                   required
                   className="w-full bg-sheet border border-glow-line rounded-xl p-3 text-popcorn font-kannada resize-y focus:outline-none focus:ring-2 focus:ring-brand-crimson/20 focus:border-brand-crimson"
                 />
@@ -1992,7 +1992,7 @@ export default function AdminPage() {
                     }
                     className="w-4 h-4 text-brand-crimson rounded border-glow-line-strong focus:ring-brand-crimson"
                   />
-                  <span className="text-popcorn font-bold">ಬ್ರೇಕಿಂಗ್ ನ್ಯೂಸ್ (Breaking News)</span>
+                  <span className="text-popcorn font-bold">Breaking News</span>
                 </label>
 
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -2004,7 +2004,7 @@ export default function AdminPage() {
                     }
                     className="w-4 h-4 text-amber-500 rounded border-glow-line-strong focus:ring-amber-500"
                   />
-                  <span className="text-popcorn font-bold">ಟಾಪ್ ಸ್ಟೋರಿ (Top Story)</span>
+                  <span className="text-popcorn font-bold">Top Story</span>
                 </label>
 
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -2016,7 +2016,7 @@ export default function AdminPage() {
                     }
                     className="w-4 h-4 text-emerald-500 rounded border-glow-line-strong focus:ring-emerald-500"
                   />
-                  <span className="text-popcorn font-bold">ಟ್ರೆಂಡಿಂಗ್ (Trending)</span>
+                  <span className="text-popcorn font-bold">Trending</span>
                 </label>
               </div>
 
@@ -2027,14 +2027,14 @@ export default function AdminPage() {
                   onClick={() => setIsEditorOpen(false)}
                   className="px-4 py-2 rounded-xl bg-hall hover:bg-screen text-popcorn-dim font-bold transition-colors border border-glow-line"
                 >
-                  ರದ್ದುಮಾಡಿ (Cancel)
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   className="px-6 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold transition-all shadow-md shadow-brand-crimson/20 flex items-center gap-1.5 active:scale-95"
                 >
                   <Save className="w-4 h-4" />
-                  <span>ಪ್ರಕಟಿಸಿ (Publish Article)</span>
+                  <span>Publish Article</span>
                 </button>
               </div>
             </form>

@@ -10,70 +10,62 @@ import { getLanguageConfig } from "@/lib/languages";
 import { getTranslation } from "@/lib/translations";
 import { LanguageCode } from "@/types";
 
-interface BoxOfficePageProps {
-  searchParams?: {
-    lang?: string;
-  };
-}
-
-export async function generateMetadata({ searchParams }: BoxOfficePageProps): Promise<Metadata> {
-  const lang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(lang);
+export async function generateMetadata(): Promise<Metadata> {
+  const config = getLanguageConfig("en");
 
   return {
-    title: `${config.boxOfficeTitle} — Real-Time Multi-Source Cinema Tracking | CINI JAATRE`,
-    description: `${config.industryName} automated box office tracking, multi-source consolidated gross, net, distributor share and live theatre occupancy telemetry.`,
+    title: `${config.boxOfficeTitle} — Real-Time Multi-Source Cinema Tracking | EXTRASAGA`,
+    description: `All Indian cinema automated box office tracking, multi-source consolidated gross, net, distributor share and live theatre occupancy telemetry.`,
   };
 }
 
-export default async function BoxOfficePage({ searchParams }: BoxOfficePageProps) {
-  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
+export default async function BoxOfficePage() {
+  const activeLang = "en" as LanguageCode;
   const config = getLanguageConfig(activeLang);
 
   const [records, cityTelemetry, trendingArticles] = await Promise.all([
-    BoxOfficeEngineService.getConsolidatedRecords(activeLang),
+    BoxOfficeEngineService.getConsolidatedRecords(),
     BoxOfficeEngineService.getCityTelemetry(),
     DataService.getTrendingArticles(5, activeLang),
   ]);
 
   return (
-    <div className="w-full">
-      {/* The Receipts — Hero Band */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+    <div className="w-full bg-paper min-h-screen text-ink">
+      {/* The Receipts — Broadsheet Hero Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
-                <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
+              <div className="flex items-center gap-2 text-xs text-ink-dim mb-2 font-mono">
+                <Link href="/" className="hover:text-press font-bold transition-colors">
                   {getTranslation(activeLang, "nav_home")}
                 </Link>
                 <span>/</span>
-                <span className="text-marquee-soft font-bold">
+                <span className="text-press-deep font-bold">
                   {getTranslation(activeLang, "nav_boxoffice")}
                 </span>
               </div>
 
-              <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
-                The Receipts
-              </span>
-
-              <div className="flex items-center gap-2">
-                <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                  <span>{config.industryName} ರೇಡಾರ್</span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+                  THE RECEIPTS
                 </span>
-                <span className="text-xs font-mono-tabular font-bold text-popcorn-muted">•</span>
-                <span className="text-xs font-mono-tabular text-popcorn-dim font-bold uppercase tracking-[0.2em]">
-                  Multi-Source Aggregation Active
+                <span className="px-3 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+                  MULTI-SOURCE CONSOLIDATED
                 </span>
               </div>
+
+              <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
+                CONSOLIDATED <span className="text-press">BOX OFFICE</span> LEDGER
+              </h1>
+              <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
+                Statistically cleansed, outlier-free theatrical collections reconciled from distributor ledgers, ticket aggregators, and multiplex telemetry across India.
+              </p>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-marquee-soft bg-marquee/10 border border-marquee/25 px-3 py-1.5 rounded-2xl font-sans font-bold">
-              <span className="w-2 h-2 rounded-full bg-marquee animate-pulse" />
-              <span>ಏಕೀಕೃತ ನಿಷ್ಪಕ್ಷಪಾತ ವರದಿ (Consolidated Consensus)</span>
+            <div className="flex items-center gap-2 text-xs text-ink bg-marquee border-2 border-ink shadow-sticker px-3 py-1.5 font-poster uppercase self-start sm:self-center">
+              <span className="w-2 h-2 bg-ink animate-ping" />
+              <span>UNBIASED CONSENSUS ACTIVE</span>
             </div>
           </div>
         </div>

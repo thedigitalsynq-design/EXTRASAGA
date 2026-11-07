@@ -3,9 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Eye, Clock, Flame } from "lucide-react";
+import { Eye, Clock, Flame, ArrowUpRight, Zap } from "lucide-react";
 import { Article } from "@/types";
-import { formatKannadaDate, formatKannadaNumber } from "@/lib/utils";
+import { formatEditorialDate, formatCineNumber } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroTopStoriesProps {
@@ -13,165 +13,193 @@ interface HeroTopStoriesProps {
 }
 
 export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
-  const { language, config, t, localizeUrl } = useLanguage();
+  const { localizeUrl } = useLanguage();
   if (!articles || articles.length === 0) return null;
 
-  const langArticles = articles.filter(
-    (a) => a.language === language || (!a.language && language === "kn")
-  );
-  const activeArticles = langArticles.length > 0 ? langArticles : articles;
+  const leadStory = articles[0];
+  const secondaryStories = articles.slice(1, 3);
 
-  const leadStory = activeArticles[0];
-  const secondaryStories = activeArticles.slice(1, 3);
-
-  const readTimeLabel: Record<string, string> = {
-    kn: "ನಿಮಿಷ ಓದು",
-    te: "నిమిషాల పఠనం",
-    ta: "நிமிட வாசிப்பு",
-    ml: "മിനിറ്റ് വായന",
-    hi: "मिनट पढ़ें",
-    en: "min read",
+  // Industry badge color map in House Full Press tokens
+  const getIndustrySticker = (industry?: string) => {
+    switch (industry) {
+      case "bollywood":
+        return "bg-press text-paper";
+      case "tollywood":
+        return "bg-marquee text-ink";
+      case "kollywood":
+        return "bg-violet text-paper";
+      case "mollywood":
+        return "bg-sheet text-ink border-ink";
+      case "sandalwood":
+        return "bg-marquee text-ink";
+      default:
+        return "bg-band text-ink";
+    }
   };
 
-  const viewsLabel: Record<string, string> = {
-    kn: "ವೀಕ್ಷಣೆಗಳು",
-    te: "వీక్షణలు",
-    ta: "பார்வைகள்",
-    ml: "കാഴ്ചകൾ",
-    hi: "व्यूज",
-    en: "views",
+  const getIndustryLabel = (industry?: string) => {
+    switch (industry) {
+      case "bollywood":
+        return "Bollywood";
+      case "tollywood":
+        return "Tollywood";
+      case "kollywood":
+        return "Kollywood";
+      case "mollywood":
+        return "Mollywood";
+      case "sandalwood":
+        return "Sandalwood";
+      case "hollywood":
+        return "Hollywood";
+      default:
+        return "Pan-India";
+    }
   };
 
   return (
     <section aria-label="Lead Cinema Stories" className="w-full relative">
-      {/* Frontpage ambient rail */}
-      <div className="flex items-center justify-between pb-3 px-1 mb-3 flex-wrap gap-2">
-        <div className="flex items-center gap-2">
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-signal animate-pulse shadow-[0_0_16px_rgba(255,46,80,0.35)]" />
-          <span className="text-[11px] font-sans uppercase font-bold tracking-widest text-popcorn-dim">
-            {config.industryName} Cinema — The Frontpage Cut
-          </span>
+      {/* Front-page Press Lead Ribbon */}
+      <div className="flex items-center justify-between pb-3 px-1 mb-4 border-b-2 border-ink flex-wrap gap-2">
+        <div className="flex items-center gap-2.5">
+          <span className="w-3 h-3 bg-press border border-ink rotate-45 shrink-0" />
+          <h2 className="text-xs sm:text-sm font-poster uppercase tracking-[0.2em] text-ink font-bold flex items-center gap-2">
+            <span>THE FRONTPAGE CUT</span>
+            <span className="text-ink/40">/</span>
+            <span className="text-press font-bold">ALL INDIAN CINEMA</span>
+          </h2>
         </div>
-        <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-revealed/90 border border-glow-line text-[11px] text-popcorn-dim backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-ultra"></span>
-          <span className="font-display-latin uppercase tracking-wider">
-            Receipts-first • Source-verified
-          </span>
+
+        <div className="inline-flex items-center gap-2 px-3 py-0.5 bg-sheet border-2 border-ink shadow-sticker text-[10px] font-poster font-bold uppercase tracking-wider text-ink select-none -rotate-1">
+          <span className="w-2 h-2 rounded-full bg-press animate-pulse"></span>
+          <span>Receipts First · Zero Fake Tea</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-5 items-stretch">
-        {/* Dominant Hero Poster (7 cols) — big screen, vignette-to-void */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Dominant Hero Broadsheet Poster (7 cols) */}
         {leadStory && (
-          <div className="lg:col-span-7 group relative gpu-layer">
-            <div className="relative h-full rounded-[28px] overflow-hidden bg-revealed border border-glow-line group-hover:border-glow-line-strong transition-all duration-300">
-              <Link href={localizeUrl(`/news/${leadStory.slug}`)} className="block relative h-full min-h-[380px] sm:min-h-[460px] w-full">
-                <Image
-                  src={leadStory.featuredImage}
-                  alt={leadStory.title}
-                  fill
-                  priority
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                />
-                {/* Vignette-to-void scrim for the deck block */}
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/50 via-45% to-transparent"></div>
-
-                {/* Top projection chips */}
-                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex flex-wrap items-center gap-2 z-10">
-                  <span className="px-3 py-1 rounded-full bg-signal-deep text-popcorn text-xs font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(255,46,80,0.3)]">
-                    {leadStory.categoryName}
-                  </span>
-                  <span
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-void/60 text-popcorn-dim border border-glow-line backdrop-blur-md"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-ultra"></span>
-                    {config.industryName}
-                  </span>
-                  {leadStory.isTopStory && (
-                    <span className="px-3 py-1 rounded-full bg-revealed text-marquee-soft border border-marquee/30 text-xs font-extrabold uppercase flex items-center gap-1.5 backdrop-blur-md">
-                      <Flame className="w-3.5 h-3.5 fill-marquee text-marquee" />
-                      {t("sec_top_stories")}
-                    </span>
-                  )}
-                </div>
-
-                {/* Bottom deck block — glass cushion floats over the still */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 rounded-2xl bg-void/85 backdrop-blur-md border border-glow-line z-10 p-5 sm:p-6">
-                  <h1 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-popcorn leading-snug group-hover:text-signal-soft transition-colors duration-200 line-clamp-2 font-sans">
-                    {leadStory.title}
-                  </h1>
-                  <p className="mt-2 text-xs sm:text-sm text-popcorn-dim line-clamp-2 leading-relaxed hidden sm:block">
-                    {leadStory.summary}
-                  </p>
-
-                  {/* Metadata Row */}
-                  <div className="mt-3.5 pt-3 border-t border-glow-line flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-popcorn-dim font-sans">
-                    <span className="text-popcorn font-semibold">
-                      ✍️ {leadStory.author.name}
-                    </span>
-                    <span>•</span>
-                    <span>📅 {formatKannadaDate(leadStory.publishedAt)}</span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-ultra" />
-                      <span>{leadStory.readTimeMinutes} {readTimeLabel[language] || readTimeLabel.kn}</span>
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1 font-semibold text-popcorn">
-                      <Eye className="w-3.5 h-3.5 text-ultra" />
-                      <span>{formatKannadaNumber(leadStory.views)} {viewsLabel[language] || viewsLabel.kn}</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {/* Supporting Poster Stubs (5 cols) */}
-        <div className="lg:col-span-5 flex flex-col gap-5 sm:gap-5 justify-between">
-          {secondaryStories.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`group relative rounded-[28px] overflow-hidden bg-revealed border border-glow-line group-hover:border-glow-line-strong transition-all duration-300 flex-1 ${idx === 0 ? "min-h-[220px]" : "min-h-[200px]"
-                }`}
-            >
-              <Link href={localizeUrl(`/news/${item.slug}`)} className="block relative h-full w-full">
-                <div className="relative h-full min-h-[210px] w-full">
+          <div className="lg:col-span-7 group relative">
+            <article className="relative h-full bg-sheet border-2 border-ink shadow-press hover:shadow-press-lg transition-all duration-200 flex flex-col justify-between overflow-hidden">
+              <Link href={localizeUrl(`/news/${leadStory.slug}`)} className="block relative h-full w-full flex flex-col">
+                {/* Media Container with Halftone texture */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[16/10] w-full overflow-hidden bg-band border-b-2 border-ink">
                   <Image
-                    src={item.featuredImage}
-                    alt={item.title}
+                    src={leadStory.featuredImage}
+                    alt={leadStory.title}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 via-50% to-transparent"></div>
+                  <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-30 pointer-events-none" />
 
-                  {/* Category Chip */}
-                  <div className="absolute top-3.5 left-3.5 z-10">
-                    <span className="px-3 py-1 rounded-full bg-void/70 text-popcorn-dim text-[11px] font-bold uppercase border border-glow-line backdrop-blur-md">
-                      {item.categoryName}
+                  {/* Stamp badges on photo */}
+                  <div className="absolute top-3.5 left-3.5 flex flex-wrap items-center gap-2 z-10">
+                    <span className="px-3 py-1 bg-press text-paper text-xs font-poster font-bold uppercase tracking-wider border-2 border-ink shadow-sticker -rotate-2 select-none">
+                      {leadStory.categoryName || "Lead Story"}
                     </span>
+                    <span
+                      className={`px-2.5 py-1 text-[10px] font-poster font-bold uppercase tracking-wider border-2 border-ink shadow-sticker rotate-1 select-none ${getIndustrySticker(
+                        leadStory.industry
+                      )}`}
+                    >
+                      {getIndustryLabel(leadStory.industry)}
+                    </span>
+                    {leadStory.isTopStory && (
+                      <span className="px-2.5 py-1 bg-marquee text-ink border-2 border-ink text-xs font-poster font-bold uppercase flex items-center gap-1 shadow-sticker select-none">
+                        <Flame className="w-3.5 h-3.5 fill-ink text-ink" />
+                        <span>TOP WIRE</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Newsprint Headline & Copy Plate */}
+                <div className="p-5 sm:p-6 bg-sheet flex-1 flex flex-col justify-between">
+                  <div>
+                    <h1 className="text-xl sm:text-2xl md:text-3xl font-poster font-bold text-ink leading-tight group-hover:text-press transition-colors duration-150 line-clamp-3 uppercase tracking-tight">
+                      {leadStory.title}
+                    </h1>
+                    <p className="mt-2.5 text-xs sm:text-sm text-ink-dim line-clamp-2 leading-relaxed font-sans font-medium">
+                      {leadStory.summary}
+                    </p>
                   </div>
 
-                  {/* Bottom Glass Capsule */}
-                  <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-void/80 backdrop-blur-md border border-glow-line z-10 p-3.5 sm:p-4">
-                    <h2 className="text-xs sm:text-base font-bold text-popcorn leading-snug group-hover:text-signal-soft transition-colors duration-200 line-clamp-2 font-sans">
-                      {item.title}
-                    </h2>
-                    <div className="mt-2 flex items-center gap-2.5 text-[11px] text-popcorn-dim font-sans">
-                      <span>{formatKannadaDate(item.publishedAt)}</span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1 font-semibold text-popcorn">
-                        <Eye className="w-3 h-3 text-ultra" />
-                        <span>{formatKannadaNumber(item.views)}</span>
+                  {/* Metadata Bar */}
+                  <div className="mt-4 pt-3.5 border-t-2 border-ink/20 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-dim font-mono-tabular">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-ink uppercase font-poster tracking-wider text-[11px]">
+                        BY {leadStory.author.name}
+                      </span>
+                      <span className="text-ink/30">·</span>
+                      <span>{formatEditorialDate(leadStory.publishedAt)}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-[11px] font-bold">
+                      <span className="flex items-center gap-1 text-ink-mute">
+                        <Clock className="w-3.5 h-3.5 text-ink" />
+                        <span>{leadStory.readTimeMinutes} min read</span>
+                      </span>
+                      <span className="flex items-center gap-1 text-press font-black">
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>{formatCineNumber(leadStory.views)}</span>
                       </span>
                     </div>
                   </div>
                 </div>
               </Link>
-            </div>
+            </article>
+          </div>
+        )}
+
+        {/* Supporting Frontpage Stacks (5 cols) */}
+        <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
+          {secondaryStories.map((item, idx) => (
+            <article
+              key={item.id}
+              className="group relative bg-sheet border-2 border-ink shadow-press hover:shadow-press-lg transition-all duration-200 flex-1 flex flex-col overflow-hidden"
+            >
+              <Link href={localizeUrl(`/news/${item.slug}`)} className="flex flex-col h-full justify-between">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-band border-b-2 border-ink">
+                  <Image
+                    src={item.featuredImage}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                  <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-25 pointer-events-none" />
+
+                  {/* Industry & Category badges */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+                    <span className="px-2 py-0.5 bg-paper text-ink text-[10px] font-poster font-bold uppercase border-2 border-ink shadow-sticker">
+                      {item.categoryName || "Exclusive"}
+                    </span>
+                    <span
+                      className={`px-2 py-0.5 text-[9px] font-poster font-bold uppercase border-2 border-ink shadow-sticker ${getIndustrySticker(
+                        item.industry
+                      )}`}
+                    >
+                      {getIndustryLabel(item.industry)}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-4 sm:p-5 bg-sheet flex-1 flex flex-col justify-between">
+                  <h3 className="text-sm sm:text-base font-poster font-bold text-ink leading-snug group-hover:text-press transition-colors line-clamp-2 uppercase">
+                    {item.title}
+                  </h3>
+
+                  <div className="mt-3 pt-2.5 border-t-2 border-dashed border-ink/20 flex items-center justify-between text-[11px] font-mono-tabular text-ink-dim">
+                    <span>{formatEditorialDate(item.publishedAt)}</span>
+                    <span className="flex items-center gap-1 font-bold text-ink">
+                      <Eye className="w-3 h-3 text-press" />
+                      <span>{formatCineNumber(item.views)} views</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </article>
           ))}
         </div>
       </div>

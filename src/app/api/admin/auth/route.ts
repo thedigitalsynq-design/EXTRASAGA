@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   if (!rateLimit.allowed) {
     return NextResponse.json(
       {
-        error: "ಬಹಳಷ್ಟು ವಿಫಲ ಪ್ರಯತ್ನಗಳು. ದಯವಿಟ್ಟು 15 ನಿಮಿಷಗಳ ನಂತರ ಪ್ರಯತ್ನಿಸಿ (Too many login attempts. Please wait 15 minutes).",
+        error: "Too many login attempts. Please wait 15 minutes.",
       },
       { status: 429, headers: { "Retry-After": "900" } }
     );
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 
     if (!isEmailValid || !isPasswordValid) {
       return NextResponse.json(
-        { error: "ತಪ್ಪಾದ ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್ (Invalid credentials)" },
+        { error: "Invalid credentials" },
         { status: 401 }
       );
     }
@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
 
     return response;
   } catch {
-    return NextResponse.json({ error: "ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ದೋಷ ಸಂಭವಿಸಿದೆ" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred during login" }, { status: 500 });
   }
 }
 

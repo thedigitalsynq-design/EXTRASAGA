@@ -175,21 +175,21 @@ export function formatReleaseDateIST(
 
   let relativeBadge = "";
   if (diffDays === 0) {
-    relativeBadge = "ಇಂದೇ ಬಿಡುಗಡೆ! (Releasing Today)";
+    relativeBadge = "Releasing Today!";
   } else if (diffDays === 1) {
-    relativeBadge = "ನಾಳೆ ಬಿಡುಗಡೆ (Releasing Tomorrow)";
+    relativeBadge = "Releasing Tomorrow";
   } else if (diffDays > 1 && diffDays <= 7) {
-    relativeBadge = `${diffDays} ದಿನಗಳಲ್ಲಿ (In ${diffDays} Days)`;
+    relativeBadge = `In ${diffDays} Days`;
   } else if (diffDays > 7 && diffDays <= 30) {
-    relativeBadge = `ಮುಂದಿನ ${diffDays} ದಿನಗಳಲ್ಲಿ`;
+    relativeBadge = `Next ${diffDays} Days`;
   } else if (diffDays > 30) {
-    relativeBadge = `ಮುಂಬರುವ ಬಿಡುಗಡೆ (${Math.round(diffDays / 30)} ತಿಂಗಳು)`;
+    relativeBadge = `Upcoming Release (${Math.round(diffDays / 30)} Months)`;
   } else if (diffDays >= -7) {
-    relativeBadge = `ಈ ವಾರ ಬಿಡುಗಡೆಯಾಗಿದೆ (${Math.abs(diffDays)} ದಿನಗಳ ಹಿಂದೆ)`;
+    relativeBadge = `Released This Week (${Math.abs(diffDays)} Days Ago)`;
   } else if (diffDays >= -30) {
-    relativeBadge = `ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ ಪ್ರದರ್ಶನ (${Math.abs(diffDays)} ದಿನಗಳ ಹಿಂದೆ)`;
+    relativeBadge = `Now in Theatres (${Math.abs(diffDays)} Days Ago)`;
   } else {
-    relativeBadge = "ಆರ್ಕೈವ್ ಬಿಡುಗಡೆ (Archived Release)";
+    relativeBadge = "Archived Release";
   }
 
   return { formatted, relativeBadge, diffDays };

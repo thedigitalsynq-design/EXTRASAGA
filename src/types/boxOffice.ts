@@ -67,7 +67,7 @@ export interface NormalizedReport {
  */
 export interface CityCinemaTelemetry {
   city: string; // e.g. "Bengaluru", "Hyderabad", "Chennai", "Mumbai"
-  nativeName?: string; // e.g. "ಬೆಂಗಳೂರು", "హైదరాబాద్"
+  nativeName?: string; // e.g. "Bengaluru", "Hyderabad"
   state: string;
   trackedTheatres: number;
   trackedShows: number;
@@ -112,7 +112,7 @@ export interface BoxOfficeLifecycleTrajectory {
 export interface ConsolidatedBoxOfficeRecord {
   id: string;
   movieId: string;
-  movieTitle: string; // Native script e.g. "ಕಾಂತಾರ: ಚಾಪ್ಟರ್ 1"
+  movieTitle: string; // Display title e.g. "Kantara: Chapter 1"
   movieTitleEn: string; // English title e.g. "Kantara: Chapter 1"
   slug: string;
   posterImage: string;
@@ -140,10 +140,10 @@ export interface ConsolidatedBoxOfficeRecord {
   rank: number;
 
   // Formatted Strings for Backward-Compatibility with BoxOfficeEntry
-  day1Collection: string; // e.g. "₹25 ಕೋಟಿ"
-  weekendCollection: string; // e.g. "₹70 ಕೋಟಿ"
-  worldwideCollection: string; // e.g. "₹450 ಕೋಟಿ+"
-  budget: string; // e.g. "₹100 ಕೋಟಿ"
+  day1Collection: string; // e.g. "₹25 Cr"
+  weekendCollection: string; // e.g. "₹70 Cr"
+  worldwideCollection: string; // e.g. "₹450 Cr+"
+  budget: string; // e.g. "₹100 Cr"
 
   // Analytics Deep Dives
   trajectory: BoxOfficeLifecycleTrajectory;

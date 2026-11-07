@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Globe2, Layers, TrendingUp, Info } from "lucide-react";
+import React from "react";
+import { Globe2 } from "lucide-react";
 import { ConsolidatedBoxOfficeRecord, TerritoryFinancialBreakdown } from "@/types/boxOffice";
-import { useLanguage } from "@/context/LanguageContext";
 
 interface BoxOfficeTerritoryRadarProps {
   movie: ConsolidatedBoxOfficeRecord;
@@ -16,35 +15,6 @@ export default function BoxOfficeTerritoryRadar({
   currency,
   viewMode,
 }: BoxOfficeTerritoryRadarProps) {
-  const { language } = useLanguage();
-
-  const labels = {
-    kn: {
-      pill: "ಪ್ರಾದೇಶಿಕ & ಸಾಗರೋತ್ತರ ಹಂಚಿಕೆ",
-      title: `${movie.movieTitle} — ಪ್ರಾದೇಶಿಕ ಆದಾಯ ಹಂಚಿಕೆ`,
-      subtitle:
-        "ರಾಜ್ಯವಾರು ಮತ್ತು ಅಂತಾರಾಷ್ಟ್ರೀಯ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಸಂಗ್ರಹವಾದ ಒಟ್ಟು, ನಿವ್ವಳ ಹಾಗೂ ವಿತರಕರ ಗಳಿಕೆಯ ಸಮಗ್ರ ವರ್ಗೀಕರಣ.",
-      territory: "ಪ್ರಾಂತ್ಯ / ಮಾರುಕಟ್ಟೆ",
-      gross: "ಸಮಗ್ರ (Gross)",
-      net: "ನಿವ್ವಳ (Net)",
-      share: "ವಿತರಕರ ಪಾಲು",
-      occupancy: "ಆಕ್ಯುಪೆನ್ಸಿ",
-      marketShare: "ಮಾರುಕಟ್ಟೆ ಪಾಲು",
-    },
-    en: {
-      pill: "TERRITORY & OVERSEAS AUDIT",
-      title: `${movie.movieTitleEn} — Territorial Collection Distribution`,
-      subtitle:
-        "Comprehensive territory-wise segregation of theatrical gross, statutory ex-GST net, and realized distributor share.",
-      territory: "Territory / Market",
-      gross: "Gross",
-      net: "Net (Ex-GST)",
-      share: "Distributor Share",
-      occupancy: "Avg Occupancy",
-      marketShare: "Market Share",
-    },
-  }[language === "kn" ? "kn" : "en"];
-
   const formatAmount = (crores: number) => {
     if (currency === "USD") {
       const millions = ((crores * 10_000_000) / 84.0 / 1_000_000).toFixed(2);
@@ -60,71 +30,66 @@ export default function BoxOfficeTerritoryRadar({
   };
 
   return (
-    <section className="w-full bg-white rounded-3xl border border-gray-200/90 p-6 sm:p-8 shadow-sm">
+    <section className="w-full bg-sheet border-2 border-ink shadow-press p-5 sm:p-6">
       {/* Header */}
-      <div className="space-y-2 pb-6 mb-6 border-b border-gray-200/80">
-        <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase bg-amber-50 border border-amber-200 text-amber-800 shadow-2xs">
-          <Globe2 className="w-3.5 h-3.5 text-amber-600" />
-          <span>{labels.pill}</span>
+      <div className="space-y-2 pb-5 mb-5 border-b-2 border-ink">
+        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 text-xs font-poster uppercase tracking-wider bg-marquee text-ink border-2 border-ink shadow-sticker">
+          <Globe2 className="w-3.5 h-3.5" />
+          <span>TERRITORY &amp; OVERSEAS AUDIT</span>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-black text-gray-950 tracking-tight font-sans">
-          {labels.title}
+        <h3 className="text-lg sm:text-xl font-poster uppercase text-ink tracking-tight">
+          {movie.movieTitleEn} — Territorial Collection Distribution
         </h3>
 
-        <p className="text-xs text-gray-500 font-normal">{labels.subtitle}</p>
+        <p className="text-xs text-ink-dim font-grotesk font-medium">
+          Comprehensive territory-wise segregation of theatrical gross, statutory ex-GST net, and realized distributor share.
+        </p>
       </div>
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse text-xs">
+        <table className="w-full text-left border-collapse text-xs font-grotesk">
           <thead>
-            <tr className="border-b border-gray-200 text-gray-500 uppercase font-mono tracking-wider bg-gray-50/80">
-              <th className="py-3 px-4 font-semibold">{labels.territory}</th>
-              <th className="py-3 px-4 font-semibold">{labels.gross}</th>
-              <th className="py-3 px-4 font-semibold">{labels.net}</th>
-              <th className="py-3 px-4 font-semibold text-[#A92732]">{labels.share}</th>
-              <th className="py-3 px-4 font-semibold">{labels.occupancy}</th>
-              <th className="py-3 px-4 text-right font-semibold">{labels.marketShare}</th>
+            <tr className="border-b-2 border-ink text-ink uppercase font-poster tracking-wider bg-band">
+              <th className="py-2.5 px-3 font-bold">Territory / Market</th>
+              <th className="py-2.5 px-3 font-bold">Gross</th>
+              <th className="py-2.5 px-3 font-bold">Net (Ex-GST)</th>
+              <th className="py-2.5 px-3 font-bold text-press-deep">Distributor Share</th>
+              <th className="py-2.5 px-3 font-bold">Avg Occupancy</th>
+              <th className="py-2.5 px-3 text-right font-bold">Market Share</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 font-sans">
+          <tbody className="divide-y border-t border-line">
             {movie.territories.map((t) => {
-              const activeVal = getMetric(t);
-
               return (
-                <tr key={t.territory} className="hover:bg-gray-50/70 transition-colors">
-                  <td className="py-3.5 px-4 font-bold text-gray-950">
-                    <div>
-                      {language === "kn" && t.regionalTitle ? t.regionalTitle : t.territory}
-                    </div>
-                    <span className="text-[10px] text-gray-400 font-normal">
-                      {t.territory}
-                    </span>
+                <tr key={t.territory} className="hover:bg-band/40 transition-colors">
+                  <td className="py-3 px-3 font-bold text-ink">
+                    <div className="font-poster uppercase">{t.territory}</div>
                   </td>
-                  <td className="py-3.5 px-4 font-mono font-medium text-gray-800">
+                  <td className="py-3 px-3 font-mono font-bold text-ink">
                     {formatAmount(t.grossInCrores)}
                   </td>
-                  <td className="py-3.5 px-4 font-mono text-gray-600">
+                  <td className="py-3 px-3 font-mono text-ink-dim">
                     {formatAmount(t.netInCrores)}
                   </td>
-                  <td className="py-3.5 px-4 font-mono font-bold text-[#A92732]">
+                  <td className="py-3 px-3 font-mono font-bold text-press-deep">
                     {formatAmount(t.distributorShareInCrores)}
                   </td>
-                  <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 text-gray-800 text-[10px] font-bold font-mono">
+                  <td className="py-3 px-3">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-paper text-ink border border-ink text-[10px] font-bold font-mono">
                       {t.occupancyRate}%
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-right">
+                  <td className="py-3 px-3 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <div className="w-16 h-1.5 rounded-full bg-gray-100 overflow-hidden hidden sm:block">
+                      <div className="w-16 h-2 border border-ink bg-paper overflow-hidden hidden sm:block">
                         <div
-                          className="h-full bg-amber-500 rounded-full"
+                          className="h-full bg-press"
                           style={{ width: `${t.marketSharePercent}%` }}
                         />
                       </div>
-                      <span className="font-mono font-bold text-gray-900 text-xs">
+                      <span className="font-mono font-bold text-ink text-xs">
                         {t.marketSharePercent}%
                       </span>
                     </div>
@@ -138,4 +103,3 @@ export default function BoxOfficeTerritoryRadar({
     </section>
   );
 }
-

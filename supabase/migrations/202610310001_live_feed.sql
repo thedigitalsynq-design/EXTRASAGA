@@ -5,21 +5,21 @@
 
 -- 0. Seed categories first; articles.category_slug references this table.
 insert into public.categories (name, english_name, slug, description) values
-  ('ಮುಖಪುಟ', 'Home', 'mukhaputa', 'ಸಿನಿ ಕನ್ನಡ ಮುಖಪುಟ'),
-  ('ಇತ್ತೀಚಿನ ಸುದ್ದಿ', 'Latest News', 'latest', 'ಕ್ಷಣಕ್ಷಣದ ಸುದ್ದಿ'),
-  ('ಸಿನಿಮಾ ವಿಮರ್ಶೆ', 'Movie Reviews', 'reviews', 'ನೈಜ ಸಿನಿಮಾ ವಿಮರ್ಶೆಗಳು'),
-  ('ಸ್ಯಾಂಡಲ್ವುಡ್', 'Sandalwood', 'sandalwood', 'ಕನ್ನಡ ಚಿತ್ರರಂಗದ ಸಮಾಚಾರ'),
-  ('ಬಾಲಿವುಡ್', 'Bollywood', 'bollywood', 'ಹಿಂದಿ ಸಿನಿಮಾ ಸುದ್ದಿ'),
-  ('ಹಾಲಿವುಡ್', 'Hollywood', 'hollywood', 'ಅಂತರರಾಷ್ಟ್ರೀಯ ಸಿನಿಮಾ ಸುದ್ದಿ'),
-  ('ನಟರು', 'Actors', 'actors', 'ನಟರ ಸುದ್ದಿ'),
-  ('ನಟಿಯರು', 'Actresses', 'actresses', 'ನಟಿಯರ ಸುದ್ದಿ'),
-  ('ಸಂದರ್ಶನ', 'Interviews', 'interviews', 'ಸಂದರ್ಶನಗಳು'),
-  ('ಗಾಸಿಪ್', 'Gossip', 'gossip', 'ಸಿನಿಮಾ ಗಾಸಿಪ್'),
-  ('ಫೋಟೋ ಗ್ಯಾಲರಿ', 'Photo Gallery', 'gallery', 'ಫೋಟೋ ಗ್ಯಾಲರಿ'),
-  ('ವಿಡಿಯೋಗಳು', 'Videos', 'videos', 'ಟ್ರೇಲರ್ ಮತ್ತು ವಿಡಿಯೋ'),
-  ('OTT ಅಪ್ಡೇಟ್', 'OTT Updates', 'ott', 'OTT ಬಿಡುಗಡೆಗಳು'),
-  ('ಬಾಕ್ಸ್ ಆಫೀಸ್', 'Box Office', 'box-office', 'ಬಾಕ್ಸ್ ಆಫೀಸ್ ವರದಿ'),
-  ('ಮುಂಬರುವ ಸಿನಿಮಾಗಳು', 'Upcoming Movies', 'upcoming', 'ಮುಂಬರುವ ಸಿನಿಮಾಗಳು')
+  ('Home', 'Home', 'mukhaputa', 'Cinema frontpage — the latest breaking stories and entertainment'),
+  ('Latest News', 'Latest News', 'latest', 'Real-time news from the Indian film world'),
+  ('Movie Reviews', 'Movie Reviews', 'reviews', 'Honest and strictly unbiased film verdicts'),
+  ('Sandalwood', 'Sandalwood', 'sandalwood', 'Complete coverage of the Kannada film industry'),
+  ('Bollywood', 'Bollywood', 'bollywood', 'Hot tea and updates from the Hindi film world'),
+  ('Hollywood', 'Hollywood', 'hollywood', 'Global cinema news and international releases'),
+  ('Actors', 'Actors', 'actors', 'Star actor news — on screen and off screen'),
+  ('Actresses', 'Actresses', 'actresses', 'New projects, fashion and interviews from the leading ladies'),
+  ('Interviews', 'Interviews', 'interviews', 'Exclusive sit-downs and conversations with the stars'),
+  ('Gossip', 'Gossip', 'gossip', 'Hot tea from the wider cinema world'),
+  ('Photo Gallery', 'Photo Gallery', 'gallery', 'Star photo drops and cinema event galleries'),
+  ('Videos', 'Videos', 'videos', 'New trailers, teasers and song video drops'),
+  ('OTT Updates', 'OTT Updates', 'ott', 'Verified streaming releases across platforms'),
+  ('Box Office', 'Box Office', 'box-office', 'Receipts-backed collections and box office reports'),
+  ('Upcoming Movies', 'Upcoming Movies', 'upcoming', 'Every verified release heading to theatres next')
 on conflict (slug) do nothing;
 
 -- 1. Scraped article support. Editorial rows keep their full content.

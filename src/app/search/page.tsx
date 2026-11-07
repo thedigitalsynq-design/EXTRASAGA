@@ -19,7 +19,7 @@ interface SearchPageProps {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = (searchParams.q || "").trim().toLowerCase();
   const selectedCat = searchParams.cat || "";
-  const activeLang = (searchParams.lang || "kn") as LanguageCode;
+  const activeLang = (searchParams.lang || "en") as LanguageCode;
   const config = getLanguageConfig(activeLang);
 
   const [allArticles, trendingArticles] = await Promise.all([
@@ -43,31 +43,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   });
 
   const emptyResultText: Record<string, { title: string; desc: string; btn: string }> = {
-    kn: {
-      title: "ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ!",
-      desc: "ದಯವಿಟ್ಟು ಬೇರೆ ಕೀವರ್ಡ್ ಮೂಲಕ ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಮುಖಪುಟದ ತಾಜಾ ಸುದ್ದಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ.",
-      btn: "ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ",
-    },
-    te: {
-      title: "ఎలాంటి ఫలితాలు కనుగొనబడలేదు!",
-      desc: "దయచేసి వేరే కీవర్డ్ తో వెతకండి లేదా హోమ్ పేజీ తాజా వార్తలను చూడండి.",
-      btn: "హోమ్ పేజీకి వెళ్లండి",
-    },
-    ta: {
-      title: "முடிவுகள் எதுவும் கிடைக்கவில்லை!",
-      desc: "தயவுசெய்து மாற்று சொற்கள் மூலம் தேடவும் அல்லது முகப்புப் பக்க செய்திகளைப் பார்க்கவும்.",
-      btn: "முகப்புக்குச் செல்லவும்",
-    },
-    ml: {
-      title: "ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല!",
-      desc: "ദയവായി മറ്റൊരു കീവേഡ് ഉപയോഗിച്ച് തിരയുക അല്ലെങ്കിൽ ഹോം പേജിലെ പുതിയ വാർത്തകൾ കാണുക.",
-      btn: "ഹോം പേജിലേക്ക് പോകുക",
-    },
-    hi: {
-      title: "कोई परिणाम नहीं मिला!",
-      desc: "कृपया अन्य कीवर्ड के साथ खोजें या होम पेज पर ताज़ा ख़बरें देखें।",
-      btn: "होम पेज पर जाएं",
-    },
     en: {
       title: "No results found!",
       desc: "Please try searching with different keywords or explore latest cinema news on the home page.",
@@ -75,7 +50,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     },
   };
 
-  const emptyText = emptyResultText[activeLang] || emptyResultText.kn;
+  const emptyText = emptyResultText[activeLang] || emptyResultText.en;
 
   return (
     <div className="w-full">
@@ -96,12 +71,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
-            {getTranslation(activeLang, "nav_search")} ({config.industryName} Articles)
+            {getTranslation(activeLang, "nav_search")} (All Indian Cinema Articles)
           </h1>
 
           {/* Search Form */}
           <form method="GET" action="/search" className="mt-5 max-w-2xl flex gap-2">
-            <input type="hidden" name="lang" value={activeLang} />
             <div className="relative flex-1">
               <input
                 type="text"
@@ -126,7 +100,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             {config.hotTopics.map((tag) => (
               <Link
                 key={tag}
-                href={`/search?q=${encodeURIComponent(tag)}&lang=${activeLang}`}
+                href={`/search?q=${encodeURIComponent(tag)}`}
                 className="px-2.5 py-1 rounded-full bg-revealed hover:bg-signal-deep text-popcorn-dim hover:text-popcorn text-xs border border-glow-line transition-colors font-medium shadow-2xs"
               >
                 #{tag}
@@ -161,7 +135,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                   {emptyText.desc}
                 </p>
                 <Link
-                  href={`/?lang=${activeLang}`}
+                  href="/"
                   className="inline-block mt-3 px-5 py-2.5 rounded-xl bg-signal-deep text-popcorn text-xs font-bold hover:bg-signal transition-colors shadow-sm"
                 >
                   {emptyText.btn}

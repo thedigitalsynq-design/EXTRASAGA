@@ -5,8 +5,7 @@ import { ConsolidatedBoxOfficeRecord, CityCinemaTelemetry } from "@/types/boxOff
 import BoxOfficeTrackingHero from "./BoxOfficeTrackingHero";
 import BoxOfficeInteractiveTable from "./BoxOfficeInteractiveTable";
 import CityCinemaTelemetrySection from "./CityCinemaTelemetry";
-import { ShieldCheck, Info } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
+import { ShieldCheck } from "lucide-react";
 
 interface BoxOfficeClientHubProps {
   initialRecords: ConsolidatedBoxOfficeRecord[];
@@ -17,7 +16,6 @@ export default function BoxOfficeClientHub({
   initialRecords,
   initialCityTelemetry,
 }: BoxOfficeClientHubProps) {
-  const { language } = useLanguage();
   const [records, setRecords] = useState<ConsolidatedBoxOfficeRecord[]>(initialRecords);
   const [cityTelemetry, setCityTelemetry] = useState<CityCinemaTelemetry[]>(initialCityTelemetry);
   const [viewMode, setViewMode] = useState<"gross" | "net" | "share">("gross");
@@ -73,25 +71,20 @@ export default function BoxOfficeClientHub({
         currency={currency}
       />
 
-      {/* 4. Privacy & Methodological Transparency Assurance Notice */}
-      <div className="p-5 rounded-2xl bg-white border border-gray-200/90 shadow-2xs flex items-start gap-3.5 text-xs text-gray-600">
-        <div className="p-2 rounded-xl bg-gray-100 text-gray-800 shrink-0">
-          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+      {/* 4. Transparency & Consensus Methodology Assurance Notice */}
+      <div className="p-5 bg-sheet border-2 border-ink shadow-press flex items-start gap-3.5 text-xs text-ink-dim">
+        <div className="p-2 bg-band text-ink border border-ink shrink-0">
+          <ShieldCheck className="w-4 h-4 text-press-deep" />
         </div>
         <div className="space-y-1">
-          <span className="font-bold text-gray-950 font-sans block">
-            {language === "kn"
-              ? "ನಿಷ್ಪಕ್ಷಪಾತ ಡೇಟಾ ಸಮನ್ವಯ ಮತ್ತು ಗೌಪ್ಯತಾ ಮಾನದಂಡ"
-              : "Consolidated Consensus Methodology & Integrity Assurance"}
+          <span className="font-poster uppercase text-ink block">
+            Consolidated Consensus Methodology &amp; Integrity Assurance
           </span>
-          <p className="leading-relaxed text-gray-500 font-normal">
-            {language === "kn"
-              ? "ಈ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುವ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಅಂಕಿಅಂಶಗಳು ಚಿತ್ರಮಂದಿರಗಳ ನೈಜ ಟಿಕೆಟ್ ಟೆಲಿಮೆಟ್ರಿ, ವಿತರಕರ ಜಿಎಸ್‌ಟಿ-ಪಾವತಿ ವರದಿಗಳು ಮತ್ತು ಸ್ವತಂತ್ರ ಗ್ರೌಂಡ್ ಟ್ರ್ಯಾಕರ್‌ಗಳಿಂದ ಪಡೆದ ಅಂಕಿಅಂಶಗಳ ಸಂಖ್ಯಾಶಾಸ್ತ್ರೀಯ ಕ್ರೋಢೀಕರಣವಾಗಿದೆ. ಕೃತಕ ಪಿಆರ್ ಕ್ಲೈಮ್‌ಗಳನ್ನು ನಿಗ್ರಹಿಸಿ ಒಂದೇ ನಿಖರ ಅಧಿಕೃತ ಫಲಿತಾಂಶವನ್ನು ಒದಗಿಸಲಾಗುತ್ತದೆ."
-              : "Our automated aggregation engine normalizes reporting formats across exhibitors, ticketing platforms, and distributor ledgers. By applying interquartile range (IQR) statistical outlier suppression, inflated claims are filtered out, delivering one clean, tamper-free consolidated result."}
+          <p className="leading-relaxed font-grotesk text-ink-dim font-medium">
+            Our automated aggregation engine normalizes reporting formats across exhibitors, ticketing platforms, and distributor ledgers. By applying interquartile range (IQR) statistical outlier suppression, inflated claims are filtered out, delivering one clean, tamper-free consolidated result.
           </p>
         </div>
       </div>
     </div>
   );
 }
-

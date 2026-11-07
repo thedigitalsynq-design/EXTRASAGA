@@ -29,7 +29,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
         />
         <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/40 to-transparent flex flex-col justify-end p-3">
           <span className="text-[9px] uppercase tracking-widest text-marquee-soft font-display-latin font-bold mb-0.5">
-            ಪ್ರಾಯೋಜಿತ &middot; SPONSORED
+            SPONSORED
           </span>
           <p className="text-xs sm:text-sm font-bold text-popcorn font-kannada drop-shadow">
             {ad.title}
@@ -59,7 +59,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
     return (
       <div className={`w-full my-4 text-center ${className}`}>
         <span className="text-[10px] uppercase tracking-widest text-popcorn-muted font-display-latin block mb-1">
-          ಜಾಹೀರಾತು (Advertisement)
+          Advertisement
         </span>
         <iframe
           srcDoc={`<!DOCTYPE html><html><head><style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style></head><body>${ad.adCode}</body></html>`}

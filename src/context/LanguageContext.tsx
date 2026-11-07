@@ -1,17 +1,20 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import React, { createContext, useContext, useState, ReactNode, useCallback } from "react";
 import { LanguageCode } from "@/types";
 import {
   SUPPORTED_LANGUAGES,
   DEFAULT_LANGUAGE,
   getLanguageConfig,
-  isLanguageCode,
   LanguageConfig,
 } from "@/lib/languages";
 import { Translations, getTranslation, getLocalizedCategoryName } from "@/lib/translations";
 
+/**
+ * English-only edition: the language state is permanently "en".
+ * The context and its API are kept so existing consumers keep working,
+ * but every resolution is a no-op toward the English configuration.
+ */
 interface LanguageContextType {
   language: LanguageCode;
   setLanguage: (code: LanguageCode) => void;
@@ -33,54 +36,12 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const router = useRouter();
-  const [language, setLanguageState] = useState<LanguageCode>(DEFAULT_LANGUAGE);
-
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const urlLang = url.searchParams.get("lang");
-    const savedLang = localStorage.getItem("cinijaatre_lang");
-    const effectiveLang = isLanguageCode(urlLang)
-      ? urlLang
-      : isLanguageCode(savedLang)
-      ? savedLang
-      : DEFAULT_LANGUAGE;
-
-    setLanguageState(effectiveLang);
-    document.documentElement.lang = effectiveLang;
-    document.documentElement.setAttribute("data-lang", effectiveLang);
-
-    if (
-      (urlLang !== null && urlLang !== effectiveLang) ||
-      (urlLang === null && effectiveLang !== DEFAULT_LANGUAGE)
-    ) {
-      if (effectiveLang === DEFAULT_LANGUAGE) {
-        url.searchParams.delete("lang");
-      } else {
-        url.searchParams.set("lang", effectiveLang);
-      }
-      router.replace(`${url.pathname}${url.search}${url.hash}`, { scroll: false });
-    }
-  }, [router]);
+  const [language] = useState<LanguageCode>(DEFAULT_LANGUAGE);
 
   const setLanguage = useCallback((code: LanguageCode) => {
-    setLanguageState(code);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("cinijaatre_lang", code);
-      document.cookie = `cinijaatre_lang=${code}; path=/; max-age=31536000; SameSite=Lax`;
-      document.documentElement.lang = code;
-      document.documentElement.setAttribute("data-lang", code);
-
-      const url = new URL(window.location.href);
-      if (code === DEFAULT_LANGUAGE) {
-        url.searchParams.delete("lang");
-      } else {
-        url.searchParams.set("lang", code);
-      }
-      router.replace(`${url.pathname}${url.search}${url.hash}`, { scroll: false });
-      window.dispatchEvent(new CustomEvent("languagechange", { detail: code }));
-    }
-  }, [router]);
+    // Single-language edition: switching is a no-op (always English).
+    void code;
+  }, []);
 
   const config = getLanguageConfig(language);
 
@@ -90,9 +51,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const localizeUrl = useCallback(
     (path: string) => {
-      if (language === DEFAULT_LANGUAGE) return path;
-      const separator = path.includes("?") ? "&" : "?";
-      return `${path}${separator}lang=${language}`;
+      return path;
     },
     [language]
   );

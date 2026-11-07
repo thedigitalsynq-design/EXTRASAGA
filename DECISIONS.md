@@ -10,7 +10,7 @@ This document records the architectural and technical decisions made for the **E
 - **Decision**: Avoid all `shadcn/ui` and `@radix-ui/*` dependencies, opting for pure Tailwind CSS and accessible semantic HTML.
 - **Rationale**:
   - Eliminates excessive bundle bloat and deep dependency trees.
-  - Ensures seamless styling across high-contrast native Indian language scripts.
+  - Ensures seamless styling across the high-contrast Latin editorial type system.
   - Guarantees zero version conflicts with Next.js 14 App Router and Edge runtime builds.
 
 ---
@@ -62,4 +62,15 @@ This document records the architectural and technical decisions made for the **E
 - **Rationale**:
   - Aligns with audience sentiment regarding sacred and landmark cinematic adaptations.
   - Distinctive editorial voice that sets EXTRASAGA apart from commoditized review aggregators.
+
+---
+
+## ADR-007: After-Dark / Emission Copy Voice over Corporate Hype Register
+- **Status**: Accepted (v3.0.0)
+- **Context**: Entertainment portals trend toward either rigid corporate PR tone or hype-account clickbait; both erode reader trust in receipts and verdicts.
+- **Decision**: Adopt the **After-Dark / Emission Edition** copy voice (v3.0.0) as the editorial standard — Gen Z-native, certified film-brain journalism with information-first headlines (~12 words), receipts-backed box office, zero-fake tea, and dead-serious numbers. Apply it to `translations.ts`, data seeds, and docs; make zero visual or engineering changes alongside it.
+- **Rationale**:
+  - Speaks the audience's language while out-hyping no one: verifiable trade facts are the platform's flex.
+  - Preserves all existing agenda machinery — six industries and scripts, Asia/Kolkata engine, verified-source ingestion, admin workflows, security stack — without a single rule change.
+  - Isolates voice changes into strings-only diffs, keeping the House Full Press v4 design system and the Vitest contract suite untouched.
 

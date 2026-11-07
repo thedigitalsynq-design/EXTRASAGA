@@ -6,9 +6,10 @@ Thank you for your interest in contributing to **EXTRASAGA**! Please review the 
 
 ## 1. Code of Conduct & Core Principles
 - **No `shadcn/ui`**: All UI components must use pure Tailwind CSS and accessible semantic HTML. Do not install `@radix-ui/*` or shadcn component wrappers.
-- **Maintain Multilingual Parity**: Any changes affecting UI labels, navigation menus, or metadata must provide translations across all six languages (`kn`, `te`, `ta`, `ml`, `hi`, `en`) in `src/lib/translations.ts`.
+- **English-Only Publication**: UI labels, navigation, metadata, and seed content ship in English (`src/lib/translations.ts` pins one English dictionary; `languages.ts` collapses every legacy code to the English edition). Films keep their own language identity — a Kannada movie is still tagged `kn` as a film fact. No per-language UI parity is required anymore.
 - **Zero Fake News**: Never seed misleading or fictional stories. All cinema news items must reflect authentic trade reports or include publisher attribution.
 - **Reverent Presentation**: Preserve the landmark status and absence of commercial star ratings on the *Ramayana Part 1* spotlight review.
+- **After-Dark Copy Voice (v3.0.0)**: New strings follow the certified film-brain voice — information-first headlines (≤ ~12 words), receipts-backed box office, zero fake tea, verdicts and numbers dead-serious. No clickbait lies, no corporate fam-speak, no emoji-spam, and reverence copy (Ramayana coverage) stays poetic and meme-free.
 
 ---
 

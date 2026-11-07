@@ -28,19 +28,19 @@ export default function Footer() {
                     EXTRA<span className="text-marquee">SAGA</span>
                   </span>
                   <span className="px-2 py-0.5 text-[10px] font-poster font-bold uppercase tracking-wider bg-violet text-paper border-2 border-paper rotate-1">
-                    ONE INDIAN CINEMA
+                    ONE UNIFIED PLATFORM
                   </span>
                 </div>
                 <p className="text-[10px] text-paper/60 font-poster tracking-[0.2em] uppercase mt-1 flex items-center gap-1.5">
                   <span className="font-bold text-marquee">House Full</span>
                   <span className="text-paper/30">·</span>
-                  <span>Six Industries. One Screen.</span>
+                  <span>All Indian Cinema. One Screen.</span>
                 </p>
               </div>
             </Link>
 
             <p className="text-xs sm:text-sm text-paper/70 leading-relaxed max-w-sm">
-              EXTRASAGA is the unified press desk for the entire Indian cinema industry — Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood and beyond. Verified drops, receipt-backed numbers, honest verdicts, native scripts. No fake tea, no paid verdicts, no missing receipts.
+              EXTRASAGA is the unified entertainment platform covering the entire Indian film industry — Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and regional cinema. Receipts-backed box office reports, verified news drops, analytical reviews, and trade telemetry in English. No fake tea, no paid verdicts, no missing receipts.
             </p>
 
             <div className="pt-1">
@@ -113,7 +113,7 @@ export default function Footer() {
           <div>
             <h4 className="flex items-center gap-2 text-sm font-poster text-paper uppercase tracking-widest mb-4">
               <span className="inline-block w-4 h-4 bg-marquee border-2 border-paper -rotate-2" />
-              {config.industryName} Desks
+              Pan-India Desks
             </h4>
             <ul className="space-y-2.5 text-xs text-paper/70">
               <li>
@@ -121,7 +121,7 @@ export default function Footer() {
                   href={localizeUrl("/box-office")}
                   className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
-                  {t("nav_boxoffice")} ({config.industryName})
+                  {t("nav_boxoffice")} (All Industries)
                 </Link>
               </li>
               <li>
@@ -129,7 +129,7 @@ export default function Footer() {
                   href={localizeUrl("/movies")}
                   className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
-                  ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು (Now Showing)
+                  Now Showing
                 </Link>
               </li>
               <li>
@@ -137,7 +137,7 @@ export default function Footer() {
                   href={localizeUrl("/archive")}
                   className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
-                  ಶಾಶ್ವತ ಆರ್ಕೈವ್ (The Deep Print)
+                  The Deep Print
                 </Link>
               </li>
               <li>

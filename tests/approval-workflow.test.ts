@@ -47,7 +47,7 @@ describe("Real-Time Ingestion, Free Tiers & Editorial Approval Workflow", () => 
       summary: "Under review by admin desk",
       content: "Exclusive trade report waiting for verification.",
       category: "sandalwood" as const,
-      categoryName: "ಸ್ಯಾಂಡಲ್ವುಡ್",
+      categoryName: "Sandalwood",
       tags: ["Prabhas", "Prashanth Neel"],
       featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23",
       author: { id: "p1", name: "News18 Desk" },
@@ -101,7 +101,7 @@ describe("Real-Time Ingestion, Free Tiers & Editorial Approval Workflow", () => 
       readTimeMinutes: 2,
       views: 0,
       category: "bollywood",
-      categoryName: "ಬಾಲಿವುಡ್",
+      categoryName: "Bollywood",
       tags: [],
       featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23",
     });
@@ -117,7 +117,7 @@ describe("Real-Time Ingestion, Free Tiers & Editorial Approval Workflow", () => 
       readTimeMinutes: 2,
       views: 0,
       category: "sandalwood",
-      categoryName: "ಸ್ಯಾಂಡಲ್ವುಡ್",
+      categoryName: "Sandalwood",
       tags: [],
       featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23",
     });

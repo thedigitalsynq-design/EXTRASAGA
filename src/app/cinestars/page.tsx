@@ -5,98 +5,75 @@ import CineStarLeaderboard from "@/components/CineStarLeaderboard";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
 import { DataService } from "@/lib/dataService";
-import { getLanguageConfig } from "@/lib/languages";
-import { LanguageCode } from "@/types";
 import { CINESTAR_SUMMARY_STATS } from "@/data/cineStarData";
 
-interface CineStarsPageProps {
-  searchParams?: { lang?: string };
-}
-
-export async function generateMetadata({ searchParams }: CineStarsPageProps): Promise<Metadata> {
-  const lang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(lang);
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `ಸಿನಿಸ್ಟಾರ್ ಲೀಡರ್‌ಬೋರ್ಡ್ — CineStar Real-Time Rankings | CiniJaatre`,
-    description: `India's most powerful cinema personalities ranked by box office power, cultural impact & daily momentum. ${CINESTAR_SUMMARY_STATS.totalTracked} stars tracked across Sandalwood, Tollywood, Kollywood, Mollywood & Bollywood.`,
-    openGraph: {
-      title: "CineStar Real-Time Leaderboard — India's Most Powerful Cinema Personalities",
-      description: `${CINESTAR_SUMMARY_STATS.totalTracked} cinema stars. ₹${(CINESTAR_SUMMARY_STATS.totalBoxOfficePowerCr / 1000).toFixed(0)}K Cr combined power. Updated daily.`,
-    },
+    title: `CineStar Leaderboard — Real-Time Rankings | EXTRASAGA`,
+    description: `India's most powerful cinema personalities ranked by box office power, cultural impact & daily momentum across all Indian film industries.`,
   };
 }
 
-export default async function CineStarsPage({ searchParams }: CineStarsPageProps) {
-  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
-  const config = getLanguageConfig(activeLang);
-  const trendingArticles = await DataService.getTrendingArticles(5, activeLang);
+export default async function CineStarsPage() {
+  const trendingArticles = await DataService.getTrendingArticles(5, "en");
 
   return (
-    <div className="w-full">
-      {/* ─── CineStar Power Rankings — Hero Band ─── */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
-        {/* Cinema grid pattern */}
-        <div className="cinema-grid-bg absolute inset-0 opacity-20 pointer-events-none" />
+    <div className="w-full bg-paper min-h-screen text-ink">
+      {/* CineStar Power Rankings — Broadsheet Hero Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-3 font-mono-tabular">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn transition-colors">
+          <div className="flex items-center gap-2 text-xs text-ink-dim mb-3 font-mono">
+            <Link href="/" className="hover:text-press font-bold transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-marquee-soft">CineStar Leaderboard</span>
+            <span className="text-press-deep font-bold">CineStar Leaderboard</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                {/* Live pulse badge */}
-                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-signal/10 border border-signal/25 text-signal-soft text-[11px] font-black uppercase tracking-[0.2em] font-display-latin">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-signal" />
-                  </span>
-                  Real-Time Rankings
+                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase flex items-center gap-1.5">
+                  <span className="w-2 h-2 bg-paper animate-ping" />
+                  REAL-TIME RANKINGS
                 </span>
-                <span className="text-popcorn-muted text-[11px] font-mono-tabular">
-                  Updated: {new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })} IST
+                <span className="text-ink-mute text-[11px] font-mono font-bold">
+                  UPDATED: {new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })} IST
                 </span>
               </div>
-              <span className="inline-block mb-2 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
-                CineStar Power Rankings
-              </span>
-              <h1 className="text-3xl sm:text-5xl font-bold font-display-latin text-popcorn tracking-tight leading-none">
-                CineStar<span className="text-marquee-soft"> Leaderboard</span>
+              <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
+                CINESTAR<span className="text-press"> LEADERBOARD</span>
               </h1>
-              <p className="text-popcorn-dim text-sm sm:text-base mt-2 max-w-xl font-medium">
+              <p className="text-ink-dim text-xs sm:text-sm mt-2 max-w-xl font-grotesk font-medium leading-relaxed">
                 India's definitive real-time ranking of the most powerful cinema personalities — by box office dominance, cultural influence, and daily market momentum.
               </p>
             </div>
 
             {/* Summary pill strip */}
             <div className="flex flex-wrap gap-3 shrink-0">
-              <div className="bg-revealed border border-glow-line rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black font-mono-tabular text-popcorn">{CINESTAR_SUMMARY_STATS.totalTracked}</div>
-                <div className="text-[11px] text-popcorn-dim font-semibold">Stars Tracked</div>
+              <div className="bg-paper border-2 border-ink shadow-sticker px-4 py-3 text-center">
+                <div className="text-2xl font-poster uppercase text-ink">{CINESTAR_SUMMARY_STATS.totalTracked}</div>
+                <div className="text-[10px] text-ink-dim font-grotesk font-bold uppercase">Stars Tracked</div>
               </div>
-              <div className="bg-revealed border border-glow-line rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black font-mono-tabular text-popcorn">
+              <div className="bg-paper border-2 border-ink shadow-sticker px-4 py-3 text-center">
+                <div className="text-2xl font-poster uppercase text-ink">
                   ₹{(CINESTAR_SUMMARY_STATS.totalBoxOfficePowerCr / 1000).toFixed(0)}K Cr
                 </div>
-                <div className="text-[11px] text-popcorn-dim font-semibold">Combined Power</div>
+                <div className="text-[10px] text-ink-dim font-grotesk font-bold uppercase">Combined Power</div>
               </div>
-              <div className="bg-marquee/10 border border-marquee/25 rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black font-mono-tabular text-marquee-soft">
+              <div className="bg-marquee text-ink border-2 border-ink shadow-sticker px-4 py-3 text-center">
+                <div className="text-2xl font-poster uppercase text-ink">
                   +{CINESTAR_SUMMARY_STATS.topGainerChangePct}%
                 </div>
-                <div className="text-[11px] text-marquee-soft/80 font-semibold">Top Gainer Today</div>
+                <div className="text-[10px] text-ink font-grotesk font-bold uppercase">Top Gainer Today</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ─── Main Content ─── */}
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Leaderboard — 9 cols */}
@@ -107,26 +84,26 @@ export default async function CineStarsPage({ searchParams }: CineStarsPageProps
           {/* Sidebar — 3 cols */}
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-20 self-start">
             {/* Methodology card */}
-            <div className="bg-revealed rounded-[24px] border border-glow-line p-5 shadow-sm">
-              <h3 className="text-sm font-black text-popcorn mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-ultra/15 border border-ultra/30 flex items-center justify-center text-ultra-soft text-[10px] font-black">?</span>
-                ರ‍್ಯಾಂಕಿಂಗ್ ವಿಧಾನ
+            <div className="bg-sheet border-2 border-ink shadow-press p-5">
+              <h3 className="text-xs font-poster uppercase tracking-wider text-ink mb-3 flex items-center gap-2">
+                <span className="w-5 h-5 bg-ink text-paper border border-ink flex items-center justify-center text-[10px] font-bold">?</span>
+                <span>RANKING METHODOLOGY</span>
               </h3>
-              <ul className="space-y-2 text-xs text-popcorn-dim">
+              <ul className="space-y-2 text-xs font-grotesk text-ink-dim">
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
                   Box office power — lifetime verified gross from consolidated trade
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
                   Daily momentum — opening collections of active releases
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
-                  Cultural influence — social & editorial coverage weight
+                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
+                  Cultural influence — social &amp; editorial coverage weight
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
                   Zero paid AI — 100% deterministic algorithm
                 </li>
               </ul>

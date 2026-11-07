@@ -210,7 +210,7 @@ describe("Real-Time Movie Discovery & Release Verification System", () => {
     it("gracefully handles candidate with malformed date strings", () => {
       const malformedCandidate = {
         rawId: "malformed-test",
-        title: "ಟೆಸ್ಟ್ ಸಿನಿಮಾ",
+        title: "Test Cinema",
         titleEn: "Malformed Date Test",
         slug: "malformed-date-test",
         industry: "sandalwood" as const,

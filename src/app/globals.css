@@ -23,19 +23,12 @@
   --press-violet: #4F2BEF;
   --press-gold: #F0B429;
 
-  /* Regional script stacks — untouched, non-negotiable */
-  --font-noto-serif-kannada: 'Noto Serif Kannada', serif;
-  --font-benne: 'Benne', serif;
-  --font-kannada: 'Noto Serif Kannada', 'Benne', 'Anek Kannada', 'Noto Sans Kannada', 'Hubballi', serif;
-  --font-telugu: 'Baloo Tammudu 2', sans-serif;
-  --font-tamil: 'Catamaran', 'Baloo Thambi 2', sans-serif;
-  --font-malayalam: 'Chilanka', sans-serif;
-  --font-hindi: 'Khand', sans-serif;
+  /* English edition font stacks */
   --font-english: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display-latin: 'Space Grotesk', 'DM Sans', sans-serif;
   --font-poster: 'Archivo Black', 'Space Grotesk', sans-serif;
-  --font-sans: var(--font-kannada);
-  --font-display: var(--font-noto-serif-kannada);
+  --font-sans: var(--font-english);
+  --font-display: var(--font-display-latin);
 }
 
 html {
@@ -104,29 +97,11 @@ html[data-lang="kn"] {
   contain-intrinsic-size: 1px 700px;
 }
 
-html[data-lang="te"] { --font-sans: var(--font-telugu); }
-html[data-lang="ta"] { --font-sans: var(--font-tamil); }
-html[data-lang="ml"] { --font-sans: var(--font-malayalam); }
-html[data-lang="hi"] { --font-sans: var(--font-hindi); }
-html[data-lang="en"] { --font-sans: var(--font-english); }
+/* English edition — single type system; legacy per-language data-lang switches retired */
 
 body {
   font-family: var(--font-sans);
 }
-
-.font-hubballi {
-  font-family: var(--font-kannada);
-}
-
-.font-hubballi.font-bold,
-.font-hubballi-bold {
-  font-weight: 700;
-}
-
-.font-telugu { font-family: var(--font-telugu); }
-.font-tamil { font-family: var(--font-tamil); }
-.font-malayalam { font-family: var(--font-malayalam); }
-.font-hindi { font-family: var(--font-hindi); }
 
 .font-english,
 .font-brand-en,

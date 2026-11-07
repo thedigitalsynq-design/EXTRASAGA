@@ -1,6 +1,6 @@
 # ROADMAP.md — Future Development & Strategic Evolution
 
-This document outlines the strategic roadmap for **EXTRASAGA**, divided into planned phases of engineering, content intelligence, and audience engagement.
+This document outlines the strategic roadmap for **EXTRASAGA**, divided into planned phases of engineering, content intelligence, and audience engagement. The current release point is **v3.0.0 — After-Dark / Emission Edition** (copy-voice relaunch, zero visual changes), setting up Phase 2 content intelligence work on top of a voice-native seed layer.
 
 ```
 +-----------------------------------------------------------------------------------------+
@@ -24,6 +24,7 @@ This document outlines the strategic roadmap for **EXTRASAGA**, divided into pla
 - [x] Production security safeguards: Edge middleware headers, strict CSP, sliding-window rate limits, and timing-safe HMAC admin authentication.
 - [x] Landmark *Ramayana Part 1* spotlight review across all 6 languages.
 - [x] Comprehensive test suite (127 Vitest unit and integration tests).
+- [x] **After-Dark / Emission Edition copy voice rollout (v3.0.0)**: certified film-brain rewrite of UI strings and seed headlines across all six languages; docs rebranded; pending Phase 2: codify the styleguide as automated PR checks.
 
 ---
 
@@ -53,7 +54,7 @@ This document outlines the strategic roadmap for **EXTRASAGA**, divided into pla
 
 ## Phase 4: AI Content Intelligence & Industry Ticketing (Q3 2027)
 - [ ] **AI-Assisted Editorial Co-Pilot**:
-  - Automatic multilingual translation assistance from primary trade scoops.
+  - Automatic translation assistance from primary trade scoops into the English edition.
   - Automatic key takeaways and bullet-point summaries for long-form analysis.
 - [ ] **Box Office Predictive Modeling**: Historical algorithm forecasting opening weekend collections based on trailer views and advance booking trends.
 - [ ] **Ticketing Integrations**: Direct affiliate deep-links to BookMyShow and Paytm Insider for active theatrical releases.

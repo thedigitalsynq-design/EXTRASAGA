@@ -8,33 +8,28 @@
 
 > **"Different languages. Different cultures. Different filmmaking traditions. One industry. One identity. One platform. EXTRASAGA — Bringing Indian Cinema Together."**
 
-**EXTRASAGA** is a unified, professional, English-language corporate platform representing the entire Indian cinema industry. From Bollywood to Sandalwood, Tollywood to Kollywood, Mollywood to Bengali, Marathi, Punjabi, and every other regional film industry, EXTRASAGA brings the entire ecosystem together under one identity.
+**EXTRASAGA** is a unified, professional, English-language platform representing the entire Indian cinema industry — relaunched for the **After-Dark / Emission Edition (v3.0.0)** with a Gen Z-native, certified film-brain voice: receipts-backed box office, zero-fake tea, strictly unbiased verdicts, and headlines that inform before they impress. From Bollywood to Sandalwood, Tollywood to Kollywood, Mollywood to Bengali, Marathi, Punjabi, and every other regional film industry, EXTRASAGA brings the entire ecosystem together under one identity.
 
 ---
 
 ## 🏛️ Core Principles
 
-1. **One Brand. One Identity**: Consistent corporate representation of Indian cinema as a unified global powerhouse.
+1. **One Brand. One Identity**: Consistent, authoritative representation of Indian cinema as a unified global powerhouse — one desk, one standard, every industry.
 2. **Complete Indian Cinema Coverage**: Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood, Bengali, Punjabi, and regional film industries.
-3. **English as the Standard Language**: Consistent, accessible, and authoritative corporate journalism.
+3. **English as the Standard Language**: Consistent, accessible, and authoritative film-brain journalism in the After-Dark voice.
 4. **One Integrated Cinema Ecosystem**: Connecting actors, directors, producers, technicians, distributors, and exhibitors.
 5. **Unified Website Design**: High-prestige Forbes/Bloomberg-grade data density and editorial elegance.
 6. **Equal Industry Representation**: Equal recognition, visibility, and opportunities across all filmmaking regions.
+7. **Seriousness of Record (After-Dark, v3.0.0)**: Numbers and verdicts stay dead-serious — no clickbait lies, no fake tea, headlines capped at ~12 words and information-first.
 
 ---
 
 ## 🚀 Key Features
 
-### 1. 🔤 Authentic Multilingual Typography & Localization
-- **6-Language Switcher**: Persistent language and industry switching across URL (`?lang=`), cookies, and localStorage.
-- **Dedicated Script Typography**:
-  - **Tamil**: `Catamaran` (Weights 400 through 900) for high legibility.
-  - **Kannada**: `Hubballi` & TiRo typography.
-  - **Telugu**: `Ramabhadra`.
-  - **Malayalam**: `Chilanka`.
-  - **Hindi**: `Khand`.
-  - **English**: `DM Sans`.
-- Zero machine-translation clutter — authentic native vocabulary and full multi-language dictionaries.
+### 1. 🔤 Single-English Edition with Industry Coverage
+- **English-only publication**: every page, label, headline, review and seed renders in English; the per-language `?lang=` edition axis has been retired (`languages.ts` collapses every legacy code to the English edition).
+- **Latin Type System**: `DM Sans` for body, `Space Grotesk` for display, `Archivo Black` for poster headlines, plus `Catamaran`, `Plus Jakarta Sans` and `Khand` accents.
+- Films keep their language identity as a fact — a Kannada movie is still tagged `kn` — it just isn't a UI setting anymore.
 
 ### 2. 🖨️ House Full Press System (Fandom-Webzine Brutalism, v4.0)
 - The site prints as a fanzine: newsprint paper canvas (`#F4EFE2`), ink-black type (`#17140F`), and loud flat poster inks — press red `#E03A2F`, electric violet `#4F2BEF`, bulb gold `#F0B429` — with hard offset shadows, sticker chips, ticket-stub CTAs, stamp badges, halftone media plates and marquee ticker strips (`docs/DESIGN-SYSTEM.md`).
@@ -53,10 +48,10 @@
 ### 4. 📰 Structured 4-Zone Editorial Homepage
 - **Zone 1: Frontpage Hero Showcase**: Dominant lead story as a poster-cut card with halftone print overlay + 2 stacked poster stubs.
 - **Zone 2: NOW SHOWING Release Board**: Ticket-stub tabbed theatrical and upcoming schedules with dashed paper filter chips.
-- **Zone 3: Core 2-Column Editorial Magazine**:
-  - *8-Col Main Stream*: Landmark *Ramayana Part 1* spotlight review + Latest headlines + OTT radar.
-  - *4-Col Intelligence Rail*: Real-time 30-second live wire + Top 5 trending rankers + Box office summary + Ad unit.
-- **Zone 4: Visual Media Pavilion**: 16:9 responsive trailer lounge with modal player + Celebrity photo gallery.
+- **Zone 3: Core 2-Column Editorial Magazine** (After-Dark desks):
+  - *8-Col Main Stream*: Landmark *Ramayana Part 1* spotlight review + Latest headlines (*Sirens — Breaking*) + *Now Streaming / OTT Radar*.
+  - *4-Col Intelligence Rail*: Real-time 30-second live wire + Top 5 trending rankers + *The Receipts Desk* box office summary + Ad unit.
+- **Zone 4: Visual Media Pavilion**: 16:9 responsive trailer lounge (*First Look*) with modal player + Celebrity photo gallery.
 
 ### 5. 🛡️ Production Security & Hardening
 - **Edge Middleware**: Enforces HSTS, X-Frame-Options (`SAMEORIGIN`), X-Content-Type-Options (`nosniff`), Referrer-Policy, Permissions-Policy, and strict Content Security Policy (CSP).
@@ -110,7 +105,7 @@ npm run start
 
 ## 🧪 Testing
 
-The project includes 16 comprehensive Vitest test suites (127+ unit and integration tests) covering adapters, normalizers, date math, rate limiters, auth guards, and multilingual seed rendering:
+The project includes 16 comprehensive Vitest test suites (127+ unit and integration tests) covering adapters, normalizers, date math, rate limiters, auth guards, and English-only seed rendering:
 
 ```bash
 # Run Vitest test runner

@@ -275,7 +275,7 @@ export default function CineStarLeaderboard() {
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-popcorn tracking-tight leading-none">
-            ಸಿನಿ<span className="text-marquee-soft">ಸ್ಟಾರ್</span> ಲೀಡರ್‌ಬೋರ್ಡ್
+            CINE<span className="text-marquee-soft">STAR</span> LEADERBOARD
           </h1>
           <p className="text-sm text-popcorn-dim mt-1 font-medium">
             India's most powerful cinema personalities — ranked by box office power, daily momentum & industry influence
@@ -356,7 +356,7 @@ export default function CineStarLeaderboard() {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-popcorn-muted" />
             <input
               type="text"
-              placeholder="ಹೆಸರು, ಸಿನಿಮಾ, ಉದ್ಯಮ ಹುಡುಕಿ... (Search name, film, source...)"
+              placeholder="Search name, film, or source of power..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 rounded-full border border-glow-line bg-hall text-sm text-popcorn placeholder:text-popcorn-muted focus:outline-none focus:border-signal focus:ring-2 focus:ring-signal/20 transition-all font-medium"
@@ -366,10 +366,10 @@ export default function CineStarLeaderboard() {
           {/* Category filter */}
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             {([
-              { id: "all", label: "ಎಲ್ಲರೂ" },
-              { id: "actor", label: "ನಟ/ನಟಿ" },
-              { id: "director", label: "ನಿರ್ದೇಶಕ" },
-              { id: "producer", label: "ನಿರ್ಮಾಪಕ" },
+              { id: "all", label: "All" },
+              { id: "actor", label: "Actors" },
+              { id: "director", label: "Directors" },
+              { id: "producer", label: "Producers" },
             ] as { id: CineStarCategory | "all"; label: string }[]).map((c) => (
               <button
                 key={c.id}
@@ -622,7 +622,7 @@ export default function CineStarLeaderboard() {
           {filtered.length === 0 && (
             <div className="py-20 text-center">
               <Clapperboard className="w-10 h-10 text-glow-line-strong mx-auto mb-3" />
-              <p className="text-popcorn-dim font-semibold text-sm">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</p>
+              <p className="text-popcorn-dim font-semibold text-sm">No results found</p>
               <p className="text-popcorn-muted text-xs mt-1">No CineStars match your search criteria. Try adjusting filters.</p>
             </div>
           )}

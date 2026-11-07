@@ -62,9 +62,9 @@ export default function CinemaJourneyTimeline() {
 
   const headerText = {
     kn: {
-      pill: "ಸಿನಿಮಾ ಜರ್ನಿ ರೋಡ್‌ಮ್ಯಾಪ್",
-      title: "ಸಿನಿಮಾದ ಹುಟ್ಟಿನಿಂದ ಆರ್ಕೈವ್‌ವರೆಗಿನ ಪಯಣ",
-      subtitle: "ಪ್ರತಿ ಸಿನಿಮಾದ ಆರಂಭಿಕ ಕಥಾಹಂದರದಿಂದ ಹಿಡಿದು ಚಿತ್ರಮಂದಿರ ಮತ್ತು OTT ಬಿಡುಗಡೆಯವರೆಗಿನ ಸಮಗ್ರ ವರದಿಗಾರಿಕೆಯ ಹೆಜ್ಜೆಗುರುತು.",
+      pill: "THE CINEMA ODYSSEY",
+      title: "From Conception to Cultural Legacy",
+      subtitle: "How our editorial newsroom documents, audits, and archives every major cinematic creation through its complete lifespan.",
     },
     en: {
       pill: "THE CINEMA ODYSSEY",

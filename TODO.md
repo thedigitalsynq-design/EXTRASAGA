@@ -13,10 +13,12 @@
 - [x] Implement Edge middleware security headers and strict CSP.
 - [x] Implement rate-limiting store for brute-force protection.
 - [x] Verify production build and all 17 test suites (131 tests) pass with 0 errors.
+- [x] **After-Dark / Emission Edition copy voice pass (v3.0.0)**: rewrite `translations.ts` en strings + all data-seed headlines in the certified film-brain voice; sync kn/te/ta/ml/hi touch-ups; rebrand docs; zero visual or engine changes.
 
 ---
 
 ## 2. Short-Term Tasks (Next Sprint)
+- [ ] Publish and enforce the **After-Dark copy styleguide** (headline ≤12 words, information-first, no fake tea) as a lint/PR checklist so future seed data keeps the voice-native standard.
 - [ ] Connect production Supabase project via `.env.production` credentials.
 - [ ] Implement Redis-backed rate limiting (Upstash Redis) for multi-instance distributed server deployments.
 - [ ] Integrate external TMDB (The Movie Database) API for automatic poster and trailer ingestion.
