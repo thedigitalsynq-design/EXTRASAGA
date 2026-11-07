@@ -9,44 +9,69 @@ interface AdBannerProps {
 }
 
 export default function AdBanner({ placement, ad, className = "" }: AdBannerProps) {
-  // If custom ad code exists
-  if (ad && ad.adCode) {
+  const isLeaderboard = placement === "header_leaderboard" || placement === "footer_banner";
+  const isSidebar = placement === "sidebar_rectangle";
+
+  // Case 1: Image Banner
+  if (ad && ad.imageUrl && ad.isActive) {
+    const bannerContent = (
+      <div
+        className={`relative overflow-hidden rounded-xl border border-brand-border/80 group ${
+          isLeaderboard ? "h-24 sm:h-28 max-w-4xl" : isSidebar ? "h-64 max-w-sm" : "h-32"
+        } w-full mx-auto my-6`}
+      >
+        <Image
+          src={ad.imageUrl}
+          alt={ad.altText || ad.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 100vw, 800px"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-3">
+          <span className="text-[9px] uppercase tracking-wider text-amber-400 font-semibold mb-0.5">
+            ಪ್ರಾಯೋಜಿತ &middot; SPONSORED
+          </span>
+          <p className="text-xs sm:text-sm font-bold text-white font-kannada drop-shadow">
+            {ad.title}
+          </p>
+        </div>
+      </div>
+    );
+
+    if (ad.targetUrl && ad.targetUrl !== "#") {
+      return (
+        <a
+          href={ad.targetUrl}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          className={`block w-full text-center ${className}`}
+        >
+          {bannerContent}
+        </a>
+      );
+    }
+
+    return <div className={`w-full text-center ${className}`}>{bannerContent}</div>;
+  }
+
+  // Case 2: Custom HTML/Script Ad (sanitized sandbox)
+  if (ad && ad.adCode && ad.isActive) {
     return (
       <div className={`w-full my-4 text-center ${className}`}>
         <span className="text-[10px] uppercase tracking-wider text-brand-muted block mb-1">
           ಜಾಹೀರಾತು (Advertisement)
         </span>
-        <div dangerouslySetInnerHTML={{ __html: ad.adCode }} />
+        <iframe
+          srcDoc={`<!DOCTYPE html><html><head><style>body{margin:0;display:flex;justify-content:center;align-items:center;background:transparent;}</style></head><body>${ad.adCode}</body></html>`}
+          sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+          className="w-full border-0 mx-auto"
+          style={{ height: isLeaderboard ? "90px" : isSidebar ? "250px" : "100px" }}
+          title={ad.title || "Advertisement"}
+        />
       </div>
     );
   }
 
-  // Display default styled cinema ad placeholders
-  const isLeaderboard = placement === "header_leaderboard" || placement === "footer_banner";
-  const isSidebar = placement === "sidebar_rectangle";
-
-  return (
-    <div
-      className={`my-6 mx-auto w-full rounded-xl bg-gradient-to-r from-brand-dark via-brand-card to-brand-dark border border-dashed border-brand-border/80 p-4 text-center overflow-hidden flex flex-col items-center justify-center ${
-        isLeaderboard ? "max-w-4xl py-6" : isSidebar ? "max-w-sm py-8" : "py-5"
-      } ${className}`}
-    >
-      <span className="text-[9px] uppercase tracking-widest text-brand-muted block mb-1.5 font-sans">
-        ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು &middot; ADVERTISEMENT
-      </span>
-
-      <div className="flex flex-col items-center gap-1.5">
-        <h4 className="text-sm font-bold text-gray-200 font-kannada">
-          {ad?.title || "ಸಿನಿ ಕನ್ನಡ ವಿಶೇಷ ಜಾಹೀರಾತು ಸ್ಥಾನ"}
-        </h4>
-        <p className="text-xs text-brand-muted font-kannada max-w-md">
-          {ad?.altText || "ನಿಮ್ಮ ಸಿನಿಮಾಗಳು, ಟ್ರೇಲರ್‌ಗಳು ಅಥವಾ ಬ್ರ್ಯಾಂಡ್‌ಗಳನ್ನು ಲಕ್ಷಾಂತರ ಕನ್ನಡ ಸಿನಿಮಾ ಪ್ರೇಮಿಗಳಿಗೆ ತಲುಪಿಸಿ."}
-        </p>
-        <span className="mt-2 inline-block px-3 py-1 rounded bg-brand-red/20 text-brand-red hover:bg-brand-red hover:text-white text-xs font-semibold font-kannada transition-colors cursor-pointer border border-brand-red/30">
-          ಜಾಹೀರಾತಿಗಾಗಿ ಸಂಪರ್ಕಿಸಿ
-        </span>
-      </div>
-    </div>
-  );
+  // Case 3: If no active ad is scheduled, render nothing to keep the layout clean and uncluttered
+  return null;
 }
-

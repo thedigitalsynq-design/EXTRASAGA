@@ -1,96 +1,137 @@
-# ಸಿನಿ ಕನ್ನಡ (Sini Kannada) - Kannada Cinema Entertainment Portal
+# FILMY GARAGE (ಫಿಲ್ಮಿ ಗ್ಯಾರೇಜ್) — Multi-Industry Cinema & Entertainment Portal
 
-> ಕರ್ನಾಟಕದ ನಂ.1 ಡಿಜಿಟಲ್ ಸಿನಿಮಾ ಮತ್ತು ಮನರಂಜನಾ ಪೋರ್ಟಲ್.
+[![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-127%20Passed-green?logo=vitest)](https://vitest.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-An original, modern, responsive, high-performance Kannada cinema news and entertainment web platform inspired by top cinema portals like Cineulagam, featuring authentic Sandalwood industry coverage, real-time breaking tickers, star-rating movie reviews, box office leaderboards, OTT release hubs, photo galleries, YouTube trailers, an interactive comment system, and an Editorial Admin Dashboard.
-
----
-
-## ✨ Features & Architecture
-
-### 1. 🔤 Natural Kannada Language & Typography
-- Complete Kannada (ಕನ್ನಡ) interface across all navigation, headlines, buttons, categories, and article content.
-- Typography powered by **Noto Sans Kannada** and **Tiro Kannada** with Unicode rendering on mobile and desktop.
-- Zero "Lorem Ipsum" filler text — populated with real Sandalwood movies, stars, and news.
-
-### 2. 🎨 Premium Cinema-News Branding
-- High-contrast Red (`#E50914`), Black (`#0F0F11`), and White color palette.
-- Modern glassmorphism overlays and custom cinematic dark styling.
-
-### 3. 🧭 Sticky 15-Category Navigation
-1. **ಮುಖಪುಟ** (Home)
-2. **ಇತ್ತೀಚಿನ ಸುದ್ದಿ** (Latest News)
-3. **ಸಿನಿಮಾ ವಿಮರ್ಶೆ** (Movie Reviews)
-4. **ಸ್ಯಾಂಡಲ್ವುಡ್** (Sandalwood)
-5. **ಬಾಲಿವುಡ್** (Bollywood)
-6. **ಹಾಲಿವುಡ್** (Hollywood)
-7. **ನಟರು** (Actors)
-8. **ನಟಿಯರು** (Actresses)
-9. **ಸಂದರ್ಶನ** (Interviews)
-10. **ಗಾಸಿಪ್** (Gossip)
-11. **ಫೋಟೋ ಗ್ಯಾಲರಿ** (Photo Gallery)
-12. **ವಿಡಿಯೋಗಳು** (Videos)
-13. **OTT ಅಪ್ಡೇಟ್** (OTT Updates)
-14. **ಬಾಕ್ಸ್ ಆಫೀಸ್** (Box Office)
-15. **ಮುಂಬರುವ ಸಿನಿಮಾಗಳು** (Upcoming Movies)
-
-### 4. 📰 Homepage Layout & Modules
-- **Breaking News Ticker**: Real-time Kannada scrolling headline ticker with play/pause and pulsing live badge.
-- **Top Stories Hero Grid**: 1 dominant lead story with cinematic vignette + 2 stacked secondary stories.
-- **Latest News Grid**: Responsive article cards with category tags, views, read times, and load more pagination.
-- **Trending News (Top 5)**: Ranked 01–05 most-read stories with view count statistics.
-- **Sandalwood Special**: High-impact industry updates on upcoming blockbusters (Kantara Chapter 1, Yash's Toxic, Kiccha Sudeep's Max, Uttarakaanda, Bagheera).
-- **Movie Reviews**: Star rating scores (e.g., 4.8 ★ / 5), verdict badges, pros and cons, story/acting/direction breakdowns.
-- **Box Office Hub**: All-time Kannada box office grossers (KGF 2, Kantara, KGF 1, Kaatera, 777 Charlie) with Day 1, weekend, and worldwide metrics.
-- **OTT Hub**: Platform-branded cards (Netflix, Prime Video, ZEE5) with streaming countdowns.
-- **Videos & Trailers**: Embedded YouTube modal player for trailers, teasers, and songs.
-- **Celebrity Gallery**: Lightbox image viewer for Sandalwood stars and movie events.
-- **Advertising Spaces**: Header Leaderboard (728x90), Sidebar Rectangle (300x250), In-Article banner, and Footer banner slots.
-
-### 5. 📄 Dedicated Pages
-- `/` - Full Homepage
-- `/news/[slug]` - Individual article page with author info, rich Kannada content, social sharing (WhatsApp, X, Facebook, Telegram, Copy Link), previous/next navigation, and interactive comments.
-- `/reviews/[slug]` - Movie review page with star rating, cast & crew, verdict, trailer embed, pros/cons, and analysis.
-- `/category/[slug]` - Category listing for any of the 15 categories.
-- `/box-office` - Dedicated box office analysis and territory breakdown.
-- `/ott` - OTT releases calendar.
-- `/search` - Bilingual search (Kannada & English) with trending query tags.
-- `/admin` - Secure Admin Portal for managing articles, reviews, ads, comments, and SEO settings.
-
-### 6. 🛡️ Secure Admin Panel
-- URL: `/admin`
-- Demo Credentials:
-  - **Email**: `admin@sinikannada.com`
-  - **Password**: `admin123`
-- Capabilities:
-  - Create, edit, and delete Kannada news articles with rich formatting.
-  - Set breaking news, top stories, or trending flags.
-  - Review moderation & comments control.
-  - Ad placement management.
-  - Live editorial analytics.
-
-### 7. 🗄️ Backend & Supabase Support
-- Works immediately out-of-the-box with persistent local storage.
-- Full production Supabase DDL provided in `supabase_schema.sql` (Tables, RLS policies, indexes, and storage bucket for `sini-media`).
+**FILMY GARAGE** is an all-in-one cinema entertainment news and theatrical release intelligence platform covering six premier film industries:
+- 🟡 **Sandalwood** (Kannada)
+- 🔴 **Tollywood** (Telugu)
+- 🔵 **Kollywood** (Tamil)
+- 🟢 **Mollywood** (Malayalam)
+- 🟣 **Bollywood** (Hindi)
+- ⚪ **Hollywood** (English)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Key Features
 
-### 1. Install Dependencies
+### 1. 🔤 Authentic Multilingual Typography & Localization
+- **6-Language Switcher**: Persistent language and industry switching across URL (`?lang=`), cookies, and localStorage.
+- **Dedicated Script Typography**:
+  - **Tamil**: `Catamaran` (Weights 400 through 900) for high legibility.
+  - **Kannada**: `Hubballi` & TiRo typography.
+  - **Telugu**: `Ramabhadra`.
+  - **Malayalam**: `Chilanka`.
+  - **Hindi**: `Khand`.
+  - **English**: `DM Sans`.
+- Zero machine-translation clutter — authentic native vocabulary and full multi-language dictionaries.
+
+### 2. 🧭 Deep Crimson Navigation Bar (`#A92732`)
+- Exact 12-item navigation:
+  `[Trending Today]` · `Home` · `News` · `Reviews` · `Television` · `Celebrity` · `Movies` · `Interviews` · `Gossips` (Active indicator `#7D1B24` with amber bottom border) · `Photos` · `Videos` · `Events`.
+
+### 3. 📅 Automated Cinema Release Engine
+- **Server Time Awareness**: Synchronized to `Asia/Kolkata` (UTC+5:30).
+- **Dynamic Date Math**:
+  - *Released Today* & *Releasing Tomorrow*.
+  - *In Theatres*: Actively running theatrical releases (last 30 days).
+  - *Upcoming Releases*: Filter by Next 7, 30, 60, and 90 days.
+  - *Permanent Archive*: Preserves canonical URLs, SEO titles, and publication history after the 30-day window.
+
+### 4. 📰 Structured 4-Zone Editorial Homepage
+- **Zone 1: Frontpage Hero Showcase**: Dominant lead story with high-impact vignette + 2 stacked secondary stories.
+- **Zone 2: Cinema Release Center**: Tabbed theatrical and upcoming schedules with industry filter chips.
+- **Zone 3: Core 2-Column Editorial Magazine**:
+  - *8-Col Main Stream*: Landmark *Ramayana Part 1* spotlight review + Latest headlines + OTT radar.
+  - *4-Col Intelligence Rail*: Real-time 30-second live wire + Top 5 trending rankers + Box office summary + Ad unit.
+- **Zone 4: Visual Media Pavilion**: 16:9 responsive trailer lounge with modal player + Celebrity photo gallery.
+
+### 5. 🛡️ Production Security & Hardening
+- **Edge Middleware**: Enforces HSTS, X-Frame-Options (`SAMEORIGIN`), X-Content-Type-Options (`nosniff`), Referrer-Policy, Permissions-Policy, and strict Content Security Policy (CSP).
+- **Sliding-Window Rate Limiting**: In-memory rate limiting against brute force and scraping abuse on admin login (5/15min) and API mutations (30/min).
+- **HMAC-SHA256 Token Auth**: Secure session management using constant-time string comparison (`crypto.timingSafeEqual`) to prevent timing attacks.
+- **Sanitized Inputs & Safe URLs**: Protection against XSS injection on all write operations.
+- **Cron Protection**: `CRON_SECRET` validation on all background automated sync tasks.
+
+---
+
+## 🛠️ Quick Start
+
+### 1. Prerequisites
+- Node.js 18.17+ or Node.js 20+
+- npm or pnpm
+
+### 2. Installation
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/cinijaatre.git
+cd cinijaatre
+
+# Install dependencies (pure Tailwind CSS, zero shadcn)
 npm install
 ```
 
-### 2. Run the Development Server
+### 3. Environment Configuration
+```bash
+cp .env.example .env.local
+```
+Key variables:
+- `ADMIN_EMAIL`: Administrator login email (default: `admin@filmygarage.com`).
+- `ADMIN_PASSWORD_HASH`: SHA-256 hash of admin password.
+- `AUTH_SECRET`: Secret key used for signing HMAC tokens.
+- `CRON_SECRET`: Bearer token required for automated cron endpoints.
+- `NEXT_PUBLIC_SUPABASE_URL` & `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase credentials (optional; fallback mock store operates automatically).
+
+### 4. Run Development Server
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 3. Build for Production
+### 5. Production Build
 ```bash
 npm run build
 npm run start
 ```
 
+---
+
+## 🧪 Testing
+
+The project includes 16 comprehensive Vitest test suites (127+ unit and integration tests) covering adapters, normalizers, date math, rate limiters, auth guards, and multilingual seed rendering:
+
+```bash
+# Run Vitest test runner
+npm run test
+
+# Run TypeScript compiler check
+npx tsc --noEmit
+```
+
+---
+
+## 📚 Project Documentation
+
+Detailed project architecture and planning documentation:
+
+| Document | Description |
+| :--- | :--- |
+| [PROJECT.md](./PROJECT.md) | Vision, target audience, personas, and industry scope |
+| [BLUEPRINT.md](./BLUEPRINT.md) | System architecture diagram, 4-zone layout, and directory tree |
+| [PRD.md](./PRD.md) | Product Requirements Document and acceptance criteria |
+| [SRS.md](./SRS.md) | Software Requirements Specification and API endpoints |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution standards, zero-shadcn rule, and pull request guide |
+| [CHANGELOG.md](./CHANGELOG.md) | Version release history and detailed feature logs |
+| [LICENSE](./LICENSE) | MIT Open Source License |
+| [TODO.md](./TODO.md) | Active tasks, short-term, and long-term milestones |
+| [NOTES.md](./NOTES.md) | Operational notes, Windows OneDrive gotchas, and timezone math |
+| [DECISIONS.md](./DECISIONS.md) | Architectural Decision Records (ADRs) |
+| [ROADMAP.md](./ROADMAP.md) | 4-Phase strategic evolution from Q4 2026 to Q3 2027 |
+
+---
+
+## 📄 License
+This project is licensed under the [MIT License](./LICENSE) — see the LICENSE file for details.

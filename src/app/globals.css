@@ -1,68 +1,407 @@
-@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Noto+Sans+Kannada:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-kannada: 'Hubballi', 'Noto Sans Kannada', sans-serif;
-  --font-display: 'Hubballi', 'Noto Sans Kannada', sans-serif;
+  --font-noto-serif-kannada: 'Noto Serif Kannada', serif;
+  --font-benne: 'Benne', serif;
+  --font-kannada: 'Noto Serif Kannada', 'Benne', 'Anek Kannada', 'Noto Sans Kannada', 'Hubballi', serif;
+  --font-telugu: 'Baloo Tammudu 2', sans-serif;
+  --font-tamil: 'Baloo Thambi 2', sans-serif;
+  --font-malayalam: 'Chilanka', sans-serif;
+  --font-hindi: 'Khand', sans-serif;
+  --font-english: 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-kannada);
+  --font-display: var(--font-noto-serif-kannada);
 }
 
-body {
-  font-family: var(--font-kannada);
-  background-color: #0f0f11;
-  color: #f3f4f6;
-  overflow-x: hidden;
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hubballi Bold & Extra Bold Formats */
-.font-bold,
-b,
-strong {
-  font-family: var(--font-kannada);
+body {
+  background-color: #F8FAF9;
+  color: #1F2937;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  line-height: 1.62;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Font Visibility & Readability Standards (Jade Horizon Edition) */
+h1, h2, h3, h4, h5, h6 {
+  color: #0F3529;
   font-weight: 700;
-  -webkit-text-stroke: 0.35px currentColor;
+  letter-spacing: -0.015em;
+  line-height: 1.32;
 }
 
-.font-extrabold {
+p {
+  color: #374151;
+}
+
+/* Ensure Kannada complex ligatures and subscripts render cleanly with royal dignity */
+.font-kannada,
+[lang="kn"],
+html[data-lang="kn"] {
+  line-height: 1.68;
+}
+
+/* Crisp high-contrast overrides for muted and secondary text */
+.text-gray-400 {
+  color: #64748B !important;
+}
+
+.text-gray-500 {
+  color: #475569 !important;
+}
+
+.text-gray-600 {
+  color: #334155 !important;
+}
+
+.text-gray-700 {
+  color: #1E293B !important;
+}
+
+/* GPU Hardware Acceleration on Compositor Layers */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Off-screen Content Optimization (Reduces Initial DOM Paint & TBT) */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+html[data-lang="te"] {
+  --font-sans: var(--font-telugu);
+}
+
+html[data-lang="ta"] {
+  --font-sans: var(--font-tamil);
+}
+
+html[data-lang="ml"] {
+  --font-sans: var(--font-malayalam);
+}
+
+html[data-lang="hi"] {
+  --font-sans: var(--font-hindi);
+}
+
+html[data-lang="en"] {
+  --font-sans: var(--font-english);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+.font-hubballi {
   font-family: var(--font-kannada);
-  font-weight: 800;
-  -webkit-text-stroke: 0.55px currentColor;
 }
 
-.font-black {
-  font-family: var(--font-kannada);
-  font-weight: 900;
-  -webkit-text-stroke: 0.75px currentColor;
+.font-hubballi.font-bold,
+.font-hubballi-bold {
+  font-weight: 700;
 }
 
-/* Custom Cinema Scrollbar */
+.font-telugu {
+  font-family: var(--font-telugu);
+}
+
+.font-tamil {
+  font-family: var(--font-tamil);
+}
+
+.font-malayalam {
+  font-family: var(--font-malayalam);
+}
+
+.font-hindi {
+  font-family: var(--font-hindi);
+}
+
+.font-english,
+.font-brand-en,
+.font-google-sans,
+.font-sans-flex {
+  font-family: var(--font-english);
+}
+
+/* Custom Cinema Scrollbar (Jade Horizon) */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #16171b;
+  background: #F8FAF9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2b33;
+  background: #B7E5BA;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e50914;
+  background: #288760;
 }
 
-/* Shimmer animation for badges and highlights */
-.glow-red {
-  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+/* JADE HORIZON DESIGN SYSTEM (REFERENCE-BASED) */
+
+/* Subtle Geometric Jade Grid Pattern (Reference Image 5) */
+.jade-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(40, 135, 96, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(40, 135, 96, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-.text-shadow-film {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+/* Clean White Floating Cards with Smooth 24px-32px Radius (Reference Images 1, 3, 4) */
+.jade-card,
+.noir-card,
+.glass-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid #E5EBE7;
+  box-shadow: 0 10px 30px -5px rgba(26, 81, 64, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jade-card:hover,
+.noir-card:hover,
+.glass-card:hover {
+  border-color: #288760;
+  box-shadow: 0 20px 45px -10px rgba(40, 135, 96, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Bento Containers (Reference Image 1) */
+.jade-bento,
+.noir-bento,
+.glass-bento,
+.glass-panel {
+  background: #FFFFFF;
+  border-radius: 28px;
+  border: 1px solid #E5EBE7;
+  box-shadow: 0 12px 36px -8px rgba(26, 81, 64, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jade-bento:hover,
+.noir-bento:hover,
+.glass-bento:hover {
+  border-color: #288760;
+  box-shadow: 0 24px 50px -12px rgba(40, 135, 96, 0.14);
+}
+
+/* Signature Pill System (Reference Images 1, 2, 3) */
+.jade-pill-dark {
+  background: #1A5140;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.jade-pill-mint,
+.glass-pill {
+  background: #E8F8EB;
+  color: #1A5140;
+  border: 1px solid #B7E5BA;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.jade-pill-white {
+  background: #FFFFFF;
+  color: #1A5140;
+  border: 1px solid #E5EBE7;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(26, 81, 64, 0.04);
+}
+
+/* Glowing Green Icon Badge (Reference Image 4) */
+.jade-icon-glow {
+  background: #288760;
+  box-shadow: 0 0 0 6px #E8F8EB, 0 0 20px rgba(40, 135, 96, 0.25);
+}
+
+/* Dashed Process Connector (Reference Images 2, 4) */
+.jade-dashed-connector {
+  border-style: dashed;
+  border-color: #CBD5E1;
+}
+
+/* Stat Box (Reference Image 1) */
+.jade-stat-box {
+  background: #28D070;
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  font-weight: 800;
+}
+
+.glass-card {
+  background: rgba(16, 20, 30, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(200, 30, 46, 0.4);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    0 16px 36px -6px rgba(200, 30, 46, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Fluid Organic Ambient Gradient Animations */
+@keyframes fluid-blob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.95);
+  }
+}
+
+.animate-fluid-blob {
+  animation: fluid-blob 16s ease-in-out infinite;
+}
+
+.animate-fluid-blob-delayed {
+  animation: fluid-blob 20s ease-in-out 4s infinite reverse;
+}
+
+.double-bezel {
+  padding: 3px;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.double-bezel:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(169, 39, 50, 0.25);
+  box-shadow: 0 16px 36px -8px rgba(169, 39, 50, 0.08);
+}
+
+/* Snappy, Zero-Lag Apple/Linear Easing Curves (180ms-240ms) */
+.transition-cinema {
+  transition-property: transform, opacity, background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transition-spring {
+  transition-property: transform, opacity, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle Shimmer Sweep */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  animation: shimmer-sweep 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Accessibility & Zero Motion Lag Mode */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 35mm Celluloid Atmosphere & Director's Cut HUD */
+body.film-grain-active::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+body.theater-dim-active {
+  background-color: #e2e8f0 !important;
+}
+
+body.theater-dim-active header,
+body.theater-dim-active footer {
+  opacity: 0.75;
+  transition: opacity 300ms ease;
+}
+
+body.theater-dim-active header:hover,
+body.theater-dim-active footer:hover {
+  opacity: 1;
+}
+
+/* ─── CineStar Leaderboard Utilities ─── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Forbes-style monospace number alignment for financial figures */
+.font-mono-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Leaderboard row hover pulse */
+@keyframes rowHighlight {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(40, 135, 96, 0.04); }
+}
+.leaderboard-row-new {
+  animation: rowHighlight 1.5s ease-in-out 1;
+}
+
+/* Podium card glow for #1 */
+.podium-gold-glow {
+  box-shadow: 0 0 0 1px rgba(92, 168, 124, 0.4), 0 20px 60px rgba(40, 135, 96, 0.2);
+}
+
+/* Gain/Loss micro-transition */
+.change-positive {
+  color: #288760;
+  transition: color 0.3s ease;
+}
+.change-negative {
+  color: #EF4444;
+  transition: color 0.3s ease;
 }

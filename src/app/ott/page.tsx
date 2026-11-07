@@ -1,38 +1,65 @@
 import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Tv, Sparkles } from "lucide-react";
 import { DataService } from "@/lib/dataService";
 import OttSection from "@/components/OttSection";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
+import { getLanguageConfig } from "@/lib/languages";
+import { getTranslation } from "@/lib/translations";
+import { LanguageCode } from "@/types";
 
-export const metadata: Metadata = {
-  title: "ಕನ್ನಡ OTT ರಿಲೀಸ್ ಅಪ್ಡೇಟ್ಸ್ & ಬಿಡುಗಡೆ ದಿನಾಂಕಗಳು | ಸಿನಿ ಕನ್ನಡ",
-  description: "ನೆಟ್‌ಫ್ಲಿಕ್ಸ್, ಅಮೆಜಾನ್ ಪ್ರೈಮ್, ಜೀ5, ಜಿಯೋ ಸಿನಿಮಾ ನಲ್ಲಿ ಬಿಡುಗಡೆಯಾಗುವ ಕನ್ನಡ ಸಿನಿಮಾಗಳ ಸಂಪೂರ್ಣ ಪಟ್ಟಿ ಮತ್ತು OTT ಸ್ಟ್ರೀಮಿಂಗ್ ಅಪ್ಡೇಟ್ಸ್.",
-};
+interface OttPageProps {
+  searchParams?: {
+    lang?: string;
+  };
+}
 
-export default async function OttPage() {
+export async function generateMetadata({ searchParams }: OttPageProps): Promise<Metadata> {
+  const lang = (searchParams?.lang || "kn") as LanguageCode;
+  const config = getLanguageConfig(lang);
+
+  return {
+    title: `${config.ottTitle} | FILMY GARAGE`,
+    description: `${config.industryName} OTT streaming dates and upcoming digital releases.`,
+  };
+}
+
+export default async function OttPage({ searchParams }: OttPageProps) {
+  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
+  const config = getLanguageConfig(activeLang);
+
   const [ottReleases, trendingArticles] = await Promise.all([
-    DataService.getOttReleases(),
-    DataService.getTrendingArticles(5),
+    DataService.getOttReleases(activeLang),
+    DataService.getTrendingArticles(5, activeLang),
   ]);
 
   return (
     <div className="w-full">
-      <div className="bg-gradient-to-r from-sky-950/40 via-brand-card to-brand-dark border-b border-brand-border py-8 px-4 sm:px-6">
+      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-8 px-4 sm:px-6 shadow-xs">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-brand-muted font-kannada mb-2">
-            <Link href="/" className="hover:text-white">ಮುಖಪುಟ</Link>
+          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+            <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium">
+              {getTranslation(activeLang, "nav_home")}
+            </Link>
             <span>/</span>
-            <span className="text-sky-400 font-medium">OTT ಅಪ್ಡೇಟ್</span>
+            <span className="text-sky-700 font-bold">
+              {getTranslation(activeLang, "nav_ott")}
+            </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white font-kannada">
-            ಕನ್ನಡ OTT ಬಿಡುಗಡೆ ಹಬ್ (Kannada OTT Hub)
+
+          <div className="flex items-center gap-2 mb-2">
+            <span
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+              {config.industryName}
+            </span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl font-black text-gray-950 tracking-tight">
+            {config.ottTitle}
           </h1>
-          <p className="mt-2 text-xs sm:text-sm text-gray-300 font-kannada max-w-2xl">
-            ನಿಮ್ಮ ನೆಚ್ಚಿನ ಕನ್ನಡ ಸಿನಿಮಾಗಳು ಯಾವ ಒಟಿಟಿ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ನಲ್ಲಿ ಯಾವಾಗ ಸ್ಟ್ರೀಮ್ ಆಗಲಿವೆ ಎಂಬುದರ ಅಧಿಕೃತ ದಿನಾಂಕಗಳು.
-          </p>
         </div>
       </div>
 
@@ -51,4 +78,3 @@ export default async function OttPage() {
     </div>
   );
 }
-

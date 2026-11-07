@@ -1,6 +1,9 @@
 import { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 export default function robots(): MetadataRoute.Robots {
+  const siteUrl = getSiteUrl();
+
   return {
     rules: [
       {
@@ -13,7 +16,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://sinikannada.com/sitemap.xml",
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
-

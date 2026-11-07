@@ -1,3 +1,16 @@
+export type LanguageCode = "kn" | "te" | "ta" | "ml" | "hi" | "en" | "bn" | "pa" | "other";
+
+export type FilmIndustry =
+  | "sandalwood"
+  | "tollywood"
+  | "kollywood"
+  | "mollywood"
+  | "bollywood"
+  | "hollywood"
+  | "bengali"
+  | "punjabi"
+  | "regional";
+
 export type CategorySlug =
   | "mukhaputa"
   | "latest"
@@ -13,7 +26,12 @@ export type CategorySlug =
   | "videos"
   | "ott"
   | "box-office"
-  | "upcoming";
+  | "upcoming"
+  | "trending"
+  | "television"
+  | "celebrity"
+  | "events"
+  | "movies";
 
 export interface Category {
   id: string;
@@ -26,23 +44,24 @@ export interface Category {
 
 export interface Article {
   id: string;
-  title: string; // Kannada headline
+  title: string;
   titleEn?: string;
   slug: string;
-  summary: string; // Short Kannada description
-  content: string; // Rich Kannada markdown / HTML content
+  summary: string;
+  content?: string;
+  excerpt?: string;
   category: CategorySlug;
-  categoryName: string; // Kannada category name
+  categoryName: string;
   tags: string[];
   featuredImage: string;
   imageCaption?: string;
   author: {
     id: string;
-    name: string; // e.g. "ಸಿನಿ ಕನ್ನಡ ಬ್ಯೂರೋ", "ಪ್ರವೀಣ್ ಕುಮಾರ್"
+    name: string;
     avatar?: string;
     role?: string;
   };
-  publishedAt: string; // ISO date
+  publishedAt: string;
   updatedAt?: string;
   readTimeMinutes: number;
   views: number;
@@ -50,15 +69,30 @@ export interface Article {
   isTopStory?: boolean;
   isTrending?: boolean;
   isFeatured?: boolean;
-  status: "published" | "draft" | "scheduled";
+  status: "published" | "draft" | "scheduled" | "pending" | "archived";
   relatedArticleIds?: string[];
+  source?: {
+    id: string;
+    name: string;
+    url: string;
+    publishedAtEstimated: boolean;
+  };
+  coverageCount?: number;
+  altSources?: { name: string; url: string }[];
+  isScraped?: boolean;
+  fetchedAt?: string;
+  publishedAtEstimated?: boolean;
+  language?: LanguageCode;
+  industry?: FilmIndustry;
 }
 
 export interface MovieReview {
   id: string;
-  movieTitle: string; // Kannada movie title
+  movieTitle: string; // Kannada or regional movie title
   movieTitleEn: string;
   slug: string;
+  language?: LanguageCode;
+  industry?: FilmIndustry;
   rating: number; // e.g. 4.0 out of 5
   maxRating: number; // 5
   releaseDate: string;
@@ -88,7 +122,27 @@ export interface MovieReview {
   boxOfficeSummary?: string;
   publishedAt: string;
   author: string;
+  // Next-Gen Dual-Axis Review Scores
+  narrativeScore?: {
+    overall: number; // e.g. 8.5/10
+    story: number;
+    screenplay: number;
+    performances: number;
+  };
+  craftScore?: {
+    overall: number; // e.g. 9.2/10
+    cinematography: number;
+    soundAndScore: number;
+    vfxAndProduction: number;
+    editing: number;
+  };
+  isReverentMilestone?: boolean;
+  screenFormatRecommendation?: "IMAX" | "Dolby Atmos" | "4DX" | "Standard 2D";
+  spoilers?: string[];
 }
+
+export * from "./boxOffice";
+export * from "./movieIntelligence";
 
 export interface BoxOfficeEntry {
   id: string;
@@ -97,11 +151,13 @@ export interface BoxOfficeEntry {
   slug: string;
   posterImage: string;
   releaseYear: number;
+  language?: LanguageCode;
+  industry?: FilmIndustry;
   day1Collection: string; // e.g. "₹25 ಕೋಟಿ"
   weekendCollection: string; // e.g. "₹70 ಕೋಟಿ"
   worldwideCollection: string; // e.g. "₹450 ಕೋಟಿ+"
   budget: string; // e.g. "₹100 ಕೋಟಿ"
-  verdict: "ಆಲ್ ಟೈಮ್ ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಸೂಪರ್ ಹಿಟ್" | "ಹಿಟ್" | "ಸರಾಸರಿ";
+  verdict: "ಆಲ್ ಟೈಮ್ ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಬ್ಲಾಕ್‌ಬಸ್ಟರ್" | "ಸೂಪರ್ ಹಿಟ್" | "ಹಿಟ್" | "ಸರಾಸರಿ" | string;
   verdictBadgeColor: string;
   territoryBreakdown: {
     territory: string;
@@ -109,21 +165,83 @@ export interface BoxOfficeEntry {
   }[];
   rank: number;
   updatedAt: string;
+
+  // Intelligent Multi-Source Analytics Fields
+  figureStatus?: "live_estimate" | "consolidated" | "verified";
+  dataClass?: "measured" | "reported" | "estimated";
+  confidenceScore?: number; // 0 - 100
+  confidenceLabel?: string;
+  providersTrackedCount?: number;
+  grossInCrores?: number;
+  netInCrores?: number;
+  distributorShareInCrores?: number;
+  overseasGrossInCrores?: number;
+  overseasGrossInUSD?: number;
+  budgetInCrores?: number;
+  territoryFinancials?: Array<{
+    territory: string;
+    regionalTitle?: string;
+    grossInCrores: number;
+    netInCrores: number;
+    distributorShareInCrores: number;
+    occupancyRate: number;
+    marketSharePercent: number;
+  }>;
+  cityTelemetry?: Array<{
+    city: string;
+    nativeName?: string;
+    state: string;
+    trackedTheatres: number;
+    trackedShows: number;
+    occupancyPercent: number;
+    fastFillingPercent: number;
+    averageTicketPriceINR: number;
+    dailyGrossInCrores: number;
+    status: "live" | "consolidated";
+    lastTrackedTime: string;
+  }>;
+  trajectory?: {
+    day1InCrores: number;
+    day2InCrores: number;
+    day3InCrores: number;
+    openingWeekendInCrores: number;
+    week1InCrores: number;
+    cumulativeGrossInCrores: number;
+    projectedLifetimeInCrores: number;
+  };
 }
+
+export type OttPlatform =
+  | "Netflix"
+  | "Prime Video"
+  | "JioCinema"
+  | "JioHotstar"
+  | "Disney+ Hotstar"
+  | "ZEE5"
+  | "SunNXT"
+  | "Sun NXT"
+  | "Aha"
+  | "SonyLIV";
 
 export interface OttRelease {
   id: string;
   movieTitle: string;
   movieTitleEn: string;
-  platform: "Netflix" | "Prime Video" | "JioCinema" | "ZEE5" | "SunNXT" | "Disney+ Hotstar";
+  platform: OttPlatform;
   platformBadgeColor: string;
-  releaseDate: string; // e.g. "15 ನವೆಂಬರ್ 2026"
+  releaseDate: string; // e.g. "21 ನವೆಂಬರ್ 2024"
   languages: string[];
   genre: string;
   posterImage: string;
   watchUrl?: string;
   description: string;
   cast: string[];
+  runtime?: string;
+  productionHouse?: string;
+  verificationScore?: number;
+  verificationSources?: string[];
+  language?: LanguageCode;
+  industry?: FilmIndustry;
 }
 
 export interface VideoItem {
@@ -136,6 +254,8 @@ export interface VideoItem {
   views: string;
   publishedAt: string;
   featured?: boolean;
+  language?: LanguageCode;
+  industry?: FilmIndustry;
 }
 
 export interface GalleryItem {
@@ -151,6 +271,8 @@ export interface GalleryItem {
     caption: string;
   }[];
   publishedAt: string;
+  language?: LanguageCode;
+  industry?: FilmIndustry;
 }
 
 export interface Comment {
@@ -164,6 +286,72 @@ export interface Comment {
   isApproved: boolean;
 }
 
+export type MovieReleaseStatus = "in_theatres" | "upcoming" | "archived";
+export type ReleaseDateConfidence = "confirmed" | "tentative";
+
+export interface MovieCastMember {
+  name: string;
+  role: string; // e.g. "Lead Actor", "Lead Actress", "Antagonist"
+  characterName?: string;
+  image?: string;
+}
+
+export interface MovieCrewMember {
+  name: string;
+  role: string; // e.g. "Director", "Producer", "Music Director"
+}
+
+export interface Movie {
+  id: string;
+  title: string;
+  titleEn: string;
+  slug: string;
+  synopsis: string;
+  introduction?: string;
+  theatricalReleaseDate: string; // YYYY-MM-DD in Asia/Kolkata
+  releaseDateConfidence: ReleaseDateConfidence;
+  releaseStatus: MovieReleaseStatus;
+  language: LanguageCode;
+  industry: FilmIndustry;
+  genres: string[];
+  director: string;
+  producers: string[];
+  cast: MovieCastMember[];
+  crew?: MovieCrewMember[];
+  productionCompany?: string;
+  distributionCompany?: string;
+  posterImage: string;
+  bannerImage?: string;
+  galleryImages?: string[];
+  trailerYoutubeId?: string;
+  trailerUrl?: string;
+  censorRating?: string; // "U", "U/A", "A"
+  runtimeMinutes?: number;
+  runtimeFormatted?: string;
+  articleSlug?: string;
+  relatedArticleIds?: string[];
+  sourceReferences?: {
+    name: string;
+    url: string;
+    verified: boolean;
+  }[];
+  createdAt: string;
+  updatedAt: string;
+  isFeatured?: boolean;
+}
+
+export interface AutomationLog {
+  id: string;
+  timestamp: string;
+  action: string;
+  details: string;
+  moviesProcessed: number;
+  upcomingCount: number;
+  inTheatresCount: number;
+  archivedCount: number;
+  status: "success" | "warning" | "error";
+}
+
 export interface AdSpot {
   id: string;
   placement: "header_leaderboard" | "sidebar_rectangle" | "in_article" | "footer_banner" | "sticky_bottom";
@@ -174,4 +362,65 @@ export interface AdSpot {
   isActive: boolean;
   altText: string;
 }
+
+export interface Theatre {
+  id: string;
+  name: string;
+  nameEn: string;
+  slug: string;
+  city: string;
+  area: string;
+  address: string;
+  phone?: string;
+  amenities: string[];
+  isActive: boolean;
+}
+
+export interface Showtime {
+  id: string;
+  movieId: string;
+  theatreId: string;
+  screenId: string;
+  theatreName: string;
+  movieTitle: string;
+  showDate: string;
+  showTime: string;
+  language: string;
+  format: "2D" | "3D" | "IMAX";
+  basePrice: number;
+  status: "open" | "filling_fast" | "almost_full" | "sold_out";
+}
+
+export interface Seat {
+  id: string;
+  screenId: string;
+  rowLabel: string;
+  seatNumber: number;
+  tier: "Classic" | "Prime" | "Recliner";
+  price: number;
+  isAvailable: boolean;
+  isLocked?: boolean;
+}
+
+export interface Booking {
+  id: string;
+  bookingReference: string;
+  showtimeId: string;
+  movieTitle: string;
+  theatreName: string;
+  showDate: string;
+  showTime: string;
+  seats: string[];
+  totalAmount: number;
+  convenienceFee: number;
+  gstAmount: number;
+  currency: string;
+  userName: string;
+  userEmail: string;
+  userPhone: string;
+  status: "pending" | "confirmed" | "failed" | "cancelled";
+  createdAt: string;
+  qrCodeUrl?: string;
+}
+
 

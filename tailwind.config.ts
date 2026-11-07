@@ -9,21 +9,62 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        jade: {
+          50: "#F2FAF5",
+          100: "#E3F5EB",
+          200: "#B7E5BA", // Jade Horizon Swatch 1
+          300: "#86D29D",
+          400: "#5CA87C", // Jade Horizon Swatch 2
+          500: "#34A36B",
+          600: "#288760", // Jade Horizon Swatch 3 (Core Brand Accent)
+          700: "#1F6F4E",
+          800: "#1A5140", // Jade Horizon Swatch 4 (Deep Spruce)
+          900: "#0F3529",
+          950: "#082018",
+          DEFAULT: "#288760",
+        },
+        surface: {
+          canvas: "#F8FAF9",
+          card: "#FFFFFF",
+          muted: "#F3F7F5",
+          mint: "#E8F8EB",
+          border: "#E5EBE7",
+        },
+        crimson: {
+          DEFAULT: "#C81E2E",
+          glow: "#E11D48",
+          deep: "#8A121D",
+        },
+        cinemaGold: {
+          DEFAULT: "#F59E0B",
+          amber: "#D97706",
+          light: "#FDE68A",
+        },
         brand: {
           red: "#E50914",
-          crimson: "#C10712",
+          crimson: "#C81E2E",
           darkred: "#850000",
-          yellow: "#FFB800",
-          black: "#0F0F11",
-          dark: "#16171B",
-          card: "#1C1D22",
-          border: "#2A2B33",
-          muted: "#9CA3AF",
+          yellow: "#F59E0B",
+          black: "#0F3529",
+          dark: "#1A5140",
+          card: "#FFFFFF",
+          border: "#E5EBE7",
+          muted: "#64748B",
         },
       },
       fontFamily: {
-        kannada: ["var(--font-kannada)", "'Hubballi'", "'Noto Sans Kannada'", "sans-serif"],
-        display: ["var(--font-display)", "'Hubballi'", "sans-serif"],
+        sans: ["var(--font-sans)"],
+        kannada: ["var(--font-sans)"],
+        notoSerifKannada: ["var(--font-noto-serif-kannada)", "serif"],
+        benne: ["var(--font-benne)", "var(--font-kannada)"],
+        english: ["var(--font-english)"],
+        googleSans: ["var(--font-english)"],
+        hubballi: ["var(--font-kannada)"],
+        telugu: ["var(--font-telugu)"],
+        tamil: ["var(--font-tamil)"],
+        hindi: ["var(--font-hindi)"],
+        malayalam: ["var(--font-malayalam)"],
+        display: ["var(--font-display)"],
       },
       animation: {
         ticker: "ticker 25s linear infinite",

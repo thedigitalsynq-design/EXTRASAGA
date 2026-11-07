@@ -1,8 +1,10 @@
 import { MetadataRoute } from "next";
 import { ARTICLES_SEED, REVIEWS_SEED, CATEGORIES } from "@/data/mockData";
+import { INITIAL_MOVIES_SEED } from "@/data/cinemaReleasesData";
+import { getSiteUrl } from "@/lib/siteUrl";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sinikannada.com";
+  const baseUrl = getSiteUrl();
 
   // Category pages
   const categoryUrls: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
@@ -28,8 +30,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // Movie Release Profile pages (/movies/[slug])
+  const movieUrls: MetadataRoute.Sitemap = INITIAL_MOVIES_SEED.map((movie) => ({
+    url: `${baseUrl}/movies/${movie.slug}`,
+    lastModified: new Date(movie.updatedAt || movie.theatricalReleaseDate),
+    changeFrequency: "daily",
+    priority: 0.95,
+  }));
+
   // Special hub pages
   const staticHubs: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/reviews/ramayana-part-1`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/movies`,
+      lastModified: new Date(),
+      changeFrequency: "hourly",
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/archive`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/box-office`,
       lastModified: new Date(),
@@ -50,6 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...categoryUrls, ...articleUrls, ...reviewUrls, ...staticHubs];
+  return [...categoryUrls, ...articleUrls, ...reviewUrls, ...movieUrls, ...staticHubs];
 }
 

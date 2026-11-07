@@ -4,31 +4,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import {
-  Calendar,
   Clock,
   Eye,
-  User,
   ChevronLeft,
   ChevronRight,
-  ArrowLeft,
-  Bookmark,
-  Share2,
+  ShieldCheck,
+  ExternalLink,
 } from "lucide-react";
 import { DataService } from "@/lib/dataService";
 import { formatKannadaDate, formatKannadaNumber, formatKannadaTimeAgo } from "@/lib/utils";
+import { getSiteUrl } from "@/lib/siteUrl";
 import SocialShare from "@/components/SocialShare";
 import CommentSection from "@/components/CommentSection";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import ArticleCard from "@/components/ArticleCard";
 import AdBanner from "@/components/AdBanner";
+import { getLanguageConfig } from "@/lib/languages";
+import { getTranslation, getLocalizedCategoryName } from "@/lib/translations";
+import { LanguageCode } from "@/types";
 
 interface ArticlePageProps {
   params: {
     slug: string;
   };
+  searchParams?: {
+    lang?: string;
+  };
 }
 
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: ArticlePageProps): Promise<Metadata> {
   const article = await DataService.getArticleBySlug(params.slug);
   if (!article) {
     return {
@@ -36,13 +40,15 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     };
   }
 
+  const siteUrl = getSiteUrl();
+
   return {
-    title: `${article.title} | ಸಿನಿ ಕನ್ನಡ`,
+    title: `${article.title} | FILMY GARAGE`,
     description: article.summary,
     openGraph: {
       title: article.title,
       description: article.summary,
-      url: `https://sinikannada.com/news/${article.slug}`,
+      url: `${siteUrl}/news/${article.slug}`,
       type: "article",
       publishedTime: article.publishedAt,
       authors: [article.author.name],
@@ -64,16 +70,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   };
 }
 
-export default async function ArticlePage({ params }: ArticlePageProps) {
+export default async function ArticlePage({ params, searchParams }: ArticlePageProps) {
   const article = await DataService.getArticleBySlug(params.slug);
 
   if (!article) {
     notFound();
   }
 
+  const activeLang = (article.language || searchParams?.lang || "kn") as LanguageCode;
+  const config = getLanguageConfig(activeLang);
+
   const [allArticles, trendingArticles] = await Promise.all([
-    DataService.getArticles(),
-    DataService.getTrendingArticles(5),
+    DataService.getArticles(undefined, activeLang),
+    DataService.getTrendingArticles(5, activeLang),
   ]);
 
   // Find previous and next articles
@@ -84,9 +93,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       ? allArticles[currentIndex + 1]
       : null;
 
-  // Related articles from same category
+  // Related articles from same industry / category
   const relatedArticles = allArticles
-    .filter((a) => a.id !== article.id && a.category === article.category)
+    .filter((a) => a.id !== article.id && (a.category === article.category || a.industry === article.industry))
     .slice(0, 3);
 
   // Structured Data (Schema.org NewsArticle)
@@ -106,12 +115,42 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ],
     publisher: {
       "@type": "Organization",
-      name: "ಸಿನಿ ಕನ್ನಡ",
+      name: "FILMY GARAGE",
+      url: getSiteUrl(),
       logo: {
         "@type": "ImageObject",
-        url: "https://sinikannada.com/logo.png",
+        url: `${getSiteUrl()}/logo.png`,
       },
     },
+  };
+
+  const localizedCatName = getLocalizedCategoryName(article.category, activeLang);
+
+  const readTimeLabel: Record<string, string> = {
+    kn: "ನಿಮಿಷ ಓದು",
+    te: "నిమిషాల పఠనం",
+    ta: "நிமிட வாசிப்பு",
+    ml: "മിനിറ്റ് വായന",
+    hi: "मिनट पढ़ें",
+    en: "min read",
+  };
+
+  const tagsLabel: Record<string, string> = {
+    kn: "ಟ್ಯಾಗ್‌ಗಳು:",
+    te: "ట్యాగ్‌లు:",
+    ta: "குறிச்சொற்கள்:",
+    ml: "ടാഗുകൾ:",
+    hi: "टैग्स:",
+    en: "Tags:",
+  };
+
+  const relatedLabel: Record<string, string> = {
+    kn: "ಸಂಬಂಧಿತ ಮತ್ತಷ್ಟು ಸುದ್ದಿಗಳು",
+    te: "మరిన్ని సంబంధిత వార్తలు",
+    ta: "தொடர்புடைய முக்கிய செய்திகள்",
+    ml: "മറ്റു പ്രധാന വാർത്തകൾ",
+    hi: "संबंधित अन्य ख़बरें",
+    en: "Related Stories",
   };
 
   return (
@@ -123,17 +162,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       {/* Breadcrumb Navigation */}
-      <div className="bg-brand-dark/40 border-b border-brand-border py-2.5 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-brand-muted font-kannada">
-          <Link href="/" className="hover:text-white transition-colors">
-            ಮುಖಪುಟ
+      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-3 px-4 sm:px-6 shadow-xs">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-gray-500">
+          <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium transition-colors">
+            {getTranslation(activeLang, "nav_home")}
           </Link>
           <span>/</span>
           <Link
-            href={`/category/${article.category}`}
-            className="hover:text-brand-red text-gray-300 font-medium transition-colors"
+            href={`/category/${article.category}?lang=${activeLang}`}
+            className="hover:text-brand-crimson text-gray-700 font-medium transition-colors"
           >
-            {article.categoryName}
+            {localizedCatName}
           </Link>
           <span>/</span>
           <span className="text-gray-400 truncate max-w-xs sm:max-w-md">
@@ -142,22 +181,32 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Article Content (Col 8) */}
           <main className="lg:col-span-8">
-            <article className="bg-brand-dark rounded-2xl border border-brand-border/80 p-5 sm:p-8 shadow-xl">
+            <article className="bg-white rounded-3xl border border-gray-200/90 p-5 sm:p-8 shadow-sm">
               {/* Category & Read time */}
               <div className="flex items-center justify-between gap-3 mb-4">
-                <Link
-                  href={`/category/${article.category}`}
-                  className="px-3 py-1 rounded bg-brand-red text-white text-xs font-bold font-kannada tracking-wide"
-                >
-                  {article.categoryName}
-                </Link>
-                <div className="flex items-center gap-2 text-xs text-brand-muted">
-                  <Clock className="w-3.5 h-3.5 text-brand-red" />
-                  <span>{article.readTimeMinutes} ನಿಮಿಷ ಓದು</span>
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/category/${article.category}?lang=${activeLang}`}
+                    className="px-3 py-1 rounded-full bg-brand-crimson text-white text-xs font-bold tracking-wide shadow-xs"
+                  >
+                    {localizedCatName}
+                  </Link>
+                  <span
+                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                    {config.industryName}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <Clock className="w-3.5 h-3.5 text-brand-crimson" />
+                  <span>
+                    {article.readTimeMinutes} {readTimeLabel[activeLang] || readTimeLabel.kn}
+                  </span>
                   <span>•</span>
                   <span className="flex items-center gap-1 font-sans">
                     <Eye className="w-3.5 h-3.5" />
@@ -166,34 +215,34 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </div>
               </div>
 
-              {/* Kannada Headline */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white font-kannada leading-tight tracking-tight">
+              {/* Headline */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-950 leading-tight tracking-tight">
                 {article.title}
               </h1>
 
               {/* Short summary / Sub-headline */}
-              <p className="mt-4 text-base sm:text-lg text-gray-300 font-kannada leading-relaxed font-normal border-l-4 border-brand-red pl-4 italic">
+              <p className="mt-4 text-base sm:text-lg text-gray-700 leading-relaxed font-normal border-l-4 border-brand-crimson pl-4 italic bg-gray-50/80 py-3 rounded-r-xl">
                 {article.summary}
               </p>
 
               {/* Author & Published Info */}
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-4 py-3.5 border-y border-brand-border/60 text-xs text-gray-400 font-kannada">
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-4 py-3.5 border-y border-gray-200 text-xs text-gray-600">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-brand-red font-bold font-sans">
+                  <div className="w-9 h-9 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-brand-crimson font-bold font-sans">
                     {article.author.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-gray-200">{article.author.name}</div>
-                    <div className="text-[11px] text-brand-muted">{article.author.role || "ಸಿನಿಮಾ ಡೆಸ್ಕ್"}</div>
+                    <div className="font-bold text-gray-900">{article.author.name}</div>
+                    <div className="text-[11px] text-gray-500">{article.author.role || `${config.industryName} Desk`}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-brand-muted font-sans text-[11px]">
-                  <span>📅 ಪ್ರಕಟ: {formatKannadaDate(article.publishedAt)}</span>
+                <div className="flex items-center gap-3 text-gray-500 font-sans text-[11px]">
+                  <span>📅 {formatKannadaDate(article.publishedAt)}</span>
                   {article.updatedAt && (
                     <>
                       <span>•</span>
-                      <span>ಅಪ್ಡೇಟ್: {formatKannadaTimeAgo(article.updatedAt)}</span>
+                      <span>{formatKannadaTimeAgo(article.updatedAt)}</span>
                     </>
                   )}
                 </div>
@@ -204,7 +253,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
               {/* Featured Image */}
               <div className="my-6">
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-md">
                   <Image
                     src={article.featuredImage}
                     alt={article.title}
@@ -215,36 +264,70 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   />
                 </div>
                 {article.imageCaption && (
-                  <p className="mt-2 text-center text-xs text-brand-muted font-kannada italic">
+                  <p className="mt-2 text-center text-xs text-gray-500 italic">
                     📷 {article.imageCaption}
                   </p>
                 )}
               </div>
 
-              {/* Article Rich Kannada Body Content */}
-              <div className="prose prose-invert max-w-none text-gray-200 font-kannada leading-relaxed space-y-4 text-sm sm:text-base">
+              {/* Article Rich Body Content */}
+              <div className="prose max-w-none text-gray-800 leading-relaxed space-y-4 text-sm sm:text-base font-normal">
                 <div
                   className="whitespace-pre-line"
                   dangerouslySetInnerHTML={{
-                    __html: article.content
-                      .replace(/\*\*(.*?)\*\*/g, "<strong class='text-white font-extrabold'>$1</strong>")
-                      .replace(/### (.*?)\n/g, "<h3 class='text-xl sm:text-2xl font-bold text-brand-red mt-6 mb-3 font-kannada'>$1</h3>")
-                      .replace(/> (.*?)\n/g, "<blockquote class='border-l-4 border-brand-yellow pl-4 py-2 my-4 bg-brand-card/50 rounded-r text-brand-yellow font-medium italic'>$1</blockquote>"),
+                    __html: (article.content ?? "")
+                      .replace(/\*\*(.*?)\*\*/g, "<strong class='text-gray-950 font-extrabold'>$1</strong>")
+                      .replace(/### (.*?)\n/g, "<h3 class='text-xl sm:text-2xl font-black text-brand-crimson mt-6 mb-3'>$1</h3>")
+                      .replace(/> (.*?)\n/g, "<blockquote class='border-l-4 border-amber-500 pl-4 py-2 my-4 bg-amber-50 rounded-r text-gray-800 font-medium italic'>$1</blockquote>"),
                   }}
                 />
               </div>
+
+              {/* Authentic Source Attribution Block (Requirement 6) */}
+              {article.source?.url && (
+                <div className="my-6 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300 shrink-0">
+                      <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5 flex-wrap">
+                        <span className="text-gray-600 font-sans">Verified Source:</span>
+                        <span className="text-emerald-800 font-bold font-sans">{article.source.name}</span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-200/80 text-emerald-900 border border-emerald-300 uppercase font-sans font-bold">
+                          Official Syndication
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-gray-600 mt-0.5 font-sans">
+                        Published at {new Date(article.publishedAt).toLocaleString()} · Full copyright belongs to original publisher
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={article.source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-950 hover:bg-brand-crimson text-xs font-bold text-white transition-all shrink-0 font-sans shadow-xs"
+                  >
+                    <span>Read Original on {article.source.name}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
 
               {/* In-Article Advertisement */}
               <AdBanner placement="in_article" />
 
               {/* Article Tags */}
-              <div className="mt-8 pt-6 border-t border-brand-border flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-bold text-gray-300 font-kannada">ಟ್ಯಾಗ್‌ಗಳು:</span>
+              <div className="mt-8 pt-6 border-t border-gray-200 flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold text-gray-700">
+                  {tagsLabel[activeLang] || tagsLabel.kn}
+                </span>
                 {article.tags.map((tag) => (
                   <Link
                     key={tag}
-                    href={`/search?q=${encodeURIComponent(tag)}`}
-                    className="px-3 py-1 rounded-full bg-brand-card hover:bg-brand-red text-gray-300 hover:text-white text-xs font-kannada border border-brand-border transition-colors"
+                    href={`/search?q=${encodeURIComponent(tag)}&lang=${activeLang}`}
+                    className="px-3 py-1 rounded-full bg-gray-100 hover:bg-brand-crimson text-gray-700 hover:text-white text-xs border border-gray-200 font-medium transition-colors"
                   >
                     #{tag}
                   </Link>
@@ -254,20 +337,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {/* Bottom Social Share */}
               <SocialShare title={article.title} />
 
-              {/* Previous & Next Article Navigation */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8 pt-6 border-t border-brand-border">
+              {/* Prev / Next Article Navigation */}
+              <div className="my-8 pt-6 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {prevArticle ? (
                   <Link
-                    href={`/news/${prevArticle.slug}`}
-                    className="group p-4 rounded-xl bg-brand-card hover:bg-brand-card/80 border border-brand-border hover:border-brand-red/50 transition-colors flex flex-col justify-between"
+                    href={`/news/${prevArticle.slug}?lang=${activeLang}`}
+                    className="group p-4 rounded-2xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all flex items-center gap-3 shadow-2xs"
                   >
-                    <span className="text-[11px] text-brand-muted font-kannada flex items-center gap-1 mb-1">
-                      <ChevronLeft className="w-3.5 h-3.5" />
-                      ಹಿಂದಿನ ಸುದ್ದಿ
-                    </span>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-200 group-hover:text-brand-red font-kannada line-clamp-2">
-                      {prevArticle.title}
-                    </h4>
+                    <ChevronLeft className="w-5 h-5 text-brand-crimson shrink-0 group-hover:-translate-x-1 transition-transform" />
+                    <div className="min-w-0">
+                      <span className="text-[10px] uppercase tracking-wider text-gray-500 block font-sans font-bold">
+                        {activeLang === "en" ? "Previous" : "ಹಿಂದಿನ ಲೇಖನ"}
+                      </span>
+                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-brand-crimson truncate transition-colors">
+                        {prevArticle.title}
+                      </h4>
+                    </div>
                   </Link>
                 ) : (
                   <div></div>
@@ -275,29 +360,31 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
                 {nextArticle && (
                   <Link
-                    href={`/news/${nextArticle.slug}`}
-                    className="group p-4 rounded-xl bg-brand-card hover:bg-brand-card/80 border border-brand-border hover:border-brand-red/50 transition-colors flex flex-col justify-between text-right"
+                    href={`/news/${nextArticle.slug}?lang=${activeLang}`}
+                    className="group p-4 rounded-2xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all flex items-center justify-between gap-3 text-right shadow-2xs"
                   >
-                    <span className="text-[11px] text-brand-muted font-kannada flex items-center justify-end gap-1 mb-1">
-                      ಮುಂದಿನ ಸುದ್ದಿ
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </span>
-                    <h4 className="text-xs sm:text-sm font-bold text-gray-200 group-hover:text-brand-red font-kannada line-clamp-2">
-                      {nextArticle.title}
-                    </h4>
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[10px] uppercase tracking-wider text-gray-500 block font-sans font-bold">
+                        {activeLang === "en" ? "Next" : "ಮುಂದಿನ ಲೇಖನ"}
+                      </span>
+                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-brand-crimson truncate transition-colors">
+                        {nextArticle.title}
+                      </h4>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-brand-crimson shrink-0 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 )}
               </div>
 
-              {/* Interactive Comment Section */}
+              {/* Comments Section */}
               <CommentSection articleId={article.id} />
             </article>
 
-            {/* Related Articles Section */}
+            {/* Related Articles */}
             {relatedArticles.length > 0 && (
-              <div className="my-10">
-                <h3 className="text-lg sm:text-xl font-extrabold text-white font-kannada mb-5 border-l-4 border-brand-red pl-3">
-                  ಸಂಬಂಧಿತ ಇತರ ಸುದ್ದಿಗಳು (Related News)
+              <div className="mt-8">
+                <h3 className="text-lg font-bold text-gray-950 mb-4 border-l-4 border-brand-crimson pl-3 font-sans">
+                  {relatedLabel[activeLang] || relatedLabel.kn}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {relatedArticles.map((rel) => (
@@ -308,7 +395,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             )}
           </main>
 
-          {/* Sidebar (Col 4) */}
+          {/* Sidebar */}
           <aside className="lg:col-span-4 space-y-6">
             <TrendingSidebar articles={trendingArticles} />
             <AdBanner placement="sidebar_rectangle" />
@@ -318,4 +405,3 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     </div>
   );
 }
-

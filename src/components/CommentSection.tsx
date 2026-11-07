@@ -41,10 +41,10 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
   };
 
   return (
-    <section className="my-10 bg-brand-dark rounded-2xl border border-brand-border/80 p-6 shadow-xl">
-      <div className="flex items-center gap-2 pb-4 mb-6 border-b border-brand-border">
-        <MessageSquare className="w-5 h-5 text-brand-red" />
-        <h3 className="text-lg font-bold text-white font-kannada">
+    <section className="my-10 bg-white rounded-3xl border border-gray-200/90 p-6 sm:p-7 shadow-xs">
+      <div className="flex items-center gap-2 pb-4 mb-6 border-b border-gray-200">
+        <MessageSquare className="w-5 h-5 text-brand-crimson" />
+        <h3 className="text-lg font-bold text-gray-950 font-kannada">
           ಓದುಗರ ಅನಿಸಿಕೆಗಳು ({comments.length})
         </h3>
       </div>
@@ -52,7 +52,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       {/* Comment Form */}
       <form onSubmit={handleSubmit} className="mb-8 space-y-4">
         <div>
-          <label className="block text-xs text-brand-muted font-kannada mb-1.5 font-medium">
+          <label className="block text-xs text-gray-600 font-kannada mb-1.5 font-medium">
             ನಿಮ್ಮ ಹೆಸರು (Name):
           </label>
           <div className="relative">
@@ -61,14 +61,14 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಊರು ನಮೂದಿಸಿ..."
-              className="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2 text-sm text-white placeholder-brand-muted focus:outline-none focus:border-brand-red font-kannada"
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-crimson focus:bg-white transition-all font-kannada shadow-2xs"
             />
-            <User className="w-4 h-4 text-brand-muted absolute right-3 top-2.5" />
+            <User className="w-4 h-4 text-gray-400 absolute right-3.5 top-3" />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs text-brand-muted font-kannada mb-1.5 font-medium">
+          <label className="block text-xs text-gray-600 font-kannada mb-1.5 font-medium">
             ನಿಮ್ಮ ಅಭಿಪ್ರಾಯ / ಕಾಮೆಂಟ್ (Comment):
           </label>
           <textarea
@@ -77,12 +77,12 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
             onChange={(e) => setContent(e.target.value)}
             placeholder="ಈ ಸುದ್ದಿಯ ಬಗ್ಗೆ ನಿಮ್ಮ ಅನಿಸಿಕೆಯನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."
             required
-            className="w-full bg-brand-card border border-brand-border rounded-lg p-3 text-sm text-white placeholder-brand-muted focus:outline-none focus:border-brand-red font-kannada resize-none"
+            className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-crimson focus:bg-white transition-all font-kannada resize-none shadow-2xs"
           />
         </div>
 
         {successMsg && (
-          <p className="text-xs text-emerald-400 font-kannada font-semibold">
+          <p className="text-xs text-emerald-700 font-kannada font-semibold">
             ✓ {successMsg}
           </p>
         )}
@@ -90,7 +90,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-5 py-2.5 rounded-lg bg-brand-red hover:bg-brand-crimson disabled:opacity-50 text-white font-medium text-xs font-kannada flex items-center gap-1.5 transition-colors shadow-lg"
+          className="px-5 py-2.5 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] disabled:opacity-50 text-white font-bold text-xs font-kannada flex items-center gap-1.5 transition-colors shadow-sm"
         >
           <Send className="w-3.5 h-3.5" />
           <span>{isSubmitting ? "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ..." : "ಕಾಮೆಂಟ್ ಪೋಸ್ಟ್ ಮಾಡಿ"}</span>
@@ -100,28 +100,28 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       {/* Comments List */}
       <div className="space-y-4">
         {comments.length === 0 ? (
-          <p className="text-xs text-brand-muted font-kannada text-center py-4">
+          <p className="text-xs text-gray-500 font-kannada text-center py-4">
             ಇನ್ನೂ ಯಾವುದೇ ಕಾಮೆಂಟ್‌ಗಳಿಲ್ಲ. ನೀವೇ ಮೊದಲಿಗರಾಗಿ ಅಭಿಪ್ರಾಯ ಹಂಚಿಕೊಳ್ಳಿ!
           </p>
         ) : (
           comments.map((com) => (
             <div
               key={com.id}
-              className="p-4 rounded-xl bg-brand-card border border-brand-border/60 space-y-2"
+              className="p-4 rounded-2xl bg-gray-50/80 border border-gray-200 space-y-2 shadow-2xs"
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-gray-200 font-kannada">
+                <span className="text-sm font-bold text-gray-950 font-kannada">
                   {com.authorName}
                 </span>
-                <span className="text-[11px] text-brand-muted font-kannada">
+                <span className="text-[11px] text-gray-500 font-kannada">
                   {formatKannadaTimeAgo(com.createdAt)}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-gray-300 font-kannada leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-700 font-kannada leading-relaxed">
                 {com.content}
               </p>
-              <div className="flex items-center gap-2 pt-1 text-[11px] text-brand-muted">
-                <button className="flex items-center gap-1 hover:text-brand-red transition-colors">
+              <div className="flex items-center gap-2 pt-1 text-[11px] text-gray-500">
+                <button className="flex items-center gap-1 hover:text-brand-crimson transition-colors">
                   <Heart className="w-3 h-3" />
                   <span>{com.likes} ಲೈಕ್ಸ್</span>
                 </button>

@@ -1,5 +1,4 @@
 import {
-  Category,
   Article,
   MovieReview,
   BoxOfficeEntry,
@@ -9,26 +8,19 @@ import {
   AdSpot,
   Comment,
 } from "@/types";
+import {
+  MULTILINGUAL_ARTICLES,
+  MULTILINGUAL_REVIEWS,
+  MULTILINGUAL_BOX_OFFICE,
+  MULTILINGUAL_VIDEOS,
+  MULTILINGUAL_OTT,
+  MULTILINGUAL_GALLERIES,
+} from "./multilingualSeeds";
+import { ALL_RAMAYANA_REVIEWS } from "./ramayanaReviewData";
 
-export const CATEGORIES: Category[] = [
-  { id: "1", name: "ಮುಖಪುಟ", englishName: "Home", slug: "mukhaputa", description: "ಸಿನಿ ಕನ್ನಡ ಮುಖಪುಟ - ಇತ್ತೀಚಿನ ತಾಜಾ ಸುದ್ದಿ ಮತ್ತು ಮನರಂಜನೆ" },
-  { id: "2", name: "ಇತ್ತೀಚಿನ ಸುದ್ದಿ", englishName: "Latest News", slug: "latest", description: "ಸ್ಯಾಂಡಲ್ವುಡ್ ಮತ್ತು ಭಾರತೀಯ ಚಿತ್ರರಂಗದ ಕ್ಷಣಕ್ಷಣದ ಸುದ್ದಿ" },
-  { id: "3", name: "ಸಿನಿಮಾ ವಿಮರ್ಶೆ", englishName: "Movie Reviews", slug: "reviews", description: "ಕನ್ನಡ ಸಿನಿಮಾಗಳ ನೈಜ ಹಾಗೂ ನಿಷ್ಪಕ್ಷಪಾತ ವಿಮರ್ಶೆಗಳು" },
-  { id: "4", name: "ಸ್ಯಾಂಡಲ್ವುಡ್", englishName: "Sandalwood", slug: "sandalwood", description: "ಕನ್ನಡ ಚಿತ್ರರಂಗದ ಸಂಪೂರ್ಣ ಸಮಾಚಾರ ಮತ್ತು ವಿಶೇಷ ವರದಿಗಳು" },
-  { id: "5", name: "ಬಾಲಿವುಡ್", englishName: "Bollywood", slug: "bollywood", description: "ಹಿಂದಿ ಸಿನಿ ಜಗತ್ತಿನ ತಾಜಾ ಗಾಸಿಪ್ ಮತ್ತು ಅಪ್ಡೇಟ್ಸ್" },
-  { id: "6", name: "ಹಾಲಿವುಡ್", englishName: "Hollywood", slug: "hollywood", description: "ವಿಶ್ವ ಸಿನಿಮಾಗಳ ಸಮಾಚಾರ ಮತ್ತು ಅಂತರರಾಷ್ಟ್ರೀಯ ಚಿತ್ರಗಳು" },
-  { id: "7", name: "ನಟರು", englishName: "Actors", slug: "actors", description: "ಕನ್ನಡದ ಸ್ಟಾರ್ ನಟರ ವೈಯಕ್ತಿಕ ಮತ್ತು ವೃತ್ತಿ ಬದುಕಿನ ಸುದ್ದಿ" },
-  { id: "8", name: "ನಟಿಯರು", englishName: "Actresses", slug: "actresses", description: "ಖ್ಯಾತ ನಟಿಯರ ಹೊಸ ಪ್ರಾಜೆಕ್ಟ್, ಫ್ಯಾಷನ್ ಮತ್ತು ಸಂದರ್ಶನಗಳು" },
-  { id: "9", name: "ಸಂದರ್ಶನ", englishName: "Interviews", slug: "interviews", description: "ತಾರೆಯರೊಂದಿಗೆ ನೇರ ಮಾತುಕತೆ ಮತ್ತು ವಿಶೇಷ ಸಂದರ್ಶನಗಳು" },
-  { id: "10", name: "ಗಾಸಿಪ್", englishName: "Gossip", slug: "gossip", description: "ಗಾಂಧಿನಗರದ ಒಳಗುಟ್ಟು ಮತ್ತು ಸಿನಿಮಾ ಜಗತ್ತಿನ ಬಿಸಿಬಿಸಿ ಚರ್ಚೆಗಳು" },
-  { id: "11", name: "ಫೋಟೋ ಗ್ಯಾಲರಿ", englishName: "Photo Gallery", slug: "gallery", description: "ತಾರೆಯರ ಆಕರ್ಷಕ ಫೋಟೋಗಳು ಮತ್ತು ಸಿನಿಮಾ ಇವೆಂಟ್ಸ್" },
-  { id: "12", name: "ವಿಡಿಯೋಗಳು", englishName: "Videos", slug: "videos", description: "ಹೊಸ ಟ್ರೇಲರ್‌ಗಳು, ಟೀಸರ್‌ಗಳು ಮತ್ತು ಹಾಡುಗಳ ವಿಡಿಯೋಗಳು" },
-  { id: "13", name: "OTT ಅಪ್ಡೇಟ್", englishName: "OTT Updates", slug: "ott", description: "ನೆಟ್‌ಫ್ಲಿಕ್ಸ್, ಅಮೆಜಾನ್ ಪ್ರೈಮ್, ಜೀ5 ನಲ್ಲಿ ಕನ್ನಡ ಸಿನಿಮಾಗಳು" },
-  { id: "14", name: "ಬಾಕ್ಸ್ ಆಫೀಸ್", englishName: "Box Office", slug: "box-office", description: "ಕನ್ನಡ ಸಿನಿಮಾಗಳ ಗಳಿಕೆ ಮತ್ತು ಬಾಕ್ಸ್ ಆಫೀಸ್ ವರದಿಗಳು" },
-  { id: "15", name: "ಮುಂಬರುವ ಸಿನಿಮಾಗಳು", englishName: "Upcoming Movies", slug: "upcoming", description: "ಮುಂದಿನ ದಿನಗಳಲ್ಲಿ ತೆರೆಕಾಣಲಿರುವ ನಿರೀಕ್ಷಿತ ಚಿತ್ರಗಳು" },
-];
+export { CATEGORIES } from "@/lib/categories";
 
-export const ARTICLES_SEED: Article[] = [
+const KANNADA_ARTICLES_RAW: Article[] = [
   {
     id: "art-1",
     title: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1: ಕುಂದಾಪುರದಲ್ಲಿ ಭರ್ಜರಿ ಶೂಟಿಂಗ್ - ರಿಷಬ್ ಶೆಟ್ಟಿ ಹೊಸ ಲುಕ್ ವೈರಲ್!",
@@ -92,7 +84,7 @@ export const ARTICLES_SEED: Article[] = [
     imageCaption: "ಟಾಕ್ಸಿಕ್ ಚಿತ್ರದ ಪ್ರಮುಖ ಆ್ಯಕ್ಷನ್ ಸೀಕ್ವೆನ್ಸ್ ಚಿತ್ರೀಕರಣ",
     author: {
       id: "auth-2",
-      name: "ಸಿನಿ ಕನ್ನಡ ಬ್ಯೂರೋ",
+      name: "FILMY GARAGE ಬ್ಯೂರೋ",
       role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ",
     },
     publishedAt: "2026-10-31T07:15:00Z",
@@ -217,7 +209,7 @@ export const ARTICLES_SEED: Article[] = [
     imageCaption: "ಬಘೀರ ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ ಪ್ರೇಕ್ಷಕರ ಹರ್ಷೋದ್ಗಾರ",
     author: {
       id: "auth-2",
-      name: "ಸಿನಿ ಕನ್ನಡ ಬ್ಯೂರೋ",
+      name: "FILMY GARAGE ಬ್ಯೂರೋ",
       role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ",
     },
     publishedAt: "2026-10-30T11:45:00Z",
@@ -294,9 +286,415 @@ export const ARTICLES_SEED: Article[] = [
     isFeatured: false,
     status: "published",
   },
+  // --- INTERVIEWS ---
+  {
+    id: "art-interview-1",
+    title: "ವಿಶೇಷ ಸಂದರ್ಶನ: 'ಕಾಂತಾರ 1 ಚಿತ್ರೀಕರಣದ ಕಠಿಣ ಸವಾಲುಗಳು ಮತ್ತು ಕದಂಬ ಇತಿಹಾಸ' - ರಿಷಬ್ ಶೆಟ್ಟಿ ಮುಕ್ತ ಮಾತುಕತೆ",
+    titleEn: "Exclusive Interview: Rishab Shetty opens up on Kantara Chapter 1 and Kadamba history",
+    slug: "exclusive-interview-rishab-shetty-kantara-chapter-1-challenges",
+    summary: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ರ ಕುಂದಾಪುರ ಶೂಟಿಂಗ್ ಅನುಭವಗಳು, ಕದಂಬರ ಕಾಲದ ಸಂಶೋಧನೆ ಮತ್ತು ತಮ್ಮ ದೈಹಿಕ ಬದಲಾವಣೆಯ ಬಗ್ಗೆ ರಿಷಬ್ ಶೆಟ್ಟಿ ನಮ್ಮ ಜತೆ ಹಂಚಿಕೊಂಡ ವಿಶೇಷ ಒಳನೋಟಗಳು.",
+    content: `
+ದೈವಿಕ ಸಿನಿದರ್ಶನ ನೀಡಿದ ಕಾಂತಾರ ಬಳಿಕ ರಿಷಬ್ ಶೆಟ್ಟಿ ಈಗ ಮತ್ತೊಂದು ಐತಿಹಾಸಿಕ ಪಯಣದಲ್ಲಿದ್ದಾರೆ. 
+
+### ಚಿತ್ರದ ಸಂಶೋಧನೆ ಮತ್ತು ಕದಂಬ ಇತಿಹಾಸ
+"ನಾವು 4ನೇ ಶತಮಾನದ ಕದಂಬರ ಇತಿಹಾಸವನ್ನು ತೆರೆಮೇಲೆ ತರುತ್ತಿದ್ದೇವೆ. ಇದಕ್ಕಾಗಿ ಶಾಸನಗಳು, ಜಾನಪದ ಹಾಡುಗಳು ಮತ್ತು ಪುರಾತನ ಉಡುಪುಗಳ ಬಗ್ಗೆ ತಿಂಗಳುಗಟ್ಟಲೆ ಅಧ್ಯಯನ ಮಾಡಿದ್ದೇವೆ," ಎನ್ನುತ್ತಾರೆ ರಿಷಬ್ ಶೆಟ್ಟಿ.
+
+### ಕಠಿಣ ತರಬೇತಿ
+ಚಿತ್ರಕ್ಕಾಗಿ ಕಳರಿಪಯಟ್ಟು, ಸಾಂಪ್ರದಾಯಿಕ ಕತ್ತಿವರಸೆ ಮತ್ತು ಕುದುರೆ ಸವಾರಿಯ ತರಬೇತಿಯನ್ನು ಕೇರಳ ಮತ್ತು ಕರ್ನಾಟಕದ ಸಾಂಪ್ರದಾಯಿಕ ಕಳರಿ ಗುರುಗಳಿಂದ ಪಡೆದಿದ್ದಾರೆ.
+    `,
+    category: "interviews",
+    categoryName: "ಸಂದರ್ಶನ",
+    tags: ["ಸಂದರ್ಶನ", "ರಿಷಬ್ ಶೆಟ್ಟಿ", "ಕಾಂತಾರ 1", "ಸ್ಯಾಂಡಲ್ವುಡ್"],
+    featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "ಸಂದರ್ಶನದಲ್ಲಿ ರಿಷಬ್ ಶೆಟ್ಟಿ ಅವರ ಮುಕ್ತ ನಗು",
+    author: { id: "auth-1", name: "ಪ್ರವೀಣ್ ಕುಮಾರ್", role: "ಹಿರಿಯ ಸಿನಿಮಾ ಪತ್ರಕರ್ತರು" },
+    publishedAt: "2026-10-31T09:00:00Z",
+    readTimeMinutes: 5,
+    views: 42100,
+    isBreaking: false,
+    isTopStory: true,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+  {
+    id: "art-interview-2",
+    title: "'ಟಾಕ್ಸಿಕ್ ಕೇವಲ ಆ್ಯಕ್ಷನ್ ಚಿತ್ರವಲ್ಲ, ಇದೊಂದು ತತ್ವಜ್ಞಾನದ ಪಯಣ': ನಿರ್ದೇಶಕಿ ಗೀತು ಮೋಹನ್‌ದಾಸ್ ಜತೆ ಎಕ್ಸ್‌ಕ್ಲೂಸಿವ್ ಇಂಟರ್ವ್ಯೂ",
+    titleEn: "Interview: Geetu Mohandas on Yash starrer Toxic vision and action philosophy",
+    slug: "interview-geetu-mohandas-yash-toxic-movie-vision",
+    summary: "ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ ಜತೆಗಿನ ಜಂಟಿ ಕಾರ್ಯವೈಖರಿ, ಹಾಲಿವುಡ್ ಸ್ಟಂಟ್ ನಿರ್ದೇಶಕರು ಮತ್ತು ಟಾಕ್ಸಿಕ್ ಚಿತ್ರದ ಕಥಾಹಂದರದ ಬಗ್ಗೆ ನಿರ್ದೇಶಕಿ ಗೀತು ಮೋಹನ್‌ದಾಸ್ ಜತೆ ಆಪ್ತ ಸಂವಾದ.",
+    content: `
+ಮೂತೋನ್ ಖ್ಯಾತಿಯ ಗೀತು ಮೋಹನ್‌ದಾಸ್ ಇದೀಗ ಭಾರತೀಯ ಚಿತ್ರರಂಗದ ಅತಿ ದೊಡ್ಡ ಪ್ರಾಜೆಕ್ಟ್ 'ಟಾಕ್ಸಿಕ್' ಗೆ ಆ್ಯಕ್ಷನ್-ಕಟ್ ಹೇಳುತ್ತಿದ್ದಾರೆ.
+
+### ಯಶ್ ಅವರ ಸೃಜನಶೀಲ ಸಹಯೋಗ
+"ಯಶ್ ಕೇವಲ ನಟನಲ್ಲ, ಅವರೊಬ್ಬ ಪರಿಪೂರ್ಣ ಚಿತ್ರನಿರ್ಮಾಣದ ದಾರ್ಶನಿಕ. ಪ್ರತಿ ದೃಶ್ಯದ ಲೈಟಿಂಗ್, ಡೈಲಾಗ್ ಮತ್ತು ಪಾತ್ರದ ತೂಕವನ್ನು ಅವರು ಆಳವಾಗಿ ಚರ್ಚಿಸುತ್ತಾರೆ," ಎನ್ನುತ್ತಾರೆ ಗೀತು.
+    `,
+    category: "interviews",
+    categoryName: "ಸಂದರ್ಶನ",
+    tags: ["ಸಂದರ್ಶನ", "ಗೀತು ಮೋಹನ್‌ದಾಸ್", "ಯಶ್", "ಟಾಕ್ಸಿಕ್"],
+    featuredImage: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "ಟಾಕ್ಸಿಕ್ ಸೆಟ್‌ನಲ್ಲಿ ನಿರ್ದೇಶಕಿ ಗೀತು ಮೋಹನ್‌ದಾಸ್",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-30T10:00:00Z",
+    readTimeMinutes: 4,
+    views: 38200,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- GOSSIP ---
+  {
+    id: "art-gossip-1",
+    title: "ಗಾಂಧಿನಗರದ ಒಳಗುಟ್ಟು: ರಾಕಿಂಗ್ ಸ್ಟಾರ್ 'ಟಾಕ್ಸಿಕ್' ಚಿತ್ರದಲ್ಲಿ ಬಾಲಿವುಡ್‌ನ ಖ್ಯಾತ ನಟಿಯ ಅತಿಥಿ ಪಾತ್ರ ನಿಜವೇ?",
+    titleEn: "Gandhinagar Gossip: Big Bollywood actress cameo in Yash starrer Toxic?",
+    slug: "gandhinagar-gossip-bollywood-star-cameo-in-yash-toxic",
+    summary: "ಬೆಂಗಳೂರಿನಲ್ಲಿ ನಡೆಯುತ್ತಿರುವ ಟಾಕ್ಸಿಕ್ ಚಿತ್ರೀಕರಣದ ವೇಳೆ ಬಾಲಿವುಡ್‌ನ ಖ್ಯಾತ ತಾರೆ ಸೆಟ್‌ನಲ್ಲಿ ಕಾಣಿಸಿಕೊಂಡಿದ್ದಾರೆ ಎಂಬ ಸುದ್ದಿ ಗಾಂಧಿನಗರದಲ್ಲಿ ಸಂಚಲನ ಸೃಷ್ಟಿಸಿದೆ.",
+    content: `
+ಗಾಂಧಿನಗರದ ಕಾಫಿ ಕಡೆಯಲ್ಲಿ ಈಗ ಹರಿದಾಡುತ್ತಿರುವ ಬಿಸಿಬಿಸಿ ಚರ್ಚೆಯೆಂದರೆ 'ಟಾಕ್ಸಿಕ್' ಅತಿಥಿ ಪಾತ್ರ. 
+
+ವಿಶ್ವಾಸಾರ್ಹ ಮೂಲಗಳ ಪ್ರಕಾರ, ಅಂತರರಾಷ್ಟ್ರೀಯ ಡ್ರಗ್ ಕಾರ್ಟೆಲ್ ಹಿನ್ನೆಲೆಯ ದೃಶ್ಯವೊಂದರಲ್ಲಿ ಬಾಲಿವುಡ್‌ನ ಖ್ಯಾತ ನಟಿಯೊಬ್ಬರು ಅತಿಥಿ ಪಾತ್ರದಲ್ಲಿ ಕಾಣಿಸಿಕೊಳ್ಳಲಿದ್ದಾರೆ ಎನ್ನಲಾಗಿದೆ. ಆದರೆ ಚಿತ್ರತಂಡ ಈ ಬಗ್ಗೆ ಸಂಪೂರ್ಣ ಗೌಪ್ಯತೆ ಕಾಯ್ದುಕೊಂಡಿದೆ.
+    `,
+    category: "gossip",
+    categoryName: "ಗಾಸಿಪ್",
+    tags: ["ಗಾಸಿಪ್", "ಟಾಕ್ಸಿಕ್", "ಯಶ್", "ಗಾಂಧಿನಗರ"],
+    featuredImage: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+    imageCaption: "ಟಾಕ್ಸಿಕ್ ಸುತ್ತ ಗಾಂಧಿನಗರದಲ್ಲಿ ಹರಿದಾಡುತ್ತಿರುವ ಕುತೂಹಲಕರ ವದಂತಿಗಳು",
+    author: { id: "auth-3", name: "ಸ್ನೇಹಾ ಗೌಡ", role: "ಮನರಂಜನಾ ವರದಿಗಾರ್ತಿ" },
+    publishedAt: "2026-10-31T05:30:00Z",
+    readTimeMinutes: 2,
+    views: 45600,
+    isBreaking: true,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+  {
+    id: "art-gossip-2",
+    title: "ಸ್ಯಾಂಡಲ್ವುಡ್‌ನಲ್ಲಿ ಮತ್ತೊಂದು ಬಿಗ್ ಬಜೆಟ್ ಮಲ್ಟಿಸ್ಟಾರರ್ ಸಿನಿಮಾ: ಇಬ್ಬರು ಸೂಪರ್‌ಸ್ಟಾರ್‌ಗಳು ಒಂದಾಗುವ ವದಂತಿ!",
+    titleEn: "Sandalwood rumour: Two top superstars in talks for a massive multi-starrer",
+    slug: "sandalwood-rumour-big-budget-multistarrer-superstars",
+    summary: "ದೊಡ್ಡ ನಿರ್ಮಾಣ ಸಂಸ್ಥೆಯೊಂದು ಕನ್ನಡದ ಇಬ್ಬರು ಅಗ್ರ ನಾಯಕರನ್ನು ಒಟ್ಟಿಗೆ ಕರೆತರಲು ಭಾರೀ ಸ್ಕ್ರಿಪ್ಟ್ ಸಿದ್ಧಪಡಿಸುತ್ತಿದೆ ಎಂಬ ಮಾಹಿತಿ ಹೊರಬಿದ್ದಿದೆ.",
+    content: `
+ಕನ್ನಡ ಚಿತ್ರರಂಗದಲ್ಲಿ ಮಲ್ಟಿಸ್ಟಾರರ್ ಚಿತ್ರಗಳ ಕಾಲ ಮತ್ತೆ ಮರುಕಳಿಸುತ್ತಿದೆ. ತಮಿಳು ಮತ್ತು ತೆಲುಗಿನಲ್ಲಿ ಇಂತಹ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳು ಯಶಸ್ವಿಯಾಗುತ್ತಿರುವ ಬೆನ್ನಲ್ಲೇ ಸ್ಯಾಂಡಲ್ವುಡ್‌ನಲ್ಲೂ ಬಿಗ್ ಮಲ್ಟಿಸ್ಟಾರರ್ ಕಸರತ್ತು ಶುರುವಾಗಿದೆ.
+    `,
+    category: "gossip",
+    categoryName: "ಗಾಸಿಪ್",
+    tags: ["ಗಾಸಿಪ್", "ಮಲ್ಟಿಸ್ಟಾರರ್", "ಸ್ಯಾಂಡಲ್ವುಡ್"],
+    featuredImage: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-3", name: "ಸ್ನೇಹಾ ಗೌಡ", role: "ಮನರಂಜನಾ ವರದಿಗಾರ್ತಿ" },
+    publishedAt: "2026-10-29T15:00:00Z",
+    readTimeMinutes: 2,
+    views: 28900,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: false,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- TELEVISION ---
+  {
+    id: "art-tv-1",
+    title: "ಕಿರುತೆರೆ ಇತಿಹಾಸದಲ್ಲೇ ಅತಿ ಹೆಚ್ಚು ಟಿಆರ್‌ಪಿ ದಾಖಲಿಸಿದ ರಿಯಾಲಿಟಿ ಶೋ: ವೀಕ್ಷಕರ ಮನಗೆದ್ದ ಫಿನಾಲೆ ಸಂಚಿಕೆ",
+    titleEn: "Kannada Television records historic TRP in reality show grand finale",
+    slug: "kannada-television-record-trp-reality-show-grand-finale",
+    summary: "ಕನ್ನಡ ಕಿರುತೆರೆಯ ಜನಪ್ರಿಯ ರಿಯಾಲಿಟಿ ಶೋ ಫಿನಾಲೆ ಸಂಚಿಕೆಯು ಭರ್ಜರಿ ಟಿಆರ್‌ಪಿ ದಾಖಲಿಸುವ ಮೂಲಕ ವಾರಾಂತ್ಯದಲ್ಲಿ ಮನೆಮನೆಗಳ ನೆಚ್ಚಿನ ಕಾರ್ಯಕ್ರಮವಾಗಿ ಹೊರಹೊಮ್ಮಿದೆ.",
+    content: `
+ವೀಕೆಂಡ್‌ನಲ್ಲಿ ಕಿರುತೆರೆ ವೀಕ್ಷಕರಿಗೆ ಹಬ್ಬದ ರಸದೌತಣ ನೀಡಿದ ಜನಪ್ರಿಯ ರಿಯಾಲಿಟಿ ಶೋ ಗ್ರ್ಯಾಂಡ್ ಫಿನಾಲೆ ದಾಖಲೆಯ ಟಿಆರ್‌ಪಿ ಪಡೆದುಕೊಂಡಿದೆ. ಸ್ಪರ್ಧಿಗಳ ಅದ್ಭುತ ಪ್ರತಿಭೆ ಮತ್ತು ತೀರ್ಪುಗಾರರ ಮನಮುಟ್ಟುವ ಮಾತುಗಳು ಕಾರ್ಯಕ್ರಮದ ಯಶಸ್ಸಿಗೆ ಕಾರಣವಾಗಿವೆ.
+    `,
+    category: "television",
+    categoryName: "ಕಿರುತೆರೆ",
+    tags: ["ಕಿರುತೆರೆ", "ರಿಯಾಲಿಟಿ ಶೋ", "ಟಿಆರ್‌ಪಿ", "ಕನ್ನಡ ಧಾರಾವಾಹಿ"],
+    featuredImage: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-3", name: "ಸ್ನೇಹಾ ಗೌಡ", role: "ಮನರಂಜನಾ ವರದಿಗಾರ್ತಿ" },
+    publishedAt: "2026-10-30T17:00:00Z",
+    readTimeMinutes: 3,
+    views: 24300,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+  {
+    id: "art-tv-2",
+    title: "ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ ಹೊಸ ಸೀಸನ್ ಆರಂಭಕ್ಕೆ ದಿನಗಣನೆ: ಕಿಚ್ಚ ಸುದೀಪ್ ನಿರೂಪಣೆಯ ಹೊಸ ಪ್ರೋಮೋ ಬಿಡುಗಡೆ!",
+    titleEn: "Bigg Boss Kannada new season countdown begins with Kiccha Sudeep promo",
+    slug: "bigg-boss-kannada-new-season-kiccha-sudeep-promo",
+    summary: "ಅಭಿನಯ ಚಕ್ರವರ್ತಿ ಕಿಚ್ಚ ಸುದೀಪ್ ಸಾರಥ್ಯದ ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ ಹೊಸ ಸೀಸನ್ ಪ್ರೋಮೋ ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಲ್ಲಿ ಧೂಳೆಬ್ಬಿಸಿದ್ದು, ಸ್ಪರ್ಧಿಗಳ ಪಟ್ಟಿ ಬಗ್ಗೆ ತೀವ್ರ ಕುತೂಹಲ ಮೂಡಿದೆ.",
+    content: `
+ಕನ್ನಡಿಗರ ಅಚ್ಚುಮೆಚ್ಚಿನ ರಿಯಾಲಿಟಿ ಶೋ ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ ಹೊಸ ಸೀಸನ್‌ಗೆ ಸಕಲ ಸಿದ್ಧತೆಗಳು ಪೂರ್ಣಗೊಂಡಿವೆ. ಕಿಚ್ಚ ಸುದೀಪ್ ಅವರ ಖಡಕ್ ನಿರೂಪಣೆಯ ಪ್ರೋಮೋ ಬಿಡುಗಡೆಯಾಗಿದ್ದು, ಈ ಬಾರಿ ಬಿಗ್ ಬಾಸ್ ಮನೆಯ ವಿನ್ಯಾಸದಲ್ಲಿ ಆಮೂಲಾಗ್ರ ಬದಲಾವಣೆ ತರಲಾಗಿದೆ.
+    `,
+    category: "television",
+    categoryName: "ಕಿರುತೆರೆ",
+    tags: ["ಕಿರುತೆರೆ", "ಬಿಗ್ ಬಾಸ್ ಕನ್ನಡ", "ಕಿಚ್ಚ ಸುದೀಪ್"],
+    featuredImage: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-3", name: "ಸ್ನೇಹಾ ಗೌಡ", role: "ಮನರಂಜನಾ ವರದಿಗಾರ್ತಿ" },
+    publishedAt: "2026-10-31T04:00:00Z",
+    readTimeMinutes: 3,
+    views: 51200,
+    isBreaking: true,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+
+  // --- CELEBRITY ---
+  {
+    id: "art-celeb-1",
+    title: "ರಾಧಿಕಾ ಪಂಡಿತ್ ಮತ್ತು ಯಶ್ ದಂಪತಿಯ ಸರಳ ದೀಪಾವಳಿ ಸಂಭ್ರಮ: ಮುದ್ದಾದ ಮಕ್ಕಳ ಫೋಟೋಗಳು ವೈರಲ್!",
+    titleEn: "Radhika Pandit and Yash celebrate warm family Diwali with kids - Photos viral",
+    slug: "radhika-pandit-yash-diwali-celebration-family-photos",
+    summary: "ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ ಮತ್ತು ರಾಧಿಕಾ ಪಂಡಿತ್ ತಮ್ಮ ಮಕ್ಕಳಾದ ಆಯ್ರಾ ಮತ್ತು ಯಥರ್ವ್ ಜತೆ ಸಾಂಪ್ರದಾಯಿಕ ಉಡುಗೆಯಲ್ಲಿ ದೀಪಾವಳಿ ಹಬ್ಬ ಆಚರಿಸಿದ ಕ್ಷಣಗಳು ನೋಡುಗರ ಮನಸೂರೆಗೊಂಡಿವೆ.",
+    content: `
+ಸ್ಯಾಂಡಲ್ವುಡ್‌ನ ಮುದ್ದಾದ ತಾರಾ ದಂಪತಿ ಯಶ್ ಮತ್ತು ರಾಧಿಕಾ ಪಂಡಿತ್ ತಮ್ಮ ಮನೆಯಲ್ಲಿ ಸರಳವಾಗಿ ದೀಪಾವಳಿ ಹಬ್ಬವನ್ನು ಆಚರಿಸಿದ್ದಾರೆ. ಸಾಂಪ್ರದಾಯಿಕ ರೇಷ್ಮೆ ಪಂಚೆ ಹಾಗೂ ಸೀರೆಯಲ್ಲಿ ಮಿಂಚಿದ ಈ ದಂಪತಿಯ ಕುಟುಂಬದ ಫೋಟೋಗಳು ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಲ್ಲಿ ಸದ್ದು ಮಾಡುತ್ತಿವೆ.
+    `,
+    category: "celebrity",
+    categoryName: "ಸೆಲೆಬ್ರಿಟಿ",
+    tags: ["ಸೆಲೆಬ್ರಿಟಿ", "ಯಶ್", "ರಾಧಿಕಾ ಪಂಡಿತ್", "ಫ್ಯಾಮಿಲಿ"],
+    featuredImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-3", name: "ಸ್ನೇಹಾ ಗೌಡ", role: "ಮನರಂಜನಾ ವರದಿಗಾರ್ತಿ" },
+    publishedAt: "2026-10-31T06:30:00Z",
+    readTimeMinutes: 2,
+    views: 68900,
+    isBreaking: false,
+    isTopStory: true,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+  {
+    id: "art-celeb-2",
+    title: "ರಾಷ್ಟ್ರಪ್ರಶಸ್ತಿ ಸಂಭ್ರಮದಲ್ಲಿ ರಿಷಬ್ ಶೆಟ್ಟಿ ಕುಟುಂಬ: ತಾಯ್ನಾಡಿನ ಜನರಿಗೆ ಧನ್ಯವಾದ ಅರ್ಪಿಸಿದ ದೈವಿಕ ನಟ",
+    titleEn: "Rishab Shetty celebrates National Award with family - Heartfelt thanks to Karnataka",
+    slug: "national-award-celebration-rishab-shetty-family",
+    summary: "ಕಾಂತಾರ ಚಿತ್ರದ ಅತ್ಯುತ್ತಮ ನಟ ರಾಷ್ಟ್ರಪ್ರಶಸ್ತಿ ಪಡೆದ ನಂತರ ರಿಷಬ್ ಶೆಟ್ಟಿ ಹಾಗೂ ಪ್ರಗತಿ ಶೆಟ್ಟಿ ತಮ್ಮ ಸ್ವಗ್ರಾಮ ಕೆರಾಡಿಯಲ್ಲಿ ಸಂಭ್ರಮಾಚರಣೆ ನಡೆಸಿದರು.",
+    content: `
+ಕಾಂತಾರ ಚಿತ್ರದ ಅಪ್ರತಿಮ ಅಭಿನಯಕ್ಕಾಗಿ ಭಾರತ ಸರ್ಕಾರದ ಅತ್ಯುನ್ನತ ರಾಷ್ಟ್ರಪ್ರಶಸ್ತಿ ಮುಡಿಗೇರಿಸಿಕೊಂಡ ರಿಷಬ್ ಶೆಟ್ಟಿ, ಪ್ರಶಸ್ತಿಯನ್ನು ಕರ್ನಾಟಕದ ಸಮಸ್ತ ಜನತೆಗೆ ಹಾಗೂ ಕರಾವಳಿಯ ದೈವಾರಾಧಕರಿಗೆ ಅರ್ಪಿಸಿದ್ದಾರೆ.
+    `,
+    category: "celebrity",
+    categoryName: "ಸೆಲೆಬ್ರಿಟಿ",
+    tags: ["ಸೆಲೆಬ್ರಿಟಿ", "ರಿಷಬ್ ಶೆಟ್ಟಿ", "ರಾಷ್ಟ್ರಪ್ರಶಸ್ತಿ"],
+    featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-1", name: "ಪ್ರವೀಣ್ ಕುಮಾರ್", role: "ಹಿರಿಯ ಸಿನಿಮಾ ಪತ್ರಕರ್ತರು" },
+    publishedAt: "2026-10-28T14:00:00Z",
+    readTimeMinutes: 3,
+    views: 43100,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- EVENTS ---
+  {
+    id: "art-event-1",
+    title: "ಸೈಮಾ (SIIMA) ಪ್ರಶಸ್ತಿ ಪ್ರದಾನ ಸಮಾರಂಭ: ಕನ್ನಡ ಚಿತ್ರರಂಗದ ತಾರೆಯರ ರಂಗುರಂಗಿನ ರೆಡ್ ಕಾರ್ಪೆಟ್ ಮೆರುಗು!",
+    titleEn: "SIIMA Awards red carpet dazzles with Kannada cinema superstars",
+    slug: "siima-awards-kannada-cinema-stars-red-carpet-highlights",
+    summary: "ದುಬೈನಲ್ಲಿ ಅದ್ದೂರಿಯಾಗಿ ನೆರವೇರಿದ ಸೈಮಾ ಪ್ರಶಸ್ತಿ ಪ್ರದಾನ ಸಮಾರಂಭದಲ್ಲಿ ಸ್ಯಾಂಡಲ್ವುಡ್ ತಾರೆಯರು ಪ್ರಮುಖ ಪ್ರಶಸ್ತಿಗಳನ್ನು ಬಾಚಿಕೊಂಡಿದ್ದಾರೆ.",
+    content: `
+ದಕ್ಷಿಣ ಭಾರತೀಯ ಸಿನಿಮಾರಂಗದ ಪ್ರತಿಷ್ಠಿತ ಸೈಮಾ ಪ್ರಶಸ್ತಿ ಪ್ರದಾನ ಸಮಾರಂಭವು ಅದ್ಧೂರಿಯಾಗಿ ನೆರವೇರಿತು. ಕನ್ನಡದ ಸೂಪರ್‌ಸ್ಟಾರ್‌ಗಳು ರೆಡ್ ಕಾರ್ಪೆಟ್ ಮೇಲೆ ಮಿಂಚಿ ಅಭಿಮಾನಿಗಳ ಹರ್ಷೋದ್ಗಾರಕ್ಕೆ ಪಾತ್ರರಾದರು.
+    `,
+    category: "events",
+    categoryName: "ಇವೆಂಟ್ಸ್",
+    tags: ["ಇವೆಂಟ್ಸ್", "ಸೈಮಾ ಪ್ರಶಸ್ತಿ", "ರೆಡ್ ಕಾರ್ಪೆಟ್", "ಸ್ಯಾಂಡಲ್ವುಡ್"],
+    featuredImage: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-30T19:00:00Z",
+    readTimeMinutes: 3,
+    views: 33400,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+  {
+    id: "art-event-2",
+    title: "ಕುಂದಾಪುರದಲ್ಲಿ ಅದ್ಧೂರಿಯಾಗಿ ಜರುಗಿದ 'ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1' ವಿಶೇಷ ಮುಹೂರ್ತ ಸಮಾರಂಭ: ಗಣ್ಯರ ದಂಡು",
+    titleEn: "Kantara Chapter 1 grand muhurat event in Kundapura attended by cinema legends",
+    slug: "kantara-chapter-1-grand-muhurat-event-kundapura",
+    summary: "ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್ ಸಂಸ್ಥೆಯು ಕುಂದಾಪುರದ ಪವಿತ್ರ ಕ್ಷೇತ್ರದಲ್ಲಿ ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ರ ವಿಶೇಷ ಪೂಜಾ ಕೈಂಕರ್ಯಗಳನ್ನು ನೆರವೇರಿಸಿತು.",
+    content: `
+ಕರಾವಳಿಯ ಸಂಸ್ಕೃತಿಯ ಪ್ರಕಾರ ದೈವ ಪ್ರಾರ್ಥನೆ ಸಲ್ಲಿಸಿ ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 ಕ್ಕೆ ಅಧಿಕೃತ ಮುಹೂರ್ತ ನೇರವೇರಿಸಲಾಯಿತು. ಚಿತ್ರರಂಗದ ಪ್ರಮುಖ ಗಣ್ಯರು ಹಾಗೂ ನಿರ್ಮಾಪಕರು ಈ ಸಂದರ್ಭದಲ್ಲಿ ಉಪಸ್ಥಿತರಿದ್ದರು.
+    `,
+    category: "events",
+    categoryName: "ಇವೆಂಟ್ಸ್",
+    tags: ["ಇವೆಂಟ್ಸ್", "ಮುಹೂರ್ತ", "ಕಾಂತಾರ 1", "ಹೊಂಬಾಳೆ"],
+    featuredImage: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-1", name: "ಪ್ರವೀಣ್ ಕುಮಾರ್", role: "ಹಿರಿಯ ಸಿನಿಮಾ ಪತ್ರಕರ್ತರು" },
+    publishedAt: "2026-10-27T11:00:00Z",
+    readTimeMinutes: 3,
+    views: 29800,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: false,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- ACTORS ---
+  {
+    id: "art-actor-1",
+    title: "ಸಿನಿಮಾ ಪಯಣದ 30 ವರ್ಷಗಳು: ಅಭಿನಯ ಚಕ್ರವರ್ತಿ ಕಿಚ್ಚ ಸುದೀಪ್ ಅವರ ಸ್ಫೂರ್ತಿದಾಯಕ ಯಶೋಗಾಥೆ",
+    titleEn: "30 Years of Cinema Excellence: Kiccha Sudeep's inspiring career journey",
+    slug: "kiccha-sudeep-30-years-in-cinema-inspiring-journey",
+    summary: "ಸ್ಪರ್ಶ, ಹುಚ್ಚ ಚಿತ್ರಗಳಿಂದ ಹಿಡಿದು ಇಂದಿನ ಮ್ಯಾಕ್ಸ್ ಮತ್ತು ವಿಕ್ರಾಂತ್ ರೋಣವರೆಗೆ, ಭಾರತೀಯ ಚಿತ್ರರಂಗದಲ್ಲಿ ಕಿಚ್ಚ ಸುದೀಪ್ ನಿರ್ಮಿಸಿರುವ ಅಚ್ಚಳಿಯದ ಛಾಪು.",
+    content: `
+ಕನ್ನಡ ಚಿತ್ರರಂಗದಲ್ಲಿ ತಮ್ಮ ವಿಶಿಷ್ಟ ಕಂಠ, ತೀವ್ರ ಕಣ್ಣುಗಳ ನೋಟ ಮತ್ತು ನೈಜ ಅಭಿನಯದ ಮೂಲಕ ಲಕ್ಷಾಂತರ ಅಭಿಮಾನಿಗಳ ಹೃದಯ ಗೆದ್ದಿರುವ ಅಭಿನಯ ಚಕ್ರವರ್ತಿ ಕಿಚ್ಚ ಸುದೀಪ್ ಚಿತ್ರರಂಗದಲ್ಲಿ ಯಶಸ್ವಿ ಮೂರು ದಶಕಗಳನ್ನು ಪೂರೈಸಿದ್ದಾರೆ.
+    `,
+    category: "actors",
+    categoryName: "ನಟರು",
+    tags: ["ನಟರು", "ಕಿಚ್ಚ ಸುದೀಪ್", "ಸ್ಯಾಂಡಲ್ವುಡ್ ನಟರು"],
+    featuredImage: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-1", name: "ಪ್ರವೀಣ್ ಕುಮಾರ್", role: "ಹಿರಿಯ ಸಿನಿಮಾ ಪತ್ರಕರ್ತರು" },
+    publishedAt: "2026-10-31T03:00:00Z",
+    readTimeMinutes: 4,
+    views: 57800,
+    isBreaking: false,
+    isTopStory: true,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+  {
+    id: "art-actor-2",
+    title: "ಡಾಲಿ ಧನಂಜಯ್ ಹೊಸ ಅಧ್ಯಾಯ: ಸ್ವತಂತ್ರ ಚಿತ್ರಗಳಿಗೆ ಬೆಂಬಲ ನೀಡುತ್ತಿರುವ ಪ್ರತಿಭಾವಂತ ನಟ-ನಿರ್ಮಾಪಕ",
+    titleEn: "Daali Dhananjay's new phase: Championing independent Kannada cinema",
+    slug: "daali-dhananjay-new-journey-supporting-indie-cinema",
+    summary: "ಟಗರು ಚಿತ್ರದ ಮೂಲಕ ಡಾಲಿಯಾಗಿ ಗುರುತಿಸಿಕೊಂಡ ಧನಂಜಯ್, ಇದೀಗ ಡಾಲಿ ಪಿಕ್ಚರ್ಸ್ ಮೂಲಕ ಹೊಸ ಪ್ರತಿಭೆಗಳಿಗೆ ವೇದಿಕೆ ಕಲ್ಪಿಸುತ್ತಿರುವ ರೀತಿ ಶ್ಲಾಘನೀಯ.",
+    content: `
+ನಟರಾಕ್ಷಸ ಎಂದೇ ಪ್ರೀತಿಯಿಂದ ಕರೆಯಲ್ಪಡುವ ಡಾಲಿ ಧನಂಜಯ್ ಕನ್ನಡ ಚಿತ್ರರಂಗದಲ್ಲಿ ಸೃಜನಶೀಲ ಬದಲಾವಣೆಯ ಹರಿಕಾರರಾಗಿದ್ದಾರೆ. ಬಡವ ರಾಸ್ಕಲ್, ಹೆಡ್ ಬುಷ್ ಬಳಿಕ ಈಗ ಉತ್ತರಕಾಂಡ ಚಿತ್ರದಲ್ಲಿ ಮತ್ತೊಮ್ಮೆ ರಗಡ್ ಲುಕ್‌ನಲ್ಲಿ ಕಾಣಿಸಿಕೊಳ್ಳಲಿದ್ದಾರೆ.
+    `,
+    category: "actors",
+    categoryName: "ನಟರು",
+    tags: ["ನಟರು", "ಡಾಲಿ ಧನಂಜಯ್", "ಡಾಲಿ ಪಿಕ್ಚರ್ಸ್"],
+    featuredImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-1", name: "ಪ್ರವೀಣ್ ಕುಮಾರ್", role: "ಹಿರಿಯ ಸಿನಿಮಾ ಪತ್ರಕರ್ತರು" },
+    publishedAt: "2026-10-28T09:30:00Z",
+    readTimeMinutes: 3,
+    views: 31400,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: false,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- BOLLYWOOD ---
+  {
+    id: "art-bolly-1",
+    title: "ರಣಬೀರ್ ಕಪೂರ್ & ಯಶ್ ನಟನೆಯ 'ರಾಮಾಯಣ' ಚಿತ್ರಕ್ಕೆ ಹಾಲಿವುಡ್ ದರ್ಜೆಯ ವಿಎಫ್‌ಎಕ್ಸ್: ಬಜೆಟ್ ಎಷ್ಟು ಗೊತ್ತೇ?",
+    titleEn: "Ramayana starring Ranbir Kapoor & Yash ropes in Hollywood VFX teams - Budget details",
+    slug: "ramayana-ranbir-kapoor-yash-vfx-hollywood-scale-budget",
+    summary: "ನಿತೇಶ್ ತಿವಾರಿ ನಿರ್ದೇಶನದ ರಾಮಾಯಣ ಭಾಗ 1 ಗಾಗಿ ವಿಶ್ವದ ಅಗ್ರಮಾನ್ಯ ಹಾಲಿವುಡ್ ಆಸ್ಕರ್ ವಿಜೇತ ವಿಎಫ್‌ಎಕ್ಸ್ ಕಂಪನಿಗಳು ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ.",
+    content: `
+ಭಾರತೀಯ ಚಿತ್ರರಂಗದ ಅತಿ ದೊಡ್ಡ ಮಹಾಕಾವ್ಯ ಯೋಜನೆ **'ರಾಮಾಯಣ: ಭಾಗ 1'**. ರಣಬೀರ್ ಕಪೂರ್ ಶ್ರೀರಾಮನಾಗಿ ಮತ್ತು ರಾಕಿಂಗ್ ಸ್ಟಾರ್ ಯಶ್ ರಾವಣಾಸುರನಾಗಿ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತಿರುವ ಈ ಚಿತ್ರಕ್ಕೆ ₹800 ಕೋಟಿಗೂ ಅಧಿಕ ಬೃಹತ್ ಬಜೆಟ್ ವಿನಿಯೋಗಿಸಲಾಗುತ್ತಿದೆ.
+    `,
+    category: "bollywood",
+    categoryName: "ಬಾಲಿವುಡ್",
+    tags: ["ಬಾಲಿವುಡ್", "ರಾಮಾಯಣ", "ರಣಬೀರ್ ಕಪೂರ್", "ಯಶ್"],
+    featuredImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-31T08:00:00Z",
+    readTimeMinutes: 4,
+    views: 64100,
+    isBreaking: false,
+    isTopStory: true,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+  {
+    id: "art-bolly-2",
+    title: "ರೋಹಿತ್ ಶೆಟ್ಟಿ ಕಾಪ್ ಯೂನಿವರ್ಸ್ 'ಸಿಂಘಮ್ ಅಗೇನ್': ದೀಪಾವಳಿ ಬಾಕ್ಸ್ ಆಫೀಸ್‌ನಲ್ಲಿ ಅಜಯ್ ದೇವಗನ್ ಅಬ್ಬರ!",
+    titleEn: "Singham Again in Rohit Shetty Cop Universe roars at Diwali box office",
+    slug: "singham-again-rohit-shetty-ajay-devgn-box-office-diwali",
+    summary: "ಅಜಯ್ ದೇವಗನ್, ಕರೀನಾ ಕಪೂರ್, ರಣವೀರ್ ಸಿಂಗ್ ಮತ್ತು ದೀಪಿಕಾ ಪಡುಕೋಣೆ ನಟನೆಯ ಸಿಂಘಮ್ ಅಗೇನ್ ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ ಹೌಸ್‌ಫುಲ್ ಪ್ರದರ್ಶನ ಕಾಣುತ್ತಿದೆ.",
+    content: `
+ಬಾಲಿವುಡ್‌ನ ಯಶಸ್ವಿ ಕಾಪ್ ಯೂನಿವರ್ಸ್‌ನಲ್ಲಿ ಮೂಡಿಬಂದಿರುವ ಸಿಂಘಮ್ ಅಗೇನ್ ಚಿತ್ರವು ಮೊದಲ ವಾರಾಂತ್ಯದಲ್ಲೇ ನೂರು ಕೋಟಿಗೂ ಅಧಿಕ ಮೊತ್ತ ಕಲೆಹಾಕಿ ದಾಖಲೆ ಸೃಷ್ಟಿಸಿದೆ.
+    `,
+    category: "bollywood",
+    categoryName: "ಬಾಲಿವುಡ್",
+    tags: ["ಬಾಲಿವುಡ್", "ಸಿಂಘಮ್ ಅಗೇನ್", "ರೋಹಿತ್ ಶೆಟ್ಟಿ"],
+    featuredImage: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-29T14:30:00Z",
+    readTimeMinutes: 3,
+    views: 39500,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: true,
+    isFeatured: false,
+    status: "published",
+  },
+
+  // --- HOLLYWOOD ---
+  {
+    id: "art-holly-1",
+    title: "ಅವತಾರ್ 3 (Avatar: Fire and Ash): ಜೇಮ್ಸ್ ಕ್ಯಾಮರೂನ್ ಸೃಷ್ಟಿಸುತ್ತಿರುವ ಜ್ವಾಲಾಮುಖಿ ಪ್ರಪಂಚದ ರಹಸ್ಯಗಳು!",
+    titleEn: "Avatar 3 Fire and Ash: Secrets of James Cameron's volcanic Pandoran ash people",
+    slug: "avatar-3-fire-and-ash-james-cameron-volcano-world-details",
+    summary: "ಜೇಮ್ಸ್ ಕ್ಯಾಮರೂನ್ ಸಾರಥ್ಯದ ಜಾಗತಿಕ ವಿಸ್ಮಯ 'ಅವತಾರ್: ಫೈರ್ ಅಂಡ್ ಆ್ಯಶ್' ಚಿತ್ರದ ಪ್ರಮುಖ ಪಾತ್ರಗಳು ಮತ್ತು ಪ್ಯಾಂಡೋರಾದ ಅಗ್ನಿ ಕುಲದ ನವಿರಾದ ವಿವರಗಳು ಬಹಿರಂಗ.",
+    content: `
+ಹಾಲಿವುಡ್ ಇತಿಹಾಸದಲ್ಲೇ ಅತ್ಯಧಿಕ ಗಳಿಕೆ ಕಂಡ ಅವತಾರ್ ಸರಣಿಯ ಮೂರನೇ ಭಾಗ 'ಅವತಾರ್: ಫೈರ್ ಅಂಡ್ ಆ್ಯಶ್'. ಈ ಚಿತ್ರದಲ್ಲಿ ಜೇಮ್ಸ್ ಕ್ಯಾಮರೂನ್ ಪ್ಯಾಂಡೋರಾದ ಆ್ಯಶ್ ಪೀಪಲ್ (Ash People) ಎಂಬ ವಿಶಿಷ್ಟ ನಾವಿ ಕುಲವನ್ನು ಜಗತ್ತಿಗೆ ಪರಿಚಯಿಸುತ್ತಿದ್ದಾರೆ.
+    `,
+    category: "hollywood",
+    categoryName: "ಹಾಲಿವುಡ್",
+    tags: ["ಹಾಲಿವುಡ್", "ಅವತಾರ್ 3", "ಜೇಮ್ಸ್ ಕ್ಯಾಮರೂನ್"],
+    featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-31T07:45:00Z",
+    readTimeMinutes: 4,
+    views: 48900,
+    isBreaking: false,
+    isTopStory: true,
+    isTrending: true,
+    isFeatured: true,
+    status: "published",
+  },
+  {
+    id: "art-holly-2",
+    title: "ಕ್ರಿಸ್ಟೋಫರ್ ನೋಲನ್ ಮುಂದಿನ ಐಮ್ಯಾಕ್ಸ್ ಮಹಾಕಾವ್ಯ: ಹಾಲಿವುಡ್‌ನಲ್ಲಿ ಭಾರೀ ಗೌಪ್ಯತೆ ಕಾಪಾಡಿಕೊಂಡಿರುವ ನಿರ್ದೇಶಕ",
+    titleEn: "Christopher Nolan's next IMAX epic keeps Hollywood guessing with secret casting",
+    slug: "christopher-nolan-next-imax-project-hollywood-secrecy",
+    summary: "ಓಪನ್‌ಹೈಮರ್ ಆಸ್ಕರ್ ವಿಜಯದ ನಂತರ ಕ್ರಿಸ್ಟೋಫರ್ ನೋಲನ್ ನಿರ್ದೇಶಿಸುತ್ತಿರುವ ಮುಂದಿನ ಚಿತ್ರದ ಐಮ್ಯಾಕ್ಸ್ ಚಿತ್ರೀಕರಣಕ್ಕೆ ದಿನಾಂಕ ನಿಗದಿಯಾಗಿದ್ದು, ತಾರಾಗಣದಲ್ಲಿ ಮ್ಯಾಟ್ ಡ್ಯಾಮನ್ ಹೆಸರು ಕೇಳಿಬರುತ್ತಿದೆ.",
+    content: `
+ವಿಶ್ವದ ಅಗ್ರಮಾನ್ಯ ಚಿತ್ರನಿರ್ದೇಶಕ ಕ್ರಿಸ್ಟೋಫರ್ ನೋಲನ್ ತಮ್ಮ ಮುಂದಿನ ಚಲನಚಿತ್ರವನ್ನು ಯೂನಿವರ್ಸಲ್ ಪಿಕ್ಚರ್ಸ್ ಜತೆಗೂಡಿ ಕೈಗೆತ್ತಿಕೊಂಡಿದ್ದಾರೆ. ಎಂದಿನಂತೆ ಕಥೆ ಮತ್ತು ಶೀರ್ಷಿಕೆಯ ಬಗ್ಗೆ ಕಟ್ಟುನಿಟ್ಟಾದ ಗೌಪ್ಯತೆ ಕಾಯ್ದುಕೊಳ್ಳಲಾಗಿದೆ.
+    `,
+    category: "hollywood",
+    categoryName: "ಹಾಲಿವುಡ್",
+    tags: ["ಹಾಲಿವುಡ್", "ಕ್ರಿಸ್ಟೋಫರ್ ನೋಲನ್", "ಐಮ್ಯಾಕ್ಸ್"],
+    featuredImage: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop",
+    author: { id: "auth-2", name: "FILMY GARAGE ಬ್ಯೂರೋ", role: "ವಿಶೇಷ ಪ್ರತಿನಿಧಿ" },
+    publishedAt: "2026-10-28T16:00:00Z",
+    readTimeMinutes: 3,
+    views: 36700,
+    isBreaking: false,
+    isTopStory: false,
+    isTrending: false,
+    isFeatured: false,
+    status: "published",
+  },
 ];
 
-export const REVIEWS_SEED: MovieReview[] = [
+export const ARTICLES_SEED: Article[] = [
+  ...KANNADA_ARTICLES_RAW.map((a) => ({
+    language: "kn" as const,
+    industry: "sandalwood" as const,
+    ...a,
+  })),
+  ...MULTILINGUAL_ARTICLES,
+];
+
+const KANNADA_REVIEWS_RAW: MovieReview[] = [
   {
     id: "rev-1",
     movieTitle: "ಕಾಂತಾರ (Kantara)",
@@ -428,7 +826,17 @@ export const REVIEWS_SEED: MovieReview[] = [
   },
 ];
 
-export const BOX_OFFICE_SEED: BoxOfficeEntry[] = [
+export const REVIEWS_SEED: MovieReview[] = [
+  ...ALL_RAMAYANA_REVIEWS,
+  ...KANNADA_REVIEWS_RAW.map((r) => ({
+    language: "kn" as const,
+    industry: "sandalwood" as const,
+    ...r,
+  })),
+  ...MULTILINGUAL_REVIEWS,
+];
+
+const KANNADA_BOX_OFFICE_RAW: BoxOfficeEntry[] = [
   {
     id: "bo-1",
     movieTitle: "ಕೆಜಿಎಫ್: ಚಾಪ್ಟರ್ 2",
@@ -541,66 +949,154 @@ export const BOX_OFFICE_SEED: BoxOfficeEntry[] = [
   },
 ];
 
-export const OTT_RELEASES_SEED: OttRelease[] = [
+export const BOX_OFFICE_SEED: BoxOfficeEntry[] = [
+  ...KANNADA_BOX_OFFICE_RAW.map((b) => ({
+    language: "kn" as const,
+    industry: "sandalwood" as const,
+    ...b,
+  })),
+  ...MULTILINGUAL_BOX_OFFICE,
+];
+
+const KANNADA_OTT_RAW: OttRelease[] = [
   {
-    id: "ott-1",
+    id: "ott-bagheera-netflix",
     movieTitle: "ಬಘೀರ (Bagheera)",
     movieTitleEn: "Bagheera",
     platform: "Netflix",
     platformBadgeColor: "bg-red-600 text-white",
-    releaseDate: "2026-11-15",
-    languages: ["ಕನ್ನಡ", "ತೆಲುಗು", "ತಮಿಳು", "ಹಿಂದಿ", "ಮಲಯಾಳಂ"],
-    genre: "ಆ್ಯಕ್ಷನ್ ಥ್ರಿಲ್ಲರ್",
-    posterImage: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=600&auto=format&fit=crop",
+    releaseDate: "2024-11-21",
+    languages: ["ಕನ್ನಡ", "ತೆಲುಗು", "ತಮಿಳು", "ಮಲಯಾಳಂ", "ಹಿಂದಿ"],
+    genre: "ಆ್ಯಕ್ಷನ್ ವಿಜಿಲೆಂಟ್ ಥ್ರಿಲ್ಲರ್",
+    posterImage: "https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=600&auto=format&fit=crop",
     watchUrl: "https://www.netflix.com",
-    description: "ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್ ನಿರ್ಮಾಣದ ರೋಚಕ ಸೂಪರ್‌ಹೀರೋ ಮಾದರಿಯ ಆ್ಯಕ್ಷನ್ ಕಥಾನಕ. ಶ್ರೀಮುರಳಿ ಪವರ್‌ಫುಲ್ ಅವತಾರ.",
-    cast: ["ಶ್ರೀಮುರಳಿ", "ರುಕ್ಮಿಣಿ ವಸಂತ್", "ಪ್ರಕಾಶ್ ರಾಜ್"],
+    description: "ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್ ನಿರ್ಮಾಣದ ರೋಚಕ ಸೂಪರ್‌ಹೀರೋ ಮಾದರಿಯ ಆ್ಯಕ್ಷನ್ ಕಥಾನಕ. ಶ್ರೀಮುರಳಿ ಪವರ್‌ಫುಲ್ ಮಾಸ್ಕ್ಡ್ ಅವತಾರ.",
+    cast: ["ಶ್ರೀಮುರಳಿ", "ರುಕ್ಮಿಣಿ ವಸಂತ್", "ಪ್ರಕಾಶ್ ರಾಜ್", "ಸುಚೇಂದ್ರ ಪ್ರಸಾದ್"],
+    runtime: "158 ನಿಮಿಷ (2h 38m)",
+    productionHouse: "Hombale Films",
+    verificationScore: 98,
+    verificationSources: ["Netflix India Official", "Hombale Films Press Note", "IMDb Pro"],
   },
   {
-    id: "ott-2",
-    movieTitle: "ಕೃಷ್ಣಂ ಪ್ರಣಯ ಸಖಿ",
-    movieTitleEn: "Krishnam Pranaya Sakhi",
+    id: "ott-bheema-prime",
+    movieTitle: "ಭೀಮ (Bheema)",
+    movieTitleEn: "Bheema",
     platform: "Prime Video",
     platformBadgeColor: "bg-sky-600 text-white",
-    releaseDate: "2026-11-08",
+    releaseDate: "2024-09-06",
+    languages: ["ಕನ್ನಡ"],
+    genre: "ರೌಡಿಸಂ & ಸಾಮಾಜಿಕ ಆ್ಯಕ್ಷನ್",
+    posterImage: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600&auto=format&fit=crop",
+    watchUrl: "https://www.primevideo.com",
+    description: "ಬೆಂಗಳೂರಿನ ಯುವಜನತೆ ಮತ್ತು ಮಾದಕವಸ್ತು ಜಾಲದ ವಿರುದ್ಧ ದುನಿಯಾ ವಿಜಯ್ ಸಾರಿದ ಕ್ರಾಂತಿಕಾರಿ ಸಮರ.",
+    cast: ["ದುನಿಯಾ ವಿಜಯ್", "ಅಶ್ವಿನಿ", "ಅಚ್ಯುತ್ ಕುಮಾರ್", "ಕಾಕ್ರೋಚ್ ಸುಧಿ"],
+    runtime: "142 ನಿಮಿಷ (2h 22m)",
+    productionHouse: "Jagadeesh Films",
+    verificationScore: 96,
+    verificationSources: ["Amazon Prime Video India", "Filmibeat Kannada", "Wikipedia"],
+  },
+  {
+    id: "ott-kps-sunnxt",
+    movieTitle: "ಕೃಷ್ಣಂ ಪ್ರಣಯ ಸಖಿ",
+    movieTitleEn: "Krishnam Pranaya Sakhi",
+    platform: "Sun NXT",
+    platformBadgeColor: "bg-amber-600 text-white",
+    releaseDate: "2024-11-29",
     languages: ["ಕನ್ನಡ"],
     genre: "ರೊಮ್ಯಾಂಟಿಕ್ ಫ್ಯಾಮಿಲಿ ಡ್ರಾಮಾ",
     posterImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600&auto=format&fit=crop",
-    watchUrl: "https://www.primevideo.com",
-    description: "ಚಿನ್ನದ ಹುಡುಗ ಗಣೇಶ್ ಹಾಗೂ ಮಾಳವಿಕಾ ನಾಯರ್ ಅಭಿನಯದ ಸೂಪರ್‌ಹಿಟ್ ಹಾಡುಗಳಿರುವ ರೊಮ್ಯಾಂಟಿಕ್ ಸಿನಿಮಾ.",
-    cast: ["ಗೋಲ್ಡನ್ ಸ್ಟಾರ್ ಗಣೇಶ್", "ಮಾಳವಿಕಾ ನಾಯರ್", "ಶರಣ್ಯ ಶೆಟ್ಟಿ"],
+    watchUrl: "https://www.sunnxt.net",
+    description: "ಗೋಲ್ಡನ್ ಸ್ಟಾರ್ ಗಣೇಶ್ ಹಾಗೂ ಮಾಳವಿಕಾ ನಾಯರ್ ಅಭಿನಯದ ಚಾರ್ಟ್‌ಬಸ್ಟರ್ ಹಾಡುಗಳ ರೊಮ್ಯಾಂಟಿಕ್ ಹಿಟ್.",
+    cast: ["ಗಣೇಶ್", "ಮಾಳವಿಕಾ ನಾಯರ್", "ಶರಣ್ಯ ಶೆಟ್ಟಿ", "ಸಾಧು ಕೋಕಿಲ"],
+    runtime: "152 ನಿಮಿಷ (2h 32m)",
+    productionHouse: "Trishul Entertainment",
+    verificationScore: 95,
+    verificationSources: ["Sun NXT Official", "Udaya TV Broadcast Wire", "Kannada Prabha"],
   },
   {
-    id: "ott-3",
-    movieTitle: "ಭೀಮ (Bheema)",
-    movieTitleEn: "Bheema",
-    platform: "ZEE5",
-    platformBadgeColor: "bg-purple-600 text-white",
-    releaseDate: "2026-11-20",
-    languages: ["ಕನ್ನಡ"],
-    genre: "ರೌಡಿಸಂ & ಮಾಸ್ ಆ್ಯಕ್ಷನ್",
-    posterImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=600&auto=format&fit=crop",
-    watchUrl: "https://www.zee5.com",
-    description: "ಬೆಂಗಳೂರಿನ ಯುವಜನತೆ ಮತ್ತು ಮಾದಕವಸ್ತು ಜಾಲದ ವಿರುದ್ಧ ದುನಿಯಾ ವಿಜಯ್ ಸಾರಿದ ಕ್ರಾಂತಿಕಾರಿ ಸಮರ.",
-    cast: ["ದುನಿಯಾ ವಿಜಯ್", "ಅಶ್ವಿನಿ", "ಅಚ್ಯುತ್ ಕುಮಾರ್"],
-  },
-  {
-    id: "ott-4",
-    movieTitle: "ಸಪ್ತ ಸಾಗರದಾಚೆ ಎಲ್ಲೋ (ಸೈಡ್ ಎ & ಬಿ)",
-    movieTitleEn: "Sapta Sagaradaache Ello (Side A & B)",
+    id: "ott-ibbani-prime",
+    movieTitle: "ಇಬ್ಬನಿ ತಬ್ಬಿದ ಇಳೆಯಲಿ",
+    movieTitleEn: "Ibbani Tabbida Ileyali",
     platform: "Prime Video",
     platformBadgeColor: "bg-sky-600 text-white",
-    releaseDate: "ಈಗಲೇ ಲಭ್ಯವಿದೆ",
+    releaseDate: "2024-11-01",
     languages: ["ಕನ್ನಡ", "ತೆಲುಗು", "ತಮಿಳು", "ಮಲಯಾಳಂ"],
-    genre: "ತೀವ್ರ ಪ್ರೇಮಕಥೆ",
+    genre: "ಕಾವ್ಯಾತ್ಮಕ ಪ್ರೇಮಕಥೆ",
     posterImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop",
     watchUrl: "https://www.primevideo.com",
-    description: "ಮನು ಮತ್ತು ಪ್ರಿಯಾ ಅವರ ಕಡಲಾಳದಂತಹ ತೀವ್ರ ಪ್ರೇಮ ಮತ್ತು ಅಗಲಿಕೆಯ ಕಾವ್ಯ.",
-    cast: ["ರಕ್ಷಿತ್ ಶೆಟ್ಟಿ", "ರುಕ್ಮಿಣಿ ವಸಂತ್", "ಚೈತ್ರಾ ಜೆ ಆಚಾರ್"],
+    description: "ಪರಮ್ವಾ ಸ್ಟುಡಿಯೋಸ್ ನಿರ್ಮಾಣದ ಚಂದ್ರಜಿತ್ ಬೆಳ್ಳಿಯಪ್ಪ ನಿರ್ದೇಶನದ ಹೃದಯಸ್ಪರ್ಶಿ ಕಾವ್ಯಾತ್ಮಕ ಪ್ರೇಮ ಪಯಣ.",
+    cast: ["ವಿಹಾನ್", "ಅಂಕಿತಾ ಅಮರ್", "ಮಯೂರಿ ನಟರಾಜ್"],
+    runtime: "148 ನಿಮಿಷ (2h 28m)",
+    productionHouse: "Paramvah Studios (Rakshit Shetty)",
+    verificationScore: 97,
+    verificationSources: ["Prime Video Catalog", "Paramvah Studios Official", "The Hindu Cinema"],
+  },
+  {
+    id: "ott-blink-aha",
+    movieTitle: "ಬ್ಲಿಂಕ್ (Blink)",
+    movieTitleEn: "Blink",
+    platform: "Aha",
+    platformBadgeColor: "bg-orange-600 text-white",
+    releaseDate: "2024-05-14",
+    languages: ["ಕನ್ನಡ", "ತೆಲುಗು"],
+    genre: "ಟೈಮ್ ಟ್ರಾವೆಲ್ ಸೈ-ಫೈ ಥ್ರಿಲ್ಲರ್",
+    posterImage: "https://images.unsplash.com/photo-1507499739999-097706ad8914?q=80&w=600&auto=format&fit=crop",
+    watchUrl: "https://www.aha.video",
+    description: "ಬೆಂಗಳೂರಿನ ರಂಗಭೂಮಿ ಕಲಾವಿದ ಅಪೂರ್ವ ತನ್ನ ತಂದೆಯ ನಿಗೂಢ ಕಣ್ಮರೆಯ ರಹಸ್ಯ ಭೇದಿಸಲು ಕಾಲಯಾನ ಮಾಡುವ ಕಲ್ಟ್ ಸೈ-ಫೈ ಸಿನೆಮಾ.",
+    cast: ["ದೀಕ್ಷಿತ್ ಶೆಟ್ಟಿ", "ಚೈತ್ರಾ ಜೆ ಆಚಾರ್", "ಗೋಪಾಲಕೃಷ್ಣ ದೇಶಪಾಂಡೆ"],
+    runtime: "132 ನಿಮಿಷ (2h 12m)",
+    productionHouse: "Janani Pictures",
+    verificationScore: 99,
+    verificationSources: ["Aha Video Streaming", "IMDb Confirmed", "Deccan Herald Review"],
+  },
+  {
+    id: "ott-kaatera-zee5",
+    movieTitle: "ಕಾಟೇರ (Kaatera)",
+    movieTitleEn: "Kaatera",
+    platform: "ZEE5",
+    platformBadgeColor: "bg-purple-600 text-white",
+    releaseDate: "2024-02-09",
+    languages: ["ಕನ್ನಡ"],
+    genre: "ರೈತರ ಹಕ್ಕುಗಳ ಪೀರಿಯಡ್ ಆ್ಯಕ್ಷನ್",
+    posterImage: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600&auto=format&fit=crop",
+    watchUrl: "https://www.zee5.com",
+    description: "1970ರ ದಶಕದ ಉಳುವವನೇ ಭೂಮಿಯ ಒಡೆಯ ಕಾಯ್ದೆಯ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಚಾಲೆಂಜಿಂಗ್ ಸ್ಟಾರ್ ದರ್ಶನ್ ಅವರ ಬ್ಲಾಕ್‌ಬಸ್ಟರ್ ಚಿತ್ರ.",
+    cast: ["ದರ್ಶನ್", "ಆರಾಧನಾ ರಾಮ್", "ಜಗಪತಿ ಬಾಬು", "ಕುಮಾರ್ ಗೋವಿಂದ್"],
+    runtime: "183 ನಿಮಿಷ (3h 03m)",
+    productionHouse: "Rockline Entertainments",
+    verificationScore: 99,
+    verificationSources: ["ZEE5 Global Stream", "Rockline Productions", "Zee Kannada Wire"],
+  },
+  {
+    id: "ott-toby-sonyliv",
+    movieTitle: "ಟೋಬಿ (Toby)",
+    movieTitleEn: "Toby",
+    platform: "SonyLIV",
+    platformBadgeColor: "bg-indigo-600 text-white",
+    releaseDate: "2023-12-22",
+    languages: ["ಕನ್ನಡ", "ತೆಲುಗು", "ತಮಿಳು", "ಮಲಯಾಳಂ", "ಹಿಂದಿ"],
+    genre: "ತೀವ್ರ ಆ್ಯಕ್ಷನ್ ಎಮೋಷನಲ್ ಡ್ರಾಮಾ",
+    posterImage: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600&auto=format&fit=crop",
+    watchUrl: "https://www.sonyliv.com",
+    description: "ಉತ್ತರ ಕನ್ನಡ ಜಿಲ್ಲೆಯ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಬಾಸಿಲ್ ಅಲ್ಚಲಕ್ಕಲ್ ನಿರ್ದೇಶನದಲ್ಲಿ ರಾಜ್ ಬಿ ಶೆಟ್ಟಿ ಅವರ ಭಾವತೀವ್ರತೆಯ ಸಾಹಸ ಕಥೆ.",
+    cast: ["ರಾಜ್ ಬಿ ಶೆಟ್ಟಿ", "ಚೈತ್ರಾ ಜೆ ಆಚಾರ್", "ಸಂಯುಕ್ತ ಹೊರನಾಡು", "ಗೋಪಾಲಕೃಷ್ಣ ದೇಶಪಾಂಡೆ"],
+    runtime: "154 ನಿಮಿಷ (2h 34m)",
+    productionHouse: "Lighter Buddha Films",
+    verificationScore: 98,
+    verificationSources: ["SonyLIV Exclusive", "Lighter Buddha Wire", "The News Minute"],
   },
 ];
 
-export const VIDEOS_SEED: VideoItem[] = [
+export const OTT_RELEASES_SEED: OttRelease[] = [
+  ...KANNADA_OTT_RAW.map((o) => ({
+    language: "kn" as const,
+    industry: "sandalwood" as const,
+    ...o,
+  })),
+  ...MULTILINGUAL_OTT,
+];
+
+const KANNADA_VIDEOS_RAW: VideoItem[] = [
   {
     id: "vid-1",
     title: "ಕಾಂತಾರ ಚಾಪ್ಟರ್ 1 - ಅಫಿಷಿಯಲ್ ಫಸ್ಟ್ ಗ್ಲಿಂಪ್ಸ್ | ರಿಷಬ್ ಶೆಟ್ಟಿ | ಹೊಂಬಾಳೆ ಫಿಲ್ಮ್ಸ್",
@@ -658,6 +1154,15 @@ export const VIDEOS_SEED: VideoItem[] = [
   },
 ];
 
+export const VIDEOS_SEED: VideoItem[] = [
+  ...KANNADA_VIDEOS_RAW.map((v) => ({
+    language: "kn" as const,
+    industry: "sandalwood" as const,
+    ...v,
+  })),
+  ...MULTILINGUAL_VIDEOS,
+];
+
 export const GALLERIES_SEED: GalleryItem[] = [
   {
     id: "gal-1",
@@ -700,7 +1205,10 @@ export const GALLERIES_SEED: GalleryItem[] = [
       { url: "https://images.unsplash.com/photo-1469488865564-c2de10f69f96?q=80&w=1200&auto=format&fit=crop", caption: "ರೆಡ್ ಕಾರ್ಪೆಟ್ ಮೇಲೆ ಸ್ಯಾಂಡಲ್ವುಡ್ ಸೆಲೆಬ್ರಿಟಿಗಳು" },
     ],
     publishedAt: "2026-10-27T14:00:00Z",
+    language: "kn",
+    industry: "sandalwood",
   },
+  ...MULTILINGUAL_GALLERIES,
 ];
 
 export const COMMENTS_SEED: Comment[] = [
@@ -746,11 +1254,11 @@ export const ADS_SEED: AdSpot[] = [
   {
     id: "ad-2",
     placement: "sidebar_rectangle",
-    title: "ಸಿನಿ ಕನ್ನಡ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    title: "FILMY GARAGE ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
     imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop",
     targetUrl: "#",
     isActive: true,
-    altText: "ಸಿನಿ ಕನ್ನಡ ಮೊಬೈಲ್ ಆಪ್ - ಲೈವ್ ನೋಟಿಫಿಕೇಶನ್ ಪಡೆಯಿರಿ",
+    altText: "FILMY GARAGE ಮೊಬೈಲ್ ಆಪ್ - ಲೈವ್ ನೋಟಿಫಿಕೇಶನ್ ಪಡೆಯಿರಿ",
   },
   {
     id: "ad-3",

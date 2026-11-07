@@ -1,79 +1,86 @@
 import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { DollarSign, Award, TrendingUp, Calendar } from "lucide-react";
 import { DataService } from "@/lib/dataService";
-import BoxOfficeTable from "@/components/BoxOfficeTable";
+import { BoxOfficeEngineService } from "@/lib/boxOfficeEngine/boxOfficeService";
+import BoxOfficeClientHub from "@/components/BoxOfficeClientHub";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import AdBanner from "@/components/AdBanner";
+import { getLanguageConfig } from "@/lib/languages";
+import { getTranslation } from "@/lib/translations";
+import { LanguageCode } from "@/types";
 
-export const metadata: Metadata = {
-  title: "ಕನ್ನಡ ಸಿನಿಮಾ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಗಳಿಕೆ & ಕಲೆಕ್ಷನ್ ರಿಪೋರ್ಟ್ಸ್ | ಸಿನಿ ಕನ್ನಡ",
-  description: "ಸ್ಯಾಂಡಲ್ವುಡ್ ಇತಿಹಾಸದ ಸಾರ್ವಕಾಲಿಕ ಅತಿ ಹೆಚ್ಚು ಗಳಿಕೆ ಕಂಡ ಸಿನಿಮಾಗಳ ಬಾಕ್ಸ್ ಆಫೀಸ್ ರಿಪೋರ್ಟ್, ಮೊದಲ ದಿನದ ಗಳಿಕೆ ಮತ್ತು ವೀಕೆಂಡ್ ಕಲೆಕ್ಷನ್ ವಿವರಗಳು.",
-};
+interface BoxOfficePageProps {
+  searchParams?: {
+    lang?: string;
+  };
+}
 
-export default async function BoxOfficePage() {
-  const [boxOffice, trendingArticles] = await Promise.all([
-    DataService.getBoxOffice(),
-    DataService.getTrendingArticles(5),
+export async function generateMetadata({ searchParams }: BoxOfficePageProps): Promise<Metadata> {
+  const lang = (searchParams?.lang || "kn") as LanguageCode;
+  const config = getLanguageConfig(lang);
+
+  return {
+    title: `${config.boxOfficeTitle} — Real-Time Multi-Source Cinema Tracking | CINI JAATRE`,
+    description: `${config.industryName} automated box office tracking, multi-source consolidated gross, net, distributor share and live theatre occupancy telemetry.`,
+  };
+}
+
+export default async function BoxOfficePage({ searchParams }: BoxOfficePageProps) {
+  const activeLang = (searchParams?.lang || "kn") as LanguageCode;
+  const config = getLanguageConfig(activeLang);
+
+  const [records, cityTelemetry, trendingArticles] = await Promise.all([
+    BoxOfficeEngineService.getConsolidatedRecords(activeLang),
+    BoxOfficeEngineService.getCityTelemetry(),
+    DataService.getTrendingArticles(5, activeLang),
   ]);
 
   return (
     <div className="w-full">
-      <div className="bg-gradient-to-r from-emerald-950/40 via-brand-card to-brand-dark border-b border-brand-border py-8 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-brand-muted font-kannada mb-2">
-            <Link href="/" className="hover:text-white">ಮುಖಪುಟ</Link>
-            <span>/</span>
-            <span className="text-emerald-400 font-medium">ಬಾಕ್ಸ್ ಆಫೀಸ್</span>
+      {/* Top Header Breadcrumb Bar */}
+      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-6 px-4 sm:px-6 shadow-xs">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+              <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium">
+                {getTranslation(activeLang, "nav_home")}
+              </Link>
+              <span>/</span>
+              <span className="text-[#A92732] font-bold">
+                {getTranslation(activeLang, "nav_boxoffice")}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span
+                className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border shadow-2xs`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                <span>{config.industryName} ರೇಡಾರ್</span>
+              </span>
+              <span className="text-xs font-mono font-bold text-gray-400">•</span>
+              <span className="text-xs font-mono text-gray-500 font-bold uppercase tracking-wider">
+                Multi-Source Aggregation Active
+              </span>
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white font-kannada">
-            ಸ್ಯಾಂಡಲ್ವುಡ್ ಬಾಕ್ಸ್ ಆಫೀಸ್ ದಾಖಲೆಗಳು (Box Office)
-          </h1>
-          <p className="mt-2 text-xs sm:text-sm text-gray-300 font-kannada max-w-2xl">
-            ಕನ್ನಡ ಚಿತ್ರರಂಗದ ₹100 ಕೋಟಿ, ₹400 ಕೋಟಿ ಮತ್ತು ₹1000 ಕೋಟಿ ಕ್ಲಬ್ ಸೇರಿದ ಐತಿಹಾಸಿಕ ಚಿತ್ರಗಳ ಅಧಿಕೃತ ಕಲೆಕ್ಷನ್ ವಿವರ.
-          </p>
+
+          <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-2xl font-sans font-bold shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>ಏಕೀಕೃತ ನಿಷ್ಪಕ್ಷಪಾತ ವರದಿ (Consolidated Consensus)</span>
+          </div>
         </div>
       </div>
 
+      {/* Main Content Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <main className="lg:col-span-8 space-y-8">
-            <BoxOfficeTable entries={boxOffice} showAllLink={false} />
-
-            {/* In-depth Territory Breakdown Section */}
-            <div className="bg-brand-dark rounded-2xl border border-brand-border p-6">
-              <h2 className="text-lg font-bold text-white font-kannada mb-4 border-l-4 border-emerald-500 pl-3">
-                ಕೆಜಿಎಫ್ 2 ಮತ್ತು ಕಾಂತಾರ ರಾಜ್ಯವಾರು ಕಲೆಕ್ಷನ್ ವಿವರ
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-300 font-kannada leading-relaxed mb-4">
-                ಕನ್ನಡ ಚಿತ್ರರಂಗವು ಕೇವಲ ಕರ್ನಾಟಕಕ್ಕೆ ಸೀಮಿತವಾಗಿರದೆ ಇಡೀ ವಿಶ್ವದಾದ್ಯಂತ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಧೂಳೆಬ್ಬಿಸಿದೆ. ವಿಶೇಷವಾಗಿ ಹಿಂದಿ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಕೆಜಿಎಫ್ 2 ₹500 ಕೋಟಿಗೂ ಅಧಿಕ ಗಳಿಕೆ ಕಂಡು ಬಾಲಿವುಡ್‌ನ ಹಲವು ಘಟಾನುಘಟಿ ನಾಯಕರ ಸಿನಿಮಾಗಳ ದಾಖಲೆ ಪುಡಿಗಟ್ಟಿದೆ.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-brand-card border border-brand-border/60">
-                  <h3 className="font-bold text-white text-sm font-kannada mb-2 text-brand-yellow">
-                    ಕೆಜಿಎಫ್ 2 ಪ್ರಮುಖ ದಾಖಲೆಗಳು
-                  </h3>
-                  <ul className="text-xs text-gray-300 font-kannada space-y-1.5">
-                    <li>• ಮೊದಲ ದಿನ ಭಾರತದಲ್ಲೇ ₹134 ಕೋಟಿ ಒಟ್ಟು ಗಳಿಕೆ</li>
-                    <li>• ಹಿಂದಿ ಆವೃತ್ತಿಯ ಮೊದಲ ದಿನದ ಗಳಿಕೆ ₹54 ಕೋಟಿ</li>
-                    <li>• ವಿಶ್ವದಾದ್ಯಂತ ಸಾರ್ವಕಾಲಿಕ ಗಳಿಕೆ: ₹1,250 ಕೋಟಿ+</li>
-                  </ul>
-                </div>
-
-                <div className="p-4 rounded-xl bg-brand-card border border-brand-border/60">
-                  <h3 className="font-bold text-white text-sm font-kannada mb-2 text-brand-red">
-                    ಕಾಂತಾರ ದಾಖಲೆಯ ಲಾಭ
-                  </h3>
-                  <ul className="text-xs text-gray-300 font-kannada space-y-1.5">
-                    <li>• ಬಜೆಟ್: ಕೇವಲ ₹16 ಕೋಟಿ</li>
-                    <li>• ಗಳಿಕೆ: ₹450 ಕೋಟಿ+ (28 ಪಟ್ಟು ಹೆಚ್ಚು ಲಾಭ)</li>
-                    <li>• ಕರ್ನಾಟಕದಲ್ಲೇ ₹175 ಕೋಟಿಗೂ ಅಧಿಕ ಕಲೆಕ್ಷನ್</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <BoxOfficeClientHub
+              initialRecords={records}
+              initialCityTelemetry={cityTelemetry}
+            />
           </main>
 
           <aside className="lg:col-span-4 space-y-6">
@@ -85,4 +92,3 @@ export default async function BoxOfficePage() {
     </div>
   );
 }
-
