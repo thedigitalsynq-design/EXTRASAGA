@@ -25,17 +25,8 @@ import { LanguageCode } from "@/types";
 
 export const revalidate = 60; // Revalidate every minute
 
-interface HomePageProps {
-  searchParams?: {
-    lang?: string;
-  };
-}
-
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const requestedLanguage = searchParams?.lang;
-  const language: LanguageCode = isLanguageCode(requestedLanguage)
-    ? requestedLanguage
-    : DEFAULT_LANGUAGE;
+export default async function HomePage() {
+  const language: LanguageCode = "en";
 
   const [
     allArticles,

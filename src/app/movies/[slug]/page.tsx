@@ -29,6 +29,13 @@ interface MoviePageProps {
   };
 }
 
+export async function generateStaticParams() {
+  const movies = await DataService.getMovies();
+  return movies.map((movie) => ({
+    slug: movie.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
   const movie = await DataService.getMovieBySlug(params.slug);
   if (!movie) {

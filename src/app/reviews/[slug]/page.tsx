@@ -27,6 +27,13 @@ interface ReviewPageProps {
   };
 }
 
+export async function generateStaticParams() {
+  const reviews = await DataService.getReviews();
+  return reviews.map((review) => ({
+    slug: review.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
   const review = await DataService.getReviewBySlug(params.slug, "en");
   if (!review) return { title: "Review Not Found" };

@@ -45,11 +45,15 @@ const securityHeaders = [
   },
 ];
 
+const isExport = process.env.NEXT_EXPORT === "true" || process.env.GITHUB_ACTIONS === "true";
+
 const nextConfig = {
+  ...(isExport ? { output: "export" } : {}),
   optimizeFonts: false,
   compress: true,
   poweredByHeader: false,
   images: {
+    ...(isExport ? { unoptimized: true } : {}),
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2592000,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
@@ -64,14 +68,18 @@ const nextConfig = {
       { protocol: "https", hostname: "placehold.co" },
     ],
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
+  ...(isExport
+    ? {}
+    : {
+        async headers() {
+          return [
+            {
+              source: "/(.*)",
+              headers: securityHeaders,
+            },
+          ];
+        },
+      }),
 };
 
 export default nextConfig;

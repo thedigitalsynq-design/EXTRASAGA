@@ -73,8 +73,20 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Prepare API routes for static export
+        run: |
+          if [ -d "src/app/api" ]; then
+            mkdir -p .api-backup
+            mv src/app/api .api-backup/
+          fi
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Restore API routes
+        if: always()
+        run: |
+          if [ -d ".api-backup/api" ]; then
+            mv .api-backup/api src/app/
+          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

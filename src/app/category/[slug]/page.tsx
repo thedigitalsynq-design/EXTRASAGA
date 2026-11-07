@@ -22,6 +22,12 @@ interface CategoryPageProps {
   };
 }
 
+export async function generateStaticParams() {
+  return CATEGORIES.map((c) => ({
+    slug: c.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === params.slug);
   if (!cat) return { title: "Category not found" };

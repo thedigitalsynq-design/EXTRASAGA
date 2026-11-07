@@ -27,6 +27,13 @@ interface ArticlePageProps {
   };
 }
 
+export async function generateStaticParams() {
+  const articles = await DataService.getArticles();
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const article = await DataService.getArticleBySlug(params.slug);
   if (!article) {

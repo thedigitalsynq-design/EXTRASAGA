@@ -21,12 +21,12 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
   const defaultList = [
     {
       id: "b-default",
-      title: "Kantara Chapter 1: Intense Shoot Kicks Off in Kundapura — Rishab Shetty's Rutha Look Goes Viral!",
+      title: "Kantara Chapter 1: Ancient Legends Awaken as Rishab Shetty Commences Filming in Kundapura",
       slug: "kantara-chapter-1-shooting-kundapura-rishab-shetty-look",
     },
     {
       id: "b-default-2",
-      title: "Rocking Star Yash's 'Toxic' Brings in a Hollywood John Wick Stunt Master!",
+      title: "Toxic: Hollywood Stunt Directors Join Rocking Star Yash for a Gritty, High-Stakes Spectacle",
       slug: "yash-toxic-movie-hollywood-stunt-master-geetu-mohandas",
     },
   ];
