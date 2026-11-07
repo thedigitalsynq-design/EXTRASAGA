@@ -29,27 +29,27 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
   const formatRec = review.screenFormatRecommendation || "IMAX / Dolby Atmos";
 
   return (
-    <div className="w-full my-8 p-1 rounded-3xl bg-gray-100/80 border border-gray-200/90 shadow-sm">
-      <div className="rounded-[calc(1.5rem-2px)] bg-white p-5 sm:p-7 shadow-2xs">
+    <div className="w-full my-8 p-1 rounded-3xl bg-hall border border-glow-line shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
+      <div className="rounded-[calc(1.5rem-2px)] bg-revealed p-5 sm:p-7">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-gray-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-glow-line">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-amber-50 text-amber-700 border border-amber-200">
+            <div className="p-2 rounded-xl bg-marquee-faint text-marquee-soft border border-marquee/30">
               <Award className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold text-amber-700 tracking-wider font-sans block">
-                FILMY GARAGE CRITICAL EVALUATION
+              <span className="text-[10px] uppercase font-bold text-marquee-soft tracking-widest font-display-latin block">
+                EXTRASAGA CRITICAL EVALUATION
               </span>
-              <h3 className="text-lg sm:text-xl font-black text-gray-950 font-sans tracking-tight">
+              <h3 className="text-lg sm:text-xl font-black text-popcorn tracking-tight">
                 Dual-Axis Review Matrix (ದ್ವಿಮುಖ ವಿಮರ್ಶಾ ಮಾಪಕ)
               </h3>
             </div>
           </div>
 
           <div className="flex items-center gap-2 self-start sm:self-auto">
-            <span className="text-xs text-gray-500 font-sans">ಶಿಫಾರಸು ಸ್ಕ್ರೀನ್:</span>
-            <span className="px-3 py-1 rounded-full bg-purple-50 text-purple-800 border border-purple-200 font-sans font-bold text-xs shadow-2xs">
+            <span className="text-xs text-popcorn-muted">ಶಿಫಾರಸು ಸ್ಕ್ರೀನ್:</span>
+            <span className="px-3 py-1 rounded-full bg-ultra-faint text-ultra-soft border border-ultra/30 font-bold text-xs shadow-[0_0_16px_rgba(155,109,255,0.2)]">
               🎬 {formatRec}
             </span>
           </div>
@@ -58,43 +58,43 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
         {/* Dual Axis Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
           {/* Axis 1: Narrative & Emotion */}
-          <div className="p-5 rounded-2xl bg-gray-50/70 border border-gray-200/80 flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-hall border border-glow-line flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs uppercase font-extrabold text-amber-800 tracking-wider font-sans flex items-center gap-1.5">
-                  <Film className="w-3.5 h-3.5 text-amber-700" />
+                <span className="text-xs uppercase font-extrabold text-marquee-soft tracking-widest font-display-latin flex items-center gap-1.5">
+                  <Film className="w-3.5 h-3.5 text-marquee-soft" />
                   <span>AXIS 1: NARRATIVE & SOUL</span>
                 </span>
-                <span className="text-xl font-black text-gray-950 font-sans">
-                  {narrative.overall} <span className="text-xs text-gray-500 font-normal">/ 10</span>
+                <span className="text-xl font-black text-popcorn font-display-latin">
+                  {narrative.overall} <span className="text-xs text-popcorn-muted font-normal">/ 10</span>
                 </span>
               </div>
-              <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+              <p className="text-xs text-popcorn-muted mb-4 leading-relaxed">
                 ಕಥಾವಸ್ತು, ಸಂಭಾಷಣೆ, ನಟ-ನಟಿಯರ ಅಭಿನಯ ಮತ್ತು ಭಾವನಾತ್ಮಕ ನಿರೂಪಣಾ ಸಾಮರ್ಥ್ಯ.
               </p>
 
-              <div className="space-y-3 text-xs font-sans">
+              <div className="space-y-3 text-xs">
                 <div>
-                  <div className="flex justify-between text-gray-700 mb-1">
+                  <div className="flex justify-between text-popcorn-dim mb-1">
                     <span>ಕಥೆ & ಚಿತ್ರಕಥೆ (Story & Screenplay)</span>
-                    <span className="font-bold text-gray-950">{narrative.story * 10}%</span>
+                    <span className="font-bold text-popcorn font-mono-tabular">{narrative.story * 10}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full"
+                      className="h-full bg-gradient-to-r from-marquee-deep to-marquee rounded-full"
                       style={{ width: `${narrative.story * 10}%` }}
                     ></div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-gray-700 mb-1">
+                  <div className="flex justify-between text-popcorn-dim mb-1">
                     <span>ಪಾತ್ರ ಚಿತ್ರಣ & ನಟನೆ (Acting Performances)</span>
-                    <span className="font-bold text-gray-950">{narrative.performances * 10}%</span>
+                    <span className="font-bold text-popcorn font-mono-tabular">{narrative.performances * 10}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full"
+                      className="h-full bg-gradient-to-r from-marquee-deep to-marquee rounded-full"
                       style={{ width: `${narrative.performances * 10}%` }}
                     ></div>
                   </div>
@@ -104,43 +104,43 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           </div>
 
           {/* Axis 2: Technical Craft Index */}
-          <div className="p-5 rounded-2xl bg-gray-50/70 border border-gray-200/80 flex flex-col justify-between">
+          <div className="p-5 rounded-2xl bg-hall border border-glow-line flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs uppercase font-extrabold text-cyan-800 tracking-wider font-sans flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-700" />
+                <span className="text-xs uppercase font-extrabold text-ultra-soft tracking-widest font-display-latin flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-ultra-soft" />
                   <span>AXIS 2: TECHNICAL CRAFT INDEX</span>
                 </span>
-                <span className="text-xl font-black text-gray-950 font-sans">
-                  {craft.overall} <span className="text-xs text-gray-500 font-normal">/ 10</span>
+                <span className="text-xl font-black text-popcorn font-display-latin">
+                  {craft.overall} <span className="text-xs text-popcorn-muted font-normal">/ 10</span>
                 </span>
               </div>
-              <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+              <p className="text-xs text-popcorn-muted mb-4 leading-relaxed">
                 ಛಾಯಾಗ್ರಹಣ (Camera), ಹಿನ್ನೆಲೆ ಸಂಗೀತ, ಶಬ್ದ ಗ್ರಹಣ ಮತ್ತು ದೃಶ್ಯ ವೈಭವ (VFX).
               </p>
 
-              <div className="space-y-3 text-xs font-sans">
+              <div className="space-y-3 text-xs">
                 <div>
-                  <div className="flex justify-between text-gray-700 mb-1">
+                  <div className="flex justify-between text-popcorn-dim mb-1">
                     <span>ಛಾಯಾಗ್ರಹಣ (Cinematography)</span>
-                    <span className="font-bold text-gray-950">{craft.cinematography * 10}%</span>
+                    <span className="font-bold text-popcorn font-mono-tabular">{craft.cinematography * 10}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full"
+                      className="h-full bg-gradient-to-r from-ultra-deep to-ultra rounded-full shadow-[0_0_12px_rgba(155,109,255,0.4)]"
                       style={{ width: `${craft.cinematography * 10}%` }}
                     ></div>
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-gray-700 mb-1">
+                  <div className="flex justify-between text-popcorn-dim mb-1">
                     <span>ಹಿನ್ನೆಲೆ ಸಂಗೀತ & ಸೌಂಡ್ (Sound & Score)</span>
-                    <span className="font-bold text-gray-950">{craft.soundAndScore * 10}%</span>
+                    <span className="font-bold text-popcorn font-mono-tabular">{craft.soundAndScore * 10}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-gray-200 overflow-hidden">
+                  <div className="w-full h-2 rounded-full bg-screen overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full"
+                      className="h-full bg-gradient-to-r from-ultra-deep to-ultra rounded-full shadow-[0_0_12px_rgba(155,109,255,0.4)]"
                       style={{ width: `${craft.soundAndScore * 10}%` }}
                     ></div>
                   </div>
@@ -151,27 +151,27 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
         </div>
 
         {/* Spoiler Shield Feature */}
-        <div className="mt-6 pt-5 border-t border-gray-200">
+        <div className="mt-6 pt-5 border-t border-glow-line">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-amber-600" />
-              <span className="text-xs font-bold text-gray-900 font-sans">
+              <ShieldCheck className="w-4 h-4 text-signal-soft" />
+              <span className="text-xs font-bold text-popcorn">
                 ಇಂಟರ್ಯಾಕ್ಟಿವ್ ಸ್ಪಾಯ್ಲರ್ ಶೀಲ್ಡ್ (Spoiler Shield Protection)
               </span>
             </div>
             <button
               type="button"
               onClick={() => setShowSpoilers(!showSpoilers)}
-              className="px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-xs font-sans font-bold text-gray-900 flex items-center gap-1.5 transition-colors border border-gray-200"
+              className="px-3 py-1 rounded-full bg-hall hover:bg-screen text-xs font-bold text-popcorn flex items-center gap-1.5 transition-colors border border-glow-line hover:border-glow-line-strong"
             >
               {showSpoilers ? (
                 <>
-                  <EyeOff className="w-3.5 h-3.5 text-amber-600" />
+                  <EyeOff className="w-3.5 h-3.5 text-signal-soft" />
                   <span>ಸ್ಪಾಯ್ಲರ್ ಮರೆಮಾಡಿ (Hide Spoilers)</span>
                 </>
               ) : (
                 <>
-                  <Eye className="w-3.5 h-3.5 text-emerald-600" />
+                  <Eye className="w-3.5 h-3.5 change-positive" />
                   <span>ಸ್ಪಾಯ್ಲರ್ ವೀಕ್ಷಿಸಿ (Reveal Spoilers)</span>
                 </>
               )}
@@ -181,8 +181,8 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           <div
             className={`p-4 rounded-xl border transition-all duration-300 ${
               showSpoilers
-                ? "bg-amber-50/70 border-amber-200 text-gray-800"
-                : "bg-gray-100 border-gray-200 text-transparent select-none blur-sm cursor-pointer"
+                ? "bg-hall border-marquee/40 text-popcorn-dim"
+                : "bg-screen border-glow-line text-transparent select-none blur-sm cursor-pointer"
             }`}
             onClick={() => !showSpoilers && setShowSpoilers(true)}
           >
@@ -197,4 +197,3 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
     </div>
   );
 }
-

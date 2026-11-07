@@ -38,37 +38,43 @@ export default async function BoxOfficePage({ searchParams }: BoxOfficePageProps
 
   return (
     <div className="w-full">
-      {/* Top Header Breadcrumb Bar */}
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-6 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-              <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium">
-                {getTranslation(activeLang, "nav_home")}
-              </Link>
-              <span>/</span>
-              <span className="text-[#A92732] font-bold">
-                {getTranslation(activeLang, "nav_boxoffice")}
+      {/* The Receipts — Hero Band */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
+                <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
+                  {getTranslation(activeLang, "nav_home")}
+                </Link>
+                <span>/</span>
+                <span className="text-marquee-soft font-bold">
+                  {getTranslation(activeLang, "nav_boxoffice")}
+                </span>
+              </div>
+
+              <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
+                The Receipts
               </span>
+
+              <div className="flex items-center gap-2">
+                <span
+                  className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                  <span>{config.industryName} ರೇಡಾರ್</span>
+                </span>
+                <span className="text-xs font-mono-tabular font-bold text-popcorn-muted">•</span>
+                <span className="text-xs font-mono-tabular text-popcorn-dim font-bold uppercase tracking-[0.2em]">
+                  Multi-Source Aggregation Active
+                </span>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span
-                className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border shadow-2xs`}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                <span>{config.industryName} ರೇಡಾರ್</span>
-              </span>
-              <span className="text-xs font-mono font-bold text-gray-400">•</span>
-              <span className="text-xs font-mono text-gray-500 font-bold uppercase tracking-wider">
-                Multi-Source Aggregation Active
-              </span>
+            <div className="flex items-center gap-2 text-xs text-marquee-soft bg-marquee/10 border border-marquee/25 px-3 py-1.5 rounded-2xl font-sans font-bold">
+              <span className="w-2 h-2 rounded-full bg-marquee animate-pulse" />
+              <span>ಏಕೀಕೃತ ನಿಷ್ಪಕ್ಷಪಾತ ವರದಿ (Consolidated Consensus)</span>
             </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-2xl font-sans font-bold shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>ಏಕೀಕೃತ ನಿಷ್ಪಕ್ಷಪಾತ ವರದಿ (Consolidated Consensus)</span>
           </div>
         </div>
       </div>

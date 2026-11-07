@@ -29,57 +29,57 @@ export default function DualLuminousDiscs({
 
   return (
     <section aria-label="Cinematic Dual Analysis" className="w-full my-12 py-8 overflow-hidden">
-      {/* Top Pagination & Chapter Index (matches design reference: 05 ——— 13) */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-200/80">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-gray-500 uppercase tracking-widest">
-          <span className="text-amber-600">◄</span>
-          <span className="text-gray-900">{categoryLabel}</span>
-          <span className="text-amber-600">►</span>
+      {/* Top Pagination & Chapter Index */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-glow-line">
+        <div className="flex items-center gap-2 text-xs font-mono font-bold text-popcorn-muted uppercase tracking-widest">
+          <span className="text-marquee-soft">◄</span>
+          <span className="text-popcorn">{categoryLabel}</span>
+          <span className="text-marquee-soft">►</span>
         </div>
 
-        <div className="flex items-center gap-3 font-mono text-xs font-bold text-gray-500">
-          <span className="text-gray-950 text-sm font-black">{sectionIndex}</span>
-          <span className="w-12 h-[1.5px] bg-amber-600 inline-block rounded-full"></span>
+        <div className="flex items-center gap-3 font-mono text-xs font-bold text-popcorn-muted font-mono-tabular">
+          <span className="text-popcorn text-sm font-black">{sectionIndex}</span>
+          <span className="w-12 h-[1.5px] bg-marquee inline-block rounded-full"></span>
           <span>{totalSections}</span>
         </div>
       </div>
 
       {/* Editorial Headline */}
       <div className="mt-8 mb-10 max-w-2xl">
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight leading-tight font-sans">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-popcorn tracking-tight leading-tight font-display-latin">
           {heading}
         </h2>
       </div>
 
-      {/* Overlapping Dual Discs Composition (Directly from design reference) */}
+      {/* Overlapping Dual Discs Composition */}
       <div className="relative flex flex-col md:flex-row items-center justify-center py-10 min-h-[380px] sm:min-h-[440px]">
         {/* Disc 1: Matte Obsidian Circle (Problem / Narrative Friction) */}
-        <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-full bg-gradient-to-br from-gray-900 to-black text-white p-8 sm:p-12 flex flex-col justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_25px_60px_-10px_rgba(0,0,0,0.35)] transition-spring hover:scale-[1.02] z-10 shrink-0">
-          <span className="text-[10px] uppercase font-bold text-gray-400 font-mono tracking-widest block mb-2">
+        <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] rounded-full bg-gradient-to-br from-hall to-void text-white p-8 sm:p-12 flex flex-col justify-center shadow-[inset_0_1px_1px_rgba(245,245,250,0.08),0_25px_60px_-10px_rgba(0,0,0,0.7)] border border-glow-line-strong transition-spring hover:scale-[1.02] z-10 shrink-0">
+          <span className="text-[10px] uppercase font-bold text-signal-soft font-mono tracking-widest block mb-2">
             EVALUATION AXIS A
           </span>
-          <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight font-sans mb-3">
+          <h3 className="text-xl sm:text-2xl font-black text-popcorn tracking-tight font-display-latin mb-3">
             {problemTitle}
           </h3>
-          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+          <p className="text-xs sm:text-sm text-popcorn-dim leading-relaxed font-normal">
             {problemDesc}
           </p>
         </div>
 
-        {/* Disc 2: Frosted Pearl Luminous Circle (Solution / Craft Mastery) */}
-        <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full bg-gradient-to-br from-white via-white/95 to-gray-50 backdrop-blur-2xl text-gray-950 p-8 sm:p-12 flex flex-col justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_30px_70px_-15px_rgba(0,0,0,0.12)] border border-gray-100 transition-spring hover:scale-[1.02] z-20 shrink-0 -mt-20 md:-mt-0 md:-ml-24">
-          <span className="text-[10px] uppercase font-bold text-amber-700 font-mono tracking-widest block mb-2">
+        {/* Disc 2: Luminous Ultra Circle (Solution / Craft Mastery) */}
+        <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full bg-gradient-to-br from-ultra/25 via-screen to-hall backdrop-blur-2xl text-popcorn p-8 sm:p-12 flex flex-col justify-center shadow-[inset_0_1px_1px_rgba(155,109,255,0.35),0_0_60px_rgba(155,109,255,0.15)] border border-ultra/40 transition-spring hover:scale-[1.02] z-20 shrink-0 -mt-20 md:-mt-0 md:-ml-24">
+          <span className="text-[10px] uppercase font-bold text-marquee-soft font-mono tracking-widest block mb-2">
             EVALUATION AXIS B
           </span>
-          <h3 className="text-xl sm:text-2xl font-black text-gray-950 tracking-tight font-sans mb-3">
+          <h3 className="text-xl sm:text-2xl font-black text-popcorn tracking-tight font-display-latin mb-3">
             {solutionTitle}
           </h3>
-          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+          <p className="text-xs sm:text-sm text-popcorn-dim leading-relaxed font-normal">
             {solutionDesc}
           </p>
 
-          <div className="mt-4 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-xs font-bold text-amber-700">
-            <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+          <div className="mt-4 pt-3 border-t border-glow-line flex items-center gap-1.5 text-xs font-bold text-marquee-soft">
+            <Sparkles className="w-3.5 h-3.5 text-marquee-soft" />
             <span>Audited Critical Consensus</span>
           </div>
         </div>
@@ -87,4 +87,3 @@ export default function DualLuminousDiscs({
     </section>
   );
 }
-

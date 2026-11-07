@@ -1,7 +1,7 @@
-# PROJECT.md — FILMY GARAGE (ಫಿಲ್ಮಿ ಗ್ಯಾರೇಜ್)
+# PROJECT.md — EXTRASAGA (ಎಕ್ಸ್ಟ್ರಾಸಾಗ)
 
 ## 1. Executive Summary
-**FILMY GARAGE** is a premier, modern, high-performance entertainment media portal built for pan-Indian and international cinephiles. It provides automated, real-time reporting across six major film industries:
+**EXTRASAGA** is the front page of Indian cinema fandom — a high-performance entertainment media press that reports in real time across six major film industries:
 - **Sandalwood** (Kannada)
 - **Tollywood** (Telugu)
 - **Kollywood** (Tamil)
@@ -9,7 +9,7 @@
 - **Bollywood** (Hindi)
 - **Hollywood** (English)
 
-The platform unifies live breaking news feeds, automatic date-driven theatrical releases, editorial movie reviews, box office tracking, OTT release radars, video trailers, and celebrity photo galleries in an authentic native script experience for each language.
+The platform unifies live breaking news feeds, automatic date-driven theatrical releases, editorial movie reviews, box office receipts, OTT release radars, video trailers, and celebrity photo galleries in an authentic native script experience for each language — printed daily in the House Full Press fanzine design language (v4.0, see `docs/DESIGN-SYSTEM.md`).
 
 ---
 
@@ -31,9 +31,9 @@ The platform unifies live breaking news feeds, automatic date-driven theatrical 
 ---
 
 ## 4. Key Differentiators
-| Feature | Traditional Entertainment Sites | FILMY GARAGE |
+| Feature | Traditional Entertainment Sites | EXTRASAGA |
 | :--- | :--- | :--- |
-| **Styling & UI** | Cluttered banners, intrusive ads, slow load times | Clean 4-Zone Editorial Layout, crimson navigation, zero-dependency Tailwind CSS |
+| **Styling & UI** | Cluttered banners, intrusive ads, slow load times | House Full Press fanzine layout — newsprint paper canvas, hard ink rules, poster inks, zero-dependency Tailwind CSS |
 | **Multilingual Support** | Basic Google Translate widgets | Native script typography (Catamaran, Hubballi, Ramabhadra, Khand, Chilanka), custom dictionaries, localized URLs |
 | **Release Tracking** | Static manual tables prone to obsolescence | Fully dynamic date math based on server time (`Asia/Kolkata`), automatic promotion to In Theatres |
 | **Security Posture** | Vulnerable login forms, open cron routes | Edge Middleware, Strict CSP, HMAC-SHA256 tokens, timingSafeEqual, sliding window rate limits |

@@ -48,7 +48,7 @@ export default function EditorialBentoShowcase() {
       pill: "സിനിമ ഇന്നൊവേഷൻ",
       title: "സിനിമാപ്രേമികൾ ഫിലിമി ഗാരേജ് തിരഞ്ഞെടുക്കുന്നത് എന്തുകൊണ്ട്",
       subtitle: "നിഷ്പക്ഷ നിരൂപണങ്ങൾ, ഡ്യുവൽ-ആക്സിസ് സാങ്കേതിക വിശകലനം, തത്സമയ ബോക്സ് ഓഫീസ് വിവരങ്ങൾ.",
-      card1Title: "പ്രമുഖ ചലച്ചിത്ര നിരൂപകർ ഒരുക്കുന്ന ആധികാരികവും സമഗ്രവുമായ വിലയിരുത്തലുകൾ.",
+      card1Title: "പ്രമുഖ ചലച്ചിത്ര നിരൂപകർ ഒരുക്കുന്ന ആധികాരികവും സമഗ്രവുമായ വിലയിരുത്തലുകൾ.",
       card1Cta: "പ്രത്യേക ലേഖനങ്ങൾ",
       card2Title: "6 ചലച്ചിത്ര മേഖലകളിലെ 120+ സംവിധായകരും നിരൂപകരും വിശ്വസിക്കുന്നു.",
       card3Metric: "100%",
@@ -68,7 +68,7 @@ export default function EditorialBentoShowcase() {
     },
     en: {
       pill: "INNOVATION & CRAFT",
-      title: "Why cinephiles choose FILMY GARAGE",
+      title: "Why cinephiles choose EXTRASAGA",
       subtitle: "Exceptional film journalism, dual-axis reviews, and real-time box office intelligence that set the benchmark for modern entertainment media.",
       card1Title: "Handcrafted by veteran film journalists to deliver timeless depth and unmatched credibility.",
       card1Cta: "Explore Editorial",
@@ -85,45 +85,45 @@ export default function EditorialBentoShowcase() {
     <section aria-label="Editorial Innovation" className="w-full py-8">
       {/* Header with pill tag */}
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase glass-pill text-gray-700 shadow-2xs select-none">
-          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase glass-pill text-signal-soft border-signal/30 select-none">
+          <Sparkles className="w-3.5 h-3.5 text-marquee-soft" />
           <span>{t.pill}</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-sans">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-popcorn tracking-tight font-display-latin">
           {t.title}
         </h2>
-        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+        <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
           {t.subtitle}
         </p>
       </div>
 
-      {/* Bento Grid Layout (Inspired by Luxura design reference) */}
+      {/* Bento Grid Layout (After-dark glass bento) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         {/* Card 1: Left Tall Showcase Card (5 cols on md/lg) */}
-        <div className="md:col-span-5 rounded-[28px] glass-bento bg-white/70 backdrop-blur-2xl border border-white/90 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-white shadow-[0_16px_40px_-10px_rgba(15,23,42,0.06)] transition-cinema gpu-layer">
+        <div className="md:col-span-5 rounded-[28px] glass-bento bg-revealed/70 backdrop-blur-2xl border border-glow-line p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-glow-line-strong shadow-[0_16px_40px_-10px_rgba(0,0,0,0.5)] transition-cinema gpu-layer">
           {/* Ambient Corner Glow */}
-          <div className="absolute -top-16 -left-16 w-48 h-48 rounded-full bg-brand-crimson/5 blur-3xl pointer-events-none group-hover:bg-brand-crimson/10 transition-cinema" />
+          <div className="absolute -top-16 -left-16 w-48 h-48 rounded-full bg-signal/5 blur-3xl pointer-events-none group-hover:bg-signal/10 transition-cinema" />
 
           {/* Top Visual: Vintage Film Reel / Golden Camera Vector */}
           <div className="relative z-10 pt-2 pb-8 flex items-center justify-center">
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl glass-panel bg-white/80 border border-white/95 flex items-center justify-center shadow-sm group-hover:scale-[1.03] transition-spring">
-              <Film className="w-16 h-16 sm:w-20 sm:h-20 text-amber-600 drop-shadow-sm" />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/5" />
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl glass-panel bg-screen/80 border border-glow-line-strong flex items-center justify-center shadow-sm group-hover:scale-[1.03] transition-spring">
+              <Film className="w-16 h-16 sm:w-20 sm:h-20 text-marquee-soft drop-shadow-[0_0_16px_rgba(255,176,32,0.3)]" />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-glow-line" />
             </div>
           </div>
 
           {/* Bottom Content & CTA */}
-          <div className="relative z-10 space-y-5 pt-4 border-t border-gray-200/60">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-950 leading-snug font-sans">
+          <div className="relative z-10 space-y-5 pt-4 border-t border-glow-line">
+            <h3 className="text-lg sm:text-xl font-bold text-popcorn leading-snug">
               {t.card1Title}
             </h3>
 
             <Link
               href={localizeUrl("/category/latest")}
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gray-950 text-white hover:bg-black text-xs sm:text-sm font-bold tracking-tight shadow-md hover:shadow-lg active:scale-95 transition-spring select-none"
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-signal-deep text-popcorn hover:bg-signal text-xs sm:text-sm font-bold tracking-tight shadow-[0_0_24px_rgba(255,46,80,0.25)] active:scale-95 transition-spring select-none"
             >
               <span>{t.card1Cta}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 text-popcorn group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
         </div>
@@ -131,73 +131,73 @@ export default function EditorialBentoShowcase() {
         {/* Right Section: 3 Bento Cards (7 cols on md/lg) */}
         <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
           {/* Card 2: Top Left - Handshake / Insider Trust */}
-          <div className="rounded-[28px] glass-bento bg-white/70 backdrop-blur-2xl border border-white/90 p-6 flex flex-col justify-between relative overflow-hidden group hover:border-white shadow-[0_12px_36px_-8px_rgba(15,23,42,0.05)] transition-cinema gpu-layer">
+          <div className="rounded-[28px] glass-bento bg-revealed/70 backdrop-blur-2xl border border-glow-line p-6 flex flex-col justify-between relative overflow-hidden group hover:border-glow-line-strong shadow-[0_12px_36px_-8px_rgba(0,0,0,0.45)] transition-cinema gpu-layer">
             {/* Visual Icon */}
-            <div className="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 mb-6 group-hover:scale-105 transition-spring shadow-2xs">
+            <div className="w-12 h-12 rounded-2xl bg-ultra-faint border border-ultra/30 flex items-center justify-center text-ultra-soft mb-6 group-hover:scale-105 transition-spring">
               <Users className="w-6 h-6" />
             </div>
 
             {/* Content */}
             <div className="space-y-2">
-              <h4 className="text-base sm:text-lg font-bold text-gray-950 leading-snug font-sans">
+              <h4 className="text-base sm:text-lg font-bold text-popcorn leading-snug">
                 {t.card2Title}
               </h4>
-              <p className="text-xs text-gray-600 flex items-center gap-1.5 pt-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <p className="text-xs text-popcorn-dim flex items-center gap-1.5 pt-2">
+                <CheckCircle2 className="w-3.5 h-3.5 change-positive shrink-0" />
                 <span>Verified editorial byline standards</span>
               </p>
             </div>
           </div>
 
           {/* Card 3: Top Right - 100% Metric Card */}
-          <div className="rounded-[28px] glass-bento bg-white/70 backdrop-blur-2xl border border-white/90 p-6 flex flex-col justify-between relative overflow-hidden group hover:border-white shadow-[0_12px_36px_-8px_rgba(15,23,42,0.05)] transition-cinema gpu-layer">
+          <div className="rounded-[28px] glass-bento bg-revealed/70 backdrop-blur-2xl border border-glow-line p-6 flex flex-col justify-between relative overflow-hidden group hover:border-glow-line-strong shadow-[0_12px_36px_-8px_rgba(0,0,0,0.45)] transition-cinema gpu-layer">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-4xl sm:text-5xl font-black text-gray-950 tracking-tight font-sans block">
+                <span className="text-4xl sm:text-5xl font-black text-popcorn tracking-tight font-display-latin block">
                   {t.card3Metric}
                 </span>
-                <span className="text-xs font-bold text-amber-700 tracking-wide uppercase mt-1 block">
+                <span className="text-xs font-bold text-marquee-soft tracking-widest uppercase font-display-latin mt-1 block">
                   Cinephile Guarantee
                 </span>
               </div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shrink-0 group-hover:rotate-12 transition-spring shadow-2xs">
+              <div className="w-12 h-12 rounded-2xl bg-marquee-faint border border-marquee/30 flex items-center justify-center text-marquee-soft shrink-0 group-hover:rotate-12 transition-spring">
                 <Award className="w-6 h-6" />
               </div>
             </div>
 
-            <p className="text-xs text-gray-600 leading-relaxed pt-4 border-t border-gray-200/60 mt-4">
+            <p className="text-xs text-popcorn-dim leading-relaxed pt-4 border-t border-glow-line mt-4">
               {t.card3Subtitle}
             </p>
           </div>
 
           {/* Card 4: Bottom Wide Card spanning both columns */}
-          <div className="sm:col-span-2 rounded-[28px] glass-bento bg-white/70 backdrop-blur-2xl border border-white/90 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden group hover:border-white shadow-[0_16px_40px_-10px_rgba(15,23,42,0.06)] transition-cinema gpu-layer">
+          <div className="sm:col-span-2 rounded-[28px] glass-bento bg-revealed/70 backdrop-blur-2xl border border-glow-line p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden group hover:border-glow-line-strong shadow-[0_16px_40px_-10px_rgba(0,0,0,0.5)] transition-cinema gpu-layer">
             {/* Left Content */}
             <div className="space-y-3 max-w-md">
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-cyan-800 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200">
-                <ShieldCheck className="w-3 h-3 text-cyan-700" />
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest font-display-latin text-signal-soft bg-signal-faint px-2.5 py-0.5 rounded-full border border-signal/25">
+                <ShieldCheck className="w-3 h-3 text-signal-soft" />
                 <span>Zero Clickbait Policy</span>
               </div>
-              <h4 className="text-base sm:text-xl font-bold text-gray-950 leading-snug font-sans">
+              <h4 className="text-base sm:text-xl font-bold text-popcorn leading-snug">
                 {t.card4Title}
               </h4>
               <div className="pt-1">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#111827] hover:bg-black text-white font-bold text-xs tracking-tight shadow-md transition-spring"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ultra-deep hover:bg-ultra text-void font-bold text-xs tracking-tight shadow-[0_0_24px_rgba(155,109,255,0.3)] transition-spring"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-void" />
                   <span>Interactive Cinema Vibe Match</span>
                 </button>
               </div>
             </div>
 
             {/* Right Abstract Visual Graphic */}
-            <div className="w-full sm:w-48 h-28 sm:h-32 rounded-2xl glass-panel bg-white/80 border border-white/95 flex items-center justify-center shrink-0 relative overflow-hidden group-hover:scale-[1.02] transition-spring shadow-xs">
+            <div className="w-full sm:w-48 h-28 sm:h-32 rounded-2xl glass-panel bg-screen/80 border border-glow-line-strong flex items-center justify-center shrink-0 relative overflow-hidden group-hover:scale-[1.02] transition-spring">
               <div className="flex flex-col items-center gap-1 z-10">
-                <Film className="w-8 h-8 text-brand-crimson" />
-                <span className="text-[11px] font-sans uppercase tracking-wider text-gray-700 font-bold">
+                <Film className="w-8 h-8 text-ultra-soft" />
+                <span className="text-[11px] font-display-latin uppercase tracking-widest text-popcorn-dim font-bold">
                   {config.industryName}
                 </span>
               </div>

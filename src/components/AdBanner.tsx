@@ -16,7 +16,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.imageUrl && ad.isActive) {
     const bannerContent = (
       <div
-        className={`relative overflow-hidden rounded-xl border border-brand-border/80 group ${
+        className={`relative overflow-hidden rounded-xl border border-glow-line group ${
           isLeaderboard ? "h-24 sm:h-28 max-w-4xl" : isSidebar ? "h-64 max-w-sm" : "h-32"
         } w-full mx-auto my-6`}
       >
@@ -27,11 +27,11 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
           className="object-cover group-hover:scale-105 transition-transform duration-300"
           sizes="(max-width: 768px) 100vw, 800px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-3">
-          <span className="text-[9px] uppercase tracking-wider text-amber-400 font-semibold mb-0.5">
+        <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/40 to-transparent flex flex-col justify-end p-3">
+          <span className="text-[9px] uppercase tracking-widest text-marquee-soft font-display-latin font-bold mb-0.5">
             ಪ್ರಾಯೋಜಿತ &middot; SPONSORED
           </span>
-          <p className="text-xs sm:text-sm font-bold text-white font-kannada drop-shadow">
+          <p className="text-xs sm:text-sm font-bold text-popcorn font-kannada drop-shadow">
             {ad.title}
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.adCode && ad.isActive) {
     return (
       <div className={`w-full my-4 text-center ${className}`}>
-        <span className="text-[10px] uppercase tracking-wider text-brand-muted block mb-1">
+        <span className="text-[10px] uppercase tracking-widest text-popcorn-muted font-display-latin block mb-1">
           ಜಾಹೀರಾತು (Advertisement)
         </span>
         <iframe

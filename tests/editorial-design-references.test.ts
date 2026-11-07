@@ -11,16 +11,16 @@ describe("Editorial Design References & Tagline Sanitization", () => {
     }
   });
 
-  it("verifies Kannada has independent editorial analysis tagline", () => {
+  it("verifies Kannada leads with receipts-backed credibility + zero fake tea (AFTER-DARK voice)", () => {
     const kn = SUPPORTED_LANGUAGES.find((l) => l.code === "kn");
     expect(kn).toBeDefined();
-    expect(kn?.tagline).toBe("ನಿಖರ ಸಿನಿಮಾ ವಿಶ್ಲೇಷಣೆ, ನಿಷ್ಪಕ್ಷಪಾತ ವಿಮರ್ಶೆಗಳು & ನೇರ ಬಾಕ್ಸ್ ಆಫೀಸ್ ಇಂಟೆಲಿಜೆನ್ಸ್");
+    expect(kn?.tagline).toBe("ರಿಸೀಟ್-ಬ್ಯಾಕ್ ಬಾಕ್ಸ್ ಆಫೀಸ್, ಫೇಕ್-ಫ್ರೀ ಸಿನಿ ಟೀ & ಕಠೋರ ನಿಷ್ಪಕ್ಷಪಾತ ವೆರ್ಡಿಕ್ಟ್‌ಗಳು");
   });
 
-  it("verifies English has high-prestige editorial tagline", () => {
+  it("verifies English leads with receipts-backed credibility + zero fake tea (AFTER-DARK voice)", () => {
     const en = SUPPORTED_LANGUAGES.find((l) => l.code === "en");
     expect(en).toBeDefined();
-    expect(en?.tagline).toBe("Independent Film Journalism, Data-Driven Box Office & Unbiased Reviews");
+    expect(en?.tagline).toBe("Receipts-Backed Box Office, Zero-Fake Tea & Strictly Unbiased Verdicts");
   });
 
   it("ensures all 6 language codes have complete hot topics and titles", () => {

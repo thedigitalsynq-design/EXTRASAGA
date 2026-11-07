@@ -1,6 +1,6 @@
 # CONTRIBUTING.md — Developer Contribution Guidelines
 
-Thank you for your interest in contributing to **FILMY GARAGE**! Please review the guidelines below before opening a pull request or submitting code.
+Thank you for your interest in contributing to **EXTRASAGA**! Please review the guidelines below before opening a pull request or submitting code.
 
 ---
 

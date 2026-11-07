@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Zap, Pause, Play, ChevronRight, Radio } from "lucide-react";
+import { Zap, Pause, Play, ChevronRight } from "lucide-react";
 import { Article } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -86,47 +86,51 @@ export default function BreakingTicker({ articles }: BreakingTickerProps) {
   const current = mergedList[currentIndex] || mergedList[0];
 
   return (
-    <div className="w-full bg-white border-b border-gray-200 py-2 px-4 sm:px-6 shadow-xs">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-        {/* Breaking Badge with LIVE pulse */}
-        <div className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-brand-crimson to-[#8e1d27] text-white px-2.5 sm:px-3 py-1 rounded text-xs font-bold tracking-wide shadow-sm shrink-0">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-          </span>
-          <Zap className="w-3.5 h-3.5 text-white" />
-          <span className="hidden sm:inline">{t("sec_breaking")}</span>
-          <span className="sm:hidden">{t("sec_breaking").split(" ")[0]}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/25 font-sans font-bold uppercase tracking-wider">
+    <div className="w-full bg-hall border-y border-glow-line py-2 px-3 sm:px-6 relative overflow-hidden">
+      {/* Void-on-hall projector tray */}
+      <div aria-hidden="true" className="absolute inset-0 bg-void/80 backdrop-blur-md pointer-events-none" />
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 relative z-10">
+        {/* Breaking plate — signal-red projection chip */}
+        <div className="flex items-stretch shrink-0 rounded-md overflow-hidden border border-signal/40 shadow-[0_0_24px_rgba(255,46,80,0.25)] animate-stamp-in">
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-signal-deep text-popcorn px-2.5 sm:px-3 py-1 text-xs font-bold tracking-wide">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-60"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
+            </span>
+            <Zap className="w-3.5 h-3.5 text-marquee" fill="currentColor" />
+            <span className="hidden sm:inline font-sans uppercase tracking-wider">{t("sec_breaking")}</span>
+            <span className="sm:hidden font-sans uppercase tracking-wider">{t("sec_breaking").split(" ")[0]}</span>
+          </div>
+          <div className="hidden sm:flex items-center px-2.5 text-[10px] font-sans uppercase tracking-widest bg-revealed/80 text-popcorn-dim">
             {config.industryName}
-          </span>
+          </div>
         </div>
 
         {/* Dynamic News Headline */}
         <div className="flex-1 overflow-hidden">
           <Link
             href={localizeUrl(current.slug === "latest" ? "/category/latest" : `/news/${current.slug}`)}
-            className="block text-xs sm:text-sm font-semibold text-gray-800 hover:text-brand-crimson transition-colors truncate"
+            className="block text-xs sm:text-sm font-semibold text-popcorn hover:text-signal transition-colors truncate"
           >
             {current.title}
           </Link>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-1.5 shrink-0 text-gray-500">
+        <div className="flex items-center gap-1.5 shrink-0 text-popcorn-dim">
           <button
             onClick={() => setIsPaused(!isPaused)}
-            className="p-1 rounded hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="p-1 rounded-md border border-transparent hover:border-glow-line-strong hover:text-popcorn transition-colors"
             title={isPaused ? "Play" : "Pause"}
           >
             {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
           </button>
-          <span className="text-[11px] font-sans text-gray-500 font-medium">
+          <span className="text-[11px] text-popcorn-muted font-mono-tabular">
             {currentIndex + 1}/{mergedList.length}
           </span>
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % mergedList.length)}
-            className="p-1 rounded hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="p-1 rounded-md border border-transparent hover:border-glow-line-strong hover:text-popcorn transition-colors"
           >
             <ChevronRight className="w-3.5 h-3.5" />
           </button>

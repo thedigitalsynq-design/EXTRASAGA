@@ -77,22 +77,22 @@ export default function CinemaJourneyTimeline() {
     <section aria-label="Cinema Journey Timeline" className="w-full py-10">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-gray-100 border border-gray-200 text-gray-700 select-none shadow-2xs">
-          <Compass className="w-3.5 h-3.5 text-amber-600" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase font-display-latin bg-marquee-faint border border-marquee/30 text-marquee-soft select-none">
+          <Compass className="w-3.5 h-3.5" />
           <span>{headerText.pill}</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-sans">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-popcorn tracking-tight font-display-latin">
           {headerText.title}
         </h2>
-        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+        <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
           {headerText.subtitle}
         </p>
       </div>
 
-      {/* Narrative Path (Inspired by handwriting + continuous curve aesthetic) */}
+      {/* Narrative Path (projector-line curve through the dark) */}
       <div className="relative max-w-5xl mx-auto">
         {/* Subtle Connecting Center Line */}
-        <div className="hidden md:block absolute left-1/2 top-8 bottom-8 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#e2764b]/30 via-[#e2764b]/50 to-[#e2764b]/20" />
+        <div className="hidden md:block absolute left-1/2 top-8 bottom-8 w-0.5 -translate-x-1/2 bg-gradient-to-b from-marquee/30 via-signal/50 to-ultra/20" />
 
         <div className="space-y-8 md:space-y-12">
           {steps.map((step, idx) => {
@@ -108,38 +108,38 @@ export default function CinemaJourneyTimeline() {
               >
                 {/* Content Card (Half Width) */}
                 <div className={`w-full md:w-1/2 ${isEven ? "md:text-left" : "md:text-right"}`}>
-                  <div className="rounded-3xl bg-white border border-gray-200/90 p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-gray-300 transition-cinema gpu-layer group">
+                  <div className="rounded-3xl bg-revealed border border-glow-line p-6 sm:p-7 hover:shadow-[0_0_32px_rgba(255,46,80,0.12)] hover:border-glow-line-strong transition-cinema gpu-layer group">
                     {/* Top Step Number + Icon */}
                     <div
                       className={`flex items-center gap-3 mb-3 ${
                         isEven ? "justify-start" : "md:justify-end justify-start"
                       }`}
                     >
-                      <span className="text-2xl sm:text-3xl font-black text-[#dc6940] font-mono tracking-tighter">
+                      <span className="text-2xl sm:text-3xl font-black text-signal font-display-latin tracking-tighter">
                         {step.num}
                       </span>
-                      <div className="w-9 h-9 rounded-xl bg-[#dc6940]/10 border border-[#dc6940]/20 flex items-center justify-center text-[#dc6940]">
+                      <div className="w-9 h-9 rounded-xl bg-signal-faint border border-signal/25 flex items-center justify-center text-signal-soft">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-base sm:text-lg font-bold text-gray-950 mb-2 font-sans">
+                    <h3 className="text-base sm:text-lg font-bold text-popcorn mb-2 font-display-latin">
                       {step.title}
                     </h3>
 
                     {/* Body */}
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-popcorn-dim leading-relaxed font-normal">
                       {step.body}
                     </p>
 
                     {/* Handwritten Style Annotation Pill */}
                     <div
-                      className={`pt-4 mt-4 border-t border-gray-100 flex items-center ${
+                      className={`pt-4 mt-4 border-t border-glow-line flex items-center ${
                         isEven ? "justify-start" : "md:justify-end justify-start"
                       }`}
                     >
-                      <span className="inline-block px-3 py-1 rounded-full bg-[#dc6940]/10 border border-[#dc6940]/25 text-[#c14c22] text-[11px] font-mono tracking-wide italic font-medium">
+                      <span className="inline-block px-3 py-1 rounded-full bg-signal-faint border border-signal/25 text-signal-soft text-[11px] font-mono tracking-wide italic font-medium">
                         {step.handwrittenNote}
                       </span>
                     </div>
@@ -147,8 +147,8 @@ export default function CinemaJourneyTimeline() {
                 </div>
 
                 {/* Center Node on Timeline */}
-                <div className="hidden md:flex relative z-10 w-9 h-9 rounded-full bg-white border-2 border-[#dc6940] items-center justify-center text-xs font-mono font-bold text-gray-900 shadow-md">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc6940] animate-pulse" />
+                <div className="hidden md:flex relative z-10 w-9 h-9 rounded-full bg-revealed border-2 border-signal items-center justify-center text-xs font-mono font-bold text-popcorn shadow-[0_0_20px_rgba(255,46,80,0.3)]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-signal animate-glow-pulse" />
                 </div>
 
                 {/* Blank Opposite Spacer for Desktop Balance */}
@@ -161,4 +161,3 @@ export default function CinemaJourneyTimeline() {
     </section>
   );
 }
-

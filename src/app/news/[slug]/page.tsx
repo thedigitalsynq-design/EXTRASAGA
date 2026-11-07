@@ -43,7 +43,7 @@ export async function generateMetadata({ params, searchParams }: ArticlePageProp
   const siteUrl = getSiteUrl();
 
   return {
-    title: `${article.title} | FILMY GARAGE`,
+    title: `${article.title} | EXTRASAGA`,
     description: article.summary,
     openGraph: {
       title: article.title,
@@ -115,7 +115,7 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
     ],
     publisher: {
       "@type": "Organization",
-      name: "FILMY GARAGE",
+      name: "EXTRASAGA",
       url: getSiteUrl(),
       logo: {
         "@type": "ImageObject",
@@ -162,20 +162,20 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
       />
 
       {/* Breadcrumb Navigation */}
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-3 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-gray-500">
-          <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium transition-colors">
+      <div className="bg-hall border-b border-glow-line py-3 px-4 sm:px-6 shadow-xs">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs text-popcorn-dim">
+          <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium transition-colors">
             {getTranslation(activeLang, "nav_home")}
           </Link>
           <span>/</span>
           <Link
             href={`/category/${article.category}?lang=${activeLang}`}
-            className="hover:text-brand-crimson text-gray-700 font-medium transition-colors"
+            className="hover:text-signal-soft text-popcorn-dim font-medium transition-colors"
           >
             {localizedCatName}
           </Link>
           <span>/</span>
-          <span className="text-gray-400 truncate max-w-xs sm:max-w-md">
+          <span className="text-popcorn-muted truncate max-w-xs sm:max-w-md">
             {article.title}
           </span>
         </div>
@@ -185,25 +185,25 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Main Article Content (Col 8) */}
           <main className="lg:col-span-8">
-            <article className="bg-white rounded-3xl border border-gray-200/90 p-5 sm:p-8 shadow-sm">
+            <article className="bg-revealed rounded-3xl border border-glow-line p-5 sm:p-8 shadow-sm">
               {/* Category & Read time */}
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
                   <Link
                     href={`/category/${article.category}?lang=${activeLang}`}
-                    className="px-3 py-1 rounded-full bg-brand-crimson text-white text-xs font-bold tracking-wide shadow-xs"
+                    className="px-3 py-1 rounded-full bg-signal-deep text-popcorn text-xs font-bold tracking-wide shadow-xs"
                   >
                     {localizedCatName}
                   </Link>
                   <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                     {config.industryName}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <Clock className="w-3.5 h-3.5 text-brand-crimson" />
+                <div className="flex items-center gap-2 text-xs text-popcorn-dim">
+                  <Clock className="w-3.5 h-3.5 text-signal-soft" />
                   <span>
                     {article.readTimeMinutes} {readTimeLabel[activeLang] || readTimeLabel.kn}
                   </span>
@@ -216,28 +216,28 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
               </div>
 
               {/* Headline */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-950 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display-latin text-popcorn leading-tight tracking-tight">
                 {article.title}
               </h1>
 
               {/* Short summary / Sub-headline */}
-              <p className="mt-4 text-base sm:text-lg text-gray-700 leading-relaxed font-normal border-l-4 border-brand-crimson pl-4 italic bg-gray-50/80 py-3 rounded-r-xl">
+              <p className="mt-4 text-base sm:text-lg text-popcorn-dim leading-relaxed font-normal border-l-4 border-signal pl-4 italic bg-hall/80 py-3 rounded-r-xl">
                 {article.summary}
               </p>
 
               {/* Author & Published Info */}
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-4 py-3.5 border-y border-gray-200 text-xs text-gray-600">
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-4 py-3.5 border-y border-glow-line text-xs text-popcorn-dim">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-brand-crimson font-bold font-sans">
+                  <div className="w-9 h-9 rounded-full bg-signal-deep border border-signal/40 flex items-center justify-center text-popcorn font-bold font-sans">
                     {article.author.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900">{article.author.name}</div>
-                    <div className="text-[11px] text-gray-500">{article.author.role || `${config.industryName} Desk`}</div>
+                    <div className="font-bold text-popcorn">{article.author.name}</div>
+                    <div className="text-[11px] text-popcorn-muted">{article.author.role || `${config.industryName} Desk`}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 text-gray-500 font-sans text-[11px]">
+                <div className="flex items-center gap-3 text-popcorn-muted font-sans text-[11px]">
                   <span>📅 {formatKannadaDate(article.publishedAt)}</span>
                   {article.updatedAt && (
                     <>
@@ -264,41 +264,41 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
                   />
                 </div>
                 {article.imageCaption && (
-                  <p className="mt-2 text-center text-xs text-gray-500 italic">
+                  <p className="mt-2 text-center text-xs text-popcorn-muted italic">
                     📷 {article.imageCaption}
                   </p>
                 )}
               </div>
 
               {/* Article Rich Body Content */}
-              <div className="prose max-w-none text-gray-800 leading-relaxed space-y-4 text-sm sm:text-base font-normal">
+              <div className="prose max-w-none text-popcorn leading-relaxed space-y-4 text-sm sm:text-base font-normal">
                 <div
                   className="whitespace-pre-line"
                   dangerouslySetInnerHTML={{
                     __html: (article.content ?? "")
-                      .replace(/\*\*(.*?)\*\*/g, "<strong class='text-gray-950 font-extrabold'>$1</strong>")
-                      .replace(/### (.*?)\n/g, "<h3 class='text-xl sm:text-2xl font-black text-brand-crimson mt-6 mb-3'>$1</h3>")
-                      .replace(/> (.*?)\n/g, "<blockquote class='border-l-4 border-amber-500 pl-4 py-2 my-4 bg-amber-50 rounded-r text-gray-800 font-medium italic'>$1</blockquote>"),
+                      .replace(/\*\*(.*?)\*\*/g, "<strong class='text-popcorn font-extrabold'>$1</strong>")
+                      .replace(/### (.*?)\n/g, "<h3 class='text-xl sm:text-2xl font-bold font-display-latin text-popcorn mt-6 mb-3'>$1</h3>")
+                      .replace(/> (.*?)\n/g, "<blockquote class='border-l-4 border-marquee pl-4 py-2 my-4 bg-marquee/10 rounded-r text-popcorn-dim font-medium italic'>$1</blockquote>"),
                   }}
                 />
               </div>
 
               {/* Authentic Source Attribution Block (Requirement 6) */}
               {article.source?.url && (
-                <div className="my-6 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+                <div className="my-6 p-4 rounded-2xl bg-ultra/10 border border-ultra/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300 shrink-0">
-                      <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                    <div className="p-2 rounded-lg bg-ultra/15 text-ultra-soft border border-ultra/30 shrink-0">
+                      <ShieldCheck className="w-4 h-4 text-ultra-soft" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5 flex-wrap">
-                        <span className="text-gray-600 font-sans">Verified Source:</span>
-                        <span className="text-emerald-800 font-bold font-sans">{article.source.name}</span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-200/80 text-emerald-900 border border-emerald-300 uppercase font-sans font-bold">
+                      <div className="text-xs font-bold text-popcorn flex items-center gap-1.5 flex-wrap">
+                        <span className="text-popcorn-muted font-sans">Verified Source:</span>
+                        <span className="text-ultra-soft font-bold font-sans">{article.source.name}</span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-ultra/20 text-ultra-soft border border-ultra/30 uppercase font-sans font-bold">
                           Official Syndication
                         </span>
                       </div>
-                      <p className="text-[11px] text-gray-600 mt-0.5 font-sans">
+                      <p className="text-[11px] text-popcorn-dim mt-0.5 font-sans">
                         Published at {new Date(article.publishedAt).toLocaleString()} · Full copyright belongs to original publisher
                       </p>
                     </div>
@@ -307,7 +307,7 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
                     href={article.source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gray-950 hover:bg-brand-crimson text-xs font-bold text-white transition-all shrink-0 font-sans shadow-xs"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-void hover:bg-signal-deep text-xs font-bold text-popcorn transition-all shrink-0 font-sans shadow-xs border border-glow-line"
                   >
                     <span>Read Original on {article.source.name}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -319,15 +319,15 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
               <AdBanner placement="in_article" />
 
               {/* Article Tags */}
-              <div className="mt-8 pt-6 border-t border-gray-200 flex items-center gap-2 flex-wrap">
-                <span className="text-xs font-bold text-gray-700">
+              <div className="mt-8 pt-6 border-t border-glow-line flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold text-popcorn-dim">
                   {tagsLabel[activeLang] || tagsLabel.kn}
                 </span>
                 {article.tags.map((tag) => (
                   <Link
                     key={tag}
                     href={`/search?q=${encodeURIComponent(tag)}&lang=${activeLang}`}
-                    className="px-3 py-1 rounded-full bg-gray-100 hover:bg-brand-crimson text-gray-700 hover:text-white text-xs border border-gray-200 font-medium transition-colors"
+                    className="px-3 py-1 rounded-full bg-hall hover:bg-signal-deep text-popcorn-dim hover:text-popcorn text-xs border border-glow-line font-medium transition-colors"
                   >
                     #{tag}
                   </Link>
@@ -338,18 +338,18 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
               <SocialShare title={article.title} />
 
               {/* Prev / Next Article Navigation */}
-              <div className="my-8 pt-6 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="my-8 pt-6 border-t border-glow-line grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {prevArticle ? (
                   <Link
                     href={`/news/${prevArticle.slug}?lang=${activeLang}`}
-                    className="group p-4 rounded-2xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all flex items-center gap-3 shadow-2xs"
+                    className="group p-4 rounded-2xl bg-hall hover:bg-screen border border-glow-line transition-all flex items-center gap-3 shadow-2xs"
                   >
-                    <ChevronLeft className="w-5 h-5 text-brand-crimson shrink-0 group-hover:-translate-x-1 transition-transform" />
+                    <ChevronLeft className="w-5 h-5 text-signal-soft shrink-0 group-hover:-translate-x-1 transition-transform" />
                     <div className="min-w-0">
-                      <span className="text-[10px] uppercase tracking-wider text-gray-500 block font-sans font-bold">
+                      <span className="text-[10px] uppercase tracking-wider text-popcorn-muted block font-sans font-bold">
                         {activeLang === "en" ? "Previous" : "ಹಿಂದಿನ ಲೇಖನ"}
                       </span>
-                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-brand-crimson truncate transition-colors">
+                      <h4 className="text-xs sm:text-sm font-bold text-popcorn group-hover:text-signal-soft truncate transition-colors">
                         {prevArticle.title}
                       </h4>
                     </div>
@@ -361,17 +361,17 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
                 {nextArticle && (
                   <Link
                     href={`/news/${nextArticle.slug}?lang=${activeLang}`}
-                    className="group p-4 rounded-2xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-all flex items-center justify-between gap-3 text-right shadow-2xs"
+                    className="group p-4 rounded-2xl bg-hall hover:bg-screen border border-glow-line transition-all flex items-center justify-between gap-3 text-right shadow-2xs"
                   >
                     <div className="min-w-0 flex-1">
-                      <span className="text-[10px] uppercase tracking-wider text-gray-500 block font-sans font-bold">
+                      <span className="text-[10px] uppercase tracking-wider text-popcorn-muted block font-sans font-bold">
                         {activeLang === "en" ? "Next" : "ಮುಂದಿನ ಲೇಖನ"}
                       </span>
-                      <h4 className="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-brand-crimson truncate transition-colors">
+                      <h4 className="text-xs sm:text-sm font-bold text-popcorn group-hover:text-signal-soft truncate transition-colors">
                         {nextArticle.title}
                       </h4>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-brand-crimson shrink-0 group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight className="w-5 h-5 text-signal-soft shrink-0 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 )}
               </div>
@@ -383,7 +383,7 @@ export default async function ArticlePage({ params, searchParams }: ArticlePageP
             {/* Related Articles */}
             {relatedArticles.length > 0 && (
               <div className="mt-8">
-                <h3 className="text-lg font-bold text-gray-950 mb-4 border-l-4 border-brand-crimson pl-3 font-sans">
+                <h3 className="text-lg font-bold text-popcorn mb-4 border-l-4 border-signal pl-3 font-sans">
                   {relatedLabel[activeLang] || relatedLabel.kn}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

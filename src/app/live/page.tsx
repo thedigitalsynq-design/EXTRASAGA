@@ -21,7 +21,7 @@ export async function generateMetadata({ searchParams }: LivePageProps): Promise
   const config = getLanguageConfig(lang);
 
   return {
-    title: `FILMY GARAGE Live Wire | Real-Time ${config.industryName} Updates`,
+    title: `EXTRASAGA Live Wire | Real-Time ${config.industryName} Updates`,
     description: `Real-time minute-by-minute cinema breaking news, live box office tracking, and shooting updates for ${config.industryName}.`,
   };
 }
@@ -63,33 +63,36 @@ export default async function LiveWirePage({ searchParams }: LivePageProps) {
 
   return (
     <div className="w-full">
-      {/* Banner */}
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-8 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium">
+      {/* The Live Wire — Hero Band */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
+            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
               {getTranslation(activeLang, "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-brand-crimson font-bold">LIVE WIRE</span>
+            <span className="text-signal-soft font-bold">LIVE WIRE</span>
           </div>
 
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-3">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-crimson opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-crimson"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-signal"></span>
+            </span>
+            <span className="uppercase font-display-latin text-[10px] tracking-[0.25em] text-signal-soft border border-signal/25 bg-signal/10 rounded-full px-3 py-0.5">
+              The Live Wire
             </span>
             <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
             >
               {config.industryName} Real-Time Feed
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-950 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
             {header.title}
           </h1>
-          <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-2xl leading-relaxed">
+          <p className="mt-2 text-xs sm:text-sm text-popcorn-dim max-w-2xl leading-relaxed">
             {header.desc}
           </p>
         </div>

@@ -454,7 +454,7 @@ export function getRamayanaMovieReview(lang: LanguageCode): MovieReview {
     cons: ["ಈ ಮಹಾಕಾವ್ಯಕ್ಕೆ ಯಾವುದೇ ಕೊರತೆಗಳಿಲ್ಲ - ರೇಟಿಂಗ್‌ಗಳಿಗೆ ಮೀರಿದ ಭಾರತೀಯ ಹೆಮ್ಮೆ!"],
     boxOfficeSummary: "ಜಾಗತಿಕ ಮಟ್ಟದಲ್ಲಿ ಸಾರ್ವಕಾಲಿಕ ಇತಿಹಾಸ ಬರೆಯಲಿರುವ ಭಾರತೀಯ ಸಿನಿಮಾ.",
     publishedAt: "2026-11-01T00:00:00Z",
-    author: "FILMY GARAGE ವಿಶೇಷ ಸಂಪಾದಕೀಯ ಮಂಡಳಿ",
+    author: "EXTRASAGA ವಿಶೇಷ ಸಂಪಾದಕೀಯ ಮಂಡಳಿ",
   };
 }
 

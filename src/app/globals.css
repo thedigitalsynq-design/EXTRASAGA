@@ -1,16 +1,39 @@
+/* ════════════════════════════════════════════════════════════════════
+   EXTRASAGA — HOUSE FULL PRESS EDITION (v4.0)
+   Ref: docs/DESIGN-SYSTEM.md
+   The page is a printed fanzine. Color is ink, not light.
+   Flat poster inks, hard rules, offset shadows, sticker marks.
+   ════════════════════════════════════════════════════════════════════ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* ═════ v4 PRESS CORE ═════ */
+  --paper: #F4EFE2;
+  --sheet: #FBF7EC;
+  --band: #ECE3D0;
+  --ink: #17140F;
+  --ink-dim: #5C5344;
+  --ink-mute: #8D8471;
+  --hairline: #D9CEB4;
+
+  --press-red: #E03A2F;
+  --press-violet: #4F2BEF;
+  --press-gold: #F0B429;
+
+  /* Regional script stacks — untouched, non-negotiable */
   --font-noto-serif-kannada: 'Noto Serif Kannada', serif;
   --font-benne: 'Benne', serif;
   --font-kannada: 'Noto Serif Kannada', 'Benne', 'Anek Kannada', 'Noto Sans Kannada', 'Hubballi', serif;
   --font-telugu: 'Baloo Tammudu 2', sans-serif;
-  --font-tamil: 'Baloo Thambi 2', sans-serif;
+  --font-tamil: 'Catamaran', 'Baloo Thambi 2', sans-serif;
   --font-malayalam: 'Chilanka', sans-serif;
   --font-hindi: 'Khand', sans-serif;
-  --font-english: 'Plus Jakarta Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-english: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display-latin: 'Space Grotesk', 'DM Sans', sans-serif;
+  --font-poster: 'Archivo Black', 'Space Grotesk', sans-serif;
   --font-sans: var(--font-kannada);
   --font-display: var(--font-noto-serif-kannada);
 }
@@ -20,11 +43,12 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
 body {
-  background-color: #F8FAF9;
-  color: #1F2937;
+  background-color: var(--paper);
+  color: var(--ink);
   overflow-x: hidden;
   font-family: var(--font-sans);
   line-height: 1.62;
@@ -33,41 +57,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enhanced Font Visibility & Readability Standards (Jade Horizon Edition) */
+/* Headlines: ink-blocked, poster-leaned, press-print */
 h1, h2, h3, h4, h5, h6 {
-  color: #0F3529;
+  color: var(--ink);
   font-weight: 700;
-  letter-spacing: -0.015em;
-  line-height: 1.32;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
 }
 
 p {
-  color: #374151;
+  color: var(--ink-dim);
 }
 
-/* Ensure Kannada complex ligatures and subscripts render cleanly with royal dignity */
+/* Native script legibility (complex ligatures & subscripts) */
 .font-kannada,
 [lang="kn"],
 html[data-lang="kn"] {
   line-height: 1.68;
 }
 
-/* Crisp high-contrast overrides for muted and secondary text */
-.text-gray-400 {
-  color: #64748B !important;
-}
-
-.text-gray-500 {
-  color: #475569 !important;
-}
-
-.text-gray-600 {
-  color: #334155 !important;
-}
-
-.text-gray-700 {
-  color: #1E293B !important;
-}
+/* Legacy generic grays remapped onto the paper system */
+.text-gray-400 { color: #8D8471 !important; }
+.text-gray-500 { color: #8D8471 !important; }
+.text-gray-600 { color: #5C5344 !important; }
+.text-gray-700 { color: #17140F !important; }
+.text-gray-800 { color: #17140F !important; }
+.text-gray-900 { color: #17140F !important; }
+.bg-gray-50  { background-color: #ECE3D0 !important; }
+.bg-gray-100 { background-color: #ECE3D0 !important; }
+.bg-gray-200 { background-color: #D9CEB4 !important; }
+.border-gray-100 { border-color: #ECE3D0 !important; }
+.border-gray-200 { border-color: #D9CEB4 !important; }
+.border-gray-300 { border-color: #17140F !important; }
+.bg-white { background-color: #FBF7EC; }
 
 /* GPU Hardware Acceleration on Compositor Layers */
 .gpu-layer {
@@ -82,25 +104,11 @@ html[data-lang="kn"] {
   contain-intrinsic-size: 1px 700px;
 }
 
-html[data-lang="te"] {
-  --font-sans: var(--font-telugu);
-}
-
-html[data-lang="ta"] {
-  --font-sans: var(--font-tamil);
-}
-
-html[data-lang="ml"] {
-  --font-sans: var(--font-malayalam);
-}
-
-html[data-lang="hi"] {
-  --font-sans: var(--font-hindi);
-}
-
-html[data-lang="en"] {
-  --font-sans: var(--font-english);
-}
+html[data-lang="te"] { --font-sans: var(--font-telugu); }
+html[data-lang="ta"] { --font-sans: var(--font-tamil); }
+html[data-lang="ml"] { --font-sans: var(--font-malayalam); }
+html[data-lang="hi"] { --font-sans: var(--font-hindi); }
+html[data-lang="en"] { --font-sans: var(--font-english); }
 
 body {
   font-family: var(--font-sans);
@@ -115,21 +123,10 @@ body {
   font-weight: 700;
 }
 
-.font-telugu {
-  font-family: var(--font-telugu);
-}
-
-.font-tamil {
-  font-family: var(--font-tamil);
-}
-
-.font-malayalam {
-  font-family: var(--font-malayalam);
-}
-
-.font-hindi {
-  font-family: var(--font-hindi);
-}
+.font-telugu { font-family: var(--font-telugu); }
+.font-tamil { font-family: var(--font-tamil); }
+.font-malayalam { font-family: var(--font-malayalam); }
+.font-hindi { font-family: var(--font-hindi); }
 
 .font-english,
 .font-brand-en,
@@ -138,175 +135,207 @@ body {
   font-family: var(--font-english);
 }
 
-/* Custom Cinema Scrollbar (Jade Horizon) */
+.font-display-latin {
+  font-family: var(--font-display-latin);
+}
+
+/* ── Press Scrollbar (ink on paper) ───────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8FAF9;
+  background: #ECE3D0;
+  border-left: 2px solid #17140F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #B7E5BA;
-  border-radius: 4px;
+  background: #17140F;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #288760;
+  background: #E03A2F;
 }
 
-/* JADE HORIZON DESIGN SYSTEM (REFERENCE-BASED) */
+::selection {
+  background: #17140F;
+  color: #F0B429;
+}
 
-/* Subtle Geometric Jade Grid Pattern (Reference Image 5) */
+/* ════════════════════════════════════════════════════════════════════
+   HOUSE FULL PRESS COMPONENT SYSTEM
+   (legacy class names kept; surfaces remapped to the press)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Print-grid background (risograph registration grid) */
+.cinema-grid-bg,
 .jade-grid-bg {
-  background-image: 
-    linear-gradient(to right, rgba(40, 135, 96, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(40, 135, 96, 0.06) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(23, 20, 15, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 20, 15, 0.06) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* Clean White Floating Cards with Smooth 24px-32px Radius (Reference Images 1, 3, 4) */
+/* Theatre Card (canonical card of the system) — now a printed clip */
+.cinema-card {
+  background: #FBF7EC;
+  border-radius: 0;
+  border: 2px solid #17140F;
+  box-shadow: 4px 4px 0 0 #17140F;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinema-card:hover {
+  box-shadow: 6px 6px 0 0 #E03A2F;
+  transform: translate(-2px, -2px);
+}
+
+/* Legacy alias cards */
 .jade-card,
-.noir-card,
-.glass-card {
-  background: #FFFFFF;
-  border-radius: 24px;
-  border: 1px solid #E5EBE7;
-  box-shadow: 0 10px 30px -5px rgba(26, 81, 64, 0.05);
+.noir-card {
+  background: #FBF7EC;
+  border-radius: 0;
+  border: 2px solid #17140F;
+  box-shadow: 4px 4px 0 0 #17140F;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .jade-card:hover,
-.noir-card:hover,
-.glass-card:hover {
-  border-color: #288760;
-  box-shadow: 0 20px 45px -10px rgba(40, 135, 96, 0.12);
-  transform: translateY(-2px);
+.noir-card:hover {
+  box-shadow: 6px 6px 0 0 #E03A2F;
+  transform: translate(-2px, -2px);
 }
 
-/* Bento Containers (Reference Image 1) */
+/* Press card (overlays / rails) — formerly dark glass */
+.glass-card {
+  background: #FBF7EC;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 2px solid #17140F;
+  box-shadow: 4px 4px 0 0 #17140F;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  box-shadow: 6px 6px 0 0 #4F2BEF;
+  transform: translate(-2px, -2px);
+}
+
+/* Bento containers (kept class names, printed panels) */
 .jade-bento,
 .noir-bento,
 .glass-bento,
 .glass-panel {
-  background: #FFFFFF;
-  border-radius: 28px;
-  border: 1px solid #E5EBE7;
-  box-shadow: 0 12px 36px -8px rgba(26, 81, 64, 0.06);
+  background: #FBF7EC;
+  border-radius: 0;
+  border: 2px solid #17140F;
+  box-shadow: 5px 5px 0 0 #17140F;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .jade-bento:hover,
 .noir-bento:hover,
 .glass-bento:hover {
-  border-color: #288760;
-  box-shadow: 0 24px 50px -12px rgba(40, 135, 96, 0.14);
+  box-shadow: 8px 8px 0 0 #4F2BEF;
+  transform: translate(-3px, -3px);
 }
 
-/* Signature Pill System (Reference Images 1, 2, 3) */
+/* Signature Pill System (press chips) */
 .jade-pill-dark {
-  background: #1A5140;
-  color: #FFFFFF;
-  border-radius: 9999px;
-  font-weight: 600;
+  background: #17140F;
+  color: #F4EFE2;
+  border: 2px solid #17140F;
+  border-radius: 0;
+  font-weight: 700;
 }
 
 .jade-pill-mint,
 .glass-pill {
-  background: #E8F8EB;
-  color: #1A5140;
-  border: 1px solid #B7E5BA;
-  border-radius: 9999px;
-  font-weight: 600;
+  background: rgba(79, 43, 239, 0.09);
+  color: #3B1DBE;
+  border: 2px solid #17140F;
+  border-radius: 0;
+  font-weight: 700;
 }
 
 .jade-pill-white {
-  background: #FFFFFF;
-  color: #1A5140;
-  border: 1px solid #E5EBE7;
-  border-radius: 9999px;
-  box-shadow: 0 2px 8px rgba(26, 81, 64, 0.04);
+  background: #FBF7EC;
+  color: #17140F;
+  border: 2px solid #17140F;
+  box-shadow: 2px 2px 0 0 #17140F;
 }
 
-/* Glowing Green Icon Badge (Reference Image 4) */
+/* Ink Stamp Icon Badge */
 .jade-icon-glow {
-  background: #288760;
-  box-shadow: 0 0 0 6px #E8F8EB, 0 0 20px rgba(40, 135, 96, 0.25);
+  background: #4F2BEF;
+  box-shadow: 3px 3px 0 0 #17140F;
 }
 
-/* Dashed Process Connector (Reference Images 2, 4) */
+/* Press red variant */
+.s-icon-glow {
+  background: #E03A2F;
+  box-shadow: 3px 3px 0 0 #17140F;
+}
+
+/* Marquee gold (reverence badge, #1 rank) — printed halftone edge */
+.marquee-halo {
+  box-shadow: 3px 3px 0 0 #17140F;
+}
+
+/* Dashed connector — ticket perforation */
 .jade-dashed-connector {
   border-style: dashed;
-  border-color: #CBD5E1;
+  border-color: #17140F;
 }
 
-/* Stat Box (Reference Image 1) */
+/* Stat Box (press) */
 .jade-stat-box {
-  background: #28D070;
-  color: #FFFFFF;
-  border-radius: 20px;
+  background: #4F2BEF;
+  color: #F4EFE2;
+  border: 2px solid #17140F;
+  box-shadow: 4px 4px 0 0 #17140F;
+  border-radius: 0;
   padding: 1rem 1.5rem;
   font-weight: 800;
 }
 
-.glass-card {
-  background: rgba(16, 20, 30, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.05),
-    0 8px 24px -4px rgba(0, 0, 0, 0.4);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* Print Roll — a poster rolling out of the press */
+.projector-beam {
+  position: relative;
+  overflow: hidden;
 }
 
-.glass-card:hover {
-  border-color: rgba(200, 30, 46, 0.4);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.1),
-    0 16px 36px -6px rgba(200, 30, 46, 0.2);
-  transform: translateY(-2px);
+.projector-beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(23, 20, 15, 0.08) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
 }
 
-/* Fluid Organic Ambient Gradient Animations */
-@keyframes fluid-blob {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -40px) scale(1.08);
-  }
-  66% {
-    transform: translate(-25px, 25px) scale(0.95);
-  }
-}
-
-.animate-fluid-blob {
-  animation: fluid-blob 16s ease-in-out infinite;
-}
-
-.animate-fluid-blob-delayed {
-  animation: fluid-blob 20s ease-in-out 4s infinite reverse;
-}
+/* Legacy halo helpers: now solid ink offsets (no blur) */
+.glow-signal-text { color: #B3271E; }
+.glow-ultra-text { color: #3B1DBE; }
+.glow-marquee-text { color: #A96A00; }
 
 .double-bezel {
   padding: 3px;
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  background: #FBF7EC;
+  border: 2px solid #17140F;
+  box-shadow: 4px 4px 0 0 #17140F;
   transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .double-bezel:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(169, 39, 50, 0.25);
-  box-shadow: 0 16px 36px -8px rgba(169, 39, 50, 0.08);
+  box-shadow: 6px 6px 0 0 #E03A2F;
+  transform: translate(-2px, -2px);
 }
 
-/* Snappy, Zero-Lag Apple/Linear Easing Curves (180ms-240ms) */
+/* Snappy, Zero-Lag Press Easing (180ms-240ms) */
 .transition-cinema {
   transition-property: transform, opacity, background-color, border-color, box-shadow;
   transition-duration: 200ms;
@@ -317,6 +346,117 @@ body {
   transition-property: transform, opacity, box-shadow;
   transition-duration: 180ms;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── v4 FANZINE PRIMITIVES ─────────────────────────────────────── */
+
+/* The ink rule: 2px hard border on any element */
+.ink-rule {
+  border: 2px solid #17140F;
+}
+
+/* The hard press shadow */
+.press-pop {
+  box-shadow: 4px 4px 0 0 #17140F;
+}
+
+.press-pop-hover {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.press-pop-hover:hover {
+  box-shadow: 6px 6px 0 0 #17140F;
+  transform: translate(-2px, -2px);
+}
+
+/* Sticker: rotated press chip */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 2px solid #17140F;
+  box-shadow: 3px 3px 0 0 #17140F;
+  transform: rotate(-3deg);
+  font-family: var(--font-display-latin);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.sticker-flat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 2px solid #17140F;
+  font-family: var(--font-display-latin);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+/* Ticket perforation line */
+.ticket-cut {
+  background-image: linear-gradient(to bottom, #17140F 45%, transparent 45%);
+  background-size: 2px 8px;
+  background-repeat: repeat-y;
+  width: 2px;
+}
+
+.ticket-cut-x {
+  background-image: linear-gradient(to right, #17140F 45%, transparent 45%);
+  background-size: 8px 2px;
+  background-repeat: repeat-x;
+  height: 2px;
+}
+
+/* Halftone print texture */
+.halftone {
+  background-image: radial-gradient(rgba(23, 20, 15, 0.14) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.halftone-faint {
+  background-image: radial-gradient(rgba(23, 20, 15, 0.07) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* Marquee ribbon strip */
+.marquee-strip {
+  background: #17140F;
+  color: #F4EFE2;
+  border-top: 2px solid #17140F;
+  border-bottom: 2px solid #17140F;
+}
+
+/* Stamped headline (section titles) */
+.stamp-headline {
+  font-family: var(--font-display-latin);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+/* Live pulse dot (press red) */
+.live-dot {
+  position: relative;
+  display: inline-flex;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+}
+
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  border: 2px solid rgba(224, 58, 47, 0.55);
+  animation: press-ping 1.3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes press-ping {
+  0% { transform: scale(0.6); opacity: 1; }
+  80%, 100% { transform: scale(1.6); opacity: 0; }
 }
 
 /* Subtle Shimmer Sweep */
@@ -339,7 +479,7 @@ body {
   }
 }
 
-/* 35mm Celluloid Atmosphere & Director's Cut HUD */
+/* 35mm Celluloid Atmosphere & Director's Cut HUD (kept, toned for paper) */
 body.film-grain-active::after {
   content: "";
   position: fixed;
@@ -348,12 +488,23 @@ body.film-grain-active::after {
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.045;
+  opacity: 0.07;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+/* "Late show" mode — the zine flips to a night-print run for deep focus */
 body.theater-dim-active {
-  background-color: #e2e8f0 !important;
+  background-color: #17140F !important;
+}
+
+body.theater-dim-active p,
+body.theater-dim-active h1,
+body.theater-dim-active h2,
+body.theater-dim-active h3,
+body.theater-dim-active h4,
+body.theater-dim-active h5,
+body.theater-dim-active h6 {
+  color: #F4EFE2 !important;
 }
 
 body.theater-dim-active header,
@@ -376,7 +527,7 @@ body.theater-dim-active footer:hover {
   display: none;
 }
 
-/* Forbes-style monospace number alignment for financial figures */
+/* Receipts-grade tabular numerals for financial figures */
 .font-mono-tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
@@ -385,23 +536,23 @@ body.theater-dim-active footer:hover {
 /* Leaderboard row hover pulse */
 @keyframes rowHighlight {
   0%, 100% { background-color: transparent; }
-  50% { background-color: rgba(40, 135, 96, 0.04); }
+  50% { background-color: rgba(79, 43, 239, 0.08); }
 }
 .leaderboard-row-new {
   animation: rowHighlight 1.5s ease-in-out 1;
 }
 
-/* Podium card glow for #1 */
+/* Podium card for #1 — gold ink block */
 .podium-gold-glow {
-  box-shadow: 0 0 0 1px rgba(92, 168, 124, 0.4), 0 20px 60px rgba(40, 135, 96, 0.2);
+  box-shadow: 4px 4px 0 0 #17140F;
 }
 
-/* Gain/Loss micro-transition */
+/* Gain/Loss micro-transition (press inks) */
 .change-positive {
-  color: #288760;
+  color: #1B7F3C;
   transition: color 0.3s ease;
 }
 .change-negative {
-  color: #EF4444;
+  color: #B3271E;
   transition: color 0.3s ease;
 }

@@ -142,7 +142,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <CelluloidEraScrubber />
 
         {/* ZONE 8: Visual Media Pavilion (Dark Theater Experience) */}
-        <section aria-label="Cinema Trailers and Celebrity Photo Gallery" className="space-y-12 pt-6 border-t border-brand-border/60 content-auto">
+        <section aria-label="Cinema Trailers and Celebrity Photo Gallery" className="space-y-12 pt-6 border-t border-glow-line content-auto">
           {/* 7A. Trailers & Official Videos Lounge */}
           <VideoSection videos={videos} />
 

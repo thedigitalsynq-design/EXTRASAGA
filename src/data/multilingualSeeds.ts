@@ -314,12 +314,12 @@ Marvel Studios' singular 2024 theatrical spectacle **'Deadpool & Wolverine'** ha
     title: "Exclusive Interview: Christopher Nolan on the Future of 70mm IMAX and Pure Celluloid Storytelling",
     titleEn: "Exclusive Interview: Christopher Nolan on the Future of 70mm IMAX and Pure Celluloid Storytelling",
     slug: "exclusive-interview-christopher-nolan-future-of-70mm-imax",
-    summary: "Following his sweeping Academy Awards triumph, Christopher Nolan sits down with FILMY GARAGE to discuss his next Universal epic, the revival of physical film prints, and why practical stunts will always surpass CGI.",
+    summary: "Following his sweeping Academy Awards triumph, Christopher Nolan sits down with EXTRASAGA to discuss his next Universal epic, the revival of physical film prints, and why practical stunts will always surpass CGI.",
     content: `
 Christopher Nolan remains cinema's most uncompromising guardian of the theatrical experience. In this wide-ranging editorial conversation, the British auteur reflects on scale, cinematic depth, and the tactile magic of photochemical film.
 
 ### The Return to Grand Celluloid
-"When you project a 70mm IMAX print, the audience is not watching an electronic approximation of light; they are experiencing reality refracted through glass and crystal. That visceral depth cannot be faked in post-production," Nolan tells FILMY GARAGE.
+"When you project a 70mm IMAX print, the audience is not watching an electronic approximation of light; they are experiencing reality refracted through glass and crystal. That visceral depth cannot be faked in post-production," Nolan tells EXTRASAGA.
     `,
     category: "interviews",
     categoryName: "Interviews",

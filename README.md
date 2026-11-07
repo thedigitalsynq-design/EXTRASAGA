@@ -36,9 +36,11 @@
   - **English**: `DM Sans`.
 - Zero machine-translation clutter — authentic native vocabulary and full multi-language dictionaries.
 
-### 2. 🧭 Deep Crimson Navigation Bar (`#A92732`)
-- Exact 12-item navigation:
-  `[Trending Today]` · `Home` · `News` · `Reviews` · `Television` · `Celebrity` · `Movies` · `Interviews` · `Gossips` (Active indicator `#7D1B24` with amber bottom border) · `Photos` · `Videos` · `Events`.
+### 2. 🖨️ House Full Press System (Fandom-Webzine Brutalism, v4.0)
+- The site prints as a fanzine: newsprint paper canvas (`#F4EFE2`), ink-black type (`#17140F`), and loud flat poster inks — press red `#E03A2F`, electric violet `#4F2BEF`, bulb gold `#F0B429` — with hard offset shadows, sticker chips, ticket-stub CTAs, stamp badges, halftone media plates and marquee ticker strips (`docs/DESIGN-SYSTEM.md`).
+- **Press ribbon masthead** — poster-red **EXTRASAGA** wordmark, ink utility strip, Archivo Black display type.
+- Exact 12-item navigation (ink tab strip, active = filled press-red brick):
+  `[Trending Today]` · `Home` · `News` · `Reviews` · `Television` · `Celebrity` · `Movies` · `Interviews` · `Gossips` · `Photos` · `Videos` · `Events`.
 
 ### 3. 📅 Automated Cinema Release Engine
 - **Server Time Awareness**: Synchronized to `Asia/Kolkata` (UTC+5:30).
@@ -49,8 +51,8 @@
   - *Permanent Archive*: Preserves canonical URLs, SEO titles, and publication history after the 30-day window.
 
 ### 4. 📰 Structured 4-Zone Editorial Homepage
-- **Zone 1: Frontpage Hero Showcase**: Dominant lead story with high-impact vignette + 2 stacked secondary stories.
-- **Zone 2: Cinema Release Center**: Tabbed theatrical and upcoming schedules with industry filter chips.
+- **Zone 1: Frontpage Hero Showcase**: Dominant lead story as a poster-cut card with halftone print overlay + 2 stacked poster stubs.
+- **Zone 2: NOW SHOWING Release Board**: Ticket-stub tabbed theatrical and upcoming schedules with dashed paper filter chips.
 - **Zone 3: Core 2-Column Editorial Magazine**:
   - *8-Col Main Stream*: Landmark *Ramayana Part 1* spotlight review + Latest headlines + OTT radar.
   - *4-Col Intelligence Rail*: Real-time 30-second live wire + Top 5 trending rankers + Box office summary + Ad unit.
@@ -86,7 +88,7 @@ npm install
 cp .env.example .env.local
 ```
 Key variables:
-- `ADMIN_EMAIL`: Administrator login email (default: `admin@filmygarage.com`).
+- `ADMIN_EMAIL`: Administrator login email (default: `admin@extrasaga.press`).
 - `ADMIN_PASSWORD_HASH`: SHA-256 hash of admin password.
 - `AUTH_SECRET`: Secret key used for signing HMAC tokens.
 - `CRON_SECRET`: Bearer token required for automated cron endpoints.

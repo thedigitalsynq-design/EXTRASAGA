@@ -9,17 +9,15 @@ import {
   Search,
   Film,
   TrendingUp,
-  Share2,
   Tv,
-  Camera,
-  PlaySquare,
   ShieldCheck,
   ChevronDown,
   Clapperboard,
   Archive,
   Sparkles,
+  Zap,
 } from "lucide-react";
-import { CATEGORIES, MAIN_NAV_ITEMS, MainNavItem } from "@/lib/categories";
+import { MAIN_NAV_ITEMS, MainNavItem } from "@/lib/categories";
 import { formatKannadaDate } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 import { Globe } from "lucide-react";
@@ -105,19 +103,19 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white/95 backdrop-blur-md border-b border-[#E5EBE7] text-[#0F3529] relative z-50 shadow-xs">
-      {/* Top Utility Bar (Jade Horizon Reference) */}
-      <div className="bg-[#F8FAF9] border-b border-[#E5EBE7] text-xs py-1.5 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          {/* Left: Date & Status */}
-          <div className="flex items-center gap-3 text-gray-600">
-            <span className="font-semibold text-[#1A5140] flex items-center gap-1.5">
-              <span>📅</span> {currentDate || "7 November 2026"}
+    <header className="w-full text-ink relative z-50">
+      {/* Top Utility Bar — the press ribbon */}
+      <div className="bg-ink text-paper border-b-2 border-ink text-[11px] py-1.5 px-4 sm:px-6 relative overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-20 pointer-events-none" />
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 relative">
+          {/* Left: Date & Press Status */}
+          <div className="flex items-center gap-3 text-paper/70">
+            <span className="font-semibold text-marquee flex items-center gap-1.5 font-mono-tabular">
+              {currentDate || "7 November 2026"}
             </span>
-            <span className="text-gray-300 hidden md:inline">|</span>
-            <span className="text-[11px] font-sans text-[#288760] hidden md:inline-flex items-center gap-1.5 bg-[#E8F8EB] px-2.5 py-0.5 rounded-full border border-[#B7E5BA] font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#288760] animate-pulse"></span>
-              ONE INDIAN CINEMA INDUSTRY • ONE UNIFIED PLATFORM
+            <span className="text-paper/30 hidden md:inline">|</span>
+            <span className="text-[10px] font-poster text-paper hidden md:inline-flex items-center gap-1.5 bg-violet px-2.5 py-0.5 border border-paper/40 font-bold tracking-widest uppercase -rotate-1">
+              SIX INDUSTRIES · ONE CINEMA · HOUSE FULL
             </span>
           </div>
 
@@ -128,20 +126,20 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#E8F8EB] text-xs font-semibold border border-[#E5EBE7] text-[#1A5140] transition-all shadow-2xs"
+                className="flex items-center gap-1.5 px-3 py-1 bg-paper text-ink text-[11px] font-semibold border-2 border-paper hover:bg-marquee hover:border-marquee transition-all -rotate-1"
                 aria-label="ಭಾಷೆ / ಚಿತ್ರರಂಗ ಆಯ್ಕೆ"
               >
-                <Globe className="w-3.5 h-3.5 text-[#288760]" />
+                <Globe className="w-3.5 h-3.5" />
                 <span className="font-bold">{config.name}</span>
-                <span className="text-[10px] text-[#288760] font-sans uppercase font-bold hidden sm:inline">
-                  ({config.industryName})
+                <span className="text-[9px] font-poster uppercase font-bold tracking-wider hidden sm:inline">
+                  {config.industryName}
                 </span>
-                <ChevronDown className="w-3 h-3 text-gray-400" />
+                <ChevronDown className="w-3 h-3" />
               </button>
 
               {isLangMenuOpen && (
-                <div className="absolute right-0 mt-1 w-64 rounded-2xl bg-white border border-[#E5EBE7] shadow-xl py-2 z-50 animate-fadeIn">
-                  <div className="px-3.5 py-1.5 text-[10px] uppercase font-bold text-gray-400 tracking-wider border-b border-gray-100">
+                <div className="absolute right-0 mt-2 w-64 bg-sheet border-2 border-ink shadow-press-lg py-2 z-50 animate-print-roll">
+                  <div className="px-3.5 py-1.5 text-[9px] uppercase font-bold text-ink-dim tracking-[0.2em] border-b-2 border-ink font-poster bg-band">
                     {t("nav_select_industry")}
                   </div>
                   {languages.map((item) => (
@@ -154,8 +152,8 @@ export default function Header() {
                       }}
                       className={`w-full flex items-center justify-between px-3.5 py-2 text-xs transition-colors ${
                         language === item.code
-                          ? "bg-[#288760] text-white font-bold"
-                          : "text-gray-700 hover:bg-[#E8F8EB] hover:text-[#1A5140]"
+                          ? "bg-press text-paper font-bold"
+                          : "text-ink-dim hover:bg-band hover:text-ink"
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -163,8 +161,10 @@ export default function Header() {
                         <span className="font-medium">{item.name}</span>
                       </div>
                       <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-sans uppercase font-bold ${
-                          language === item.code ? "bg-white/20 text-white" : "text-gray-600 bg-gray-100"
+                        className={`text-[9px] px-2 py-0.5 font-poster uppercase font-bold tracking-wider border ${
+                          language === item.code
+                            ? "bg-paper text-ink border-paper"
+                            : "text-ink-dim bg-band border-ink/20"
                         }`}
                       >
                         {item.industryName}
@@ -175,149 +175,149 @@ export default function Header() {
               )}
             </div>
 
-            <span className="text-gray-300 hidden sm:inline">•</span>
+            <span className="text-paper/30 hidden sm:inline">•</span>
             <Link
               href={localizeUrl("/live")}
-              className="flex items-center gap-1.5 text-rose-600 hover:text-rose-700 font-bold transition-colors text-xs"
+              className="flex items-center gap-1.5 text-press hover:text-marquee font-bold transition-colors text-[11px]"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-press opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-press"></span>
               </span>
-              <span className="font-black text-[11px] font-sans tracking-wider">LIVE</span>
+              <span className="font-poster tracking-[0.2em] text-paper hover:text-marquee">LIVE</span>
             </Link>
-            <span className="text-gray-300 hidden sm:inline">•</span>
+            <span className="text-paper/30 hidden sm:inline">•</span>
             <Link
               href={localizeUrl("/category/trending")}
-              className="flex items-center gap-1 text-emerald-800 hover:text-[#288760] font-medium transition-colors text-xs"
+              className="flex items-center gap-1 text-paper/70 hover:text-press font-medium transition-colors text-[11px]"
             >
-              <TrendingUp className="w-3.5 h-3.5 text-[#288760] animate-pulse" />
-              <span>{t("nav_trending")}</span>
+              <TrendingUp className="w-3.5 h-3.5 text-press" />
+              <span className="font-poster whitespace-nowrap">#Trending</span>
             </Link>
-            <span className="text-gray-300">•</span>
+            <span className="text-paper/30">•</span>
             <Link
               href={localizeUrl("/ott")}
-              className="flex items-center gap-1 text-gray-700 hover:text-[#288760] font-medium transition-colors text-xs"
+              className="flex items-center gap-1 text-paper/70 hover:text-paper font-medium transition-colors text-[11px]"
             >
-              <Tv className="w-3.5 h-3.5 text-sky-600" />
-              <span>{t("nav_ott")}</span>
+              <Tv className="w-3.5 h-3.5 text-violet-soft" />
+              <span className="whitespace-nowrap">{t("nav_ott")}</span>
             </Link>
-            <span className="text-gray-300">•</span>
+            <span className="text-paper/30">•</span>
             <Link
               href={localizeUrl("/box-office")}
-              className="text-gray-700 hover:text-[#288760] font-medium transition-colors text-xs"
+              className="text-paper/70 hover:text-marquee font-medium transition-colors text-[11px]"
             >
-              {t("nav_boxoffice")}
+              <span className="whitespace-nowrap">{t("nav_boxoffice")}</span>
             </Link>
-            <span className="text-gray-300 hidden sm:inline">•</span>
+            <span className="text-paper/30 hidden sm:inline">•</span>
             <Link
               href={localizeUrl("/movies")}
-              className="flex items-center gap-1 text-[#1A5140] hover:text-[#288760] font-medium transition-colors text-xs"
+              className="flex items-center gap-1 text-paper/70 hover:text-marquee font-medium transition-colors text-[11px]"
             >
-              <Clapperboard className="w-3.5 h-3.5 text-[#288760]" />
-              <span>ಬಿಡುಗಡೆ (Releases)</span>
+              <Clapperboard className="w-3.5 h-3.5 text-marquee" />
+              <span>{language === "en" ? "Now Showing" : tCategory("movies")}</span>
             </Link>
-            <span className="text-gray-300 hidden md:inline">•</span>
+            <span className="text-paper/30 hidden md:inline">•</span>
             <Link
               href={localizeUrl("/archive")}
-              className="text-gray-700 hover:text-cyan-700 font-medium transition-colors hidden md:inline text-xs"
+              className="text-paper/70 hover:text-violet-soft font-medium transition-colors hidden md:inline text-[11px]"
             >
               <span className="flex items-center gap-1">
-                <Archive className="w-3 h-3 text-cyan-600" />
-                <span>ಆರ್ಕೈವ್</span>
+                <Archive className="w-3 h-3 text-violet-soft" />
+                <span>Archive</span>
               </span>
             </Link>
-            <span className="text-gray-300 hidden md:inline">•</span>
+            <span className="text-paper/30 hidden md:inline">•</span>
             <Link
               href={localizeUrl("/cinestars")}
-              className="hidden md:flex items-center gap-1 text-[#288760] hover:text-[#1A5140] font-black transition-colors text-xs"
+              className="hidden md:flex items-center gap-1 text-marquee hover:text-marquee-soft font-bold transition-colors text-[11px]"
             >
-              <span>⭐</span>
-              <span>CineStar</span>
+              <Zap className="w-3 h-3" />
+              <span className="font-poster tracking-wider">CSTARS</span>
             </Link>
-            <span className="text-gray-300">•</span>
+            <span className="text-paper/30">•</span>
             <Link
               href="/admin"
-              className="flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-[#E8F8EB] text-[#1A5140] hover:bg-[#288760] hover:text-white font-bold transition-all border border-[#B7E5BA]"
+              className="flex items-center gap-1 text-[11px] font-poster px-2.5 py-0.5 bg-marquee text-ink hover:bg-paper border-2 border-paper hover:border-marquee font-bold tracking-wider uppercase transition-all -rotate-1"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-[#288760]" />
+              <ShieldCheck className="w-3.5 h-3.5" />
               <span>{t("nav_admin")}</span>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Main Branding Bar (Floating Island Style - Reference Image 3) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link href={localizeUrl("/")} className="flex items-center gap-3.5 group">
-          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#1A5140] flex items-center justify-center shadow-md shadow-emerald-950/15 group-hover:bg-[#288760] transition-all duration-300 shrink-0">
-            <Film className="w-6 h-6 text-white" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#28D070] border-2 border-white animate-pulse"></span>
-          </div>
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl sm:text-3xl font-black tracking-tight font-sans text-[#0F3529] uppercase select-none">
-                EXTRA
-              </span>
-              <span className="text-2xl sm:text-3xl font-black tracking-tight font-sans text-[#288760] uppercase select-none">
-                SAGA
-              </span>
-              <span
-                className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-sans font-bold tracking-wider uppercase bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA] shadow-2xs select-none"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#288760] animate-pulse"></span>
-                ONE INDIAN CINEMA
-              </span>
+      {/* Main Branding Bar — the poster masthead */}
+      <div className="border-b-2 border-ink bg-paper">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          {/* Brand Logo */}
+          <Link href={localizeUrl("/")} className="flex items-center gap-3.5 group">
+            {/* The press block: poster red ink plate */}
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-press border-2 border-ink shadow-press flex items-center justify-center -rotate-3 group-hover:rotate-2 transition-transform duration-300 shrink-0">
+              <Film className="w-6 h-6 text-paper" />
+              <span className="absolute -bottom-1 -right-2 bg-marquee border-2 border-ink w-4 h-4"></span>
             </div>
-            <p className="text-[11px] sm:text-xs text-gray-500 font-medium tracking-wide mt-0.5 flex items-center gap-1.5 line-clamp-1">
-              <span className="font-bold text-[#1A5140]">
-                EXTRASAGA
-              </span>
-              <span className="text-gray-300">·</span>
-              <span className="text-gray-600 font-medium">
-                Different Languages. Different Cultures. One Platform.
-              </span>
-            </p>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-2.5">
+                <span className="text-2xl sm:text-4xl font-poster tracking-tight text-ink uppercase select-none leading-none">
+                  EXTRA
+                  <span className="text-press">SAGA</span>
+                </span>
+                <span
+                  className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-poster font-bold tracking-[0.18em] uppercase bg-violet text-paper border-2 border-ink shadow-sticker select-none rotate-1"
+                >
+                  ALL SIX INDUSTRIES
+                </span>
+              </div>
+              <p className="text-[10px] sm:text-[11px] text-ink-dim font-medium tracking-wide mt-1 flex items-center gap-1.5 line-clamp-1">
+                <span className="font-bold text-ink font-poster tracking-[0.15em] uppercase bg-marquee px-1.5 py-0.5 border-2 border-ink shadow-sticker">
+                  The Cine Wire Never Sleeps
+                </span>
+                <span className="text-ink/30">·</span>
+                <span className="text-ink-mute font-medium">
+                  All 6 Industries · Native Scripts · Zero Fake Tea
+                </span>
+              </p>
+            </div>
+          </Link>
+
+          {/* Right Search Button & Cinephile Match Trigger */}
+          <div className="flex items-center gap-2.5">
+            {/* Cinephile Vibe Match Trigger */}
+            <button
+              type="button"
+              onClick={() => setIsDiscoveryModalOpen(true)}
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-violet hover:bg-violet-deep text-paper text-xs font-poster font-bold border-2 border-ink shadow-sticker hover:shadow-press transition-all select-none active:scale-95 rotate-1"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Vibe Match</span>
+            </button>
+
+            {/* Quick Search Trigger Pill */}
+            <button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="p-2 sm:px-3.5 sm:py-2 bg-sheet hover:bg-band text-ink border-2 border-ink shadow-sticker hover:shadow-press transition-all flex items-center gap-2 text-sm"
+              aria-label={t("nav_search")}
+            >
+              <Search className="w-4 h-4" />
+              <span className="hidden sm:inline text-xs text-ink-dim font-semibold">{t("nav_search")}...</span>
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+              aria-label="Menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
-        </Link>
-
-        {/* Right Search Button & Cinephile Match Trigger */}
-        <div className="flex items-center gap-2.5">
-          {/* Cinephile Vibe Match Luxury Trigger (Reference Image 3 CTA Button) */}
-          <button
-            type="button"
-            onClick={() => setIsDiscoveryModalOpen(true)}
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#288760] hover:bg-[#1A5140] text-white text-xs font-bold shadow-md shadow-emerald-900/15 transition-all select-none active:scale-95"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#B7E5BA] group-hover:rotate-12 transition-transform" />
-            <span>Cinephile Match</span>
-          </button>
-
-          {/* Quick Search Trigger Pill */}
-          <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="p-2 sm:px-3.5 sm:py-2 rounded-full bg-[#F3F7F5] hover:bg-white text-gray-700 hover:text-[#0F3529] border border-[#E5EBE7] hover:border-[#288760] transition-all flex items-center gap-2 text-sm shadow-2xs"
-            aria-label={t("nav_search")}
-          >
-            <Search className="w-4 h-4 text-[#288760]" />
-            <span className="hidden sm:inline text-xs text-gray-500 font-medium">{t("nav_search")}...</span>
-          </button>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-gray-950 border border-gray-200 transition-colors"
-            aria-label="Menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
       </div>
 
       {/* Expandable Search Overlay */}
       {isSearchOpen && (
-        <div className="bg-[#F8FAF9] border-y border-[#E5EBE7] px-4 py-3 animate-fadeIn">
+        <div className="bg-band border-b-2 border-ink px-4 py-4 animate-print-roll">
           <form
             onSubmit={handleSearchSubmit}
             className="max-w-3xl mx-auto flex items-center gap-2"
@@ -328,28 +328,30 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t("nav_search_placeholder")}
-                className="w-full bg-white border border-[#E5EBE7] rounded-full pl-10 pr-4 py-2.5 text-sm text-[#0F3529] placeholder-gray-400 focus:outline-none focus:border-[#288760] focus:ring-1 focus:ring-[#288760] font-sans shadow-2xs"
+                className="w-full bg-sheet border-2 border-ink shadow-sticker px-10 pr-4 py-2.5 text-sm text-ink placeholder-ink-mute focus:outline-none focus:shadow-press font-sans"
                 autoFocus
               />
-              <Search className="w-4 h-4 text-[#288760] absolute left-3.5 top-3.5" />
+              <Search className="w-4 h-4 text-ink-dim absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="bg-[#288760] hover:bg-[#1A5140] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-colors font-sans shadow-sm"
+              className="bg-press hover:bg-press-deep text-paper border-2 border-ink shadow-sticker hover:shadow-press px-5 py-2.5 text-sm font-poster font-bold uppercase tracking-wider transition-all"
             >
               {t("btn_search")}
             </button>
             <button
               type="button"
               onClick={() => setIsSearchOpen(false)}
-              className="p-2 text-gray-400 hover:text-gray-700"
+              className="p-2 border-2 border-ink bg-sheet text-ink-dim hover:text-ink"
             >
               <X className="w-5 h-5" />
             </button>
           </form>
           {/* Quick Trending tags in search bar */}
-          <div className="max-w-3xl mx-auto mt-2 flex items-center gap-2 flex-wrap text-xs text-gray-500">
-            <span className="font-semibold text-[#1A5140]">{t("nav_hot_topics")}</span>
+          <div className="max-w-3xl mx-auto mt-3 flex items-center gap-2 flex-wrap text-[11px] text-ink-dim">
+            <span className="font-poster tracking-wider uppercase text-ink bg-marquee px-2 py-0.5 border-2 border-ink shadow-sticker">
+              #Hot right now
+            </span>
             {config.hotTopics.map((tag) => (
               <button
                 key={tag}
@@ -358,7 +360,7 @@ export default function Header() {
                   setSearchQuery(tag);
                   window.location.href = `/search?q=${encodeURIComponent(tag)}&lang=${language}`;
                 }}
-                className="bg-white hover:bg-[#E8F8EB] hover:text-[#1A5140] px-3 py-1 rounded-full border border-[#E5EBE7] text-gray-700 font-medium transition-colors shadow-2xs"
+                className="bg-sheet hover:bg-violet hover:text-paper px-3 py-1 border-2 border-ink hover:border-violet font-semibold transition-colors"
               >
                 #{tag}
               </button>
@@ -367,14 +369,16 @@ export default function Header() {
         </div>
       )}
 
-      {/* Category Navigation Bar (Jade Horizon Reference) */}
+      {/* Category Navigation Bar — the strip of genre tabs */}
       <nav
-        className={`w-full bg-[#FAFCFB] border-y border-[#E5EBE7] transition-all duration-300 ${
-          isSticky ? "sticky top-0 z-50 shadow-md bg-white/95 backdrop-blur-md" : ""
+        className={`w-full bg-band border-t border-ink/20 transition-all duration-300 ${
+          isSticky
+            ? "sticky top-0 z-50 bg-paper shadow-press border-b-2 border-ink"
+            : ""
         }`}
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-6">
-          <div className="flex items-center overflow-x-auto no-scrollbar py-1">
+          <div className="flex items-center overflow-x-auto no-scrollbar py-2">
             <div className="flex items-center gap-1.5 whitespace-nowrap min-w-max py-1">
               {MAIN_NAV_ITEMS.map((item) => {
                 const isButton = item.isButton;
@@ -386,10 +390,10 @@ export default function Header() {
                     <Link
                       key={item.id}
                       href={localizeUrl(item.href)}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-2xs select-none ${
+                      className={`px-3.5 py-1.5 text-xs font-poster font-bold uppercase tracking-wider transition-all select-none border-2 border-ink ${
                         active
-                          ? "bg-[#288760] text-white"
-                          : "bg-white hover:bg-[#E8F8EB] text-[#1A5140] border border-[#E5EBE7]"
+                          ? "bg-press text-paper shadow-press -rotate-1"
+                          : "bg-press-faint text-press-soft hover:bg-press hover:text-paper shadow-sticker"
                       }`}
                       title={item.englishLabel}
                     >
@@ -402,19 +406,14 @@ export default function Header() {
                   <Link
                     key={item.id}
                     href={localizeUrl(item.href)}
-                    className={`px-3.5 py-1.5 text-xs sm:text-[13px] font-bold rounded-full transition-all select-none ${
+                    className={`px-3.5 py-1.5 text-xs sm:text-[13px] font-poster font-bold uppercase tracking-wide select-none border-2 transition-all ${
                       active
-                        ? "bg-[#288760] text-white shadow-xs"
-                        : "text-[#1A5140] hover:bg-[#E8F8EB] hover:text-[#0F3529]"
+                        ? "bg-ink text-paper shadow-press border-ink"
+                        : "bg-sheet text-ink border-ink/40 border-dashed hover:bg-band hover:border-ink hover:border-solid"
                     }`}
                     title={item.englishLabel}
                   >
                     <span>{label}</span>
-                    {item.slug === "reviews" && (
-                      <span className="ml-1 text-[10px] text-amber-500 font-sans hidden md:inline">
-                        ★
-                      </span>
-                    )}
                   </Link>
                 );
               })}
@@ -427,49 +426,45 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-ink/80"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="relative w-4/5 max-w-sm bg-white border-r border-[#E5EBE7] h-full flex flex-col p-5 overflow-y-auto z-10 shadow-2xl text-[#0F3529]">
+          <div className="relative w-4/5 max-w-sm bg-sheet border-r-2 border-ink h-full flex flex-col p-5 overflow-y-auto z-10 shadow-press-lg text-ink">
             {/* Drawer Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#E5EBE7]">
+            <div className="flex items-center justify-between pb-4 border-b-2 border-ink">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-[#1A5140] flex items-center justify-center text-white shadow-md shrink-0">
-                  <Film className="w-5 h-5" />
+                <div className="w-10 h-10 bg-press border-2 border-ink shadow-sticker flex items-center justify-center -rotate-3 shrink-0">
+                  <Film className="w-5 h-5 text-paper" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-lg font-black font-sans tracking-tight text-[#0F3529] uppercase">
-                      CINI <span className="text-[#288760]">JAATRE</span>
+                    <span className="text-lg font-poster tracking-tight text-ink uppercase">
+                      EXTRA<span className="text-press">SAGA</span>
                     </span>
                     <span
-                      className="px-2 py-0.5 rounded-full text-[9px] font-sans font-bold uppercase bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA]"
+                      className="px-2 py-0.5 text-[9px] font-poster font-bold uppercase bg-violet text-paper border-2 border-ink"
                     >
                       {config.industryName}
                     </span>
                   </div>
-                  <p className="text-[10px] text-gray-500 font-medium line-clamp-1 mt-0.5 flex items-center gap-1">
-                    <span className={language === "kn" ? "font-hubballi font-bold text-[#1A5140]" : "font-semibold text-[#1A5140]"}>
-                      {config.brandNameNative}
-                    </span>
-                    <span className="text-gray-300">·</span>
-                    <span className={language === "kn" ? "font-hubballi font-bold text-gray-500" : "text-gray-500"}>
-                      {config.headerTagline}
-                    </span>
+                  <p className="text-[10px] text-ink-dim font-medium line-clamp-1 mt-0.5 flex items-center gap-1">
+                    <span className="font-bold text-ink">{config.brandNameNative}</span>
+                    <span className="text-ink/30">·</span>
+                    <span className="text-ink-mute">{config.headerTagline}</span>
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-1.5 rounded-lg bg-gray-100 text-gray-600 hover:text-gray-900"
+                className="p-1.5 bg-band border-2 border-ink text-ink-dim hover:text-ink"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Mobile Language Selector */}
-            <div className="py-3 border-b border-gray-200">
-              <p className="text-[11px] uppercase tracking-wider text-gray-400 font-semibold px-2 mb-2">
+            <div className="py-3 border-b-2 border-ink">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-ink-dim font-poster font-bold px-2 mb-2">
                 {t("nav_select_industry")}
               </p>
               <div className="grid grid-cols-2 gap-1.5 px-1">
@@ -481,10 +476,10 @@ export default function Header() {
                       setLanguage(item.code);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs font-bold transition-all ${
+                    className={`flex items-center gap-1.5 px-2.5 py-2 text-xs font-bold transition-all ${
                       language === item.code
-                        ? "bg-[#A92732] text-white shadow-md"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        ? "bg-ink text-paper shadow-sticker"
+                        : "bg-sheet text-ink-dim hover:bg-band border-2 border-dashed border-ink/30 hover:border-ink"
                     }`}
                   >
                     <span>{item.flagEmoji}</span>
@@ -496,7 +491,7 @@ export default function Header() {
 
             {/* Mobile Navigation Categories */}
             <div className="py-4 space-y-1">
-              <p className="text-[11px] uppercase tracking-wider text-gray-400 font-semibold px-2 mb-2">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-ink-dim font-poster font-bold px-2 mb-2">
                 {t("nav_categories")}
               </p>
               {MAIN_NAV_ITEMS.map((item) => {
@@ -508,27 +503,29 @@ export default function Header() {
                     key={item.id}
                     href={localizeUrl(item.href)}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                    className={`flex items-center justify-between px-3 py-2.5 transition-colors border-2 ${
                       active
-                        ? "bg-[#A92732] text-white font-bold shadow-sm"
-                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        ? "bg-press text-paper font-bold border-ink shadow-sticker"
+                        : "text-ink-dim hover:bg-band hover:text-ink border-transparent"
                     }`}
                   >
                     <span className="font-medium">{label}</span>
-                    <span className="text-xs text-gray-400 font-sans">{item.englishLabel}</span>
+                    <span className="text-[10px] text-ink-mute font-poster uppercase tracking-wider group-hover:text-ink">
+                      {item.englishLabel}
+                    </span>
                   </Link>
                 );
               })}
             </div>
 
             {/* Mobile Admin Link */}
-            <div className="mt-auto pt-4 border-t border-gray-200">
+            <div className="mt-auto pt-4 border-t-2 border-ink">
               <Link
                 href="/admin"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-2.5 bg-gray-100 hover:bg-[#A92732] text-gray-800 hover:text-white rounded-lg text-sm font-sans font-semibold transition-colors border border-gray-200"
+                className="flex items-center justify-center gap-2 w-full py-2.5 bg-marquee text-ink border-2 border-ink shadow-sticker hover:bg-marquee text-sm font-poster font-bold tracking-wider uppercase transition-all"
               >
-                <ShieldCheck className="w-4 h-4 text-brand-crimson" />
+                <ShieldCheck className="w-4 h-4" />
                 <span>{t("nav_admin")}</span>
               </Link>
             </div>
@@ -544,4 +541,3 @@ export default function Header() {
     </header>
   );
 }
-

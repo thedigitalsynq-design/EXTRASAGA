@@ -38,7 +38,7 @@ export class RealtimeIngestionService {
 
       const response = await fetch(source.feedUrl, {
         headers: {
-          "User-Agent": "FILMY GARAGE News Ingest Engine/1.0 (+https://filmygarage.com; syndicate reader)",
+          "User-Agent": "EXTRASAGA News Ingest Engine/1.0 (+https://extrasaga.press; syndicate reader)",
           Accept: "application/rss+xml, application/xml, text/xml, */*",
         },
         signal: controller.signal,

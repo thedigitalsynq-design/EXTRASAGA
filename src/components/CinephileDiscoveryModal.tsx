@@ -166,18 +166,18 @@ export default function CinephileDiscoveryModal({
   const q = questions[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/40 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-void/80 backdrop-blur-sm animate-fadeIn">
       {/* Background Dim click */}
       <div className="fixed inset-0" onClick={onClose} />
 
-      {/* Layered Card Container (matches design reference) */}
+      {/* Layered Card Container (dark glass stack) */}
       <div className="relative w-full max-w-lg">
         {/* Layered Under-Cards for Card Stack Effect */}
-        <div className="absolute inset-0 bg-gray-200/90 rounded-3xl translate-y-2 scale-[0.98] -rotate-1 pointer-events-none shadow-sm" />
-        <div className="absolute inset-0 bg-gray-100 rounded-3xl translate-y-1 scale-[0.99] rotate-1 pointer-events-none shadow-xs" />
+        <div className="absolute inset-0 bg-screen/90 rounded-3xl translate-y-2 scale-[0.98] -rotate-1 pointer-events-none border border-glow-line" />
+        <div className="absolute inset-0 bg-revealed rounded-3xl translate-y-1 scale-[0.99] rotate-1 pointer-events-none border border-glow-line" />
 
-        {/* Main Card (Clean Minimalist Aesthetic) */}
-        <div className="relative rounded-3xl bg-white text-gray-950 p-6 sm:p-8 shadow-2xl border border-gray-100 flex flex-col min-h-[460px] justify-between z-10">
+        {/* Main Card (Dark Glass) */}
+        <div className="relative rounded-3xl bg-hall/95 backdrop-blur-2xl border border-glow-line text-popcorn p-6 sm:p-8 shadow-2xl flex flex-col min-h-[460px] justify-between z-10">
           {/* Top Bar: Progress Dashes & Close Button */}
           <div>
             <div className="flex items-center justify-between pb-6">
@@ -188,10 +188,10 @@ export default function CinephileDiscoveryModal({
                     key={stepIdx}
                     className={`h-1.5 rounded-full transition-all duration-200 ${
                       currentStep === stepIdx
-                        ? "w-8 bg-gray-950"
+                        ? "w-8 bg-signal animate-glow-pulse"
                         : currentStep > stepIdx
-                        ? "w-8 bg-emerald-500"
-                        : "w-8 bg-gray-200"
+                        ? "w-8 bg-ultra"
+                        : "w-8 bg-glow-line"
                     }`}
                   />
                 ))}
@@ -201,7 +201,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-950 flex items-center justify-center transition-spring text-sm"
+                className="w-8 h-8 rounded-full bg-screen hover:bg-signal-deep text-popcorn-dim hover:text-popcorn flex items-center justify-center transition-spring text-sm border border-glow-line"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -212,17 +212,17 @@ export default function CinephileDiscoveryModal({
             {currentStep < totalSteps ? (
               <div className="space-y-4">
                 {/* Step Pill */}
-                <span className="text-[11px] font-bold tracking-widest text-gray-400 font-mono uppercase block">
+                <span className="text-[11px] font-bold tracking-widest text-popcorn-muted font-mono uppercase block">
                   {q.stepLabel}
                 </span>
 
                 {/* Headline */}
-                <h3 className="text-xl sm:text-2xl font-extrabold text-gray-950 tracking-tight leading-snug font-sans">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-popcorn tracking-tight leading-snug font-display-latin">
                   {q.title}
                 </h3>
 
                 {/* Select Only One helper */}
-                <p className="text-[10px] font-bold tracking-widest text-gray-400 font-mono uppercase">
+                <p className="text-[10px] font-bold tracking-widest text-signal-soft font-mono uppercase">
                   {q.subtitle}
                 </p>
 
@@ -237,29 +237,29 @@ export default function CinephileDiscoveryModal({
                         onClick={() => q.onChange(opt.id)}
                         className={`w-full text-left p-3.5 rounded-2xl border transition-spring flex items-start gap-3.5 group ${
                           isSelected
-                            ? "bg-gray-50 border-gray-950 ring-1 ring-gray-950 shadow-sm"
-                            : "bg-white border-gray-200 hover:border-gray-400 hover:bg-gray-50/50"
+                            ? "bg-screen border-signal ring-1 ring-signal/40 shadow-[0_0_20px_rgba(255,46,80,0.15)]"
+                            : "bg-revealed border-glow-line hover:border-glow-line-strong hover:bg-screen/50"
                         }`}
                       >
                         {/* Radio Circle */}
                         <div
                           className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 shrink-0 transition-colors ${
                             isSelected
-                              ? "border-gray-950 bg-gray-950 text-white"
-                              : "border-gray-300 group-hover:border-gray-400"
+                              ? "border-signal bg-signal-deep text-popcorn"
+                              : "border-glow-line-strong group-hover:border-popcorn-muted"
                           }`}
                         >
                           {isSelected && (
-                            <div className="w-2 h-2 rounded-full bg-white" />
+                            <div className="w-2 h-2 rounded-full bg-popcorn" />
                           )}
                         </div>
 
                         {/* Label & Description */}
                         <div>
-                          <div className="text-sm font-bold text-gray-950 font-sans">
+                          <div className="text-sm font-bold text-popcorn">
                             {opt.label}
                           </div>
-                          <div className="text-xs text-gray-500 mt-0.5 font-normal leading-relaxed">
+                          <div className="text-xs text-popcorn-muted mt-0.5 font-normal leading-relaxed">
                             {opt.desc}
                           </div>
                         </div>
@@ -271,28 +271,28 @@ export default function CinephileDiscoveryModal({
             ) : (
               /* Recommendation Screen (Result) */
               <div className="space-y-4 py-2 animate-fadeIn">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold font-mono uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ultra-faint border border-ultra/30 text-ultra-soft text-xs font-bold font-mono uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 text-ultra-soft" />
                   <span>Cinephile Match Verified</span>
                 </div>
 
-                <h3 className="text-2xl font-black text-gray-950 font-sans">
+                <h3 className="text-2xl font-black text-popcorn font-display-latin">
                   {rec.title}
                 </h3>
 
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-800 font-bold uppercase font-mono">
+                  <span className="px-2.5 py-0.5 rounded-full bg-hall text-popcorn-dim font-bold uppercase font-mono border border-glow-line">
                     {rec.industry}
                   </span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-emerald-700 font-semibold">{rec.status}</span>
+                  <span className="text-popcorn-muted">•</span>
+                  <span className="text-marquee-soft font-semibold">{rec.status}</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 text-xs text-gray-700 space-y-2">
+                <div className="p-4 rounded-2xl bg-screen border border-glow-line text-xs text-popcorn-dim space-y-2">
                   <p className="leading-relaxed font-normal">{rec.summary}</p>
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-200 text-gray-600">
-                    <span>Director: <strong className="text-gray-900">{rec.director}</strong></span>
-                    <span className="font-bold text-gray-900">{rec.rating}</span>
+                  <div className="flex items-center justify-between pt-2 border-t border-glow-line text-popcorn-muted">
+                    <span>Director: <strong className="text-popcorn">{rec.director}</strong></span>
+                    <span className="font-bold text-marquee-soft font-mono-tabular">{rec.rating}</span>
                   </div>
                 </div>
 
@@ -300,7 +300,7 @@ export default function CinephileDiscoveryModal({
                   <Link
                     href={localizeUrl(rec.slug)}
                     onClick={onClose}
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-gray-950 hover:bg-gray-800 text-white font-bold text-sm tracking-tight transition-spring shadow-lg"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-2xl bg-signal-deep hover:bg-signal text-popcorn font-bold text-sm tracking-tight transition-spring shadow-[0_0_28px_rgba(255,46,80,0.25)]"
                   >
                     <span>Read Full Editorial Dossier</span>
                     <ArrowRight className="w-4 h-4" />
@@ -312,12 +312,12 @@ export default function CinephileDiscoveryModal({
 
           {/* Bottom Action Bar */}
           {currentStep < totalSteps ? (
-            <div className="flex items-center justify-between pt-6 border-t border-gray-100 mt-6">
+            <div className="flex items-center justify-between pt-6 border-t border-glow-line mt-6">
               {currentStep > 0 ? (
                 <button
                   type="button"
                   onClick={() => setCurrentStep((s) => s - 1)}
-                  className="text-xs font-bold text-gray-600 hover:text-gray-950 tracking-wide uppercase font-mono transition-colors"
+                  className="text-xs font-bold text-popcorn-dim hover:text-popcorn tracking-wide uppercase font-mono transition-colors"
                 >
                   Back
                 </button>
@@ -325,24 +325,24 @@ export default function CinephileDiscoveryModal({
                 <span />
               )}
 
-              {/* Next Button (Vibrant Pill lime matching reference) */}
+              {/* Next Button (marquee gold pill) */}
               <button
                 type="button"
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="px-6 py-2.5 rounded-2xl bg-[#9ef06a] hover:bg-[#8ee058] text-gray-950 text-xs sm:text-sm font-extrabold tracking-tight shadow-md hover:shadow-lg active:scale-95 transition-spring font-sans flex items-center gap-1.5"
+                className="px-6 py-2.5 rounded-2xl bg-marquee hover:bg-marquee-soft text-void text-xs sm:text-sm font-extrabold tracking-tight shadow-[0_0_24px_rgba(255,176,32,0.3)] active:scale-95 transition-spring flex items-center gap-1.5"
               >
                 <span>{currentStep === totalSteps - 1 ? "Discover Match" : "Next"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           ) : (
-            <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-4">
+            <div className="flex items-center justify-between pt-4 border-t border-glow-line mt-4">
               <button
                 type="button"
                 onClick={() => {
                   setCurrentStep(0);
                 }}
-                className="text-xs font-bold text-gray-600 hover:text-gray-950 inline-flex items-center gap-1.5 font-mono"
+                className="text-xs font-bold text-popcorn-dim hover:text-popcorn inline-flex items-center gap-1.5 font-mono"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Start Over</span>
@@ -350,7 +350,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="text-xs font-bold text-gray-900 hover:underline"
+                className="text-xs font-bold text-popcorn hover:underline"
               >
                 Done
               </button>
@@ -361,4 +361,3 @@ export default function CinephileDiscoveryModal({
     </div>
   );
 }
-

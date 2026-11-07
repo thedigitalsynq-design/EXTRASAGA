@@ -79,18 +79,23 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <div className="w-full">
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-8 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto">
+      {/* The Search Deck — Hero Band */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
+            The Search Deck
+          </span>
+
           <div className="flex items-center gap-2 mb-2">
             <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
               {config.industryName}
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
             {getTranslation(activeLang, "nav_search")} ({config.industryName} Articles)
           </h1>
 
@@ -103,26 +108,26 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 name="q"
                 defaultValue={searchParams.q || ""}
                 placeholder={getTranslation(activeLang, "nav_search_placeholder")}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-crimson focus:bg-white shadow-2xs font-medium"
+                className="w-full bg-revealed border border-glow-line rounded-xl pl-10 pr-4 py-3 text-sm text-popcorn placeholder-popcorn-muted focus:outline-none focus:border-signal shadow-2xs font-medium"
               />
-              <SearchIcon className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
+              <SearchIcon className="w-4 h-4 text-popcorn-muted absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-brand-crimson hover:bg-[#8e1d27] text-white font-bold text-sm transition-colors shadow-sm"
+              className="px-6 py-3 rounded-xl bg-signal-deep hover:bg-signal text-popcorn font-bold text-sm transition-colors shadow-sm"
             >
               {getTranslation(activeLang, "btn_search")}
             </button>
           </form>
 
           {/* Quick trending tags */}
-          <div className="mt-3 flex items-center gap-2 flex-wrap text-xs text-gray-500">
-            <span className="text-gray-900 font-semibold">{getTranslation(activeLang, "nav_hot_topics")}</span>
+          <div className="mt-3 flex items-center gap-2 flex-wrap text-xs text-popcorn-dim">
+            <span className="text-popcorn font-semibold">{getTranslation(activeLang, "nav_hot_topics")}</span>
             {config.hotTopics.map((tag) => (
               <Link
                 key={tag}
                 href={`/search?q=${encodeURIComponent(tag)}&lang=${activeLang}`}
-                className="px-2.5 py-1 rounded-full bg-gray-100 hover:bg-brand-crimson text-gray-700 hover:text-white text-xs border border-gray-200 transition-colors font-medium shadow-2xs"
+                className="px-2.5 py-1 rounded-full bg-revealed hover:bg-signal-deep text-popcorn-dim hover:text-popcorn text-xs border border-glow-line transition-colors font-medium shadow-2xs"
               >
                 #{tag}
               </Link>
@@ -134,11 +139,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <main className="lg:col-span-8">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b border-gray-200">
-              <span className="text-sm font-bold text-gray-900">
+            <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
+              <span className="text-sm font-bold text-popcorn">
                 {query ? (
                   <>
-                    &ldquo;<span className="text-brand-crimson">{query}</span>&rdquo; ({results.length})
+                    &ldquo;<span className="text-ultra-soft">{query}</span>&rdquo; ({results.length})
                   </>
                 ) : (
                   <>{getTranslation(activeLang, "btn_all_news")} ({results.length})</>
@@ -147,17 +152,17 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             </div>
 
             {results.length === 0 ? (
-              <div className="bg-white p-12 rounded-3xl border border-gray-200/90 text-center space-y-3 shadow-xs">
-                <AlertCircle className="w-10 h-10 text-amber-500 mx-auto" />
-                <h3 className="text-base font-bold text-gray-950">
+              <div className="bg-revealed p-12 rounded-3xl border border-glow-line text-center space-y-3 shadow-xs">
+                <AlertCircle className="w-10 h-10 text-marquee-soft mx-auto" />
+                <h3 className="text-base font-bold text-popcorn">
                   {emptyText.title}
                 </h3>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-popcorn-dim">
                   {emptyText.desc}
                 </p>
                 <Link
                   href={`/?lang=${activeLang}`}
-                  className="inline-block mt-3 px-5 py-2.5 rounded-xl bg-brand-crimson text-white text-xs font-bold hover:bg-[#8e1d27] transition-colors shadow-sm"
+                  className="inline-block mt-3 px-5 py-2.5 rounded-xl bg-signal-deep text-popcorn text-xs font-bold hover:bg-signal transition-colors shadow-sm"
                 >
                   {emptyText.btn}
                 </Link>

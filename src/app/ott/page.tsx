@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: OttPageProps): Promise<
   const config = getLanguageConfig(lang);
 
   return {
-    title: `${config.ottTitle} | FILMY GARAGE`,
+    title: `${config.ottTitle} | EXTRASAGA`,
     description: `${config.industryName} OTT streaming dates and upcoming digital releases.`,
   };
 }
@@ -36,28 +36,33 @@ export default async function OttPage({ searchParams }: OttPageProps) {
 
   return (
     <div className="w-full">
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/90 py-8 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-gray-950 font-medium">
+      {/* Now Streaming — Hero Band */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-2 font-mono-tabular">
+            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn font-medium">
               {getTranslation(activeLang, "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-sky-700 font-bold">
+            <span className="text-signal-soft font-bold">
               {getTranslation(activeLang, "nav_ott")}
             </span>
           </div>
 
+          <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
+            Now Streaming
+          </span>
+
           <div className="flex items-center gap-2 mb-2">
             <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
               {config.industryName}
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-gray-950 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
             {config.ottTitle}
           </h1>
         </div>

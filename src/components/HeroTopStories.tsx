@@ -44,25 +44,27 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
 
   return (
     <section aria-label="Lead Cinema Stories" className="w-full relative">
-      {/* Floating Ambient Info Ribbon (Grid-breaking luxury element) */}
-      <div className="flex items-center justify-between pb-3 px-1 mb-2">
+      {/* Frontpage ambient rail */}
+      <div className="flex items-center justify-between pb-3 px-1 mb-3 flex-wrap gap-2">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#288760] animate-pulse shadow-sm shadow-[#288760]/40" />
-          <span className="text-[11px] font-sans uppercase font-extrabold tracking-widest text-[#1A5140]">
-            {config.industryName} Cinema • Curated Frontpage Bento
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-signal animate-pulse shadow-[0_0_16px_rgba(255,46,80,0.35)]" />
+          <span className="text-[11px] font-sans uppercase font-bold tracking-widest text-popcorn-dim">
+            {config.industryName} Cinema — The Frontpage Cut
           </span>
         </div>
-        <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E8F8EB] border border-[#B7E5BA] text-[11px] font-bold text-[#1A5140] shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-[#288760]"></span>
-          <span>Dual-Axis Verified Journalism</span>
+        <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-revealed/90 border border-glow-line text-[11px] text-popcorn-dim backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-ultra"></span>
+          <span className="font-display-latin uppercase tracking-wider">
+            Receipts-first • Source-verified
+          </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
-        {/* Dominant Hero Bento Card (~60% of visual weight: 7 cols on lg) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-5 items-stretch">
+        {/* Dominant Hero Poster (7 cols) — big screen, vignette-to-void */}
         {leadStory && (
           <div className="lg:col-span-7 group relative gpu-layer">
-            <div className="relative h-full rounded-[28px] overflow-hidden bg-white border border-[#E5EBE7] shadow-[0_16px_40px_-10px_rgba(26,81,64,0.08)] group-hover:shadow-[0_24px_50px_-10px_rgba(40,135,96,0.18)] group-hover:border-[#5CA87C]/50 transition-all duration-300">
+            <div className="relative h-full rounded-[28px] overflow-hidden bg-revealed border border-glow-line group-hover:border-glow-line-strong transition-all duration-300">
               <Link href={localizeUrl(`/news/${leadStory.slug}`)} className="block relative h-full min-h-[380px] sm:min-h-[460px] w-full">
                 <Image
                   src={leadStory.featuredImage}
@@ -72,52 +74,52 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                 />
-                {/* Multi-Stop Cinematic Vignette for crystal-clear readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B251D]/95 via-[#0B251D]/45 via-45% to-black/15"></div>
+                {/* Vignette-to-void scrim for the deck block */}
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/50 via-45% to-transparent"></div>
 
-                {/* Top Badges (Glass / Jade Pills) */}
+                {/* Top projection chips */}
                 <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex flex-wrap items-center gap-2 z-10">
-                  <span className="px-3.5 py-1 rounded-full bg-[#288760] text-white text-xs font-bold tracking-wide shadow-md">
+                  <span className="px-3 py-1 rounded-full bg-signal-deep text-popcorn text-xs font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(255,46,80,0.3)]">
                     {leadStory.categoryName}
                   </span>
                   <span
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-sans font-extrabold uppercase tracking-wider bg-black/50 text-white border border-white/25 backdrop-blur-md shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-void/60 text-popcorn-dim border border-glow-line backdrop-blur-md"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#B7E5BA] animate-pulse"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-ultra"></span>
                     {config.industryName}
                   </span>
                   {leadStory.isTopStory && (
-                    <span className="px-3 py-1 rounded-full bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA] text-xs font-extrabold flex items-center gap-1.5 shadow-sm">
-                      <Flame className="w-3.5 h-3.5 fill-[#288760] text-[#288760]" />
+                    <span className="px-3 py-1 rounded-full bg-revealed text-marquee-soft border border-marquee/30 text-xs font-extrabold uppercase flex items-center gap-1.5 backdrop-blur-md">
+                      <Flame className="w-3.5 h-3.5 fill-marquee text-marquee" />
                       {t("sec_top_stories")}
                     </span>
                   )}
                 </div>
 
-                {/* Bottom Content within Frosted Glass Floating Cushion */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-5 sm:p-6 rounded-2xl bg-[#0B251D]/80 backdrop-blur-md border border-[#5CA87C]/30 text-white z-10 shadow-lg">
-                  <h1 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white leading-snug group-hover:text-[#B7E5BA] transition-colors duration-200 line-clamp-2 drop-shadow-sm font-sans">
+                {/* Bottom deck block — glass cushion floats over the still */}
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 rounded-2xl bg-void/85 backdrop-blur-md border border-glow-line z-10 p-5 sm:p-6">
+                  <h1 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-popcorn leading-snug group-hover:text-signal-soft transition-colors duration-200 line-clamp-2 font-sans">
                     {leadStory.title}
                   </h1>
-                  <p className="mt-2 text-xs sm:text-sm text-gray-200 line-clamp-2 leading-relaxed hidden sm:block font-normal">
+                  <p className="mt-2 text-xs sm:text-sm text-popcorn-dim line-clamp-2 leading-relaxed hidden sm:block">
                     {leadStory.summary}
                   </p>
 
                   {/* Metadata Row */}
-                  <div className="mt-3.5 pt-3 border-t border-white/15 flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-gray-300 font-sans">
-                    <span className="text-white font-semibold">
+                  <div className="mt-3.5 pt-3 border-t border-glow-line flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-popcorn-dim font-sans">
+                    <span className="text-popcorn font-semibold">
                       ✍️ {leadStory.author.name}
                     </span>
                     <span>•</span>
                     <span>📅 {formatKannadaDate(leadStory.publishedAt)}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-[#B7E5BA]" />
+                      <Clock className="w-3.5 h-3.5 text-ultra" />
                       <span>{leadStory.readTimeMinutes} {readTimeLabel[language] || readTimeLabel.kn}</span>
                     </span>
                     <span>•</span>
-                    <span className="flex items-center gap-1 font-semibold text-white">
-                      <Eye className="w-3.5 h-3.5 text-[#B7E5BA]" />
+                    <span className="flex items-center gap-1 font-semibold text-popcorn">
+                      <Eye className="w-3.5 h-3.5 text-ultra" />
                       <span>{formatKannadaNumber(leadStory.views)} {viewsLabel[language] || viewsLabel.kn}</span>
                     </span>
                   </div>
@@ -127,12 +129,12 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
           </div>
         )}
 
-        {/* Supporting Bento Cards (5 cols on lg: Varied proportions) */}
-        <div className="lg:col-span-5 flex flex-col gap-5 sm:gap-6 justify-between">
+        {/* Supporting Poster Stubs (5 cols) */}
+        <div className="lg:col-span-5 flex flex-col gap-5 sm:gap-5 justify-between">
           {secondaryStories.map((item, idx) => (
             <div
               key={item.id}
-              className={`group relative rounded-[28px] overflow-hidden bg-white border border-[#E5EBE7] shadow-[0_12px_32px_-8px_rgba(26,81,64,0.06)] group-hover:shadow-[0_20px_40px_-8px_rgba(40,135,96,0.15)] group-hover:border-[#5CA87C]/50 transition-all duration-300 flex-1 ${idx === 0 ? "min-h-[220px]" : "min-h-[200px]"
+              className={`group relative rounded-[28px] overflow-hidden bg-revealed border border-glow-line group-hover:border-glow-line-strong transition-all duration-300 flex-1 ${idx === 0 ? "min-h-[220px]" : "min-h-[200px]"
                 }`}
             >
               <Link href={localizeUrl(`/news/${item.slug}`)} className="block relative h-full w-full">
@@ -144,25 +146,25 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B251D]/90 via-[#0B251D]/40 via-50% to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 via-50% to-transparent"></div>
 
-                  {/* Category Pill */}
+                  {/* Category Chip */}
                   <div className="absolute top-3.5 left-3.5 z-10">
-                    <span className="px-3 py-1 rounded-full bg-black/60 text-white text-[11px] font-bold border border-white/20 backdrop-blur-md">
+                    <span className="px-3 py-1 rounded-full bg-void/70 text-popcorn-dim text-[11px] font-bold uppercase border border-glow-line backdrop-blur-md">
                       {item.categoryName}
                     </span>
                   </div>
 
-                  {/* Bottom Text in Frosted Capsule */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3.5 sm:p-4 rounded-xl bg-[#0B251D]/75 backdrop-blur-md border border-[#5CA87C]/25 z-10">
-                    <h2 className="text-xs sm:text-base font-bold text-white leading-snug group-hover:text-[#B7E5BA] transition-colors duration-200 line-clamp-2 font-sans">
+                  {/* Bottom Glass Capsule */}
+                  <div className="absolute bottom-3 left-3 right-3 rounded-xl bg-void/80 backdrop-blur-md border border-glow-line z-10 p-3.5 sm:p-4">
+                    <h2 className="text-xs sm:text-base font-bold text-popcorn leading-snug group-hover:text-signal-soft transition-colors duration-200 line-clamp-2 font-sans">
                       {item.title}
                     </h2>
-                    <div className="mt-2 flex items-center gap-2.5 text-[11px] text-gray-300 font-sans">
+                    <div className="mt-2 flex items-center gap-2.5 text-[11px] text-popcorn-dim font-sans">
                       <span>{formatKannadaDate(item.publishedAt)}</span>
                       <span>•</span>
-                      <span className="flex items-center gap-1 font-semibold text-white">
-                        <Eye className="w-3 h-3 text-[#B7E5BA]" />
+                      <span className="flex items-center gap-1 font-semibold text-popcorn">
+                        <Eye className="w-3 h-3 text-ultra" />
                         <span>{formatKannadaNumber(item.views)}</span>
                       </span>
                     </div>
@@ -176,4 +178,3 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
     </section>
   );
 }
-

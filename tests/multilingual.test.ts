@@ -41,24 +41,24 @@ describe("Multi-Language and Multi-Industry System", () => {
       expect(lang.hotTopics.length).toBeGreaterThan(0);
     });
 
-    // Test specific native brand names
+    // Test specific native EXTRASAGA brand names (AFTER-DARK era)
     const kn = getLanguageConfig("kn");
-    expect(kn.brandNameNative).toBe("ಸಿನಿ ಜಾತ್ರೆ");
+    expect(kn.brandNameNative).toBe("ಎಕ್ಸ್ಟ್ರಾಸಾಗ");
     expect(kn.headerTagline).toContain("ಸ್ಯಾಂಡಲ್ವುಡ್");
 
     const ta = getLanguageConfig("ta");
-    expect(ta.brandNameNative).toBe("சினி ஜாத்திரை");
+    expect(ta.brandNameNative).toBe("எக்ஸ்ட்ராசாக");
     expect(ta.headerTagline).toContain("கோலிவுட்");
     // Ensure Tamil header tagline has NO Kannada characters
     expect(/[\u0C80-\u0CFF]/.test(ta.headerTagline)).toBe(false);
     expect(/[\u0C80-\u0CFF]/.test(ta.brandNameNative)).toBe(false);
 
     const te = getLanguageConfig("te");
-    expect(te.brandNameNative).toBe("సిని జాతర");
+    expect(te.brandNameNative).toBe("ఎక్స్ట్రాసాగా");
     expect(/[\u0C80-\u0CFF]/.test(te.headerTagline)).toBe(false);
 
     const hi = getLanguageConfig("hi");
-    expect(hi.brandNameNative).toBe("सिने जात्रा");
+    expect(hi.brandNameNative).toBe("एक्स्ट्रासागा");
     expect(/[\u0C80-\u0CFF]/.test(hi.headerTagline)).toBe(false);
   });
 

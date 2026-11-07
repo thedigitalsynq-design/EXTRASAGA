@@ -1,7 +1,7 @@
 # PRD.md — Product Requirements Document
 
 ## 1. Product Overview
-**FILMY GARAGE** is an all-in-one cinema entertainment news and release intelligence platform that bridges coverage across Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood, and Hollywood.
+**EXTRASAGA** is an all-in-one cinema entertainment news and release intelligence platform that bridges coverage across Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood, and Hollywood.
 
 ---
 
@@ -20,10 +20,10 @@
 
 ## 3. Detailed Feature Specifications
 
-### 3.1. Deep Crimson Navigation Bar
-- **Brand Accent Color**: Hex `#A92732` (Deep Crimson Red).
-- **Exact 12 Item Menu**:
-  1. `[Trending Today]` (Pill Button)
+### 3.1. House Full Press Navigation Bar
+- **Brand Accent Colors**: Poster Red `#E03A2F` (primary), Print Violet `#4F2BEF`, Bulb Gold `#F0B429`, on newsprint paper `#F4EFE2` with ink `#17140F` rules (v4.0 "House Full Press" edition, see `docs/DESIGN-SYSTEM.md`).
+- **Exact 12 Item Menu** (naming authority stays with `MAIN_NAV_ITEMS`; slots never move):
+  1. `[Trending Today]` (Sticker Button)
   2. `Home`
   3. `News`
   4. `Reviews`
@@ -31,7 +31,7 @@
   6. `Celebrity`
   7. `Movies`
   8. `Interviews`
-  9. `Gossips` (Active tab highlighted with `#7D1B24` background and amber-400 bottom border)
+  9. `Gossips` (Active tab: filled ink block, hard offset shadow, press-red underline plate)
   10. `Photos`
   11. `Videos`
   12. `Events`

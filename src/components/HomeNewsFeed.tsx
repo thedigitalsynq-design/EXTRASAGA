@@ -67,17 +67,17 @@ export default function HomeNewsFeed({
 
   const newsGridContent = (
     <div>
-      <div className="flex items-center justify-between pb-3 mb-6 border-b border-gray-200">
+      <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-brand-crimson/10 text-brand-crimson border border-brand-crimson/20">
+          <div className="p-1.5 rounded-lg bg-signal/10 text-signal border border-signal/25">
             <Newspaper className="w-5 h-5" />
           </div>
           <div className="flex items-center gap-2">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-gray-950 font-sans">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-popcorn font-sans">
               {latestSectionTitle}
             </h2>
             <span
-              className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border shadow-2xs`}
+              className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
               {config.industryName}
@@ -87,7 +87,7 @@ export default function HomeNewsFeed({
 
         <Link
           href={localizeUrl("/category/latest")}
-          className="text-xs sm:text-sm font-semibold text-brand-crimson hover:text-[#8e1d27] flex items-center gap-1 transition-colors"
+          className="text-xs sm:text-sm font-semibold text-signal hover:text-signal-soft flex items-center gap-1 transition-colors"
         >
           <span>{t("btn_all_news")}</span>
           <ChevronRight className="w-4 h-4" />
@@ -105,10 +105,10 @@ export default function HomeNewsFeed({
       <div className="mt-8 text-center">
         <Link
           href={localizeUrl("/category/latest")}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-gray-50 text-gray-900 text-sm font-bold transition-all border border-gray-200 shadow-sm hover:shadow-md active:scale-95"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-revealed hover:bg-screen text-popcorn text-sm font-bold transition-all border border-glow-line hover:border-glow-line-strong active:scale-95"
         >
           <span>{t("btn_more_news")}</span>
-          <ChevronRight className="w-4 h-4 text-brand-crimson" />
+          <ChevronRight className="w-4 h-4 text-signal" />
         </Link>
       </div>
     </div>
@@ -116,30 +116,30 @@ export default function HomeNewsFeed({
 
   const industrySpecialContent = (
     <div className="pt-2">
-      <div className="flex items-center justify-between pb-3 mb-6 border-b border-gray-200">
+      <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-marquee/10 text-marquee border border-marquee/25 flex items-center justify-center shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-gray-950 font-sans">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-popcorn font-sans">
                 {config.newsSectionTitle}
               </h2>
               <span
-                className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border shadow-2xs`}
+                className={`hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                 {config.industryName}
               </span>
             </div>
-            <p className="text-xs text-gray-500 mt-0.5">{config.tagline}</p>
+            <p className="text-xs text-popcorn-dim mt-0.5">{config.tagline}</p>
           </div>
         </div>
 
         <Link
           href={localizeUrl(language === "kn" ? "/category/sandalwood" : "/category/latest")}
-          className="text-xs sm:text-sm font-semibold text-amber-800 hover:underline flex items-center gap-1 transition-colors"
+          className="text-xs sm:text-sm font-semibold text-marquee hover:text-marquee-soft hover:underline flex items-center gap-1 transition-colors"
         >
           <span>
             {config.industryName} {t("btn_view_all")}

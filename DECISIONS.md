@@ -1,6 +1,6 @@
 # DECISIONS.md — Architecture Decision Records (ADRs)
 
-This document records the architectural and technical decisions made for the **FILMY GARAGE** platform, including the context and rationale for each choice.
+This document records the architectural and technical decisions made for the **EXTRASAGA** platform, including the context and rationale for each choice.
 
 ---
 
@@ -61,5 +61,5 @@ This document records the architectural and technical decisions made for the **F
 - **Decision**: Replaced standard commercial numerical/star ratings (`4.8 ★ / 5`) with a gold/amber reverent badge and in-depth cultural analysis.
 - **Rationale**:
   - Aligns with audience sentiment regarding sacred and landmark cinematic adaptations.
-  - Distinctive editorial voice that sets FILMY GARAGE apart from commoditized review aggregators.
+  - Distinctive editorial voice that sets EXTRASAGA apart from commoditized review aggregators.
 

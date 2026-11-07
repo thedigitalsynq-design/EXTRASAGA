@@ -1,6 +1,6 @@
 # ROADMAP.md — Future Development & Strategic Evolution
 
-This document outlines the strategic roadmap for **FILMY GARAGE**, divided into planned phases of engineering, content intelligence, and audience engagement.
+This document outlines the strategic roadmap for **EXTRASAGA**, divided into planned phases of engineering, content intelligence, and audience engagement.
 
 ```
 +-----------------------------------------------------------------------------------------+

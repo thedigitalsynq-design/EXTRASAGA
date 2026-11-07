@@ -36,7 +36,7 @@ export default function CelluloidEraScrubber() {
       quote: "Cinema is not just entertainment; it is the spiritual mirror of our society's collective memory.",
       quoteAuthor: "Dr. Rajkumar",
       image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-amber-500/20 to-amber-700/10 border-amber-500/30 text-amber-300",
+      accent: "from-marquee/20 to-void/60 border-marquee/30 text-marquee-soft",
     },
     {
       id: "era-1990",
@@ -50,7 +50,7 @@ export default function CelluloidEraScrubber() {
       quote: "If you want to be original, dare to show what audience feels but never speaks.",
       quoteAuthor: "Real Star Upendra",
       image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-rose-500/20 to-rose-700/10 border-rose-500/30 text-rose-300",
+      accent: "from-signal/20 to-void/60 border-signal/30 text-signal-soft",
     },
     {
       id: "era-2010",
@@ -64,7 +64,7 @@ export default function CelluloidEraScrubber() {
       quote: "Our local folklore has the power to grip audiences across Tokyo, London, and New York.",
       quoteAuthor: "Rishab Shetty & Rocking Star Yash",
       image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-cyan-500/20 to-cyan-700/10 border-cyan-500/30 text-cyan-300",
+      accent: "from-ultra/20 to-void/60 border-ultra/30 text-ultra-soft",
     },
     {
       id: "era-2026",
@@ -76,9 +76,9 @@ export default function CelluloidEraScrubber() {
       description:
         "The contemporary renaissance characterized by uncompromised cultural dignity, Hollywood-grade visual effects collaborations, IMAX 70mm masterworks, and a return to purist film criticism.",
       quote: "When scale is matched with reverence, cinema transcends commerce and becomes cultural heritage.",
-      quoteAuthor: "FILMY GARAGE Editorial Board",
+      quoteAuthor: "EXTRASAGA Editorial Board",
       image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
-      accent: "from-emerald-500/20 to-emerald-700/10 border-emerald-500/30 text-emerald-300",
+      accent: "from-marquee/20 to-void/60 border-marquee/40 text-marquee-soft",
     },
   ];
 
@@ -88,24 +88,24 @@ export default function CelluloidEraScrubber() {
     <section aria-label="Celluloid Era Time-Machine" className="w-full py-12">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-gray-100 border border-gray-200 text-gray-700 select-none shadow-2xs">
-          <Clapperboard className="w-3.5 h-3.5 text-amber-600" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase font-display-latin bg-marquee-faint border border-marquee/30 text-marquee-soft select-none">
+          <Clapperboard className="w-3.5 h-3.5" />
           <span>Celluloid Time-Machine</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-sans">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-popcorn tracking-tight font-display-latin">
           The Living Timeline of Cinema
         </h2>
-        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+        <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
           Scrub through five decades of cinematic evolution — from classical mythological epics to the 2026 global vanguard.
         </p>
       </div>
 
       {/* 35mm Sprocket Film Strip Selector Bar */}
-      <div className="rounded-3xl bg-gray-100 border border-gray-200 p-2 sm:p-3 relative overflow-hidden shadow-sm mb-8">
+      <div className="rounded-3xl bg-hall border border-glow-line p-2 sm:p-3 relative overflow-hidden shadow-lg mb-8">
         {/* Top Sprocket Holes */}
-        <div className="flex items-center justify-between px-3 py-1.5 opacity-50 overflow-hidden">
+        <div className="flex items-center justify-between px-3 py-1.5 opacity-70 overflow-hidden">
           {Array.from({ length: 24 }).map((_, i) => (
-            <div key={`sprocket-top-${i}`} className="w-3 h-2 rounded-[2px] bg-gray-400 shrink-0 mx-1" />
+            <div key={`sprocket-top-${i}`} className="w-3 h-2 rounded-[2px] bg-void shrink-0 mx-1" />
           ))}
         </div>
 
@@ -120,22 +120,22 @@ export default function CelluloidEraScrubber() {
                 onClick={() => setSelectedEra(index)}
                 className={`p-3 sm:p-4 rounded-2xl text-left transition-all relative overflow-hidden group select-none ${
                   isSelected
-                    ? "bg-white border border-gray-300 shadow-md scale-[1.02]"
-                    : "bg-gray-50/80 border border-gray-200 hover:bg-white hover:border-gray-300"
+                    ? "bg-revealed border border-glow-line-strong shadow-[0_0_24px_rgba(255,176,32,0.12)] scale-[1.02]"
+                    : "bg-void/60 border border-glow-line hover:bg-revealed hover:border-glow-line-strong"
                 }`}
               >
-                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-wider text-amber-700 block mb-1">
+                <span className="text-[10px] sm:text-xs font-mono-tabular font-bold tracking-widest text-marquee-soft block mb-1">
                   {era.years}
                 </span>
-                <span className="text-xs sm:text-sm font-bold text-gray-950 block truncate font-sans">
+                <span className="text-xs sm:text-sm font-bold text-popcorn block truncate">
                   {language === "kn" ? era.titleNative : era.title}
                 </span>
-                <span className="text-[10px] text-gray-500 block truncate mt-0.5 font-normal">
+                <span className="text-[10px] text-popcorn-muted block truncate mt-0.5 font-normal">
                   {era.tagline}
                 </span>
 
                 {isSelected && (
-                  <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-amber-500 via-rose-500 to-cyan-500 rounded-full" />
+                  <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-marquee via-signal to-ultra rounded-full" />
                 )}
               </button>
             );
@@ -143,52 +143,52 @@ export default function CelluloidEraScrubber() {
         </div>
 
         {/* Bottom Sprocket Holes */}
-        <div className="flex items-center justify-between px-3 py-1.5 opacity-50 overflow-hidden">
+        <div className="flex items-center justify-between px-3 py-1.5 opacity-70 overflow-hidden">
           {Array.from({ length: 24 }).map((_, i) => (
-            <div key={`sprocket-bottom-${i}`} className="w-3 h-2 rounded-[2px] bg-gray-400 shrink-0 mx-1" />
+            <div key={`sprocket-bottom-${i}`} className="w-3 h-2 rounded-[2px] bg-void shrink-0 mx-1" />
           ))}
         </div>
       </div>
 
       {/* Expanded Era Stage: Double-Bezel Concentric Frame */}
-      <div className="rounded-[2.5rem] p-1.5 ring-1 ring-gray-200 bg-gray-50 shadow-sm">
-        <div className="rounded-[calc(2.5rem-0.375rem)] bg-white border border-gray-200 p-6 sm:p-10 relative overflow-hidden shadow-xs">
+      <div className="rounded-[2.5rem] p-1.5 ring-1 ring-glow-line bg-hall">
+        <div className="rounded-[calc(2.5rem-0.375rem)] bg-revealed border border-glow-line p-6 sm:p-10 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Narrative */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-amber-800 bg-amber-50 border border-amber-200">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono-tabular font-bold text-marquee-soft bg-marquee-faint border border-marquee/30">
                 <Clock className="w-3.5 h-3.5" />
                 <span>{current.years} • {current.title}</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight leading-snug font-sans">
+              <h3 className="text-2xl sm:text-3xl font-black text-popcorn tracking-tight leading-snug font-display-latin">
                 {current.tagline}
               </h3>
 
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-popcorn-dim leading-relaxed font-normal">
                 {current.description}
               </p>
 
               {/* Quote Card */}
-              <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-1.5">
-                <p className="text-xs sm:text-sm text-gray-800 italic font-normal">
+              <div className="p-4 rounded-2xl bg-hall border border-glow-line space-y-1.5">
+                <p className="text-xs sm:text-sm text-popcorn-dim italic font-normal">
                   &ldquo;{current.quote}&rdquo;
                 </p>
-                <span className="text-[11px] font-mono font-bold text-amber-800 block">
+                <span className="text-[11px] font-mono font-bold text-marquee-soft block">
                   — {current.quoteAuthor}
                 </span>
               </div>
 
               {/* Key Landmark Films */}
               <div className="space-y-2 pt-2">
-                <span className="text-[11px] uppercase font-bold tracking-wider text-gray-500 block font-mono">
+                <span className="text-[11px] uppercase font-bold tracking-widest text-popcorn-muted block font-display-latin">
                   Landmark Celluloid Works:
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {current.keyFilms.map((film) => (
                     <span
                       key={film}
-                      className="px-3 py-1 rounded-full bg-gray-100 border border-gray-200 text-xs font-semibold text-gray-800 font-sans"
+                      className="px-3 py-1 rounded-full bg-hall border border-glow-line text-xs font-semibold text-popcorn-dim hover:border-glow-line-strong hover:text-popcorn transition-colors"
                     >
                       {film}
                     </span>
@@ -199,17 +199,17 @@ export default function CelluloidEraScrubber() {
 
             {/* Right Visual Plate */}
             <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-gray-200 shadow-md group">
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-glow-line-strong shadow-[0_20px_50px_-12px_rgba(0,0,0,0.7)] group">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url(${current.image})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white">
-                  <span className="font-mono font-bold text-amber-300 uppercase tracking-wider">
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-popcorn">
+                  <span className="font-mono font-bold text-marquee-soft uppercase tracking-widest">
                     35mm Archive Plate
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/20 text-[10px] font-mono">
+                  <span className="px-2 py-0.5 rounded bg-void/70 backdrop-blur-sm border border-glow-line text-[10px] font-mono text-popcorn-dim">
                     Restored 4K
                   </span>
                 </div>
@@ -221,4 +221,3 @@ export default function CelluloidEraScrubber() {
     </section>
   );
 }
-

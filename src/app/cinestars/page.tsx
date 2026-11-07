@@ -33,66 +33,63 @@ export default async function CineStarsPage({ searchParams }: CineStarsPageProps
 
   return (
     <div className="w-full">
-      {/* ─── Forbes-style Page Header Banner ─── */}
-      <div className="bg-[#0F3529] text-white py-6 px-4 sm:px-6 relative overflow-hidden">
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(rgba(183,229,186,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(183,229,186,0.4) 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
-          }}
-        />
-        <div className="max-w-7xl mx-auto relative">
+      {/* ─── CineStar Power Rankings — Hero Band ─── */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        {/* Cinema grid pattern */}
+        <div className="cinema-grid-bg absolute inset-0 opacity-20 pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs text-[#B7E5BA]/70 mb-3 font-medium">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-[#B7E5BA] transition-colors">
+          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-3 font-mono-tabular">
+            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-[#B7E5BA]">CineStar Leaderboard</span>
+            <span className="text-marquee-soft">CineStar Leaderboard</span>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
                 {/* Live pulse badge */}
-                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#288760]/30 border border-[#5CA87C]/40 text-[#B7E5BA] text-[11px] font-black uppercase tracking-wider">
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-signal/10 border border-signal/25 text-signal-soft text-[11px] font-black uppercase tracking-[0.2em] font-display-latin">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B7E5BA] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B7E5BA]" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-signal" />
                   </span>
                   Real-Time Rankings
                 </span>
-                <span className="text-[#5CA87C]/60 text-[11px] font-mono">
+                <span className="text-popcorn-muted text-[11px] font-mono-tabular">
                   Updated: {new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })} IST
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-none">
-                CineStar<span className="text-[#5CA87C]"> Leaderboard</span>
+              <span className="inline-block mb-2 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
+                CineStar Power Rankings
+              </span>
+              <h1 className="text-3xl sm:text-5xl font-bold font-display-latin text-popcorn tracking-tight leading-none">
+                CineStar<span className="text-marquee-soft"> Leaderboard</span>
               </h1>
-              <p className="text-[#B7E5BA]/80 text-sm sm:text-base mt-2 max-w-xl font-medium">
+              <p className="text-popcorn-dim text-sm sm:text-base mt-2 max-w-xl font-medium">
                 India's definitive real-time ranking of the most powerful cinema personalities — by box office dominance, cultural influence, and daily market momentum.
               </p>
             </div>
 
             {/* Summary pill strip */}
             <div className="flex flex-wrap gap-3 shrink-0">
-              <div className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black text-white font-mono">{CINESTAR_SUMMARY_STATS.totalTracked}</div>
-                <div className="text-[11px] text-[#B7E5BA]/80 font-semibold">Stars Tracked</div>
+              <div className="bg-revealed border border-glow-line rounded-2xl px-4 py-3 text-center">
+                <div className="text-2xl font-black font-mono-tabular text-popcorn">{CINESTAR_SUMMARY_STATS.totalTracked}</div>
+                <div className="text-[11px] text-popcorn-dim font-semibold">Stars Tracked</div>
               </div>
-              <div className="bg-white/10 border border-white/20 backdrop-blur-sm rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black text-white font-mono">
+              <div className="bg-revealed border border-glow-line rounded-2xl px-4 py-3 text-center">
+                <div className="text-2xl font-black font-mono-tabular text-popcorn">
                   ₹{(CINESTAR_SUMMARY_STATS.totalBoxOfficePowerCr / 1000).toFixed(0)}K Cr
                 </div>
-                <div className="text-[11px] text-[#B7E5BA]/80 font-semibold">Combined Power</div>
+                <div className="text-[11px] text-popcorn-dim font-semibold">Combined Power</div>
               </div>
-              <div className="bg-[#288760]/40 border border-[#5CA87C]/40 backdrop-blur-sm rounded-2xl px-4 py-3 text-center">
-                <div className="text-2xl font-black text-[#B7E5BA] font-mono">
+              <div className="bg-marquee/10 border border-marquee/25 rounded-2xl px-4 py-3 text-center">
+                <div className="text-2xl font-black font-mono-tabular text-marquee-soft">
                   +{CINESTAR_SUMMARY_STATS.topGainerChangePct}%
                 </div>
-                <div className="text-[11px] text-[#B7E5BA]/80 font-semibold">Top Gainer Today</div>
+                <div className="text-[11px] text-marquee-soft/80 font-semibold">Top Gainer Today</div>
               </div>
             </div>
           </div>
@@ -110,26 +107,26 @@ export default async function CineStarsPage({ searchParams }: CineStarsPageProps
           {/* Sidebar — 3 cols */}
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-20 self-start">
             {/* Methodology card */}
-            <div className="bg-white rounded-[24px] border border-[#E5EBE7] p-5 shadow-sm">
-              <h3 className="text-sm font-black text-[#0F3529] mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-[#E8F8EB] border border-[#B7E5BA] flex items-center justify-center text-[#288760] text-[10px] font-black">?</span>
+            <div className="bg-revealed rounded-[24px] border border-glow-line p-5 shadow-sm">
+              <h3 className="text-sm font-black text-popcorn mb-3 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-ultra/15 border border-ultra/30 flex items-center justify-center text-ultra-soft text-[10px] font-black">?</span>
                 ರ‍್ಯಾಂಕಿಂಗ್ ವಿಧಾನ
               </h3>
-              <ul className="space-y-2 text-xs text-[#4B6358]">
+              <ul className="space-y-2 text-xs text-popcorn-dim">
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#288760] mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
                   Box office power — lifetime verified gross from consolidated trade
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#288760] mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
                   Daily momentum — opening collections of active releases
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#288760] mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
                   Cultural influence — social & editorial coverage weight
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#288760] mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-marquee mt-1.5 shrink-0" />
                   Zero paid AI — 100% deterministic algorithm
                 </li>
               </ul>

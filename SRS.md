@@ -1,7 +1,7 @@
 # SRS.md — Software Requirements Specification
 
 ## 1. Introduction
-This Software Requirements Specification defines the functional, non-functional, security, and interface requirements for the **FILMY GARAGE** multi-industry cinema and entertainment platform.
+This Software Requirements Specification defines the functional, non-functional, security, and interface requirements for the **EXTRASAGA** multi-industry cinema and entertainment platform.
 
 ---
 

@@ -21,7 +21,7 @@ export async function generateMetadata({ searchParams }: ReviewsPageProps): Prom
   const config = getLanguageConfig(lang);
 
   return {
-    title: `${config.reviewsSectionTitle} | FILMY GARAGE`,
+    title: `${config.reviewsSectionTitle} | EXTRASAGA`,
     description: `Unbiased movie reviews, dual-axis ratings, and critical verdicts for ${config.industryName} and Indian cinema.`,
   };
 }
@@ -37,43 +37,46 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
 
   return (
     <div className="w-full">
-      {/* Header Banner */}
-      <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200 py-8 px-4 sm:px-6 shadow-xs">
-        <div className="max-w-7xl mx-auto">
+      {/* The Verdict Desk — Header Band */}
+      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-            <Link href={`/?lang=${activeLang}`} className="hover:text-brand-crimson transition-colors">
+          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-3 font-mono-tabular">
+            <Link href={`/?lang=${activeLang}`} className="hover:text-popcorn transition-colors">
               {getTranslation(activeLang, "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-amber-700 font-bold">
+            <span className="text-marquee-soft font-bold">
               {config.reviewsSectionTitle}
             </span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
+              <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
+                The Verdict Desk
+              </span>
               <div className="flex items-center gap-2 mb-1.5">
                 <span
-                  className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-black uppercase tracking-wider ${config.badgeColor} border`}
+                  className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                   {config.industryName}
                 </span>
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-50 text-amber-800 border border-amber-200">
-                  <Star className="w-3 h-3 text-amber-600 fill-amber-500" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-bold bg-marquee/10 text-marquee-soft border border-marquee/25">
+                  <Star className="w-3 h-3 text-marquee-soft fill-marquee" />
                   Dual-Axis Storytelling & Technical Audits
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-950 font-sans">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
                 {config.reviewsSectionTitle}
               </h1>
-              <p className="mt-1.5 text-xs sm:text-sm text-gray-600 max-w-2xl font-normal leading-relaxed">
+              <p className="mt-1.5 text-xs sm:text-sm text-popcorn-dim max-w-2xl font-normal leading-relaxed">
                 ನಿಷ್ಪಕ್ಷಪಾತ ವಿಮರ್ಶೆಗಳು, ಕಥಾಹಂದರ ಮತ್ತು ತಾಂತ್ರಿಕ ಮೌಲ್ಯಮಾಪನ. 100% ಸ್ಪಾಯ್ಲರ್-ಮುಕ್ತ ಸಿನಿಮಾ ಮಾರ್ಗದರ್ಶಿ.
               </p>
             </div>
             <div className="flex items-center gap-2 self-start md:self-auto">
-              <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-amber-50 text-amber-900 border border-amber-200 uppercase tracking-wider font-mono">
+              <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-revealed text-marquee-soft border border-marquee/25 uppercase tracking-wider font-mono-tabular">
                 {reviews.length} Verified Reviews
               </span>
             </div>
@@ -98,4 +101,3 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
     </div>
   );
 }
-

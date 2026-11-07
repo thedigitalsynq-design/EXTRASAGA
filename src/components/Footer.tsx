@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Film, Send, ShieldCheck, Heart } from "lucide-react";
+import { Film, Send, ShieldCheck, BadgeCheck } from "lucide-react";
 import { CATEGORIES } from "@/data/mockData";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -10,58 +10,58 @@ export default function Footer() {
   const { language, config, t, tCategory, localizeUrl } = useLanguage();
 
   return (
-    <footer className="w-full bg-[#F8FAF9] border-t border-[#E5EBE7] mt-16 pt-14 pb-10 text-[#374151]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-[#E5EBE7]">
+    <footer className="w-full bg-ink text-paper border-t-2 border-ink mt-16 pt-14 pb-10 relative overflow-hidden">
+      {/* Halftone plate on the colophon */}
+      <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-25 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-10 border-b-2 border-dashed border-paper/30">
           {/* Col 1 & 2: Branding & About */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href={localizeUrl("/")} className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#288760] to-[#1A5140] flex items-center justify-center text-white shadow-md shadow-[#288760]/20 ring-1 ring-[#5CA87C]/30 group-hover:scale-105 transition-all shrink-0">
-                <Film className="w-5 h-5 text-white" />
+          <div className="lg:col-span-2 space-y-5">
+            <Link href={localizeUrl("/")} className="flex items-center gap-3 group w-fit">
+              <div className="w-11 h-11 bg-press border-2 border-paper shadow-sticker flex items-center justify-center -rotate-3 group-hover:rotate-2 transition-transform shrink-0">
+                <Film className="w-5 h-5 text-paper" />
               </div>
               <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-2xl font-black font-sans text-[#0F3529] tracking-tight">EXTRA</span>
-                  <span className="text-2xl font-black font-sans text-[#288760] tracking-tight">SAGA</span>
-                  <span className="ml-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA] shadow-2xs">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-poster text-paper tracking-tight select-none leading-none">
+                    EXTRA<span className="text-marquee">SAGA</span>
+                  </span>
+                  <span className="px-2 py-0.5 text-[10px] font-poster font-bold uppercase tracking-wider bg-violet text-paper border-2 border-paper rotate-1">
                     ONE INDIAN CINEMA
                   </span>
                 </div>
-                <p className="text-[11px] text-[#4B6358] font-medium tracking-wide mt-0.5 flex items-center gap-1.5">
-                  <span className="font-bold text-[#288760]">
-                    EXTRASAGA
-                  </span>
-                  <span className="text-[#A3B8B0]">·</span>
-                  <span className="text-[#4B6358] font-semibold">
-                    Bringing Indian Cinema Together
-                  </span>
+                <p className="text-[10px] text-paper/60 font-poster tracking-[0.2em] uppercase mt-1 flex items-center gap-1.5">
+                  <span className="font-bold text-marquee">House Full</span>
+                  <span className="text-paper/30">·</span>
+                  <span>Six Industries. One Screen.</span>
                 </p>
               </div>
             </Link>
 
-            <p className="text-xs sm:text-sm text-[#4B6358] leading-relaxed max-w-sm">
-              EXTRASAGA is the unified, professional corporate platform representing the entire Indian cinema industry. From Bollywood to Sandalwood, Tollywood to Kollywood, Mollywood to Bengali and Punjabi, EXTRASAGA brings the entire ecosystem together under one identity.
+            <p className="text-xs sm:text-sm text-paper/70 leading-relaxed max-w-sm">
+              EXTRASAGA is the unified press desk for the entire Indian cinema industry — Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood and beyond. Verified drops, receipt-backed numbers, honest verdicts, native scripts. No fake tea, no paid verdicts, no missing receipts.
             </p>
 
-            <div className="pt-2">
-              <span className="text-xs font-bold text-[#0F3529] block mb-2">
+            <div className="pt-1">
+              <span className="text-[10px] font-poster font-bold uppercase tracking-[0.2em] text-paper block mb-2.5">
                 {t("footer_telegram_whatsapp")}
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <a
                   href="https://t.me"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-full bg-white text-[#1A5140] hover:bg-[#E8F8EB] text-xs font-semibold flex items-center gap-1.5 transition-colors border border-[#E5EBE7] shadow-2xs hover:border-[#5CA87C]"
+                  className="px-3.5 py-1.5 bg-paper text-ink hover:bg-marquee border-2 border-paper text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                 >
-                  <Send className="w-3.5 h-3.5 text-[#288760]" />
+                  <Send className="w-3.5 h-3.5" />
                   <span>{t("footer_telegram")}</span>
                 </a>
                 <a
                   href="https://whatsapp.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-full bg-white text-[#1A5140] hover:bg-[#E8F8EB] text-xs font-semibold flex items-center gap-1.5 transition-colors border border-[#E5EBE7] shadow-2xs hover:border-[#5CA87C]"
+                  className="px-3.5 py-1.5 bg-transparent text-paper hover:bg-paper hover:text-ink border-2 border-paper text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                 >
                   <span>{t("footer_whatsapp")}</span>
                 </a>
@@ -71,15 +71,16 @@ export default function Footer() {
 
           {/* Col 3: Categories 1 */}
           <div>
-            <h4 className="text-sm font-bold text-[#0F3529] uppercase tracking-wider mb-4 border-l-2 border-[#288760] pl-2.5">
+            <h4 className="flex items-center gap-2 text-sm font-poster text-paper uppercase tracking-widest mb-4">
+              <span className="inline-block w-4 h-4 bg-press border-2 border-paper -rotate-3" />
               {t("footer_quick_links")}
             </h4>
-            <ul className="space-y-2 text-xs text-[#4B6358]">
+            <ul className="space-y-2.5 text-xs text-paper/70">
               {CATEGORIES.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
                   <Link
                     href={localizeUrl(cat.slug === "mukhaputa" ? "/" : `/category/${cat.slug}`)}
-                    className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                    className="hover:text-marquee transition-colors block py-0.5 font-medium"
                   >
                     {tCategory(cat.slug)}
                   </Link>
@@ -90,15 +91,16 @@ export default function Footer() {
 
           {/* Col 4: Categories 2 */}
           <div>
-            <h4 className="text-sm font-bold text-[#0F3529] uppercase tracking-wider mb-4 border-l-2 border-[#288760] pl-2.5">
+            <h4 className="flex items-center gap-2 text-sm font-poster text-paper uppercase tracking-widest mb-4">
+              <span className="inline-block w-4 h-4 bg-violet border-2 border-paper rotate-2" />
               {t("footer_cinema_industries")}
             </h4>
-            <ul className="space-y-2 text-xs text-[#4B6358]">
+            <ul className="space-y-2.5 text-xs text-paper/70">
               {CATEGORIES.slice(6, 12).map((cat) => (
                 <li key={cat.id}>
                   <Link
                     href={localizeUrl(`/category/${cat.slug}`)}
-                    className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                    className="hover:text-marquee transition-colors block py-0.5 font-medium"
                   >
                     {tCategory(cat.slug)}
                   </Link>
@@ -107,16 +109,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 5: Special & Admin */}
+          {/* Col 5: Desks & Admin */}
           <div>
-            <h4 className="text-sm font-bold text-[#0F3529] uppercase tracking-wider mb-4 border-l-2 border-[#288760] pl-2.5">
-              {config.industryName} Hub
+            <h4 className="flex items-center gap-2 text-sm font-poster text-paper uppercase tracking-widest mb-4">
+              <span className="inline-block w-4 h-4 bg-marquee border-2 border-paper -rotate-2" />
+              {config.industryName} Desks
             </h4>
-            <ul className="space-y-2 text-xs text-[#4B6358]">
+            <ul className="space-y-2.5 text-xs text-paper/70">
               <li>
                 <Link
                   href={localizeUrl("/box-office")}
-                  className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                  className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
                   {t("nav_boxoffice")} ({config.industryName})
                 </Link>
@@ -124,23 +127,23 @@ export default function Footer() {
               <li>
                 <Link
                   href={localizeUrl("/movies")}
-                  className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                  className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
-                  ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು (Cinema Releases)
+                  ಸಿನಿಮಾ ಬಿಡುಗಡೆಗಳು (Now Showing)
                 </Link>
               </li>
               <li>
                 <Link
                   href={localizeUrl("/archive")}
-                  className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                  className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
-                  ಶಾಶ್ವತ ಆರ್ಕೈವ್ (Permanent Archive)
+                  ಶಾಶ್ವತ ಆರ್ಕೈವ್ (The Deep Print)
                 </Link>
               </li>
               <li>
                 <Link
                   href={localizeUrl("/ott")}
-                  className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                  className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
                   {t("nav_ott")}
                 </Link>
@@ -148,7 +151,7 @@ export default function Footer() {
               <li>
                 <Link
                   href={localizeUrl("/category/reviews")}
-                  className="hover:text-[#288760] transition-colors block py-0.5 font-medium"
+                  className="hover:text-marquee transition-colors block py-0.5 font-medium"
                 >
                   {t("nav_reviews")}
                 </Link>
@@ -156,7 +159,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/admin"
-                  className="flex items-center gap-1.5 text-[#288760] font-bold hover:underline py-0.5"
+                  className="flex items-center gap-1.5 text-marquee font-poster font-bold uppercase tracking-wider hover:text-paper py-0.5"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>{t("nav_admin")}</span>
@@ -166,17 +169,20 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B7280]">
-          <p>
-            &copy; {new Date().getFullYear()} EXTRASAGA. One Indian Cinema Industry. One Unified Platform. All rights reserved.
+        {/* Bottom colophon strip */}
+        <div className="mt-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-paper/60">
+          <p className="flex items-center gap-2">
+            <BadgeCheck className="w-4 h-4 text-marquee" />
+            <span>
+              &copy; {new Date().getFullYear()} EXTRASAGA — printed daily in six scripts. One Indian Cinema Industry. Zero Curtains Closed. All rights reserved.
+            </span>
           </p>
-          <div className="flex items-center gap-4 text-[11px] text-[#4B6358]">
-            <span className="hover:text-[#288760] cursor-pointer">{t("footer_privacy")}</span>
+          <div className="flex items-center gap-4 text-[11px] font-poster uppercase tracking-wider text-paper/60">
+            <span className="hover:text-marquee cursor-pointer">{t("footer_privacy")}</span>
             <span>•</span>
-            <span className="hover:text-[#288760] cursor-pointer">{t("footer_terms")}</span>
+            <span className="hover:text-marquee cursor-pointer">{t("footer_terms")}</span>
             <span>•</span>
-            <span className="hover:text-[#288760] cursor-pointer">{t("footer_contact")}</span>
+            <span className="hover:text-marquee cursor-pointer">{t("footer_contact")}</span>
           </div>
         </div>
       </div>

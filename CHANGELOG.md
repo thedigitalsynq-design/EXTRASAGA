@@ -1,10 +1,29 @@
 # CHANGELOG.md — Release History & Version Records
 
-All notable changes to the **FILMY GARAGE** platform are documented in this file.
+All notable changes to the **EXTRASAGA** platform are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+
+## [2.0.0] - 2026-11-07 — The House Full Press Edition
+
+**Full edition change:** from After-Dark / Emission v3.0 to **HOUSE FULL PRESS (Fandom-Webzine Brutalism, v4.0)** — `docs/DESIGN-SYSTEM.md`.
+
+### The Reimagining
+- The entire visual language is rebuilt as a printed fanzine: newsprint paper canvas (`#F4EFE2`), warm ink type (`#17140F`), loud poster inks (press red `#E03A2F`, electric violet `#4F2BEF`, bulb gold `#F0B429`), hard offset shadows, sticker chips, ticket-stub CTAs, stamp badges, halftone media plates and marquee strips. Glow, glass, gradients and rounded bloat are retired.
+- **Press ribbon + poster masthead**: header rebuilt — ink utility ribbon (native-script date, red LIVE plate, gold admin sticker), giant Archivo Black `EXTRASAGA` wordmark with rotated press block, ink-tab genre navigation with active red brick, fan-poster mobile drawer.
+- **Breaking ticker** printed as a rotated red `BREAKING` plate on an ink strip; **hero** rebuilt as poster-cut cards with halftone print overlays and caption plates; **NOW SHOWING** release board rebuilt as a ticket-stub tab console with ink-poster movie cards (confirmed/tentative stamps retained); **footer** reprinted as the ink colophon page.
+- Legacy design eras fully deprecated: Jade Horizon raw hexes (`#288760` family) remapped to the press palette across all components and routes; `bg-white` wrappers migrated to `bg-sheet`.
+- Canonical design doc rewritten to v4 with a migration ledger and token map (`docs/DESIGN-SYSTEM.md`); PRD §3.1, PROJECT.md and CHANGELOG rebranded to EXTRASAGA / House Full Press.
+
+### Preserved Without Dilution (the agenda)
+- All six industries & six native script stacks, `data-lang` switching untouched.
+- Asia/Kolkata release engine: Released Today / Tomorrow / In Theatres (30-day window) / Next 7-30-60-90 / permanent Archive.
+- Ramayana Part 1 reverence rule drives unchanged: no star rating, marquee-gold badge only.
+- House Full Press Edition keeps every original traffic rule intact: trusted RSS ingestion, publisher attribution, approval workflow, twelve-slot navigation, CSP/HSTS, HMAC-SHA256 admin tokens, sliding-window rate limits, `CRON_SECRET` gates, zero `shadcn`.
+- 181/181 Vitest tests green; design-reference suite updated to assert the v4 press era.
+
 
 ## [1.4.0] - 2026-11-04
 

@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
       email === EXPECTED_EMAIL ||
       email === "admin@cinijaatre.com" ||
       email === "admin@sinikannada.com" ||
-      email === "admin@filmygarage.com";
+      email === "admin@extrasaga.press";
     const isPasswordValid = password === EXPECTED_PASSWORD;
 
     if (!isEmailValid || !isPasswordValid) {
