@@ -3,6 +3,11 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { DataService } from "@/lib/dataService";
 import BreakingTicker from "@/components/BreakingTicker";
+import BespokeEditorialHero from "@/components/BespokeEditorialHero";
+import CinemaIndustryPillFilters from "@/components/CinemaIndustryPillFilters";
+import ModularBentoShowcase from "@/components/ModularBentoShowcase";
+import UpcomingReleasesBuzz from "@/components/UpcomingReleasesBuzz";
+import SpotlightNewsletter from "@/components/SpotlightNewsletter";
 import HeroTopStories from "@/components/HeroTopStories";
 import LiveUpdatesFeed from "@/components/LiveUpdatesFeed";
 import HomeNewsFeed from "@/components/HomeNewsFeed";
@@ -67,12 +72,24 @@ export default async function HomePage() {
         {/* Header Ad Slot (728x90 Leaderboard) */}
         <AdBanner placement="header_leaderboard" ad={headerAd} />
 
-        {/* ZONE 1: Editorial Frontpage Hero Showcase */}
-        <section aria-label="Top Cinema Headlines">
-          <HeroTopStories articles={topStories.length > 0 ? topStories : allArticles.slice(0, 3)} />
-        </section>
+        {/* ZONE 1: Bespoke Editorial Hero Concept */}
+        <BespokeEditorialHero />
 
-        {/* ZONE 2: Cinema Release Center (In Theatres & Upcoming Releases) */}
+        {/* ZONE 2: High-Contrast Category Pill Filter Bar */}
+        <CinemaIndustryPillFilters />
+
+        {/* ZONE 3: Modular Pastel Bento Grid (The Everlasting Magic of Indian Cinema) */}
+        <ModularBentoShowcase />
+
+        {/* ZONE 4: Frontpage Press Dispatch & Lead Stories */}
+        <div id="the-wire">
+          <HeroTopStories articles={topStories.length > 0 ? topStories : allArticles.slice(0, 3)} />
+        </div>
+
+        {/* ZONE 5: Upcoming Theatrical Releases & Real-time Industry Buzz */}
+        <UpcomingReleasesBuzz />
+
+        {/* ZONE 6: Cinema Release Center (In Theatres & Theatrical Schedule) */}
         <section aria-label="Cinema Releases and Theatrical Schedule">
           <CinemaReleasesSection initialLatest={latestMovies} initialUpcoming={upcomingMovies} />
         </section>
@@ -80,15 +97,15 @@ export default async function HomePage() {
         {/* In-Feed Banner Ad */}
         <AdBanner placement="in_article" />
 
-        {/* ZONE 3: Core 2-Column Editorial Magazine (Col 8 Main Stream + Col 4 Intelligence Rail) */}
+        {/* ZONE 7: Core 2-Column Editorial Magazine (Col 8 Main Stream + Col 4 Intelligence Rail) */}
         <section aria-label="Editorial Stories and Industry Intelligence" className="content-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Col 8: Main Editorial Stream */}
             <div className="lg:col-span-8 space-y-12">
-              {/* 3A. Magnum Opus Spotlight Review: Ramayana Part 1 & Latest Critical Reviews */}
+              {/* 7A. Magnum Opus Spotlight Review: Ramayana Part 1 & Latest Critical Reviews */}
               <ReviewsSection reviews={reviews} />
 
-              {/* 3B. Latest Cinema Headlines & Industry Special Feed */}
+              {/* 7B. Latest Cinema Headlines & Industry Special Feed */}
               <HomeNewsFeed
                 initialArticles={allArticles}
                 initialTrending={trendingArticles}
@@ -96,7 +113,7 @@ export default async function HomePage() {
                 hideSidebar={true}
               />
 
-              {/* 3C. OTT & Streaming Radar */}
+              {/* 7C. OTT & Streaming Radar */}
               <OttSection releases={ottReleases} />
             </div>
 
@@ -114,34 +131,37 @@ export default async function HomePage() {
               {/* Widget 4: CineStar Power Rankings (Forbes-style) */}
               <CineStarWidget />
 
-              {/* Widget 4: Sidebar Rectangle Ad */}
+              {/* Widget 5: Sidebar Rectangle Ad */}
               <AdBanner placement="sidebar_rectangle" ad={sidebarAd} />
             </div>
           </div>
         </section>
 
-        {/* ZONE 4: Editorial Innovation Bento Showcase */}
+        {/* ZONE 8: Stay in the Spotlight Interactive Newsletter Strip */}
+        <SpotlightNewsletter />
+
+        {/* ZONE 9: Editorial Innovation Bento Showcase */}
         <EditorialBentoShowcase />
 
-        {/* ZONE 5: Curated Story Deck (Fanned Editorial Cards) */}
+        {/* ZONE 10: Curated Story Deck (Fanned Editorial Cards) */}
         <EditorialStoryDeck />
 
-        {/* ZONE 6: The Cinema Odyssey & Narrative Journey */}
+        {/* ZONE 11: The Cinema Odyssey & Narrative Journey */}
         <CinemaJourneyTimeline />
 
-        {/* ZONE 7: Celluloid Era Time-Machine (5 Decades of Cinema Evolution) */}
+        {/* ZONE 12: Celluloid Era Time-Machine (5 Decades of Cinema Evolution) */}
         <CelluloidEraScrubber />
 
-        {/* ZONE 8: Visual Media Pavilion */}
+        {/* ZONE 13: Visual Media Pavilion */}
         <section aria-label="Cinema Trailers and Celebrity Photo Gallery" className="space-y-12 pt-6 border-t-2 border-ink content-auto">
-          {/* 7A. Trailers & Official Videos Lounge */}
+          {/* Trailers & Official Videos Lounge */}
           <VideoSection videos={videos} />
 
-          {/* 7B. Celebrity Red Carpet & Photo Gallery */}
+          {/* Celebrity Red Carpet & Photo Gallery */}
           <PhotoGallerySection galleries={galleries} />
         </section>
 
-        {/* ZONE 8: Voices of Cinema & Community Acclaim */}
+        {/* ZONE 14: Voices of Cinema & Community Acclaim */}
         <EditorialTestimonials />
 
         {/* Footer Banner Ad */}

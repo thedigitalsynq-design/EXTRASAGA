@@ -171,13 +171,19 @@ export default function Footer() {
 
         {/* Bottom colophon strip */}
         <div className="mt-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-paper/60">
-          <p className="flex items-center gap-2">
-            <BadgeCheck className="w-4 h-4 text-marquee" />
-            <span>
-              &copy; {new Date().getFullYear()} EXTRASAGA — Six traditions, one eternal screen. Dedicated to the artists, dreamers, and audiences of Indian cinema. All rights reserved.
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <p className="flex items-center gap-2">
+              <BadgeCheck className="w-4 h-4 text-marquee" />
+              <span>
+                &copy; {new Date().getFullYear()} EXTRASAGA — Six traditions, one eternal screen. Dedicated to the artists, dreamers, and audiences of Indian cinema. All rights reserved.
+              </span>
+            </p>
+            <span className="hidden sm:inline text-paper/30">•</span>
+            <span className="font-handwritten text-lg text-marquee font-bold select-none whitespace-nowrap">
+              Indian Cinema. United. 🎬
             </span>
-          </p>
-          <div className="flex items-center gap-4 text-[11px] font-poster uppercase tracking-wider text-paper/60">
+          </div>
+          <div className="flex items-center gap-4 text-[11px] font-poster uppercase tracking-wider text-paper/60 shrink-0">
             <span className="hover:text-marquee cursor-pointer">{t("footer_privacy")}</span>
             <span>•</span>
             <span className="hover:text-marquee cursor-pointer">{t("footer_terms")}</span>

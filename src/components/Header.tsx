@@ -35,6 +35,14 @@ export default function Header() {
   useEffect(() => {
     setCurrentDate(formatEditorialDate(new Date().toISOString()));
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -46,7 +54,10 @@ export default function Header() {
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -106,31 +117,20 @@ export default function Header() {
       <div className="bg-ink text-paper border-b-2 border-ink text-[11px] py-1.5 px-4 sm:px-6 relative overflow-hidden">
         <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 relative">
-          {/* Left: Date & Press Status */}
-          <div className="flex items-center gap-3 text-paper/70">
+          {/* Left: Date & Unified Desk Status */}
+          <div className="flex items-center gap-3 text-paper/80">
             <span className="font-semibold text-marquee flex items-center gap-1.5 font-mono-tabular">
               {currentDate || "7 November 2026"}
             </span>
             <span className="text-paper/30 hidden md:inline">|</span>
-            <span className="text-[10px] font-poster text-paper hidden md:inline-flex items-center gap-1.5 bg-violet px-2.5 py-0.5 border border-paper/40 font-bold tracking-widest uppercase -rotate-1">
-              ALL INDIAN CINEMA · SIX TRADITIONS, ONE SCREEN · HOUSE FULL
+            <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-paper/10 text-paper/90 border border-paper/15 text-[10px] font-semibold tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-press animate-pulse" />
+              Unified Indian Cinema Desk
             </span>
           </div>
 
-          {/* Right: Quick Links, Unified Platform Badge & Admin */}
+          {/* Right: Quick Links & Admin */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Unified Platform Badge (Replaces Regional Switcher) */}
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-paper text-ink text-[11px] font-semibold border-2 border-paper -rotate-1 select-none shadow-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-press animate-pulse"></span>
-              <span className="font-poster font-bold tracking-wider uppercase text-[10px]">
-                All Indian Film Industries
-              </span>
-              <span className="text-[9px] font-mono-tabular text-ink-dim hidden sm:inline">
-                · Unified Desk
-              </span>
-            </div>
-
-            <span className="text-paper/30 hidden sm:inline">•</span>
             <Link
               href={localizeUrl("/live")}
               className="flex items-center gap-1.5 text-press hover:text-marquee font-bold transition-colors text-[11px]"
@@ -193,9 +193,9 @@ export default function Header() {
             <span className="text-paper/30">•</span>
             <Link
               href="/admin"
-              className="flex items-center gap-1 text-[11px] font-poster px-2.5 py-0.5 bg-marquee text-ink hover:bg-paper border-2 border-paper hover:border-marquee font-bold tracking-wider uppercase transition-all -rotate-1"
+              className="flex items-center gap-1 text-[10px] font-poster px-2.5 py-0.5 bg-marquee text-ink hover:bg-paper border border-ink shadow-xs font-bold tracking-wider uppercase transition-all rounded-xs"
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
+              <ShieldCheck className="w-3 h-3" />
               <span>{t("nav_admin")}</span>
             </Link>
           </div>
@@ -204,64 +204,65 @@ export default function Header() {
 
       {/* Main Branding Bar — the poster masthead */}
       <div className="border-b-2 border-ink bg-paper">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href={localizeUrl("/")} className="flex items-center gap-3.5 group">
             {/* The press block: poster red ink plate */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 bg-press border-2 border-ink shadow-press flex items-center justify-center -rotate-3 group-hover:rotate-2 transition-transform duration-300 shrink-0">
-              <Film className="w-6 h-6 text-paper" />
-              <span className="absolute -bottom-1 -right-2 bg-marquee border-2 border-ink w-4 h-4"></span>
+            <div className="relative w-11 h-11 sm:w-13 sm:h-13 bg-press border-2 border-ink shadow-press flex items-center justify-center -rotate-2 group-hover:rotate-0 transition-transform duration-300 shrink-0 rounded-xs">
+              <Film className="w-5 h-5 sm:w-6 sm:h-6 text-paper" />
+              <span className="absolute -bottom-1 -right-1.5 bg-marquee border-2 border-ink w-3.5 h-3.5 rounded-xs"></span>
             </div>
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2.5">
-                <span className="text-2xl sm:text-4xl font-poster tracking-tight text-ink uppercase select-none leading-none">
-                  EXTRA
-                  <span className="text-press">SAGA</span>
+                <span className="text-2xl sm:text-3xl font-poster tracking-tight text-ink uppercase select-none leading-none">
+                  EXTRA<span className="text-press">SAGA</span>
                 </span>
                 <span
-                  className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-poster font-bold tracking-[0.18em] uppercase bg-violet text-paper border-2 border-ink shadow-sticker select-none rotate-1"
+                  className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[9px] font-poster font-bold tracking-[0.16em] uppercase bg-ink text-paper rounded-full border border-ink shadow-xs select-none"
                 >
-                  ALL INDIAN CINEMA · UNIFIED PLATFORM
+                  <span className="w-1.5 h-1.5 rounded-full bg-press" />
+                  All Indian Cinema
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-ink-dim font-medium tracking-wide mt-1 flex items-center gap-1.5 line-clamp-1">
-                <span className="font-bold text-ink font-poster tracking-[0.15em] uppercase bg-marquee px-1.5 py-0.5 border-2 border-ink shadow-sticker">
+              <div className="text-[11px] text-ink-dim font-medium tracking-wide mt-1 flex items-center gap-2 line-clamp-1">
+                <span className="font-poster font-bold text-ink uppercase tracking-wider text-[11px]">
                   Where Cinema Comes Alive
                 </span>
-                <span className="text-ink/30">·</span>
-                <span className="text-ink-mute font-medium">
+                <span className="text-ink/30 hidden sm:inline">•</span>
+                <span className="text-ink-mute font-medium hidden sm:inline">
                   Six film traditions united on one stage — authentic stories, fearless reviews, and the soul of the silver screen.
                 </span>
-              </p>
+              </div>
             </div>
           </Link>
 
           {/* Right Search Button & Cinephile Match Trigger */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {/* Cinephile Vibe Match Trigger */}
             <button
               type="button"
               onClick={() => setIsDiscoveryModalOpen(true)}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-violet hover:bg-violet-deep text-paper text-xs font-poster font-bold border-2 border-ink shadow-sticker hover:shadow-press transition-all select-none active:scale-95 rotate-1"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 bg-ink hover:bg-press text-paper text-xs font-poster font-bold tracking-wider uppercase border-2 border-ink shadow-sticker hover:shadow-press transition-all select-none active:scale-95 rounded-xs"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-marquee" />
               <span>Vibe Match</span>
             </button>
 
             {/* Quick Search Trigger Pill */}
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="p-2 sm:px-3.5 sm:py-2 bg-sheet hover:bg-band text-ink border-2 border-ink shadow-sticker hover:shadow-press transition-all flex items-center gap-2 text-sm"
+              className="p-2 sm:px-3 sm:py-2 bg-sheet hover:bg-paper text-ink border-2 border-ink shadow-sticker hover:shadow-press transition-all flex items-center gap-2 text-xs rounded-xs group"
               aria-label={t("nav_search")}
             >
-              <Search className="w-4 h-4" />
-              <span className="hidden sm:inline text-xs text-ink-dim font-semibold">{t("nav_search")}...</span>
+              <Search className="w-3.5 h-3.5 text-ink-dim group-hover:text-press transition-colors" />
+              <span className="hidden sm:inline text-xs text-ink-dim font-medium group-hover:text-ink">{t("nav_search")}...</span>
+              <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[9px] font-mono-tabular bg-band text-ink-mute border border-ink/20 rounded">⌘K</kbd>
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+              className="lg:hidden p-2 bg-press text-paper border-2 border-ink shadow-sticker hover:shadow-press transition-all rounded-xs"
               aria-label="Menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -283,28 +284,28 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t("nav_search_placeholder")}
-                className="w-full bg-sheet border-2 border-ink shadow-sticker px-10 pr-4 py-2.5 text-sm text-ink placeholder-ink-mute focus:outline-none focus:shadow-press font-sans"
+                className="w-full bg-sheet border-2 border-ink shadow-sticker px-10 pr-4 py-2.5 text-sm text-ink placeholder-ink-mute focus:outline-none focus:shadow-press font-sans rounded-xs"
                 autoFocus
               />
               <Search className="w-4 h-4 text-ink-dim absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="bg-press hover:bg-press-deep text-paper border-2 border-ink shadow-sticker hover:shadow-press px-5 py-2.5 text-sm font-poster font-bold uppercase tracking-wider transition-all"
+              className="bg-press hover:bg-press-deep text-paper border-2 border-ink shadow-sticker hover:shadow-press px-5 py-2.5 text-sm font-poster font-bold uppercase tracking-wider transition-all rounded-xs"
             >
               {t("btn_search")}
             </button>
             <button
               type="button"
               onClick={() => setIsSearchOpen(false)}
-              className="p-2 border-2 border-ink bg-sheet text-ink-dim hover:text-ink"
+              className="p-2 border-2 border-ink bg-sheet text-ink-dim hover:text-ink rounded-xs"
             >
               <X className="w-5 h-5" />
             </button>
           </form>
           {/* Quick Trending tags in search bar */}
           <div className="max-w-3xl mx-auto mt-3 flex items-center gap-2 flex-wrap text-[11px] text-ink-dim">
-            <span className="font-poster tracking-wider uppercase text-ink bg-marquee px-2 py-0.5 border-2 border-ink shadow-sticker">
+            <span className="font-poster tracking-wider uppercase text-ink bg-marquee px-2 py-0.5 border-2 border-ink shadow-sticker rounded-xs">
               #Hot right now
             </span>
             {config.hotTopics.map((tag) => (
@@ -315,7 +316,7 @@ export default function Header() {
                   setSearchQuery(tag);
                   window.location.href = `/search?q=${encodeURIComponent(tag)}`;
                 }}
-                className="bg-sheet hover:bg-violet hover:text-paper px-3 py-1 border-2 border-ink hover:border-violet font-semibold transition-colors"
+                className="bg-sheet hover:bg-ink hover:text-paper px-3 py-1 border-2 border-ink font-semibold transition-colors rounded-xs"
               >
                 #{tag}
               </button>
@@ -324,17 +325,17 @@ export default function Header() {
         </div>
       )}
 
-      {/* Category Navigation Bar — the strip of genre tabs */}
+      {/* Category Navigation Bar — sleek editorial tabs */}
       <nav
-        className={`w-full bg-band border-t border-ink/20 transition-all duration-300 ${
+        className={`w-full bg-[#EDE6D4] border-b-2 border-ink transition-all duration-300 ${
           isSticky
-            ? "sticky top-0 z-50 bg-paper shadow-press border-b-2 border-ink"
+            ? "sticky top-0 z-50 bg-paper/95 backdrop-blur-md shadow-press"
             : ""
         }`}
       >
-        <div className="max-w-7xl mx-auto px-2 sm:px-6">
-          <div className="flex items-center overflow-x-auto no-scrollbar py-2">
-            <div className="flex items-center gap-1.5 whitespace-nowrap min-w-max py-1">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <div className="flex items-center overflow-x-auto no-scrollbar py-1.5">
+            <div className="flex items-center gap-1 sm:gap-1.5 whitespace-nowrap min-w-max py-0.5">
               {MAIN_NAV_ITEMS.map((item) => {
                 const isButton = item.isButton;
                 const active = isItemActive(item.slug, item.href);
@@ -345,13 +346,14 @@ export default function Header() {
                     <Link
                       key={item.id}
                       href={localizeUrl(item.href)}
-                      className={`px-3.5 py-1.5 text-xs font-poster font-bold uppercase tracking-wider transition-all select-none border-2 border-ink ${
+                      className={`px-3 py-1.5 text-xs font-poster font-bold uppercase tracking-wider transition-all select-none rounded-xs border-2 flex items-center gap-1.5 ${
                         active
-                          ? "bg-press text-paper shadow-press -rotate-1"
-                          : "bg-press-faint text-press-soft hover:bg-press hover:text-paper shadow-sticker"
+                          ? "bg-press-deep text-paper border-ink shadow-press"
+                          : "bg-press text-paper border-ink shadow-sticker hover:bg-press-deep hover:shadow-press"
                       }`}
                       title={item.englishLabel}
                     >
+                      <Zap className="w-3 h-3 text-marquee fill-marquee" />
                       <span>{label}</span>
                     </Link>
                   );
@@ -361,10 +363,10 @@ export default function Header() {
                   <Link
                     key={item.id}
                     href={localizeUrl(item.href)}
-                    className={`px-3.5 py-1.5 text-xs sm:text-[13px] font-poster font-bold uppercase tracking-wide select-none border-2 transition-all ${
+                    className={`px-3 py-1.5 text-xs sm:text-[13px] font-poster font-bold uppercase tracking-wider select-none rounded-xs transition-all border-2 ${
                       active
-                        ? "bg-ink text-paper shadow-press border-ink"
-                        : "bg-sheet text-ink border-ink/40 border-dashed hover:bg-band hover:border-ink hover:border-solid"
+                        ? "bg-ink text-paper border-ink shadow-press"
+                        : "text-ink/80 hover:text-ink hover:bg-paper/90 border-transparent hover:border-ink/20"
                     }`}
                     title={item.englishLabel}
                   >
@@ -388,8 +390,8 @@ export default function Header() {
             {/* Drawer Header */}
             <div className="flex items-center justify-between pb-4 border-b-2 border-ink">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 bg-press border-2 border-ink shadow-sticker flex items-center justify-center -rotate-3 shrink-0">
-                  <Film className="w-5 h-5 text-paper" />
+                <div className="w-9 h-9 bg-press border-2 border-ink shadow-sticker flex items-center justify-center -rotate-2 shrink-0 rounded-xs">
+                  <Film className="w-4 h-4 text-paper" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
@@ -397,15 +399,15 @@ export default function Header() {
                       EXTRA<span className="text-press">SAGA</span>
                     </span>
                     <span
-                      className="px-2 py-0.5 text-[9px] font-poster font-bold uppercase bg-violet text-paper border-2 border-ink"
+                      className="px-2 py-0.5 text-[9px] font-poster font-bold uppercase bg-ink text-paper rounded-full border border-ink"
                     >
-                      ALL CINEMA
+                      All Cinema
                     </span>
                   </div>
                   <p className="text-[10px] text-ink-dim font-medium line-clamp-1 mt-0.5 flex items-center gap-1">
-                    <span className="font-bold text-ink">EXTRASAGA</span>
+                    <span className="font-bold text-ink">Where Cinema Comes Alive</span>
                     <span className="text-ink/30">·</span>
-                    <span className="text-ink-mute">Unified Indian Cinema</span>
+                    <span className="text-ink-mute">Six Film Traditions</span>
                   </p>
                 </div>
               </div>

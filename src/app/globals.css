@@ -23,13 +23,23 @@
   --press-violet: #4F2BEF;
   --press-gold: #F0B429;
 
-  /* All typography unified exclusively to Google Sans Flex */
+  /* All typography unified exclusively to Google Sans Flex with editorial serif & handwriting accents */
   --font-google-sans-flex: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif-accent: 'Playfair Display', Georgia, serif;
+  --font-handwriting: 'Caveat', 'Nanum Pen Script', cursive, sans-serif;
   --font-english: var(--font-google-sans-flex);
   --font-display-latin: var(--font-google-sans-flex);
   --font-poster: var(--font-google-sans-flex);
   --font-sans: var(--font-google-sans-flex);
   --font-display: var(--font-google-sans-flex);
+}
+
+.font-serif-accent {
+  font-family: var(--font-serif-accent);
+}
+
+.font-handwritten {
+  font-family: var(--font-handwriting);
 }
 
 html {
