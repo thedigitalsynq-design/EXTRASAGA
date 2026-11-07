@@ -83,7 +83,7 @@ export default async function MoviesPage({ searchParams }: MoviesPageProps) {
             CINEMA RELEASES &amp; <span className="text-press">DISCOVERY HUB</span>
           </h1>
           <p className="text-sm text-ink-dim mt-2 max-w-3xl leading-relaxed font-grotesk font-medium">
-            New films released over the past 30 days and the next 90 days across all Indian film industries. Independently verified against official studio announcements and the multiplex booking network.
+            From theatrical premieres setting multiplex corridors ablaze to tomorrow&apos;s most awaited festival showcases, explore our independently verified calendar tracing Indian cinema across every language, screen, and horizon.
           </p>
 
           {/* Primary Status Filter Bar */}

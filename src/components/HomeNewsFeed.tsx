@@ -80,11 +80,11 @@ export default function HomeNewsFeed({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-xl sm:text-2xl font-poster font-bold text-ink uppercase tracking-tight">
-                THE FEED — INDIAN CINEMA WIRE
+                THE PULSE OF INDIAN CINEMA
               </h2>
             </div>
             <p className="text-[11px] text-ink-dim font-medium font-sans">
-              All 6 industries · Verified trade dispatches · Zero promotional fluff
+              From Mumbai sets to Chennai soundstages — real stories, verified dispatches, and the heart of filmmaking.
             </p>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function HomeNewsFeed({
           href={localizeUrl("/category/latest")}
           className="inline-flex items-center gap-2 px-8 py-3 bg-ink text-paper hover:bg-press border-2 border-ink shadow-sticker hover:shadow-press text-xs font-poster font-bold uppercase tracking-widest transition-all -rotate-1 active:scale-95"
         >
-          <span>PULL UP THE WHOLE FEED</span>
+          <span>EXPLORE THE FULL WIRE</span>
           <ChevronRight className="w-4 h-4 text-marquee" />
         </Link>
       </div>
@@ -148,10 +148,10 @@ export default function HomeNewsFeed({
           </div>
           <div>
             <h2 className="text-lg sm:text-xl font-poster font-bold text-ink uppercase tracking-tight">
-              TRADE DOSSIER — MULTI-INDUSTRY DESK
+              INSIDE THE FILM STUDIOS · CREATIVE DOSSIER
             </h2>
             <p className="text-[11px] text-ink-dim font-medium font-sans">
-              Exclusive production scoops, shooting schedules, and casting confirmations
+              Director diaries, behind-the-scenes milestones, and stories waiting to unfold on the silver screen.
             </p>
           </div>
         </div>

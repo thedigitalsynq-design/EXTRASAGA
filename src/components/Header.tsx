@@ -113,7 +113,7 @@ export default function Header() {
             </span>
             <span className="text-paper/30 hidden md:inline">|</span>
             <span className="text-[10px] font-poster text-paper hidden md:inline-flex items-center gap-1.5 bg-violet px-2.5 py-0.5 border border-paper/40 font-bold tracking-widest uppercase -rotate-1">
-              ALL INDIAN CINEMA · ONE UNIFIED DESTINATION · HOUSE FULL
+              ALL INDIAN CINEMA · SIX TRADITIONS, ONE SCREEN · HOUSE FULL
             </span>
           </div>
 
@@ -226,11 +226,11 @@ export default function Header() {
               </div>
               <p className="text-[10px] sm:text-[11px] text-ink-dim font-medium tracking-wide mt-1 flex items-center gap-1.5 line-clamp-1">
                 <span className="font-bold text-ink font-poster tracking-[0.15em] uppercase bg-marquee px-1.5 py-0.5 border-2 border-ink shadow-sticker">
-                  The Cine Wire Never Sleeps
+                  Where Cinema Comes Alive
                 </span>
                 <span className="text-ink/30">·</span>
                 <span className="text-ink-mute font-medium">
-                  All Indian Film Industries · One Unified Platform · Real-Time Coverage
+                  Six film traditions united on one stage — authentic stories, fearless reviews, and the soul of the silver screen.
                 </span>
               </p>
             </div>
@@ -420,10 +420,10 @@ export default function Header() {
             {/* Mobile Unified Platform Banner (Replaces Regional Switcher) */}
             <div className="py-2.5 px-3 border-b-2 border-ink bg-band">
               <p className="text-[10px] uppercase tracking-[0.2em] text-ink font-poster font-bold">
-                Unified Indian Cinema Desk
+                The Living Heart of Indian Cinema
               </p>
               <p className="text-[10px] text-ink-dim font-medium mt-0.5">
-                Bollywood · Tollywood · Sandalwood · Kollywood · Mollywood · Regional
+                Bollywood · Tollywood · Sandalwood · Kollywood · Mollywood · Regional Masters
               </p>
             </div>
 

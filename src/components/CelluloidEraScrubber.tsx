@@ -22,49 +22,49 @@ export default function CelluloidEraScrubber() {
     {
       id: "era-1970",
       years: "1970 — 1989",
-      title: "Mythological & Classical Epoch",
-      tagline: "Epic Storytelling, Cultural Reverence & Timeless Folklore Roots",
+      title: "The Golden Dawn · Folklore & Myth",
+      tagline: "Epic Storytelling, Cultural Reverence, and Eternal Roots",
       keyFilms: ["Mayura (1975)", "Babruvahana (1977)", "Bhakta Prahlada (1983)", "Sholay (1975)"],
       description:
-        "The foundational era when Indian cinema established its deep cultural resonance. Legendary auteurs, iconic performers, and classical literature fused into theatrical monuments celebrated across generations.",
-      quote: "Cinema is not merely entertainment; it is the living mirror of our society's collective memory.",
+        "The defining era when Indian cinema found its beating heart. Visionary storytellers and screen legends turned ancient literature, classical music, and majestic folklore into monuments that still echo across generations.",
+      quote: "Cinema is never just a passing show; it is the spiritual mirror of our society's collective memory.",
       quoteAuthor: "Dr. Rajkumar",
       image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "era-1990",
       years: "1990 — 2009",
-      title: "Auteur Awakening & Realism",
-      tagline: "Reinvention of Narrative Form, Raw Realism & Monsoonal Romance",
+      title: "The Fearless Auteurs · Raw Realism",
+      tagline: "Breaking the Formula with Street Poetry and Monsoonal Romance",
       keyFilms: ["Om (1995)", "A (1998)", "Sparsha (2000)", "Mungaru Male (2006)", "Dilwale Dulhania Le Jayenge (1995)"],
       description:
-        "A revolutionary phase led by visionary writer-directors. Philosophical non-linear storytelling, gritty realism, and record-breaking musical romances redefined the pan-Indian box office.",
-      quote: "If you want to be original, dare to project what an audience feels but never speaks out loud.",
+        "A fiery revolution led by daring writer-directors. Non-linear plots, honest street-level grit, and unforgettable musical romances shattered outdated templates and remade the Indian box office.",
+      quote: "To be truly original, dare to put on screen what the audience feels deep inside but never dares to say out loud.",
       quoteAuthor: "Real Star Upendra",
       image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "era-2010",
       years: "2010 — 2024",
-      title: "Pan-Indian Phenomenon",
-      tagline: "Regional Stories Conquering the Global Box Office Canvas",
+      title: "The Pan-Indian Awakening · Borderless Cinema",
+      tagline: "Regional Folklore Conquering the Global Stage",
       keyFilms: ["Baahubali 1 & 2", "KGF: Chapter 1 & 2", "RRR", "Kantara", "777 Charlie"],
       description:
-        "The historic paradigm shift where regional storytelling dismantled linguistic barriers. Indian cinema emerged as a global entertainment powerhouse with unprecedented visual audacity.",
-      quote: "Our indigenous folklore has the raw power to grip audiences from Tokyo and London to Los Angeles.",
+        "The historic earthquake that dismantled linguistic boundaries forever. Rooted folklore, breathtaking courage, and visual wizardry turned regional storytellers into global cultural champions.",
+      quote: "Our soil, our folklore, and our traditions possess the raw power to captivate audiences from Tokyo and London to New York.",
       quoteAuthor: "Rishab Shetty & Rocking Star Yash",
       image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: "era-2026",
       years: "2026 & Beyond",
-      title: "Global Celluloid Vanguard",
-      tagline: "IMAX 70mm Epics, Cultural Dignity & High-Octane Craft",
+      title: "The Global Vanguard · Heritage Meets IMAX",
+      tagline: "IMAX 70mm Epics, Cultural Dignity, and Fearless Craft",
       keyFilms: ["Ramayana: Part 1", "Toxic: A Fairy Tale", "Kantara: Chapter 1", "War 2", "Spirit"],
       description:
-        "The contemporary renaissance characterized by uncompromised cultural dignity, Hollywood-grade visual effects, worldwide simultaneous releases, and a passionate return to purist film craft.",
-      quote: "When scale is matched with authentic reverence, cinema transcends commerce and becomes cultural heritage.",
-      quoteAuthor: "CINIJAATRE Editorial Board",
+        "A golden renaissance where scale meets genuine reverence. Collaborating with world-class craftspeople, Indian cinema now commands global IMAX screens with head held high and soul intact.",
+      quote: "When grand scale is blessed with authentic reverence, cinema ceases to be mere commerce — it becomes cultural heritage.",
+      quoteAuthor: "CINIJAATRE Editorial Bureau",
       image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
     },
   ];
@@ -84,7 +84,7 @@ export default function CelluloidEraScrubber() {
             5 Decades of Cinema Evolution
           </h2>
           <p className="text-base text-ink-muted font-medium mt-1">
-            Scrub across five transformative decades of Indian film history — from mythological monuments to global IMAX spectacles.
+            Travel through fifty unforgettable years of cinematic wonder — from mythical legends that built our culture to global epics that shake the modern world.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">

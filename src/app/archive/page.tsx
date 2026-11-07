@@ -42,7 +42,7 @@ export default async function PermanentArchivePage() {
             Permanent Celluloid Archive
           </h1>
           <p className="text-base text-ink-muted mt-3 max-w-2xl leading-relaxed font-medium">
-            Every cinema article, release dossier, and review that has aged beyond its active theatrical window is preserved permanently at its canonical URL. No cultural record is ever purged.
+            Cinema is an unbroken dialogue between eras. Every retrospective dispatch, historical box office record, and critical dossier is preserved here in perpetuity — a living testament to the evolution of the silver screen.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-6 text-xs text-ink font-bold">

@@ -59,7 +59,7 @@ export default async function BoxOfficePage() {
                 CONSOLIDATED <span className="text-press">BOX OFFICE</span> LEDGER
               </h1>
               <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
-                Statistically cleansed, outlier-free theatrical collections reconciled from distributor ledgers, ticket aggregators, and multiplex telemetry across India.
+                Where trade hearsay gives way to audited truth. Rigorously cross-verified theatrical grosses, distributor shares, and real-time screen occupancy reconciled across every territory in Indian cinema.
               </p>
             </div>
 

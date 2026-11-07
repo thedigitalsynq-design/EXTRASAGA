@@ -42,10 +42,10 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-poster font-bold text-ink uppercase tracking-tight">
-              THE VERDICT DESK · FILM REVIEWS
+              THE VERDICT · HONEST FILM REVIEWS
             </h2>
             <p className="text-xs text-ink-dim font-medium font-sans">
-              All Indian Cinema · Dual-Axis Story & Technical Audits · Zero Star Games
+              All Indian Cinema · Evaluating Emotional Storytelling & Technical Mastery · Fearless and Fair
             </p>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
           href={localizeUrl("/category/reviews")}
           className="px-4 py-2 bg-paper text-ink hover:bg-press hover:text-paper border-2 border-ink shadow-sticker text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors self-start sm:self-auto shrink-0"
         >
-          <span>ALL REVIEWS ARCHIVE</span>
+          <span>BROWSE ALL REVIEWS</span>
           <ChevronRight className="w-3.5 h-3.5" />
         </Link>
       </div>

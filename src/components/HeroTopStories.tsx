@@ -63,15 +63,15 @@ export default function HeroTopStories({ articles }: HeroTopStoriesProps) {
         <div className="flex items-center gap-2.5">
           <span className="w-3 h-3 bg-press border border-ink rotate-45 shrink-0" />
           <h2 className="text-xs sm:text-sm font-poster uppercase tracking-[0.2em] text-ink font-bold flex items-center gap-2">
-            <span>THE FRONTPAGE CUT</span>
+            <span>THE FRONTPAGE DISPATCH</span>
             <span className="text-ink/40">/</span>
-            <span className="text-press font-bold">ALL INDIAN CINEMA</span>
+            <span className="text-press font-bold">STORIES SHAPING THE SCREEN</span>
           </h2>
         </div>
 
         <div className="inline-flex items-center gap-2 px-3 py-0.5 bg-sheet border-2 border-ink shadow-sticker text-[10px] font-poster font-bold uppercase tracking-wider text-ink select-none -rotate-1">
           <span className="w-2 h-2 rounded-full bg-press animate-pulse"></span>
-          <span>Receipts First · Zero Fake Tea</span>
+          <span>Verified Journalism · Pure Cinema, Pure Truth</span>
         </div>
       </div>
 

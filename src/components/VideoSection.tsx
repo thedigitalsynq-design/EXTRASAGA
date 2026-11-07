@@ -31,17 +31,17 @@ export default function VideoSection({ videos }: VideoSectionProps) {
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
-                FIRST LOOK
+                FIRST GLIMPSE
               </span>
               <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
-                TRAILERS &amp; TEASERS
+                TEASERS &amp; TRAILERS
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink truncate">
-              OFFICIAL DROP<span className="text-press">S</span>
+              CINEMATIC <span className="text-press">PREVIEWS</span>
             </h2>
             <p className="text-xs text-ink-dim font-grotesk font-medium">
-              Teasers, trailers, and promo cuts across all Indian film industries
+              The earliest sparks of tomorrow&apos;s blockbusters — teaser drops, official trailers, and exclusive first cuts.
             </p>
           </div>
         </div>

@@ -47,17 +47,17 @@ export default function PhotoGallerySection({
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
-                PHOTO DUMP
+                LENS &amp; LIGHT
               </span>
               <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
-                RED CARPET &amp; PROMOS
+                RED CARPET &amp; PORTRAITS
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink truncate">
               CELEBRITY <span className="text-violet">GALLERIES</span>
             </h2>
             <p className="text-xs text-ink-dim font-grotesk font-medium">
-              High-resolution shoots, trailer launch events, and red carpet captures across all Indian cinema industries
+              Capturing the grace, glamour, and candid moments of India&apos;s most beloved screen icons.
             </p>
           </div>
         </div>

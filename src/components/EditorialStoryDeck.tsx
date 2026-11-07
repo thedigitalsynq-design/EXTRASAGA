@@ -70,17 +70,17 @@ export default function EditorialStoryDeck() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-ink uppercase tracking-tight leading-tight">
-            Cinema Story Stacks: The Deep-Dive Collection
+            Cinema Story Stacks · The Deep-Dive Collection
           </h2>
 
           <p className="text-base text-ink-muted font-medium leading-relaxed">
-            Tactile, long-form film essays and investigative retrospectives published weekly by our senior editorial board.
+            Long-form film essays and investigative retrospectives published weekly — written for readers who see movies as literature in motion.
           </p>
 
           <div className="pt-2">
             <span className="text-xs text-ink-muted flex items-center gap-2 font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-poster-red" />
-              <span>Click any card below to bring it to the forefront</span>
+              <span>Click any card to bring its story into focus</span>
             </span>
           </div>
         </div>

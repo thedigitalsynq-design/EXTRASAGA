@@ -1,10 +1,9 @@
 import { LanguageCode } from "@/types";
 
 /**
- * EXTRASAGA is an English-language publication.
- * The per-language dictionaries have been retired: every edition key resolves
- * to the same English dictionary so legacy `lang` plumbing keeps compiling
- * (and keeps rendering English) everywhere.
+ * CINIJAATRE / EXTRASAGA is a unified English-language entertainment platform.
+ * Every edition key resolves to the same clear, expressive, and engaging English
+ * dictionary so all routes and legacy language hooks continue to render flawlessly.
  */
 export interface Translations {
   // Navigation
@@ -101,63 +100,63 @@ const ENGLISH: Translations = {
   nav_industry: "Sandalwood",
   nav_bollywood: "Bollywood",
   nav_hollywood: "Hollywood",
-  nav_actors: "Actors",
-  nav_actresses: "Actresses",
-  nav_gossip: "Tea",
-  nav_gallery: "Photos",
+  nav_actors: "Leading Men",
+  nav_actresses: "Leading Women",
+  nav_gossip: "Studio Wire",
+  nav_gallery: "Gallery",
   nav_ott: "Now Streaming",
   nav_boxoffice: "Box Office",
-  nav_upcoming: "Upcoming Movies",
+  nav_upcoming: "Coming Soon",
   nav_trending: "Trending",
   nav_admin: "Admin",
   nav_search: "Search",
-  nav_search_placeholder: "Search the six industries — movies, stars, verdicts, receipts...",
-  nav_hot_topics: "Hot Topics:",
-  nav_select_industry: "Pick Your Industry",
-  nav_categories: "Categories",
+  nav_search_placeholder: "Search across Indian cinema — movies, stars, honest reviews, verified box office...",
+  nav_hot_topics: "Trending Topics:",
+  nav_select_industry: "Explore Industries",
+  nav_categories: "Browse Categories",
 
-  btn_all_news: "All Stories",
-  btn_more_news: "Pull up the whole feed",
-  btn_read_more: "Read the thread",
+  btn_all_news: "Explore All Stories",
+  btn_more_news: "Explore Every Story",
+  btn_read_more: "Read Full Story",
   btn_view_all: "View All",
-  btn_full_report: "Full Report",
-  btn_watch_trailer: "Roll the First Look",
-  btn_read_review: "Read the verdict",
-  btn_all_reviews: "All Verdicts",
-  btn_all_videos: "All Videos & Trailers",
-  btn_all_ott: "All Streaming Titles",
+  btn_full_report: "Read Detailed Report",
+  btn_watch_trailer: "Watch Official Trailer",
+  btn_read_review: "Read The Full Review",
+  btn_all_reviews: "Browse All Reviews",
+  btn_all_videos: "Watch All Trailers",
+  btn_all_ott: "Explore All Streaming Titles",
   btn_search: "Search",
-  btn_share: "Share",
-  btn_filter: "Filter",
+  btn_share: "Share Story",
+  btn_filter: "Filter By Industry",
 
-  sec_breaking: "Sirens — Breaking",
-  sec_latest_news: "Fresh Off the Wire",
-  sec_top_stories: "Top Story",
-  sec_trending: "Trending Stories",
-  sec_reviews: "The Verdict Wall",
-  sec_trailers: "First Look",
-  sec_boxoffice: "The Receipts Desk",
-  sec_ott: "Now Streaming / OTT Radar",
-  sec_gallery: "Star Photo Gallery",
+  sec_breaking: "Breaking News · Cinema Wire",
+  sec_latest_news: "Fresh Dispatches · The Pulse of Cinema",
+  sec_top_stories: "Spotlight Stories",
+  sec_trending: "What India Is Talking About",
+  sec_reviews: "The Verdict · Honest Film Reviews",
+  sec_trailers: "Screen Test · Trailers & Teasers",
+  sec_boxoffice: "Box Office Wire · Receipts & Records",
+  sec_ott: "Now Streaming · Your Living Room Cinema",
+  sec_gallery: "In Focus · Star Photo Gallery",
 
   bo_rank: "Rank",
-  bo_movie: "Movie Title",
-  bo_day1: "Day 1 ₹",
+  bo_movie: "Film Title",
+  bo_day1: "Opening Day ₹",
   bo_weekend: "Opening Weekend ₹",
-  bo_worldwide: "Worldwide ₹",
-  bo_verdict: "Verdict",
+  bo_worldwide: "Worldwide Total ₹",
+  bo_verdict: "Trade Verdict",
 
   footer_about:
-    "EXTRASAGA — the film-brain desk for six industries: Sandalwood, Tollywood, Kollywood, Mollywood, Bollywood and Hollywood. Receipts-backed box office, zero-fake tea, and strictly unbiased verdicts.",
-  footer_telegram_whatsapp: "Join the channels:",
-  footer_telegram: "Telegram",
+    "EXTRASAGA brings all Indian cinema together under one grand roof — celebrating extraordinary stories from Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and beyond. We deliver receipt-backed box office numbers, fearless reviews, and the living heartbeat of the silver screen with warmth, depth, and unwavering respect.",
+  footer_telegram_whatsapp: "Connect With Our Newsroom:",
+  footer_telegram: "Telegram Wire",
   footer_whatsapp: "WhatsApp Channel",
-  footer_quick_links: "Quick Navigation",
+  footer_quick_links: "Explore Platform",
   footer_cinema_industries: "Film Industries",
   footer_privacy: "Privacy Policy",
   footer_terms: "Terms of Use",
-  footer_contact: "Contact Us",
-  footer_rights: "All rights reserved.",
+  footer_contact: "Contact The Bureau",
+  footer_rights: "All rights reserved. Dedicated to the craft and magic of Indian cinema.",
 };
 
 export const TRANSLATIONS: Record<LanguageCode, Translations> = {
@@ -173,7 +172,6 @@ export const TRANSLATIONS: Record<LanguageCode, Translations> = {
 };
 
 export function getTranslation(_lang: LanguageCode, key: keyof Translations): string {
-  // Single-language edition: the edition argument is accepted for compatibility.
   void _lang;
   return ENGLISH[key] || "";
 }

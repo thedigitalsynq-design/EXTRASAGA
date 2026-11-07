@@ -47,7 +47,7 @@ export default async function LiveWirePage() {
             REAL-TIME CINEMA <span className="text-press">LIVE WIRE</span>
           </h1>
           <p className="mt-2 text-xs sm:text-sm text-ink-dim max-w-2xl leading-relaxed font-grotesk font-medium">
-            Minute-by-minute verified box office records, shooting buzz, trailer launches, breaking movie news, and trade intelligence.
+            Direct from the heartbeat of the film industry. Continuous, authenticated dispatches capturing set whispers, midnight box office receipts, sudden casting breakthroughs, and the live rhythm of Indian cinema.
           </p>
         </div>
       </div>

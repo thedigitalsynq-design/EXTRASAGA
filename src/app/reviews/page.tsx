@@ -63,7 +63,7 @@ export default async function ReviewsPage() {
               </h1>
 
               <p className="mt-2 text-xs sm:text-sm text-ink-dim max-w-2xl font-sans font-medium leading-relaxed">
-                Receipts-first critical evaluations covering Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and Pan-Indian cinema. 100% spoiler-free, strictly unbiased, and zero star-rating games.
+                Cinema dissected with respect and fearless honesty. From technical visual mastery to the deepest emotional cadence of storytelling, explore spoiler-free verdicts covering every corner of Indian cinema.
               </p>
             </div>
 

@@ -18,10 +18,10 @@ export default function EditorialBentoShowcase() {
             <span>Innovation &amp; Cinema Craft</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-ink uppercase tracking-tight">
-            Why Cinephiles Trust CINIJAATRE
+            Why True Cinephiles Trust CINIJAATRE
           </h2>
           <p className="text-base text-ink-muted font-medium mt-1">
-            Exceptional film journalism, dual-axis reviews, and real-time box office intelligence covering all Indian film industries under one destination.
+            Cinema is more than commerce — it is our collective dream. We bring you fearless journalism, receipt-backed box office truth, and reviews that honor both technical mastery and storytelling soul.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">
@@ -43,14 +43,14 @@ export default function EditorialBentoShowcase() {
           {/* Bottom Content & CTA */}
           <div className="space-y-4 pt-4 border-t-2 border-ink">
             <h3 className="text-lg sm:text-xl font-black text-ink uppercase tracking-tight leading-snug">
-              Handcrafted by veteran film journalists to deliver timeless depth and unmatched credibility across all film industries.
+              Written by seasoned film writers who love the craft as much as you do — giving every story the depth, dignity, and insight it deserves.
             </h3>
 
             <Link
               href="/category/latest"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-poster-red hover:bg-ink text-paper text-xs font-black uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
             >
-              <span>Explore Editorial Wire</span>
+              <span>Explore The Wire</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -66,11 +66,11 @@ export default function EditorialBentoShowcase() {
 
             <div className="space-y-2">
               <h4 className="text-base sm:text-lg font-black text-ink uppercase tracking-tight leading-snug">
-                Trusted by 120+ filmmakers, national critics &amp; trade analysts across all Indian cinema.
+                Trusted by 120+ filmmakers, national critics, and cinema analysts across India.
               </h4>
               <p className="text-xs text-ink-muted flex items-center gap-1.5 pt-2 font-bold">
                 <CheckCircle2 className="w-3.5 h-3.5 text-poster-red shrink-0" />
-                <span>Verified editorial byline standards</span>
+                <span>Verified byline standards · Real voices only</span>
               </p>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function EditorialBentoShowcase() {
             </div>
 
             <p className="text-xs text-ink-muted font-medium leading-relaxed pt-4 border-t-2 border-ink mt-4">
-              Spoiler-free integrity &amp; dual-axis storytelling audits across every major theatrical release.
+              Completely spoiler-free audits. We never give away the magic before you take your seat in the dark.
             </p>
           </div>
 
@@ -101,10 +101,10 @@ export default function EditorialBentoShowcase() {
             <div className="space-y-3 max-w-md">
               <div className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-ink bg-band px-2.5 py-0.5 border border-ink shadow-sticker">
                 <ShieldCheck className="w-3.5 h-3.5 text-poster-red" />
-                <span>Zero Clickbait Policy</span>
+                <span>Zero Clickbait Guarantee</span>
               </div>
               <h4 className="text-base sm:text-xl font-black text-ink uppercase tracking-tight leading-snug">
-                Elevates film discourse and transforms everyday movie viewing into an enriched cinematic journey.
+                Turning everyday movie watching into a rich, memorable journey through the art of cinema.
               </h4>
               <div className="pt-1">
                 <button
@@ -113,7 +113,7 @@ export default function EditorialBentoShowcase() {
                   className="inline-flex items-center gap-2 px-4 py-2 bg-ink hover:bg-poster-red text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-poster-gold" />
-                  <span>Interactive Cinema Vibe Match</span>
+                  <span>Find Your Perfect Film Match</span>
                 </button>
               </div>
             </div>

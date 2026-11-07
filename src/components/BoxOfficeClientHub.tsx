@@ -81,7 +81,7 @@ export default function BoxOfficeClientHub({
             Consolidated Consensus Methodology &amp; Integrity Assurance
           </span>
           <p className="leading-relaxed font-grotesk text-ink-dim font-medium">
-            Our automated aggregation engine normalizes reporting formats across exhibitors, ticketing platforms, and distributor ledgers. By applying interquartile range (IQR) statistical outlier suppression, inflated claims are filtered out, delivering one clean, tamper-free consolidated result.
+            Our aggregation engine unifies reporting formats across exhibitors, ticketing platforms, and regional distributor ledgers. By filtering statistical anomalies and inflated claims, we deliver an honest, tamper-free ledger that respects both the science of trade numbers and the craft of cinema.
           </p>
         </div>
       </div>

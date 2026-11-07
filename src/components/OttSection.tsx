@@ -28,14 +28,14 @@ export default function OttSection({ releases }: OttSectionProps) {
                 DIGITAL STREAMING WIRE
               </span>
               <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
-                VERIFIED RELEASE RADAR
+                WEEKEND WATCHLIST
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink">
               NOW STREAM<span className="text-violet">ING</span>
             </h2>
             <p className="text-xs text-ink-dim font-grotesk font-medium">
-              Consolidated OTT drops across Netflix, Prime Video, Hotstar, ZEE5 &amp; regional platforms
+              Curated digital premieres across Netflix, Prime Video, Hotstar, and ZEE5 — straight to your living room screen.
             </p>
           </div>
         </div>

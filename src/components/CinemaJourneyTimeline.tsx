@@ -15,44 +15,44 @@ export default function CinemaJourneyTimeline() {
   const steps: Step[] = [
     {
       num: "01",
-      title: "Script Conception & Pre-Production Scoop",
-      body: "We verify initial writer room announcements, cast chemistry, and production budgets directly with accredited trade insiders before speculation spreads.",
-      handwrittenNote: "verified before rumors spread ✍️",
+      title: "The Spark · Writing Room to Trade Verification",
+      body: "Every masterpiece begins in quiet conversation. We verify the script's core ideas, writer collaborations, and cast chemistry directly with trusted creators before rumors cloud the story.",
+      handwrittenNote: "verified at the source ✍️",
       icon: Film,
     },
     {
       num: "02",
-      title: "Principal Photography & Location Logs",
-      body: "Continuous on-location updates, IMAX camera rigs, technical crew additions, and stunt choreography milestones tracked in real time.",
-      handwrittenNote: "zero unverified set gossip 🎥",
+      title: "The Crucible · On-Set Logs & Camera Rigs",
+      body: "From remote coastal forests to high-tech soundstages, we follow the sweat and spirit of filmmaking. Every stunt milestone and IMAX camera setup is tracked with respect for the crew.",
+      handwrittenNote: "truth from the trenches 🎥",
       icon: Video,
     },
     {
       num: "03",
-      title: "First Look Poster & Teaser Breakdown",
-      body: "Pixel-perfect visual breakdowns, easter egg deciphering, and audience anticipation metrics calculated using verified analytics.",
-      handwrittenNote: "frame-by-frame analysis 🔍",
+      title: "The First Glimpse · Poster Reveal & Teaser Audit",
+      body: "When the first artwork drops, we decode every hidden symbol, color palette, and musical motif — measuring the genuine excitement of audiences with honest analytics.",
+      handwrittenNote: "every frame tells a story 🔍",
       icon: Sparkles,
     },
     {
       num: "04",
-      title: "Censor Clearance & Trailer Premiere",
-      body: "Certification runtime audit, Dolby Atmos / IMAX sound specs verification, and nationwide screen distribution territory allocation.",
-      handwrittenNote: "uncut runtime confirmed ⏱️",
+      title: "The Final Polish · Censor Clearance & Sound Design",
+      body: "We audit uncut runtimes, certify Dolby Atmos and IMAX soundscapes, and verify theater territory allocations so audiences know exactly what to expect on opening day.",
+      handwrittenNote: "uncut runtime verified ⏱️",
       icon: Clapperboard,
     },
     {
       num: "05",
-      title: "Theatrical Day-1 & Dual-Axis Review",
-      body: "Our signature 100% spoiler-free review drops with separate artistic storytelling and technical execution evaluations.",
-      handwrittenNote: "dual-axis review: craft + heart ⭐️",
+      title: "Curtains Up · Theatrical Day-1 & Dual-Axis Review",
+      body: "When the auditorium goes pitch black, our review drops. We evaluate technical wizardry and emotional storytelling separately — completely spoiler-free and strictly unbiased.",
+      handwrittenNote: "heart + craft evaluated ⭐️",
       icon: Award,
     },
     {
       num: "06",
-      title: "OTT Streaming & Cinema Archive Legacy",
-      body: "Tracking 4K HDR digital streaming rights, box-office lifetime grossers, and long-term retrospective appreciation pieces.",
-      handwrittenNote: "preserves cinematic history forever 🎞️",
+      title: "The Living Archive · Digital Streaming & Legacy",
+      body: "A great film never truly ends. We track 4K digital streaming homes, audited lifetime box office numbers, and retrospective tributes that preserve cinema for future generations.",
+      handwrittenNote: "etched into cinematic memory 🎞️",
       icon: Radio,
     },
   ];
@@ -70,7 +70,7 @@ export default function CinemaJourneyTimeline() {
             From Conception to Cultural Legacy
           </h2>
           <p className="text-base text-ink-muted font-medium mt-1">
-            How our editorial newsroom documents, audits, and archives every major cinematic creation through its complete lifespan.
+            How our newsroom documents, audits, and honors each film&apos;s journey — from a blank page to an immortal cultural memory.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">

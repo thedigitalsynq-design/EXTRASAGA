@@ -40,7 +40,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-paper/70 leading-relaxed max-w-sm">
-              EXTRASAGA is the unified entertainment platform covering the entire Indian film industry — Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and regional cinema. Receipts-backed box office reports, verified news drops, analytical reviews, and trade telemetry in English. No fake tea, no paid verdicts, no missing receipts.
+              EXTRASAGA is the unified home for Indian cinema lovers everywhere. From Mumbai studios and Hyderabad soundstages to Bengaluru backlots and Kerala landscapes, we bring you receipt-backed box office truth, fearless reviews, and the timeless magic of the silver screen — honest, independent, and proudly in English.
             </p>
 
             <div className="pt-1">
@@ -174,7 +174,7 @@ export default function Footer() {
           <p className="flex items-center gap-2">
             <BadgeCheck className="w-4 h-4 text-marquee" />
             <span>
-              &copy; {new Date().getFullYear()} EXTRASAGA — printed daily in six scripts. One Indian Cinema Industry. Zero Curtains Closed. All rights reserved.
+              &copy; {new Date().getFullYear()} EXTRASAGA — Six traditions, one eternal screen. Dedicated to the artists, dreamers, and audiences of Indian cinema. All rights reserved.
             </span>
           </p>
           <div className="flex items-center gap-4 text-[11px] font-poster uppercase tracking-wider text-paper/60">

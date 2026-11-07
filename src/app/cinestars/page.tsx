@@ -46,7 +46,7 @@ export default async function CineStarsPage() {
                 CINESTAR<span className="text-press"> LEADERBOARD</span>
               </h1>
               <p className="text-ink-dim text-xs sm:text-sm mt-2 max-w-xl font-grotesk font-medium leading-relaxed">
-                India's definitive real-time ranking of the most powerful cinema personalities — by box office dominance, cultural influence, and daily market momentum.
+                India&apos;s living index of screen sovereignty. Tracking the stars whose names fill single screens with thunder and whose craft leaves an indelible stamp upon the cultural fabric of Indian cinema.
               </p>
             </div>
 

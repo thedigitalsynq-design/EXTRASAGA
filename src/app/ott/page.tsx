@@ -53,7 +53,7 @@ export default async function OttPage() {
             DIGITAL STREAM<span className="text-violet">ING</span> WIRE
           </h1>
           <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
-            Verified release dates and streaming platforms across Netflix, Prime Video, Hotstar, ZEE5, SonyLIV and regional OTT distributors.
+            Bringing the magic of the silver screen straight into your living room. Independently verified digital premiere dates, direct streaming links, and curated watchlists across every major platform.
           </p>
         </div>
       </div>

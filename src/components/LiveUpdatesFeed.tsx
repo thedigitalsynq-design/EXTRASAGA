@@ -167,7 +167,7 @@ export default function LiveUpdatesFeed({
               </h2>
             </div>
             <p className="text-xs text-ink-dim font-grotesk font-medium mt-0.5">
-              Minute-by-minute verified box office records, shooting buzz and trade headlines across all Indian film industries
+              Direct from the heartbeat of the industry — live box office receipts, set dispatches, and breaking cinema news as it unfolds.
             </p>
           </div>
         </div>

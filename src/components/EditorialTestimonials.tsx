@@ -16,7 +16,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "CINIJAATRE completely transformed how I track Indian cinema! The dual-axis technical vs story score is spot-on, and the real-time box office analytics are the most accurate in the industry.",
+      "CINIJAATRE changed how I follow Indian cinema. Their dual-axis reviews treat film as both a technical craft and an emotional voyage, and the box office numbers are grounded in real trade receipts.",
     author: "Praveen Kumar",
     role: "Independent Filmmaker & Screenwriter",
     location: "Bengaluru, Sandalwood",
@@ -25,7 +25,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: "t2",
     quote:
-      "Finally, a digital publication that truly respects film as an art form. The long-form retrospectives save me hours and always deliver nuanced, intelligent cinema perspectives.",
+      "At last, a publication that honors the silver screen as a living art form. Their deep retrospective essays are a breath of fresh air in a sea of shallow internet noise.",
     author: "Ananya Iyer",
     role: "Film Festival Programmer & Critic",
     location: "Chennai / Bengaluru",
@@ -34,7 +34,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: "t3",
     quote:
-      "The depth of box-office territory reporting and multi-industry release countdowns is incredible. Every release metric has become a staple in my morning routine.",
+      "The territory-by-territory box office breakdown and multi-industry countdowns are unmatched. It has become the first page I open with my morning coffee.",
     author: "Vikramaditya Rao",
     role: "Cinema Trade Analyst",
     location: "Hyderabad, Tollywood",
@@ -43,7 +43,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: "t4",
     quote:
-      "CINIJAATRE delivers world-class design with high-integrity journalism. Zero sensational clickbait, clean typography in Google Sans Flex, and blazing fast performance. Simply gold standard.",
+      "World-class visual design matched with fearless, honest journalism. No fabricated gossip, no clickbait headlines — just pure, passionate love for the movies.",
     author: "Siddharth Malhotra",
     role: "Cultural Journalist & Cinephile",
     location: "Mumbai, Bollywood",
@@ -62,10 +62,10 @@ export default function EditorialTestimonials() {
             <span>Critic Acclaim</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-ink uppercase tracking-tight">
-            What Cinema Leaders & Audiences Say
+            What Cinema Leaders &amp; Audiences Say
           </h2>
           <p className="text-base text-ink-muted font-medium mt-1">
-            Perspectives from filmmakers, national critics, and cinephiles who make CINIJAATRE their daily cinema intelligence ritual.
+            Voices from the creators behind the camera and the audiences in the front row who make our publication their daily cinema ritual.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">

@@ -23,28 +23,28 @@ export { CATEGORIES } from "@/lib/categories";
 const KANNADA_ARTICLES_RAW: Article[] = [
   {
     id: "art-1",
-    title: "Kantara Chapter 1: Rishab Shetty's fierce new look from Kundapura sets",
-    titleEn: "Kantara Chapter 1: Rishab Shetty's fierce new look from Kundapura sets",
+    title: "Kantara Chapter 1: Rishab Shetty's Fierce Transformation Lights Up Kundapura Sets",
+    titleEn: "Kantara Chapter 1: Rishab Shetty's Fierce Transformation Lights Up Kundapura Sets",
     slug: "kantara-chapter-1-shooting-kundapura-rishab-shetty-look",
-    summary: "Hombale Films' much-awaited 'Kantara Chapter 1' is shooting at full throttle across the breathtaking locations of the Konkan coast. Rishab Shetty's ferocious look has only cranked up the fan frenzy.",
+    summary: "Along the misty shores of coastal Karnataka, director-actor Rishab Shetty summons ancient Kadamba folklore for Kantara Chapter 1 — a cinematic voyage carved in devotion, grit, and breathtaking scale.",
     content: `
-Hombale Films' hugely awaited, pan-India tentpole **'Kantara Chapter 1'** is currently in full swing along the coast around Kundapura.
+Along the emerald coastline of Kundapura, the cameras are rolling for Hombale Films' highly anticipated magnum opus, **'Kantara Chapter 1'**.
 
-### Spectacular action on a towering set
-Director-actor Rishab Shetty brings a story set in the 4th-century Kadamba era to the screen. For this, a massive fort and an ancient village set have been erected in the heart of Kundapura's thick forests, with high-voltage war sequences being filmed under international stunt choreographers.
+### An Ancient Kingdom Rises in the Forest
+Director and actor Rishab Shetty takes audiences back to the fourth-century Kadamba era. Deep within the dense coastal woodlands, art directors have constructed an ancient stone fortress and traditional village settlement where intense battle sequences are filmed under the guidance of world-renowned action directors.
 
-### Rishab Shetty's stunning makeover
-For the film, Rishab Shetty has put himself through punishing training in Kalaripayattu and horse riding. Going by the reports raging across social media, the razor-sharp intensity in Rishab's eyes and his long-bearded look are enough to raise goosebumps.
+### Devotion, Sweat, and a Fierce Awakening
+To embody this ancestral warrior, Rishab Shetty underwent grueling physical training in Kalaripayattu and horse riding. Behind-the-scenes dispatches reveal an actor transformed — his piercing eyes and wild, weathered beard radiating a raw, elemental power that promises to hold audiences spellbound.
 
-> "Kantara is a mirror to our culture. Chapter 1 is being crafted with ten times more sweat and devotion than the first part." - Producer Vijay Kiragandur.
+> "Kantara is a sacred mirror held up to our living folklore. Chapter 1 is being forged with tenfold the devotion and sweat of the original." — Producer Vijay Kiragandur.
 
-Ajaneeesh Loknath's music and Aravind Kashyap's cinematography promise to load the film with even more firepower. It will release worldwide in over seven languages.
+With soaring orchestration by Ajaneesh Loknath and luminous camera work by Aravind Kashyap, Kantara Chapter 1 will release worldwide in seven languages.
     `,
     category: "sandalwood",
     categoryName: "Sandalwood",
     tags: ["Kantara Chapter 1", "Rishab Shetty", "Hombale Films", "Coastal Karnataka", "Sandalwood"],
     featuredImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "An exclusive first look from the sets of Kantara Chapter 1",
+    imageCaption: "An exclusive glimpse from the atmospheric sets of Kantara Chapter 1",
     author: {
       id: "auth-1",
       name: "Praveen Kumar",
@@ -62,26 +62,26 @@ Ajaneeesh Loknath's music and Aravind Kashyap's cinematography promise to load t
   },
   {
     id: "art-2",
-    title: "Hollywood stunt masters land on Yash's Toxic sets - what's Geetu Mohandas' plan?",
-    titleEn: "John Wick famed stunt team joins Yash's Toxic for brutal action blocks",
+    title: "Hollywood Action Masters Join Yash's 'Toxic' for Hard-Hitting Stunt Choreography",
+    titleEn: "Hollywood Action Masters Join Yash's 'Toxic' for Hard-Hitting Stunt Choreography",
     slug: "yash-toxic-movie-hollywood-stunt-master-geetu-mohandas",
-    summary: "For the action blocks of 'Toxic: A Fairy Tale for Grown-Ups', starring Rocking Star Yash, the stunt team behind Hollywood's John Wick has landed on the Bengaluru sets.",
+    summary: "Rocking Star Yash joins forces with the acclaimed stunt choreographers behind John Wick on the sprawling sets of Toxic — an ambitious retro crime saga directed by Geetu Mohandas.",
     content: `
-Fresh off the record-shattering success of KGF 2, Rocking Star Yash has in hand his next big bet, **'Toxic'**. Helmed by acclaimed director Geetu Mohandas, the film carries colossal expectations worldwide.
+Following the historic worldwide triumph of KGF Chapter 2, Rocking Star Yash returns with his boldest creative gamble yet: **'Toxic: A Fairy Tale for Grown-ups'**. Directed by celebrated visionary Geetu Mohandas, the project has captured the imagination of cinephiles across the globe.
 
-### Massive sets in London and Bengaluru
-The team has currently recreated a 1980s Goa and a European port city on the outskirts of Bengaluru. Set against a drug cartel and the underworld, the film will feature Yash in a massy yet stylish avatar like never before.
+### A Living Port City Reborn on Set
+Production designers have painstakingly recreated a moody 1980s coastal haven on the outskirts of Bengaluru, complete with vintage warehouses and neon-lit docks. Set against the shadows of an international cartel, the film presents Yash in a sharp, magnetic avatar unlike anything Indian cinema has witnessed.
 
-### Hollywood-grade making
-Legendary Hollywood action directors who worked on John Wick and Mad Max are choreographing the blood-soaked fight sequences alongside Yash. Kiara Advani and Nayanthara are said to be playing pivotal roles in the film.
+### Hollywood-Grade Action Meets Raw Emotion
+Veteran action directors from Hollywood's John Wick and Mad Max franchises have arrived on set to design visceral, grounded combat sequences. Alongside Yash, powerhouse performers Kiara Advani and Nayanthara bring gravitas to central narrative roles.
 
-> "Toxic will redefine Indian cinema as we know it. Yash's dedication is unbelievable." - Geetu Mohandas
+> "Toxic will redefine the visual grammar of Indian action cinema. Yash brings an architect's precision and an artist's heart to every single frame." — Geetu Mohandas.
     `,
     category: "sandalwood",
     categoryName: "Sandalwood",
     tags: ["Yash", "Toxic", "Geetu Mohandas", "Rocking Star"],
     featuredImage: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Shooting a key action sequence in Toxic",
+    imageCaption: "Behind the lens during a high-stakes sequence in Toxic",
     author: {
       id: "auth-2",
       name: "EXTRASAGA Bureau",
@@ -99,23 +99,23 @@ Legendary Hollywood action directors who worked on John Wick and Mad Max are cho
   },
   {
     id: "art-3",
-    title: "Kiccha Sudeep's Max locks its release date officially - when does the banger teaser drop?",
-    titleEn: "Kiccha Sudeep's Max locks release date; trailer roll imminent",
+    title: "Kiccha Sudeep's Action Spectacle 'Max' Confirms Worldwide Theatrical Release Date",
+    titleEn: "Kiccha Sudeep's Action Spectacle 'Max' Confirms Worldwide Theatrical Release Date",
     slug: "kiccha-sudeep-max-movie-release-date-teaser-update",
-    summary: "The release date of 'Max', the high-voltage action entertainer starring the Abhinaya Chakravarthy Kiccha Sudeep, has been officially announced - and fans are already in celebration mode.",
+    summary: "Abhinaya Chakravarthy Kiccha Sudeep returns in a commanding cop avatar as the makers of Max lock their worldwide release schedule across five Indian languages.",
     content: `
-The moment Kiccha Sudeep's fans have been waiting for has finally arrived. The team of **'Max'** directed by Vijay Karthikeyan has officially announced the film's release date.
+The wait is officially over for Kiccha Sudeep's legions of fans. Director Vijay Karthikeyan and producer Kalaippuli S. Thanu have confirmed the worldwide theatrical arrival of the pulse-pounding cop thriller, **'Max'**.
 
-### Sudeep in a rock-solid cop avatar
-In the film, Sudeep plays a powerful police officer who flattens the most ruthless criminals. Producer Kalaippuli S. Thanu revealed that Ajaneeesh Loknath's background score will be the film's true highlight.
+### Sudeep as a Uncompromising Force of Justice
+In Max, Sudeep portrays an unwavering police officer who takes down an entrenched criminal syndicate with razor-sharp intellect and sheer physical might. Producer Thanu shared that Ajaneesh Loknath's thunderous musical score will be the beating heart of the theatrical experience.
 
-The film will simultaneously hit screens in Telugu, Tamil, Malayalam and Hindi as well. The team is geared up to unleash the film's power-packed trailer within the coming week.
+The film will release simultaneously across Kannada, Telugu, Tamil, Malayalam, and Hindi screens, accompanied by a breathtaking theatrical trailer launch in the coming days.
     `,
     category: "latest",
     categoryName: "Latest News",
     tags: ["Kiccha Sudeep", "Max", "Kalaippuli Thanu", "Sandalwood"],
     featuredImage: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Kiccha Sudeep's rock-solid look in Max",
+    imageCaption: "Kiccha Sudeep commands the screen in Max",
     author: {
       id: "auth-1",
       name: "Praveen Kumar",
@@ -132,21 +132,21 @@ The film will simultaneously hit screens in Telugu, Tamil, Malayalam and Hindi a
   },
   {
     id: "art-4",
-    title: "Rukmini Vasanth signs another Pan-India film: Sandalwood's sweetheart is charging across the seven seas!",
-    titleEn: "Rukmini Vasanth signs her next Pan-India film post Sapta Sagaradaache Ello",
+    title: "Rukmini Vasanth Signs Next Major Multilingual Project Following 'Sapta Sagaradaache Ello'",
+    titleEn: "Rukmini Vasanth Signs Next Major Multilingual Project Following 'Sapta Sagaradaache Ello'",
     slug: "rukmini-vasanth-new-pan-india-movie-sapta-sagaradaache-ello",
-    summary: "Having won millions of hearts with 'Sapta Sagaradaache Ello', the immensely talented actress Rukmini Vasanth has now greenlit another multilingual mega project.",
+    summary: "After captivating hearts nationwide with her poignant performance in Sapta Sagaradaache Ello, Rukmini Vasanth steps into an ambitious new chapter of Indian cinema.",
     content: `
-Kannada cinema's sweetheart **Rukmini Vasanth** has seen her fame spill past state borders and swell across the entire country. After winning thunderous applause for her natural performances in 'Birbal' and 'Sapta Sagaradaache Ello', Rukmini is now buried in a line-up of big films.
+Few actors have touched audiences as deeply in recent years as **Rukmini Vasanth**. Her tender, luminous performance in the two-part romantic tragedy 'Sapta Sagaradaache Ello' echoed far beyond state boundaries, earning universal acclaim from critics and moviegoers alike.
 
-### Massive demand in Tamil and Telugu too
-Having acted opposite Shivakarthikeyan in a Tamil film and in Vijay Sethupathi's projects, Rukmini has now signed yet another big Kannada banner film. Her uncanny instinct for picking distinctive roles has fans waiting anxiously for her next move.
+### Demand Soars Across Tamil, Telugu, and Kannada Cinema
+Following notable collaborations alongside Sivakarthikeyan and Vijay Sethupathi in Tamil cinema, Rukmini has now greenlit another major multilingual production. Her instinctive grace and dedication to honest, character-driven storytelling make her one of the most exciting young talents in modern Indian cinema.
     `,
     category: "actresses",
     categoryName: "Actresses",
     tags: ["Rukmini Vasanth", "Sapta Sagaradaache Ello", "Sandalwood Actresses"],
     featuredImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Actress Rukmini Vasanth glowing in her latest photoshoot",
+    imageCaption: "Actress Rukmini Vasanth in an expressive portrait",
     author: {
       id: "auth-3",
       name: "Sneha Gouda",
@@ -163,20 +163,20 @@ Having acted opposite Shivakarthikeyan in a Tamil film and in Vijay Sethupathi's
   },
   {
     id: "art-5",
-    title: "Shivarajkumar & Daali Dhananjay lock horns in Uttarakaanda: directed by Rohit Padaki",
-    titleEn: "Shivarajkumar and Daali Dhananjay face off in Rohit Padaki's Uttarakaanda",
+    title: "Shivarajkumar and Daali Dhananjay Reunite for Fiery Gangland Saga 'Uttarakaanda'",
+    titleEn: "Shivarajkumar and Daali Dhananjay Reunite for Fiery Gangland Saga 'Uttarakaanda'",
     slug: "uttarakaanda-shivarajkumar-daali-dhananjay-rohit-padaki",
-    summary: "Backdrop: the dialect and culture of North Karnataka. In 'Uttarakaanda', Hat-trick Hero Shivarajkumar and Daali Dhananjay come together for an explosive face-off.",
+    summary: "Against the rustic poetry and dry winds of North Karnataka, director Rohit Padaki unites Century Star Shivarajkumar and Daali Dhananjay for an explosive on-screen clash in Uttarakaanda.",
     content: `
-The hugely awaited gangster drama from KRG Studios, **'Uttarakaanda'**. Director Rohit Padaki is weaving the earthy swagger of North Karnataka into a gripping gang-war saga in his own unmistakable style.
+KRG Studios' much-awaited rural crime drama **'Uttarakaanda'** is shaping up to be an earthy masterwork. Director Rohit Padaki weaves the rich linguistic rhythm and fearless spirit of North Karnataka into an authentic underworld saga.
 
-Sandalwood's two beloved actors - Century Star Shivarajkumar and Natarakshasa Daali Dhananjay - already created history together in Tagaru. Now their face-off in Uttarakaanda is expected to kick up the dust all over again.
+Century Star Shivarajkumar and Daali Dhananjay previously created cinematic history with their unforgettable clash in Tagaru. Their reunion in Uttarakaanda promises to reignite that electric screen chemistry on a grander, more atmospheric canvas.
     `,
     category: "sandalwood",
     categoryName: "Sandalwood",
     tags: ["Uttarakaanda", "Shivarajkumar", "Daali Dhananjay", "KRG"],
     featuredImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Uttarakaanda poster reveal",
+    imageCaption: "The striking official poster reveal of Uttarakaanda",
     author: {
       id: "auth-1",
       name: "Praveen Kumar",
@@ -193,20 +193,20 @@ Sandalwood's two beloved actors - Century Star Shivarajkumar and Natarakshasa Da
   },
   {
     id: "art-6",
-    title: "Bagheera box office tsunami: blockbuster collections in week one - audiences cheer Sriimurali's comeback!",
-    titleEn: "Bagheera receipts: Sriimurali's vigilante hit crosses ₹40 crore in week one",
+    title: "Bagheera's Box Office Roar: Sriimurali's Vigilante Thriller Crosses ₹40 Crore Worldwide",
+    titleEn: "Bagheera's Box Office Roar: Sriimurali's Vigilante Thriller Crosses ₹40 Crore Worldwide",
     slug: "bagheera-box-office-collection-first-week-sriimurali",
-    summary: "'Bagheera', written by Prashanth Neel and directed by Dr. Suri, keeps roaring at the box office. Week one has landed a record worldwide total.",
+    summary: "Written by Prashanth Neel and directed by Dr. Suri, Bagheera sets the box office ablaze with packed halls and thunderous applause across Karnataka and overseas markets.",
     content: `
-Sriimurali's rock-hard vigilante avatar in **'Bagheera'** is drawing houseful boards across Karnataka's theatres.
+Sriimurali's fierce turn as a nocturnal guardian of justice in **'Bagheera'** continues to draw capacity crowds into theaters across the country.
 
-Made under the Hombale Films banner, the film has collected more than ₹40 crore at the global box office in its first week itself - the biggest hit of Sriimurali's career.
+Produced under the Hombale Films banner with a gripping story penned by Prashanth Neel, the film has crossed the ₹40-crore mark at the global box office in its opening week alone — marking the most celebrated box office milestone of Sriimurali's journey.
     `,
     category: "box-office",
     categoryName: "Box Office",
     tags: ["Bagheera", "Box Office", "Sriimurali", "Hombale"],
     featuredImage: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Theatres erupt in celebrations for Bagheera",
+    imageCaption: "Audiences celebrate Bagheera's thunderous opening run",
     author: {
       id: "auth-2",
       name: "EXTRASAGA Bureau",
@@ -223,27 +223,27 @@ Made under the Hombale Films banner, the film has collected more than ₹40 cror
   },
   {
     id: "art-7",
-    title: "5 major Kannada films hitting OTT this week - the full list right here!",
-    titleEn: "Five Kannada films hit streaming this week: the full OTT radar",
+    title: "Weekend Streaming Radar: Five Landmark Kannada Films Arrive on Major OTT Platforms",
+    titleEn: "Weekend Streaming Radar: Five Landmark Kannada Films Arrive on Major OTT Platforms",
     slug: "top-5-kannada-movies-releasing-on-ott-this-week",
-    summary: "The best Kannada films that wowed theatregoers are landing on Netflix, Prime Video and ZEE5 this week.",
+    summary: "From high-octane vigilante thrills to warm romantic comedies, the season's most compelling theatrical hits make their digital bow on Netflix, Prime Video, and ZEE5.",
     content: `
-Great news for OTT buffs planning a couch-and-cinema weekend: some of Kannada cinema's biggest recent titles are set to blast onto digital screens this week.
+For movie lovers settling in for a weekend of cinema from the comfort of home, this week offers an exceptional lineup of fresh digital premieres.
 
-### 1. Bagheera - Netflix
-After ruling theatres, 'Bagheera' begins streaming this Friday on Netflix in Kannada, Telugu, Tamil and Hindi.
+### 1. Bagheera — Netflix
+Following its triumphant theatrical run, the vigilante thriller 'Bagheera' streams this Friday in Kannada, Telugu, Tamil, and Hindi.
 
-### 2. Krishnam Pranaya Sakhi - Prime Video
-Golden Star Ganesh's romantic-comedy family entertainer arrives on Prime Video.
+### 2. Krishnam Pranaya Sakhi — Prime Video
+Golden Star Ganesh's gentle, laugh-out-loud family entertainer brings its melodic charm to Prime Video.
 
-### 3. Bheema - ZEE5
-'Bheema', directed by and starring Duniya Vijay in raw, rugged action mode, lands on ZEE5.
+### 3. Bheema — ZEE5
+Duniya Vijay's raw, unvarnished portrait of urban underworld realities lands on ZEE5 with uncompromised intensity.
     `,
     category: "ott",
     categoryName: "OTT Update",
     tags: ["OTT", "Netflix", "Prime Video", "ZEE5"],
     featuredImage: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "A bumper week of entertainment for streaming viewers",
+    imageCaption: "A bumper weekend of home entertainment for streaming cinephiles",
     author: {
       id: "auth-3",
       name: "Sneha Gouda",
@@ -260,18 +260,18 @@ Golden Star Ganesh's romantic-comedy family entertainer arrives on Prime Video.
   },
   {
     id: "art-8",
-    title: "Upendra's UI drops a special making video: a challenge to every thinking brain!",
-    titleEn: "Upendra's UI drops making video: a mind-bending dystopia takes shape",
+    title: "Upendra's 'UI' Unveils First Making Footage: A Daring Leap into Surreal Cinema",
+    titleEn: "Upendra's 'UI' Unveils First Making Footage: A Daring Leap into Surreal Cinema",
     slug: "upendra-ui-movie-making-video-release",
-    summary: "Making glimpses that lift the curtain on Real Star Upendra's uniquely imagined 'UI' have left cinephiles stunned.",
+    summary: "Real Star Upendra pulls back the velvet curtain on UI, revealing an intricate dystopian landscape designed to challenge our assumptions and redefine modern storytelling.",
     content: `
-It's an open secret that where Real Star Upendra directs, conventional storytelling doesn't survive. Making footage from **'UI'** has now dropped, and the futuristic fantasy world and intricate sets it reveals look set to mark a brand-new milestone in Indian cinema.
+Whenever Real Star Upendra steps behind the director's lens, conventional narrative formulas vanish into thin air. The newly revealed making footage from **'UI'** offers a tantalizing look into a dystopian fantasy world built on mind-bending practical sets and thought-provoking philosophical themes.
     `,
     category: "sandalwood",
     categoryName: "Sandalwood",
     tags: ["Upendra", "UI", "Real Star", "Sandalwood"],
     featuredImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop",
-    imageCaption: "Riveting frames from the shooting of UI",
+    imageCaption: "Fascinating set architecture captured during the making of UI",
     author: {
       id: "auth-1",
       name: "Praveen Kumar",
@@ -289,18 +289,18 @@ It's an open secret that where Real Star Upendra directs, conventional storytell
   // --- INTERVIEWS ---
   {
     id: "art-interview-1",
-    title: "Exclusive: 'The brutal challenges of shooting Kantara 1 and Kadamba history' - Rishab Shetty speaks his heart",
-    titleEn: "Rishab Shetty opens up: Kantara Chapter 1's Kadamba-era research and training grind",
+    title: "Exclusive: 'Breathing Life into Kadamba Lore & the Fire of Kantara Chapter 1' — Rishab Shetty Speaks His Heart",
+    titleEn: "Rishab Shetty on Kantara Chapter 1: Ancient History, Fierce Training, and Coastal Roots",
     slug: "exclusive-interview-rishab-shetty-kantara-chapter-1-challenges",
-    summary: "Rishab Shetty shares exclusive insights with us on the Kundapura shoot experience, the Kadamba-era research, and his physical transformation for Kantara Chapter 1.",
+    summary: "In an intimate conversation, Rishab Shetty reveals the sacred devotion, intense combat training, and deep historical research powering the grand world of Kantara Chapter 1.",
     content: `
-After delivering the divine masterpiece that is Kantara, Rishab Shetty is now on yet another historic journey.
+Following the cultural phenomenon of Kantara, Rishab Shetty has returned to the soil, shaping a story that journeys deep into the roots of our ancient heritage.
 
-### The film's research and Kadamba history
-"We are bringing the 4th-century Kadamba history to the screen. For that, I spent months studying inscriptions, folk songs and ancient costumes," says Rishab Shetty.
+### The Sacred Echoes of Kadamba Lore
+"We are resurrecting the fourth-century Kadamba era — a time when honour, faith, and the pulse of nature were one," shares Rishab. "To honour that memory, our team spent months unearthing forgotten temple inscriptions, learning oral ballads, and weaving authentic coastal lore into every frame."
 
-### The brutal training grind
-For the film, he trained in Kalaripayattu, traditional swordplay and horse riding under traditional Kalaripayattu gurus from Kerala and Karnataka.
+### The Crucible of Preparation
+Bringing a warrior's spirit to screen demanded total transformation. Rishab trained relentlessly in Kalaripayattu, traditional swordplay, and ancient horsemanship under veteran masters across Kerala and coastal Karnataka. "Every blister, every hour in the saddle was an offering to the craft. When the lens opens, the audience must feel the raw heartbeat of that forgotten dawn."
     `,
     category: "interviews",
     categoryName: "Interviews",
@@ -319,15 +319,18 @@ For the film, he trained in Kalaripayattu, traditional swordplay and horse ridin
   },
   {
     id: "art-interview-2",
-    title: "'Toxic isn't just an action film - it's a philosophical journey': an exclusive with director Geetu Mohandas",
-    titleEn: "Geetu Mohandas decodes Toxic: Yash's vision, Hollywood stunts and the lore",
+    title: "'Toxic is a Storm of Emotion, Not Just Gunpowder' — Director Geetu Mohandas Decodes Yash's Epic Vision",
+    titleEn: "Geetu Mohandas on Toxic: Yash's Filmmaking Instincts, World-Class Stunts, and Moral Ambiguity",
     slug: "interview-geetu-mohandas-yash-toxic-movie-vision",
-    summary: "Director Geetu Mohandas opens up about working alongside Rocking Star Yash, Hollywood stunt directors, and the mythos of Toxic.",
+    summary: "Acclaimed filmmaker Geetu Mohandas pulls back the curtain on Toxic, exploring her creative partnership with Rocking Star Yash and the fearless moral depths of their upcoming global spectacle.",
     content: `
-Geetu Mohandas, best known for Moothon, is now calling the action cuts for 'Toxic', Indian cinema's biggest project in the works.
+Acclaimed for her poignant visual poetry in Moothon, director Geetu Mohandas is now at the helm of Toxic: A Fairy Tale for Grown-ups — one of the most eagerly awaited cinematic events in Indian cinema.
 
-### Yash's creative collaboration
-"Yash isn't just an actor - he's a complete filmmaker with a vision. He discusses the lighting of every shot, the dialogues and the weight of every character in remarkable depth," says Geetu.
+### A Symphony of Creative Minds
+"Yash is far more than a magnetic performer; he is a cinematic architect who sees stories in complete symphonies," explains Geetu. "From the emotional temperature of a shadow to the moral weight behind a single line of dialogue, our conversations are fearless, passionate, and relentless."
+
+### Reimagining Action on a Canvas of Flesh and Blood
+Backed by renowned international stunt choreographers, Toxic blends balletic action with raw vulnerability. "We aren't staging violence for cheap adrenaline. Every punch and spark carries emotional consequence. It is an exploration of darkness, redemption, and the unbreakable human spirit."
     `,
     category: "interviews",
     categoryName: "Interviews",
@@ -348,14 +351,14 @@ Geetu Mohandas, best known for Moothon, is now calling the action cuts for 'Toxi
   // --- GOSSIP ---
   {
     id: "art-gossip-1",
-    title: "Inside Gandhinagar: is a top Bollywood star really playing a cameo in Yash's Toxic?",
-    titleEn: "Gandhinagar tea: major Bollywood cameo rumoured in Yash's Toxic",
+    title: "Whispers in the Wind: A High-Profile Bollywood Star Rumoured for Yash's 'Toxic'",
+    titleEn: "Studio Whispers: A Major Bollywood Icon in Talks for a Pivotal Cameo in Toxic",
     slug: "gandhinagar-gossip-bollywood-star-cameo-in-yash-toxic",
-    summary: "Word that a celebrated Bollywood star was spotted on the Toxic sets currently shooting in Bengaluru has set Gandhinagar abuzz.",
+    summary: "The corridors of Indian cinema are buzzing with excitement after a celebrated Bollywood star was reportedly spotted on the high-security Bengaluru sets of Toxic.",
     content: `
-The hottest brew swirling through Gandhinagar's coffee circles right now? The Toxic cameo.
+The most tantalising secret humming through industry corridors right now centres on the secretive Bengaluru sets of Toxic.
 
-According to credible sources, a top Bollywood actress will appear in a cameo in a scene built around an international drug cartel backdrop. The team, however, is keeping an iron-clad lid on the details.
+According to well-placed trade insiders, a celebrated Bollywood leading lady recently filmed a covert sequence against an atmospheric international backdrop. While the production team maintains absolute silence behind heavy studio curtains, cinephiles are already piecing together the breadcrumbs.
     `,
     category: "gossip",
     categoryName: "Gossip",
@@ -374,12 +377,14 @@ According to credible sources, a top Bollywood actress will appear in a cameo in
   },
   {
     id: "art-gossip-2",
-    title: "Another big-budget multi-starrer for Sandalwood: two superstars joining forces, say sources!",
-    titleEn: "Sandalwood tea: two superstars circling a big multi-starrer, say sources",
+    title: "Two Titans on One Canvas: A Historic Multi-Starrer Quietly Brewing in the South",
+    titleEn: "Twin Sparks on Screen: Top Leading Icons Circling an Ambitious Multi-Starrer",
     slug: "sandalwood-rumour-big-budget-multistarrer-superstars",
-    summary: "Buzz is out that a major production house is readying a heavy-duty script to bring two of Kannada cinema's top leading men together on screen.",
+    summary: "A top production house is quietly preparing a cinematic juggernaut that could bring two of the region's most beloved screen icons together for an unforgettable spectacle.",
     content: `
-The age of the multi-starrer is coming back around in Kannada cinema. Riding the success of such projects in Tamil and Telugu, the multi-starrer hustle has quietly kicked off in Sandalwood too.
+The golden age of grand multi-starrers is returning with renewed vigour across Indian cinema. Inspired by monumental collaborative epics, major studio houses are drafting screenplays designed to share the spotlight between two powerhouse leading men.
+
+"When two distinct energies collide on the silver screen, magic happens," notes a senior producer. Pre-production discussions are underway under strict non-disclosure, promising a historic cinematic union.
     `,
     category: "gossip",
     categoryName: "Gossip",
@@ -399,12 +404,14 @@ The age of the multi-starrer is coming back around in Kannada cinema. Riding the
   // --- TELEVISION ---
   {
     id: "art-tv-1",
-    title: "Reality show posts Kannada TV's highest-ever TRPs - the finale episode has viewers hooked",
-    titleEn: "Reality show finale posts historic TRPs on Kannada television",
+    title: "Tears, Triumphs, and Golden Ratings: The Grand Finale That Captivated Millions",
+    titleEn: "Television History: Record-Breaking Viewership Sweeps the Nation for Grand Finale",
     slug: "kannada-television-record-trp-reality-show-grand-finale",
-    summary: "The grand finale of Kannada television's hit reality show clocked thundering TRPs, making it the weekend's most-watched programme in every household.",
+    summary: "A whirlwind of raw emotion, breathtaking talent, and nail-biting suspense powered the weekend's grand finale into a cultural celebration watched across millions of homes.",
     content: `
-The grand finale of the popular reality show turned out to be a weekend feast for small-screen viewers, pulling off record TRPs. The contestants' stunning talent and the judges' goosebump-worthy words powered the event's blockbuster success.
+From humble town beginnings to the blinding lights of the central stage, the emotional journey of hopeful dreamers culminated in an unforgettable evening of prime-time television.
+
+The grand finale didn't just break viewership records; it became a communal campfire where families gathered, cheered, and wept together. The winner's victory speech reminded everyone why ordinary human courage will always be television's most enduring spectacle.
     `,
     category: "television",
     categoryName: "Television",
@@ -422,12 +429,14 @@ The grand finale of the popular reality show turned out to be a weekend feast fo
   },
   {
     id: "art-tv-2",
-    title: "Countdown begins for a new Bigg Boss Kannada season: Kiccha Sudeep's new promo is out!",
-    titleEn: "Bigg Boss Kannada's next season enters countdown with Kiccha Sudeep promo",
+    title: "The Master of the Arena Returns: Kiccha Sudeep Ignites Excitement for Bigg Boss",
+    titleEn: "Bigg Boss New Season Unveiled: Kiccha Sudeep Sparks Massive Digital Anticipation",
     slug: "bigg-boss-kannada-new-season-kiccha-sudeep-promo",
-    summary: "The new season promo of Bigg Boss Kannada, fronted by Abhinaya Chakravarthy Kiccha Sudeep, has blown up social media - and the contestant list is the biggest mystery of all.",
+    summary: "With his commanding presence and warm empathy, Kiccha Sudeep returns to host the definitive reality spectacle, promising fresh twists and emotional fireworks.",
     content: `
-All systems are go for a brand-new season of Kannada viewers' favourite reality show, Bigg Boss Kannada. Kiccha Sudeep's rock-solid hosting promo has just dropped, and this time the Bigg Boss house design has been given a radical overhaul.
+The countdown has officially begun for the country's most watched reality arena. In a sleek, electrifying new teaser, Kiccha Sudeep stands at the crossroads of human nature, drama, and resilience.
+
+Featuring an architectural redesign of the glass house and a cast of eclectic personalities from literature, cinema, and social spheres, this season promises to test character under the unblinking eye of twenty-four-hour cameras.
     `,
     category: "television",
     categoryName: "Television",
@@ -447,12 +456,14 @@ All systems are go for a brand-new season of Kannada viewers' favourite reality 
   // --- CELEBRITY ---
   {
     id: "art-celeb-1",
-    title: "Yash and Radhika Pandit keep Diwali simple and sweet - adorable kids' photos go viral!",
-    titleEn: "Yash and Radhika Pandit's soft family Diwali wins the internet",
+    title: "Warmth, Heritage, and Golden Diyas: Yash and Radhika Pandit's Heartwarming Diwali",
+    titleEn: "A Festival of Lights Rooted in Tradition: Yash & Radhika Pandit Celebrate at Home",
     slug: "radhika-pandit-yash-diwali-celebration-family-photos",
-    summary: "Rocking Star Yash and Radhika Pandit celebrating the festival of lights with their kids Ayra and Yatharv in traditional attire has stolen viewers' hearts.",
+    summary: "Surrounded by earthen lamps and laughter, Rocking Star Yash and Radhika Pandit celebrated the festival of lights with their children, reminding fans that family remains life's sweetest anchor.",
     content: `
-Sandalwood's adorable star couple Yash and Radhika Pandit celebrated Diwali in the simplest, warmest way - at home. The family photos, with the couple stunning in a traditional silk panchey and saree, are making quite the noise on social media.
+Far away from the glitz of red carpets and flashbulbs, cinema's golden couple chose the gentle glow of earthen lamps and quiet courtyard prayers for Diwali.
+
+Dressed in handwoven traditional silk, Yash and Radhika shared candid snapshots with their children, Ayra and Yatharv. The warmth in their smiles captured the timeless essence of the festival — reminding fans across the country that the brightest light always shines from within the home.
     `,
     category: "celebrity",
     categoryName: "Celebrity",
@@ -470,12 +481,14 @@ Sandalwood's adorable star couple Yash and Radhika Pandit celebrated Diwali in t
   },
   {
     id: "art-celeb-2",
-    title: "The National Award celebration at the Shetty home: the divine actor dedicates the honour to the people of his homeland",
-    titleEn: "National Award in hand: Rishab Shetty dedicates the honour to Karnataka",
+    title: "A Crown for the Homeland: Rishab Shetty Dedicates His National Award to the People",
+    titleEn: "National Award in Hand, Feet on Sacred Soil: Rishab Shetty's Humble Homecoming",
     slug: "national-award-celebration-rishab-shetty-family",
-    summary: "After winning the Best Actor National Award for Kantara, Rishab Shetty and Pragathi Shetty held the celebrations in his native village Keradi.",
+    summary: "Holding the country's highest cinematic honour for Kantara, Rishab Shetty returned to his ancestral village to place the trophy at the feet of his elders and the sacred spirits of the coast.",
     content: `
-Having been crowned with the nation's highest film honour for his unbeatable performance in Kantara, Rishab Shetty dedicated the award to the people of Karnataka and the daiva worshippers of the coast.
+True to his roots, Best Actor National Award winner Rishab Shetty chose to celebrate not in banquet halls, but amidst the swaying areca palms of his native village, Keradi.
+
+"This honour does not belong to me; it belongs to our soil, our ancestral performers, and every devotee who keeps the flame of our culture alive," said Shetty with folded hands. The celebration was a moving reminder that true greatness stays anchored to the earth that nurtured it.
     `,
     category: "celebrity",
     categoryName: "Celebrity",
@@ -495,12 +508,14 @@ Having been crowned with the nation's highest film honour for his unbeatable per
   // --- EVENTS ---
   {
     id: "art-event-1",
-    title: "SIIMA Awards: Sandalwood stars turn the red carpet into a colour-spattered spectacle!",
-    titleEn: "SIIMA Awards: Sandalwood stars light up the Dubai red carpet",
+    title: "A Symphony of Stars: South Indian Cinema Dazzles on the Global Stage at SIIMA",
+    titleEn: "Glitz, Glamour, and Brotherhood: Inside the Star-Studded SIIMA Celebrations",
     slug: "siima-awards-kannada-cinema-stars-red-carpet-highlights",
-    summary: "At the grand SIIMA awards ceremony held in Dubai, Sandalwood stars bagged some of the biggest honours.",
+    summary: "Under the glittering skyline, India's brightest cinematic voices gathered to celebrate storytelling, cross-industry camaraderie, and monumental artistic triumphs.",
     content: `
-The prestigious SIIMA awards - South Indian cinema's biggest night - went off in resplendent style. Kannada cinema's superstars burned up the red carpet and earned roars of applause from fans.
+The red carpet shimmered with bespoke silk, couture gowns, and boundless artistic joy as the SIIMA Awards brought together filmmakers, actors, and technicians from four thriving language industries.
+
+Beyond the golden statuettes and celebratory confetti, the evening was a testament to the borderless power of cinema — where language boundaries dissolved into shared standing ovations and heartfelt mutual admiration.
     `,
     category: "events",
     categoryName: "Events",
@@ -518,12 +533,14 @@ The prestigious SIIMA awards - South Indian cinema's biggest night - went off in
   },
   {
     id: "art-event-2",
-    title: "'Kantara Chapter 1' grand muhurat held with pomp in Kundapura: the who's who show up",
-    titleEn: "Kantara Chapter 1 muhurat: film industry elders bless the Kundapura launch",
+    title: "The Consecration of a Saga: Sacred Rituals Mark the Launch of Kantara Chapter 1",
+    titleEn: "Kantara Chapter 1 Takes Flight: Film Fraternity Gathers for Kundapura Muhurat",
     slug: "kantara-chapter-1-grand-muhurat-event-kundapura",
-    summary: "Hombale Films performed special pujas for Kantara Chapter 1 at a sacred site in Kundapura.",
+    summary: "Amidst sacred coastal incantations and temple drums, Hombale Films launched the prequel saga of Kantara, embarking on an ambitious journey into ancient folklore.",
     content: `
-True to coastal tradition, the official muhurat for Kantara Chapter 1 was fixed after a daiva-prayer ritual. Leading lights of the film industry and producers were present on the occasion.
+As the morning mist drifted over the sacred temple town of Kundapura, the cinematic world paused to witness the auspicious launch of Kantara Chapter 1.
+
+Accompanied by traditional coastal percussion and blessings from regional cultural elders, director-actor Rishab Shetty and producer Vijay Kiragandur embarked on a journey that aims to bridge ancient mythical storytelling with world-class technical wizardry.
     `,
     category: "events",
     categoryName: "Events",
@@ -543,12 +560,14 @@ True to coastal tradition, the official muhurat for Kantara Chapter 1 was fixed 
   // --- ACTORS ---
   {
     id: "art-actor-1",
-    title: "30 years of cinema: Abhinaya Chakravarthy Kiccha Sudeep and the inspiring story of his stardom",
-    titleEn: "Kiccha Sudeep completes 30 years: three decades, one unforgettable screen voice",
+    title: "Three Decades of Fire and Grace: The Enduring Legacy of Kiccha Sudeep",
+    titleEn: "Thirty Years of Stardom: How Kiccha Sudeep Redefined the Modern Screen Hero",
     slug: "kiccha-sudeep-30-years-in-cinema-inspiring-journey",
-    summary: "From Spaarsha and Huchcha to today's Max and Vikrant Rona - the indelible mark Kiccha Sudeep has left on Indian cinema.",
+    summary: "From earnest beginnings to pan-Indian reverence, Kiccha Sudeep's thirty-year odyssey stands as a masterclass in versatility, vocal power, and unwavering commitment to the silver screen.",
     content: `
-With his unmistakable baritone, smoulder in the eyes and grounded natural acting, Abhinaya Chakravarthy Kiccha Sudeep has won the hearts of millions of fans - and completed three successful decades in cinema.
+Few actors carry a room with just the resonance of their voice. Over three decades, Kiccha Sudeep has carved his own constellation in the cinematic universe — moving effortlessly from sensitive, wounded souls to towering larger-than-life heroes.
+
+Whether breathing intense psychological complexity into classic dramas or commanding massive multiplex crowds in high-octane blockbusters, Sudeep remains a restless student of cinema. His thirty-year milestone is not a sunset, but the prologue to his boldest creative chapter yet.
     `,
     category: "actors",
     categoryName: "Actors",
@@ -566,12 +585,14 @@ With his unmistakable baritone, smoulder in the eyes and grounded natural acting
   },
   {
     id: "art-actor-2",
-    title: "Daali Dhananjay's new chapter: the actor-producer championing independent cinema",
-    titleEn: "Daali Dhananjay turns producer, backing indie Kannada stories through Daali Pictures",
+    title: "The Alchemist of Raw Cinema: Daali Dhananjay's Mission to Nurture Fresh Voices",
+    titleEn: "From Electrifying Antagonist to Visionary Producer: The Evolution of Daali Dhananjay",
     slug: "daali-dhananjay-new-journey-supporting-indie-cinema",
-    summary: "Known as Daali since Tagaru, Dhananjay is now earning richly deserved praise for building a platform for fresh talent through Daali Pictures.",
+    summary: "Balancing intense on-screen brilliance with visionary producing chops, Daali Dhananjay is using his creative capital to open doors for tomorrow's boldest storytellers.",
     content: `
-Daali Dhananjay - lovingly called "Natarakshasa" (Actor-Demon) by fans - has become a torchbearer of creative change in Kannada cinema. After Badava Rascal and Head Bush, he will once again show up in a rock-solid avatar in Uttarakaanda.
+Affectionately christened Natarakshasa (the Actor-Demon) for his visceral, unforgettable performances, Dhananjay has never walked the easy path.
+
+Having captured audiences with sheer grit and chameleon-like adaptability, he has now stepped behind the camera as a creative champion. Through his production banner, Dhananjay is backing gritty independent films, proving that commercial stardom is sweetest when it serves as a launching pad for authentic, unvarnished human stories.
     `,
     category: "actors",
     categoryName: "Actors",
@@ -591,12 +612,14 @@ Daali Dhananjay - lovingly called "Natarakshasa" (Actor-Demon) by fans - has bec
   // --- BOLLYWOOD ---
   {
     id: "art-bolly-1",
-    title: "Oscar-winning, Hollywood-grade VFX for Ranbir Kapoor & Yash's Ramayana - guess the budget!",
-    titleEn: "Nitesh Tiwari's Ramayana Part 1 ropes in Oscar-winning VFX houses",
+    title: "A Mythological Canvas on a Global Scale: The Vision Behind Nitesh Tiwari's Ramayana",
+    titleEn: "Ramayana Part 1: Oscar-Winning VFX Teams Unite for Indian Cinema's Grandest Epic",
     slug: "ramayana-ranbir-kapoor-yash-vfx-hollywood-scale-budget",
-    summary: "The world's leading Oscar-winning Hollywood VFX companies are powering Nitesh Tiwari's Ramayana Part 1.",
+    summary: "With Ranbir Kapoor embodying Lord Rama and Rocking Star Yash portraying Ravana, the ambitious epic marshals global visual effects veterans to bring timeless mythology alive.",
     content: `
-Indian cinema's grandest epic project: **'Ramayana: Part 1'**. With Ranbir Kapoor as Rama and Rocking Star Yash as the demon-king Ravana, the film is backed by a colossal budget that runs past ₹800 crore.
+Indian cinema is preparing to take its most reverent and visually audacious leap forward with Nitesh Tiwari's Ramayana: Part 1.
+
+Bringing together the country's finest performers alongside Academy Award-winning visual effects studios, the production treats the sacred epic not merely as a blockbuster, but as a living cultural heritage rendered with breathtaking technical precision. Every landscape, celestial palace, and battle sequence is being crafted with devotion, ensuring the epic resonates across world audiences for generations to come.
     `,
     category: "bollywood",
     categoryName: "Bollywood",
@@ -614,12 +637,14 @@ Indian cinema's grandest epic project: **'Ramayana: Part 1'**. With Ranbir Kapoo
   },
   {
     id: "art-bolly-2",
-    title: "Rohit Shetty's cop universe 'Singham Again': Ajay Devgn rules the Diwali box office!",
-    titleEn: "Singham Again crosses ₹100 crore gross in its Diwali opening weekend",
+    title: "Roaring Theatres and Houseful Boards: Singham Again Dominates the Festive Box Office",
+    titleEn: "Festive Thunder: Singham Again Surpasses ₹100 Crore in an Electrifying Opening Weekend",
     slug: "singham-again-rohit-shetty-ajay-devgn-box-office-diwali",
-    summary: "Starring Ajay Devgn, Kareena Kapoor, Ranveer Singh and Deepika Padukone, Singham Again is running to houseful boards across theatres.",
+    summary: "Ajay Devgn leads an all-star ensemble in Rohit Shetty's latest spectacle, turning cinema halls nationwide into celebration arenas with packed single-screens and multiplexes.",
     content: `
-Singham Again, the latest bloke from Bollywood's hit cop universe, has notched up a record-setting ₹100 crore-plus in its very first weekend.
+The festival of lights met high-octane cinematic adrenaline as Singham Again roared into theatres across the nation.
+
+Combining the mass charisma of Ajay Devgn with a parade of beloved franchise heroes, the film has set cash registers ringing from opening morning. With explosive action beats and patriotic fervour tailored for communal cinema enjoyment, the film proved once again that high-energy theatrical experiences remain undefeated.
     `,
     category: "bollywood",
     categoryName: "Bollywood",
@@ -639,12 +664,14 @@ Singham Again, the latest bloke from Bollywood's hit cop universe, has notched u
   // --- HOLLYWOOD ---
   {
     id: "art-holly-1",
-    title: "Avatar 3 (Avatar: Fire and Ash): the secrets of the volcanic world James Cameron is building!",
-    titleEn: "Avatar: Fire and Ash first look — James Cameron unveils Pandora's Ash People",
+    title: "Into the Heart of Fire and Ash: James Cameron Expands the Wonders of Pandora",
+    titleEn: "Avatar: Fire and Ash — Unveiling Pandora's Volcanic Clan and Darker Emotional Depths",
     slug: "avatar-3-fire-and-ash-james-cameron-volcano-world-details",
-    summary: "The key characters of James Cameron's global phenomenon 'Avatar: Fire and Ash' - and the fine detail of Pandora's fire clan - are now out in the open.",
+    summary: "James Cameron prepares to take audiences beyond the tranquil oceans into the fiery volcanic territories of Pandora, introducing the complex Ash People in Avatar 3.",
     content: `
-'Avatar: Fire and Ash' is the third chapter of the highest-grossing series in Hollywood history. In it, James Cameron introduces the world to a brand-new Na'vi clan: the Ash People of Pandora.
+Master visionary James Cameron is ready to flip the emotional and ecological axis of Pandora in Avatar: Fire and Ash.
+
+Departing from the lush bioluminescent forests and soothing coral reefs of earlier chapters, the third instalment plunges into the scorched territories of the Ash Clan — a community sculpted by lava, hardship, and moral ambiguity. Cameron promises an immersive sensory voyage that tests family loyalties against the raw fury of planetary elements.
     `,
     category: "hollywood",
     categoryName: "Hollywood",
@@ -662,12 +689,14 @@ Singham Again, the latest bloke from Bollywood's hit cop universe, has notched u
   },
   {
     id: "art-holly-2",
-    title: "Nolan plans his next IMAX epic - and Hollywood's tightest lid stays firmly shut",
-    titleEn: "Nolan's next IMAX epic stays top secret; Matt Damon rumoured",
+    title: "A New Riddle in 70mm: Christopher Nolan Secretly Prepares His Next IMAX Spectacle",
+    titleEn: "Master of Time: Christopher Nolan Prepares His Next Mystery Epic for Universal Pictures",
     slug: "christopher-nolan-next-imax-project-hollywood-secrecy",
-    summary: "After the Oscar victory of Oppenheimer, Christopher Nolan's next film has locked dates for IMAX shooting - with Matt Damon's name floating around the cast.",
+    summary: "Following the monumental triumph of Oppenheimer, director Christopher Nolan is readying an all-new theatrical experience under strict, impenetrable secrecy.",
     content: `
-The world's most-watched filmmaker, Christopher Nolan, is teaming up with Universal Pictures for his upcoming film. As ever, the story and title are wrapped up in absolutely airtight secrecy.
+Whenever Christopher Nolan steps behind an IMAX camera, cinema lovers know that reality itself is about to be reimagined.
+
+Fresh off multiple Academy Awards for Oppenheimer, the maestro has booked global release dates for his next ambitious project with Universal Pictures. True to Nolan's legendary craftsmanship, details remain locked in an impenetrable vault, but one thing is certain: cinema halls worldwide will once again become cathedrals of sight and sound.
     `,
     category: "hollywood",
     categoryName: "Hollywood",
