@@ -1,18 +1,25 @@
-# FILMY GARAGE (ಫಿಲ್ಮಿ ಗ್ಯಾರೇಜ್) — Multi-Industry Cinema & Entertainment Portal
+# EXTRASAGA — One Indian Cinema Industry. One Unified Platform.
 
 [![Next.js 14](https://img.shields.io/badge/Next.js-14.2-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![Vitest](https://img.shields.io/badge/Vitest-127%20Passed-green?logo=vitest)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-181%20Passed-green?logo=vitest)](https://vitest.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-**FILMY GARAGE** is an all-in-one cinema entertainment news and theatrical release intelligence platform covering six premier film industries:
-- 🟡 **Sandalwood** (Kannada)
-- 🔴 **Tollywood** (Telugu)
-- 🔵 **Kollywood** (Tamil)
-- 🟢 **Mollywood** (Malayalam)
-- 🟣 **Bollywood** (Hindi)
-- ⚪ **Hollywood** (English)
+> **"Different languages. Different cultures. Different filmmaking traditions. One industry. One identity. One platform. EXTRASAGA — Bringing Indian Cinema Together."**
+
+**EXTRASAGA** is a unified, professional, English-language corporate platform representing the entire Indian cinema industry. From Bollywood to Sandalwood, Tollywood to Kollywood, Mollywood to Bengali, Marathi, Punjabi, and every other regional film industry, EXTRASAGA brings the entire ecosystem together under one identity.
+
+---
+
+## 🏛️ Core Principles
+
+1. **One Brand. One Identity**: Consistent corporate representation of Indian cinema as a unified global powerhouse.
+2. **Complete Indian Cinema Coverage**: Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood, Bengali, Punjabi, and regional film industries.
+3. **English as the Standard Language**: Consistent, accessible, and authoritative corporate journalism.
+4. **One Integrated Cinema Ecosystem**: Connecting actors, directors, producers, technicians, distributors, and exhibitors.
+5. **Unified Website Design**: High-prestige Forbes/Bloomberg-grade data density and editorial elegance.
+6. **Equal Industry Representation**: Equal recognition, visibility, and opportunities across all filmmaking regions.
 
 ---
 

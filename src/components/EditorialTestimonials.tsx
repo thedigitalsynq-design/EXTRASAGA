@@ -136,7 +136,7 @@ export default function EditorialTestimonials() {
     en: {
       pill: "COMMUNITY & VOICES",
       title: "What cinema leaders & audiences say",
-      subtitle: "Hear from filmmakers, national critics, and passionate cinephiles who make CINI JAATRE their daily morning ritual.",
+      subtitle: "Hear from filmmakers, national critics, and passionate cinephiles who make EXTRASAGA their daily morning cinema intelligence ritual.",
     },
   };
 

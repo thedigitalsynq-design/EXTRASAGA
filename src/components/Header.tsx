@@ -112,12 +112,12 @@ export default function Header() {
           {/* Left: Date & Status */}
           <div className="flex items-center gap-3 text-gray-600">
             <span className="font-semibold text-[#1A5140] flex items-center gap-1.5">
-              <span>📅</span> {currentDate || "6 ನವೆಂಬರ್ 2026"}
+              <span>📅</span> {currentDate || "7 November 2026"}
             </span>
             <span className="text-gray-300 hidden md:inline">|</span>
             <span className="text-[11px] font-sans text-[#288760] hidden md:inline-flex items-center gap-1.5 bg-[#E8F8EB] px-2.5 py-0.5 rounded-full border border-[#B7E5BA] font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-[#288760] animate-pulse"></span>
-              ಸಾರ್ವಭೌಮ ಸಿನಿಮಾ ಟರ್ಮಿನಲ್ (Sovereign Cinema Terminal)
+              ONE INDIAN CINEMA INDUSTRY • ONE UNIFIED PLATFORM
             </span>
           </div>
 
@@ -258,25 +258,25 @@ export default function Header() {
           <div className="flex flex-col justify-center">
             <div className="flex items-center gap-2">
               <span className="text-2xl sm:text-3xl font-black tracking-tight font-sans text-[#0F3529] uppercase select-none">
-                CINI
+                EXTRA
               </span>
               <span className="text-2xl sm:text-3xl font-black tracking-tight font-sans text-[#288760] uppercase select-none">
-                JAATRE
+                SAGA
               </span>
               <span
                 className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] sm:text-[11px] font-sans font-bold tracking-wider uppercase bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA] shadow-2xs select-none"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#288760] animate-pulse"></span>
-                {config.industryName}
+                ONE INDIAN CINEMA
               </span>
             </div>
             <p className="text-[11px] sm:text-xs text-gray-500 font-medium tracking-wide mt-0.5 flex items-center gap-1.5 line-clamp-1">
-              <span className={language === "kn" ? "font-hubballi font-bold text-[#1A5140]" : "font-semibold text-[#1A5140]"}>
-                {config.brandNameNative}
+              <span className="font-bold text-[#1A5140]">
+                EXTRASAGA
               </span>
               <span className="text-gray-300">·</span>
-              <span className={language === "kn" ? "font-hubballi font-bold text-gray-600" : "text-gray-600"}>
-                {config.headerTagline}
+              <span className="text-gray-600 font-medium">
+                Different Languages. Different Cultures. One Platform.
               </span>
             </p>
           </div>

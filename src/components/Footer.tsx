@@ -21,26 +21,26 @@ export default function Footer() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-2xl font-black font-sans text-[#0F3529] tracking-tight">CINI</span>
-                  <span className="text-2xl font-black font-sans text-[#288760] tracking-tight">JAATRE</span>
+                  <span className="text-2xl font-black font-sans text-[#0F3529] tracking-tight">EXTRA</span>
+                  <span className="text-2xl font-black font-sans text-[#288760] tracking-tight">SAGA</span>
                   <span className="ml-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sans font-bold uppercase tracking-wider bg-[#E8F8EB] text-[#1A5140] border border-[#B7E5BA] shadow-2xs">
-                    {config.industryName}
+                    ONE INDIAN CINEMA
                   </span>
                 </div>
                 <p className="text-[11px] text-[#4B6358] font-medium tracking-wide mt-0.5 flex items-center gap-1.5">
-                  <span className={language === "kn" ? "font-hubballi font-bold text-[#288760]" : "font-semibold text-[#288760]"}>
-                    {config.brandNameNative}
+                  <span className="font-bold text-[#288760]">
+                    EXTRASAGA
                   </span>
                   <span className="text-[#A3B8B0]">·</span>
-                  <span className={language === "kn" ? "font-hubballi font-semibold text-[#4B6358]" : "text-[#4B6358]"}>
-                    {config.headerTagline}
+                  <span className="text-[#4B6358] font-semibold">
+                    Bringing Indian Cinema Together
                   </span>
                 </p>
               </div>
             </Link>
 
             <p className="text-xs sm:text-sm text-[#4B6358] leading-relaxed max-w-sm">
-              {t("footer_about")}
+              EXTRASAGA is the unified, professional corporate platform representing the entire Indian cinema industry. From Bollywood to Sandalwood, Tollywood to Kollywood, Mollywood to Bengali and Punjabi, EXTRASAGA brings the entire ecosystem together under one identity.
             </p>
 
             <div className="pt-2">
@@ -169,7 +169,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B7280]">
           <p>
-            &copy; {new Date().getFullYear()} CINI JAATRE (ಸಿನಿ ಜಾತ್ರೆ). {t("footer_rights")}
+            &copy; {new Date().getFullYear()} EXTRASAGA. One Indian Cinema Industry. One Unified Platform. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-[11px] text-[#4B6358]">
             <span className="hover:text-[#288760] cursor-pointer">{t("footer_privacy")}</span>
