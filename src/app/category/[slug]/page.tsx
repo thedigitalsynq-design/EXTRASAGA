@@ -20,17 +20,13 @@ interface CategoryPageProps {
   params: {
     slug: string;
   };
-  searchParams?: {
-    lang?: string;
-  };
 }
 
-export async function generateMetadata({ params, searchParams }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === params.slug);
   if (!cat) return { title: "Category not found" };
 
-  const lang = (searchParams?.lang || "en") as LanguageCode;
-  const catName = getLocalizedCategoryName(params.slug, lang);
+  const catName = getLocalizedCategoryName(params.slug, "en");
 
   return {
     title: `${catName} (${cat.englishName}) - EXTRASAGA`,
@@ -38,14 +34,14 @@ export async function generateMetadata({ params, searchParams }: CategoryPagePro
   };
 }
 
-export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
+export default async function CategoryPage({ params }: CategoryPageProps) {
   const currentCategory = CATEGORIES.find((c) => c.slug === params.slug);
 
   if (!currentCategory) {
     notFound();
   }
 
-  const activeLang = (searchParams?.lang || "en") as LanguageCode;
+  const activeLang = "en" as LanguageCode;
   const config = getLanguageConfig(activeLang);
 
   const localizedTitle = getLocalizedCategoryName(params.slug, activeLang);
@@ -61,40 +57,38 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
       DataService.getGalleries(activeLang),
     ]);
 
-  const emptyTextMap: Record<string, { msg: string; back: string }> = {
-    en: { msg: "No articles available in this category yet.", back: "Back to Home" },
-  };
-
-  const emptyText = emptyTextMap[activeLang] || emptyTextMap.en;
-
   return (
-    <div className="w-full">
+    <div className="w-full bg-paper min-h-screen text-ink">
       {/* Category Header Band */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs text-popcorn-dim mb-3 font-mono-tabular">
-            <Link href="/" className="hover:text-popcorn font-medium transition-colors">
+          <div className="flex items-center gap-2 text-xs text-ink-dim mb-3 font-mono">
+            <Link href="/" className="hover:text-press font-bold transition-colors">
               {getTranslation(activeLang, "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-signal-soft font-bold">{localizedTitle}</span>
+            <span className="text-press-deep font-bold">{localizedTitle}</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] mb-3 text-ultra-soft border border-ultra/25 bg-ultra/10">
-                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-                {config.industryName}
-              </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+                  CATEGORY DESK
+                </span>
+                <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+                  ALL INDIAN FILM INDUSTRIES
+                </span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
                 {localizedTitle}
               </h1>
-              <p className="mt-1.5 text-xs sm:text-sm text-popcorn-dim max-w-2xl">
+              <p className="mt-1.5 text-xs sm:text-sm text-ink-dim max-w-2xl font-grotesk font-medium">
                 {currentCategory.description}
               </p>
             </div>
-            <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-signal/10 text-signal-soft border border-signal/25 uppercase tracking-wider font-display-latin self-start md:self-auto shadow-2xs">
+            <span className="text-xs font-poster uppercase px-3 py-1.5 bg-band text-ink border-2 border-ink shadow-sticker self-start md:self-auto">
               {currentCategory.englishName}
             </span>
           </div>
@@ -133,24 +127,24 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           </div>
         )}
 
-        {/* Regular Article Listing Grid (for Sandalwood, Latest, Bollywood, Hollywood, Actors, Actresses, Gossip, Interviews, Television, Celebrity, Events, Upcoming, Trending) */}
+        {/* Regular Article Listing Grid */}
         {!["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <main className="lg:col-span-8">
-              <h2 className="text-lg font-bold text-popcorn mb-5 border-l-4 border-signal pl-3 font-sans">
+              <h2 className="text-lg font-poster uppercase text-ink mb-5 border-l-4 border-press pl-3">
                 {localizedTitle} ({articles.length})
               </h2>
 
               {articles.length === 0 ? (
-                <div className="bg-revealed p-12 rounded-2xl border border-glow-line shadow-sm text-center space-y-3">
-                  <p className="text-base text-popcorn-dim">
-                    {emptyText.msg}
+                <div className="bg-sheet p-12 border-2 border-dashed border-ink shadow-press text-center space-y-3">
+                  <p className="text-base font-poster uppercase text-ink-dim">
+                    No articles printed in this category yet.
                   </p>
                   <Link
                     href="/"
-                    className="inline-block px-5 py-2.5 rounded-lg bg-signal-deep text-popcorn text-xs font-bold hover:bg-signal transition-colors"
+                    className="inline-block px-5 py-2.5 bg-ink text-paper text-xs font-poster uppercase tracking-wider hover:bg-press border-2 border-ink shadow-sticker transition-colors"
                   >
-                    {emptyText.back}
+                    Back to Home
                   </Link>
                 </div>
               ) : (
@@ -170,10 +164,10 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
           </div>
         )}
 
-        {/* Supplementary In-Depth Articles for Specialized Pages (only if specific articles exist) */}
+        {/* Supplementary In-Depth Articles for Specialized Pages */}
         {["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && articles.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-glow-line">
-            <h3 className="text-lg font-bold text-popcorn mb-5 border-l-4 border-signal pl-3 font-sans">
+          <div className="mt-12 pt-8 border-t-2 border-ink">
+            <h3 className="text-lg font-poster uppercase text-ink mb-5 border-l-4 border-press pl-3">
               {localizedTitle} — Special Reports ({articles.length})
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

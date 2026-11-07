@@ -78,11 +78,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Catamaran:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Khand:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..1000&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-paper text-ink font-kannada antialiased relative overflow-x-hidden">
+      <body className="min-h-screen flex flex-col bg-paper text-ink font-sans antialiased relative overflow-x-hidden">
         {/* Press Environment: the sheet is always on the printing table */}
         <div aria-hidden="true" className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
           {/* Newsprint wash — warm paper breath, never sterile white */}

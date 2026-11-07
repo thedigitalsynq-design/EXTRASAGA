@@ -141,8 +141,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         {/* ZONE 7: Celluloid Era Time-Machine (5 Decades of Cinema Evolution) */}
         <CelluloidEraScrubber />
 
-        {/* ZONE 8: Visual Media Pavilion (Dark Theater Experience) */}
-        <section aria-label="Cinema Trailers and Celebrity Photo Gallery" className="space-y-12 pt-6 border-t border-glow-line content-auto">
+        {/* ZONE 8: Visual Media Pavilion */}
+        <section aria-label="Cinema Trailers and Celebrity Photo Gallery" className="space-y-12 pt-6 border-t-2 border-ink content-auto">
           {/* 7A. Trailers & Official Videos Lounge */}
           <VideoSection videos={videos} />
 

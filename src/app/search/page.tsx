@@ -1,30 +1,26 @@
 import React from "react";
 import Link from "next/link";
-import { Search as SearchIcon, Filter, AlertCircle } from "lucide-react";
+import { Search as SearchIcon, AlertCircle } from "lucide-react";
 import { DataService } from "@/lib/dataService";
 import ArticleCard from "@/components/ArticleCard";
 import TrendingSidebar from "@/components/TrendingSidebar";
 import { getLanguageConfig } from "@/lib/languages";
-import { getTranslation } from "@/lib/translations";
-import { LanguageCode } from "@/types";
 
 interface SearchPageProps {
   searchParams: {
     q?: string;
     cat?: string;
-    lang?: string;
   };
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = (searchParams.q || "").trim().toLowerCase();
   const selectedCat = searchParams.cat || "";
-  const activeLang = (searchParams.lang || "en") as LanguageCode;
-  const config = getLanguageConfig(activeLang);
+  const config = getLanguageConfig("en");
 
   const [allArticles, trendingArticles] = await Promise.all([
-    DataService.getArticles(undefined, activeLang),
-    DataService.getTrendingArticles(5, activeLang),
+    DataService.getArticles(undefined, "en"),
+    DataService.getTrendingArticles(5, "en"),
   ]);
 
   // Filter articles by query (checking native title, English title, tags, summary, content)
@@ -42,36 +38,22 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     return inTitle || inTitleEn || inSummary || inContent || inTags;
   });
 
-  const emptyResultText: Record<string, { title: string; desc: string; btn: string }> = {
-    en: {
-      title: "No results found!",
-      desc: "Please try searching with different keywords or explore latest cinema news on the home page.",
-      btn: "Back to Home",
-    },
-  };
-
-  const emptyText = emptyResultText[activeLang] || emptyResultText.en;
-
   return (
-    <div className="w-full">
-      {/* The Search Deck — Hero Band */}
-      <div className="projector-beam relative bg-hall border-b border-glow-line py-8 px-4 sm:px-6 overflow-hidden">
+    <div className="w-full bg-paper min-h-screen text-ink">
+      {/* The Search Deck — Broadsheet Hero Band */}
+      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <span className="inline-block mb-3 uppercase font-display-latin text-[10px] tracking-[0.25em] text-ultra-soft border border-ultra/25 bg-ultra/10 rounded-full px-3 py-0.5">
-            The Search Deck
-          </span>
-
           <div className="flex items-center gap-2 mb-2">
-            <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-display-latin font-black uppercase tracking-[0.2em] ${config.badgeColor} border border-glow-line`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-              {config.industryName}
+            <span className="sticker bg-violet text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+              THE SEARCH DECK
+            </span>
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+              ALL INDIAN FILM INDUSTRIES
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display-latin text-popcorn tracking-tight">
-            {getTranslation(activeLang, "nav_search")} (All Indian Cinema Articles)
+          <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
+            SEARCH <span className="text-press">EXTRASAGA</span> WIRE
           </h1>
 
           {/* Search Form */}
@@ -81,27 +63,27 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 type="text"
                 name="q"
                 defaultValue={searchParams.q || ""}
-                placeholder={getTranslation(activeLang, "nav_search_placeholder")}
-                className="w-full bg-revealed border border-glow-line rounded-xl pl-10 pr-4 py-3 text-sm text-popcorn placeholder-popcorn-muted focus:outline-none focus:border-signal shadow-2xs font-medium"
+                placeholder="Search across all Indian cinema headlines, reviews, lore..."
+                className="w-full bg-paper border-2 border-ink pl-10 pr-4 py-3 text-sm text-ink placeholder-ink-mute focus:outline-none shadow-press font-grotesk font-medium"
               />
-              <SearchIcon className="w-4 h-4 text-popcorn-muted absolute left-3.5 top-3.5" />
+              <SearchIcon className="w-4 h-4 text-ink-dim absolute left-3.5 top-3.5" />
             </div>
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-signal-deep hover:bg-signal text-popcorn font-bold text-sm transition-colors shadow-sm"
+              className="px-6 py-3 bg-ink hover:bg-press text-paper font-poster uppercase text-xs tracking-wider transition-all border-2 border-ink shadow-sticker"
             >
-              {getTranslation(activeLang, "btn_search")}
+              Search
             </button>
           </form>
 
           {/* Quick trending tags */}
-          <div className="mt-3 flex items-center gap-2 flex-wrap text-xs text-popcorn-dim">
-            <span className="text-popcorn font-semibold">{getTranslation(activeLang, "nav_hot_topics")}</span>
+          <div className="mt-4 flex items-center gap-2 flex-wrap text-xs font-mono text-ink-dim">
+            <span className="text-ink font-poster uppercase">Hot Topics:</span>
             {config.hotTopics.map((tag) => (
               <Link
                 key={tag}
                 href={`/search?q=${encodeURIComponent(tag)}`}
-                className="px-2.5 py-1 rounded-full bg-revealed hover:bg-signal-deep text-popcorn-dim hover:text-popcorn text-xs border border-glow-line transition-colors font-medium shadow-2xs"
+                className="px-2.5 py-1 bg-paper hover:bg-press hover:text-paper text-ink text-xs border-2 border-ink shadow-sticker transition-colors font-grotesk font-bold uppercase"
               >
                 #{tag}
               </Link>
@@ -113,32 +95,32 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <main className="lg:col-span-8">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b border-glow-line">
-              <span className="text-sm font-bold text-popcorn">
+            <div className="flex items-center justify-between pb-3 mb-6 border-b-2 border-ink">
+              <span className="text-sm font-poster uppercase text-ink">
                 {query ? (
                   <>
-                    &ldquo;<span className="text-ultra-soft">{query}</span>&rdquo; ({results.length})
+                    &ldquo;<span className="text-press">{query}</span>&rdquo; ({results.length} results)
                   </>
                 ) : (
-                  <>{getTranslation(activeLang, "btn_all_news")} ({results.length})</>
+                  <>All Cinema Stories ({results.length})</>
                 )}
               </span>
             </div>
 
             {results.length === 0 ? (
-              <div className="bg-revealed p-12 rounded-3xl border border-glow-line text-center space-y-3 shadow-xs">
-                <AlertCircle className="w-10 h-10 text-marquee-soft mx-auto" />
-                <h3 className="text-base font-bold text-popcorn">
-                  {emptyText.title}
+              <div className="bg-sheet p-12 border-2 border-dashed border-ink text-center space-y-3 shadow-press">
+                <AlertCircle className="w-10 h-10 text-press mx-auto" />
+                <h3 className="text-base font-poster uppercase text-ink">
+                  No stories found for this query!
                 </h3>
-                <p className="text-xs text-popcorn-dim">
-                  {emptyText.desc}
+                <p className="text-xs text-ink-dim font-grotesk font-medium">
+                  Try searching with different actor names, movie titles, or explore latest cinema news on the home page.
                 </p>
                 <Link
                   href="/"
-                  className="inline-block mt-3 px-5 py-2.5 rounded-xl bg-signal-deep text-popcorn text-xs font-bold hover:bg-signal transition-colors shadow-sm"
+                  className="inline-block mt-3 px-5 py-2.5 bg-ink text-paper text-xs font-poster uppercase tracking-wider hover:bg-press border-2 border-ink shadow-sticker transition-colors"
                 >
-                  {emptyText.btn}
+                  Back to Home
                 </Link>
               </div>
             ) : (
@@ -158,4 +140,3 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     </div>
   );
 }
-

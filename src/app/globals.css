@@ -23,12 +23,13 @@
   --press-violet: #4F2BEF;
   --press-gold: #F0B429;
 
-  /* English edition font stacks */
-  --font-english: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display-latin: 'Space Grotesk', 'DM Sans', sans-serif;
-  --font-poster: 'Archivo Black', 'Space Grotesk', sans-serif;
-  --font-sans: var(--font-english);
-  --font-display: var(--font-display-latin);
+  /* All typography unified exclusively to Google Sans Flex */
+  --font-google-sans-flex: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-english: var(--font-google-sans-flex);
+  --font-display-latin: var(--font-google-sans-flex);
+  --font-poster: var(--font-google-sans-flex);
+  --font-sans: var(--font-google-sans-flex);
+  --font-display: var(--font-google-sans-flex);
 }
 
 html {
