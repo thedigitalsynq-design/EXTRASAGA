@@ -15,18 +15,18 @@ export const MULTILINGUAL_ARTICLES: Article[] = [
   // --- TELUGU / TOLLYWOOD ---
   {
     id: "te-art-1",
-    title: "Pushpa 2: The Rule — all-time-record pre-release business! Allu Arjun fans are in celebration mode",
-    titleEn: "Pushpa 2: The Rule nears ₹1000 crore in pre-release business records",
+    title: "Pushpa 2: The Rule — Monumental Pre-Release Phenomenon Sparks Wild Celebrations",
+    titleEn: "Pushpa 2: The Rule Nears ₹1000 Crore Worldwide Pre-Release Benchmark",
     slug: "pushpa-2-the-rule-pre-release-business-allu-arjun-record",
-    summary: "Icon star Allu Arjun's 'Pushpa 2', directed by Sukumar, has closed nearly ₹1000 crore of combined theatrical and non-theatrical rights business, setting off a fresh sensation.",
+    summary: "Icon Star Allu Arjun and master storyteller Sukumar redefine cinematic commerce as Pushpa 2: The Rule approaches a historic ₹1,000 crore valuation across theatrical and streaming rights.",
     content: `
-The most-awaited Pan-India movie **'Pushpa 2: The Rule'**, made under the Mythri Movie Makers banner with icon star Allu Arjun in the lead and Sukumar directing, is closing in on release. 
+The fever pitch surrounding **Pushpa 2: The Rule** has reached unprecedented heights as Sukumar's forest epic readies to sweep into global theatres under the Mythri Movie Makers banner.
 
-### A record-breaking pre-release market worldwide
-The film's combined digital, satellite, music, and theatrical rights business has wrapped at record-breaking levels. After commanding record prices in North India, the film is also clocking the fastest overseas advance bookings around.
+### A Worldwide Theatrical Phenomenon
+From record-setting distributor investments across North India to breakneck overseas advance bookings, the demand for Allu Arjun's raw charisma has transformed the sequel into Indian cinema's most valuable pre-release property.
 
-### Rashmika Mandanna mesmerizes once again as Srivalli
-Songs scored by Devi Sri Prasad are tearing up YouTube with millions of views. The sequences where Fahadh Faasil's Bhanwar Singh Shekhawat IPS squares off against Allu Arjun are shaping up to be the film's biggest highlight.
+### Srivalli Returns and the Face-Off Deepens
+With Devi Sri Prasad's pulse-pounding anthems dominating digital charts, cinephiles are eagerly awaiting the psychological battle of wits between Pushpa Raj and Fahadh Faasil's menacing Bhanwar Singh Shekhawat.
     `,
     category: "latest",
     categoryName: "Tollywood News",
@@ -47,12 +47,14 @@ Songs scored by Devi Sri Prasad are tearing up YouTube with millions of views. T
   },
   {
     id: "te-art-2",
-    title: "Devara's box office tsunami: Jr NTR crosses the ₹500 crore milestone in global collections",
-    titleEn: "Devara Part 1 receipts: Jr NTR's epic crosses ₹500 crore worldwide",
+    title: "Devara Crosses the ₹500 Crore Horizon: Jr NTR's Coastal Saga Storms Global Charts",
+    titleEn: "Devara Part 1 Box Office: Jr NTR's Action Epic Surpasses ₹500 Crore Worldwide",
     slug: "devara-box-office-500-crore-milestone-ntr",
-    summary: "'Devara Part 1', starring the man of masses Jr NTR and directed by Koratala Siva, has raked in a massive ₹500 crore worldwide gross and is storming the box office.",
+    summary: "Helmed by Koratala Siva, Devara Part 1 rides a wave of unbridled mass euphoria and thunderous word-of-mouth past the prestigious ₹500 crore global threshold.",
     content: `
-**'Devara Part 1'**, Koratala Siva's action drama with NTR in the lead, is charging ahead with phenomenal collections around the world. Set along the coastline, the film's dual-role turn from NTR has thoroughly hooked audiences. Anirudh's background score has pushed the film to another level.
+Carried by the magnetic double-role performance of Man of Masses Jr NTR, **Devara Part 1** has emerged as a colossal box office juggernaut.
+
+Koratala Siva's tale of coastal honour, deep-sea battles, and ancestral duty has gripped viewers worldwide. Amplified by Anirudh Ravichander's adrenaline-charged sonic palette, the film continues its dominant multiplex run across international territories.
     `,
     category: "box-office",
     categoryName: "Box Office",
@@ -71,12 +73,14 @@ Songs scored by Devi Sri Prasad are tearing up YouTube with millions of views. T
   },
   {
     id: "te-art-3",
-    title: "SSMB 29: Rajamouli and Mahesh Babu's adventure blockbuster readies a massive schedule in the Amazon jungles!",
-    titleEn: "SSMB 29: Rajamouli and Mahesh Babu's globe-trotting adventure enters big Amazon shoot",
+    title: "SSMB 29: Rajamouli & Mahesh Babu Prepare Their Monumental Amazon Forest Schedule",
+    titleEn: "SSMB 29: Rajamouli's Globe-Trotting Jungle Adventure Locks Epic South American Schedule",
     slug: "ssmb-29-rajamouli-mahesh-babu-amazon-forest-shooting",
-    summary: "The S.S. Rajamouli–superstar Mahesh Babu film, mounted on Indian cinema's biggest-ever budget, is set to roll with international actors on board.",
+    summary: "Mounted on an unprecedented scale, S.S. Rajamouli's globe-trotting jungle odyssey with superstar Mahesh Babu heads into deep South American rainforests.",
     content: `
-After the roaring success of RRR, ace director Rajamouli is back on the floor with the international adventure thriller **SSMB 29**. Mahesh Babu will be seen in a never-before-seen getup for the film.
+Following the worldwide Oscar-winning triumph of RRR, visionary maestro S.S. Rajamouli is charting uncharted territory with **SSMB 29**.
+
+Teaming up with superstar Mahesh Babu in an intensely transformed avatar, the globe-trotting adventure is enlisting leading international technicians and wildlife cinematographers for an immersive cinematic voyage deep within the Amazon basin.
     `,
     category: "latest",
     categoryName: "Tollywood News",
@@ -97,15 +101,14 @@ After the roaring success of RRR, ace director Rajamouli is back on the floor wi
   // --- TAMIL / KOLLYWOOD ---
   {
     id: "ta-art-1",
-    title: "Coolie: Superstar Rajinikanth's mass look in Lokesh Kanagaraj's film — the teaser scores a world record!",
-    titleEn: "Coolie teaser record: Rajinikanth's Lokesh Kanagaraj film breaks viewership marks",
+    title: "Coolie: Superstar Rajinikanth & Lokesh Kanagaraj Shatter World Streaming Records",
+    titleEn: "Coolie Teaser Milestone: Rajinikanth's Action Spectacle Breaks Global Records",
     slug: "coolie-rajinikanth-lokesh-kanagaraj-teaser-record",
-    summary: "Within hours of dropping on YouTube, the teaser of 'Coolie' — Superstar Rajinikanth's film produced by Sun Pictures and directed by Lokesh Kanagaraj — has shattered fresh viewership records.",
+    summary: "Sun Pictures and director Lokesh Kanagaraj ignite the internet as the blistering teaser for Coolie clocks historic viewership numbers within hours.",
     content: `
-**'Coolie' (Coolie)** — the grand collaboration of Indian cinema's crowned king, Superstar Rajinikanth, and Lokesh Kanagaraj. 
+When the unmatched swagger of Superstar Rajinikanth meets the dark, stylish world of Lokesh Kanagaraj, cinema history is forged in fire.
 
-### A gripping plot built around gold smuggling
-In the film, Rajinikanth appears in a complete action avatar in true Nelson-and-Lokesh style. The theme music composed by Anirudh Ravichander has sent fans into a frenzy. Sathyaraj, Nagarjuna, and Soubin Shahir play key roles.
+Featuring an arresting gold-smuggling backdrop and an electric soundtrack from Anirudh Ravichander, **Coolie** brings together an awe-inspiring ensemble including Sathyaraj, Nagarjuna, and Soubin Shahir for an adrenaline-fueled theatrical feast.
     `,
     category: "latest",
     categoryName: "Kollywood News",
@@ -126,12 +129,14 @@ In the film, Rajinikanth appears in a complete action avatar in true Nelson-and-
   },
   {
     id: "ta-art-2",
-    title: "Thalapathy 69: Vijay's final film before his full-time political entry — what is H. Vinoth's project?",
-    titleEn: "Thalapathy 69: Vijay's final film with H. Vinoth before full-time politics",
+    title: "Thalapathy 69: Vijay's Grand Theatrical Farewell Before Entering Public Life",
+    titleEn: "Thalapathy 69: Vijay & H. Vinoth Unite for an Emotional Cinematic Swansong",
     slug: "thalapathy-69-vijay-h-vinoth-final-film-announcement",
-    summary: "Thalapathy Vijay is deep in the shoot of 'Thalapathy 69', the last film of his cinematic journey. Pooja Hegde and Bobby Deol star in the KVN Productions production.",
+    summary: "Thalapathy Vijay joins hands with acclaimed director H. Vinoth for his 69th and final feature film, setting off an emotional wave among millions of cinema lovers.",
     content: `
-Thalapathy Vijay, who has launched the Tamilaga Vettri Kazhagam party, will star in **'Thalapathy 69'** before heading into full-time public service. Directed by H. Vinoth, the socio-political film has sparked unprecedented anticipation among fans.
+As Thalapathy Vijay prepares to dedicate his life to public service, **Thalapathy 69** stands as the poignant crescendo of a glorious thirty-year screen journey.
+
+Produced by KVN Productions and co-starring Pooja Hegde and Bobby Deol, director H. Vinoth is crafting a socially conscious, high-stakes drama destined to celebrate Vijay's indelible bond with generations of moviegoers.
     `,
     category: "latest",
     categoryName: "Kollywood News",
@@ -152,12 +157,14 @@ Thalapathy Vijay, who has launched the Tamilaga Vettri Kazhagam party, will star
   // --- MALAYALAM / MOLLYWOOD ---
   {
     id: "ml-art-1",
-    title: "L2: Empuraan — the Mohanlal and Prithviraj megacollab wraps its UK schedule!",
-    titleEn: "L2: Empuraan wraps a massive overseas schedule for Mohanlal and Prithviraj",
+    title: "L2: Empuraan — Mohanlal & Prithviraj Complete Colossal Overseas Schedule",
+    titleEn: "Empuraan Milestone: Mohanlal & Prithviraj Wrap High-Stakes European Schedule",
     slug: "l2-empuraan-mohanlal-prithviraj-shooting-wrap",
-    summary: "Director Prithviraj Sukumaran is dropping location details of 'Empuraan', the second chapter of 'Lucifer', produced jointly by Aashirvad Cinemas and Lyca Productions.",
+    summary: "Director Prithviraj Sukumaran and Complete Actor Mohanlal conclude a sprawling international leg for Empuraan, the monumental second chapter of Lucifer.",
     content: `
-**'Empuraan' (L2: Empuraan)**, the sequel to 'Lucifer' — the film that rewrote Malayalam box office history — is coming together on a colossal canvas. Complete actor Mohanlal returns as Stephen Nedumpally / Khureshi Ab'raam, the international underworld kingpin.
+The cinematic mythos of Khureshi Ab'raam expands across continents as **L2: Empuraan** nears completion.
+
+Jointly bankrolled by Aashirvad Cinemas and Lyca Productions, this sweeping espionage and underworld saga sees Mohanlal command the frame with cold, imperial gravitas, backed by an elite ensemble cast and world-class stunt direction.
     `,
     category: "latest",
     categoryName: "Mollywood News",
@@ -178,12 +185,14 @@ Thalapathy Vijay, who has launched the Tamilaga Vettri Kazhagam party, will star
   },
   {
     id: "ml-art-2",
-    title: "Manjummel Boys make history: the first Malayalam film enters the ₹240 crore club record!",
-    titleEn: "Manjummel Boys make history: first Malayalam film past ₹240 crore worldwide",
+    title: "The Triumph of Brotherhood: How Manjummel Boys Rewrote Indian Box Office History",
+    titleEn: "Manjummel Boys Milestone: First Malayalam Feature to Cross ₹240 Crore Worldwide",
     slug: "manjummel-boys-240-crore-historic-box-office-club",
-    summary: "The survival thriller 'Manjummel Boys', directed by Chidambaram, has posted staggering collections in Kerala, Tamil Nadu, and overseas, lifting Malayalam cinema to a global level.",
+    summary: "Chidambaram's gripping real-life survival drama transcends language barriers, earning historic collections across Kerala, Tamil Nadu, and global screens.",
     content: `
-**'Manjummel Boys'**, a tale of the depths of friendship set against the Guna Caves, has become the biggest box office surprise in Indian cinema. Raking in over ₹60 crore in Tamil Nadu alone, this small film has knocked out the old records held by non-Malayalam releases.
+Set in the perilous, mist-shrouded depths of the Guna Caves, **Manjummel Boys** proved that raw human empathy and brotherhood are the universal languages of cinema.
+
+Capturing hearts far beyond Kerala and amassing a historic ₹60 crore in Tamil Nadu alone, this grounded indie marvel reminded the industry that heartfelt storytelling will always triumph over spectacle.
     `,
     category: "box-office",
     categoryName: "Box Office",
@@ -204,12 +213,14 @@ Thalapathy Vijay, who has launched the Tamilaga Vettri Kazhagam party, will star
   // --- HINDI / BOLLYWOOD ---
   {
     id: "hi-art-1",
-    title: "Singham Again: Rohit Shetty's cop universe rocks theatres this Diwali — Ajay Devgn's killer look!",
-    titleEn: "Singham Again: Rohit Shetty's cop universe storms theatres this Diwali",
+    title: "Singham Again: Rohit Shetty's Cop Universe Shakes Theatres with High-Octane Festive Energy",
+    titleEn: "Singham Again: Ajay Devgn Leads Star-Studded Cop Universe into Diwali Theatres",
     slug: "singham-again-rohit-shetty-cop-universe-diwali-clash",
-    summary: "The moment the explosive trailer of 'Sigham Again' dropped, it took over social media. The mega-budget action film stars Ajay Devgn, Kareena Kapoor, Ranveer Singh, Akshay Kumar, Deepika Padukone, and Tiger Shroff.",
+    summary: "Rohit Shetty unites Bollywood's most beloved screen heroes in an action-packed spectacle tailored for mass celebration across single screens and multiplexes.",
     content: `
-**'Singham Again' (Singham Again)**, the next chapter of India's most successful franchise — the cop universe — is knocking on theatres this Diwali. Director Rohit Shetty unites Bollywood heavyweights in a modern action thriller built on a Ramayana theme.
+Diwali festivities reached a crescendo as **Singham Again** rolled into packed cinema halls nationwide.
+
+Rooted in themes of valour and brotherhood, Ajay Devgn leads an all-star frontline alongside Kareena Kapoor, Ranveer Singh, Akshay Kumar, Deepika Padukone, and Tiger Shroff, turning the theatre into a festival of whistles, applause, and pure theatrical energy.
     `,
     category: "latest",
     categoryName: "Bollywood News",
@@ -230,12 +241,14 @@ Thalapathy Vijay, who has launched the Tamilaga Vettri Kazhagam party, will star
   },
   {
     id: "hi-art-2",
-    title: "Stree 2 makes history: past ₹600 crore to become Hindi cinema's biggest blockbuster!",
-    titleEn: "Stree 2 makes history: ₹600 crore net, the biggest Hindi grosser ever",
+    title: "Stree 2 Makes History: Breaching ₹600 Crore to Become Hindi Cinema's Greatest Triumph",
+    titleEn: "Stree 2 Historic Ledger: Crossing ₹600 Crore Net to Clinch All-Time Blockbuster Status",
     slug: "stree-2-historic-600-crore-box-office-all-time-blockbuster",
-    summary: "The horror comedy 'Stree 2', starring Shraddha Kapoor and Rajkummar Rao, has written a new history at the box office, overtaking the domestic records of Shah Rukh Khan's 'Jawan' and 'Pathaan'.",
+    summary: "Amar Kaushik's horror-comedy marvel starring Shraddha Kapoor and Rajkummar Rao shatters long-standing domestic records with unprecedented theatrical momentum.",
     content: `
-Amar Kaushik's **'Stree 2'** has delivered an unprecedented win at the Indian box office. Made on a budget of just ₹60 crore, the film has earned over ₹600 crore across the country, setting a fresh benchmark in Bollywood.
+Crafted with sharp wit, genuine chills, and folklore charm, **Stree 2** achieved what few saw coming — surpassing the domestic box office benchmarks of Hindi cinema's biggest modern epics.
+
+Produced on an economical ₹60 crore budget, its historic ₹600 crore domestic triumph affirms that relatable characters, inventive humor, and cultural roots remain the true superpowers of Indian filmmaking.
     `,
     category: "box-office",
     categoryName: "Box Office",
