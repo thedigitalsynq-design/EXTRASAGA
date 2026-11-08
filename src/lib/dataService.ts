@@ -25,6 +25,7 @@ import {
   COMMENTS_SEED,
   CATEGORIES,
 } from "@/data/mockData";
+import AUTOMATED_ARTICLES_SEED from "@/data/automated_news.json";
 import { INITIAL_MOVIES_SEED } from "@/data/cinemaReleasesData";
 import {
   classifyMovieRelease,
@@ -95,7 +96,10 @@ function synchronizeArticleRecency(articles: Article[]): Article[] {
 }
 
 // In-memory runtime cache for server-side operations
-let memoryArticles: Article[] = [...ARTICLES_SEED];
+let memoryArticles: Article[] = [
+  ...((Array.isArray(AUTOMATED_ARTICLES_SEED) ? AUTOMATED_ARTICLES_SEED : []) as Article[]),
+  ...ARTICLES_SEED,
+];
 let memoryReviews: MovieReview[] = [...REVIEWS_SEED];
 let memoryComments: Comment[] = [...COMMENTS_SEED];
 let memoryAds: AdSpot[] = [...ADS_SEED];
