@@ -85,3 +85,4 @@ class GitContentAdapter:
         except Exception as e:
             logger.error(f"Error saving content file: {e}")
             return {"success": False, "error": str(e), "method": "git_content"}
+

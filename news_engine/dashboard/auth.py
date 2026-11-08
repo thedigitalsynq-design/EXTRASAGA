@@ -45,3 +45,4 @@ def verify_dashboard_access(
         detail="Unauthorized: Valid admin credentials required for dashboard access.",
         headers={"WWW-Authenticate": "Basic"},
     )
+

@@ -74,3 +74,4 @@ class SearXNGClient:
 
         logger.info(f"Discovered {len(candidates)} candidate articles via SearXNG for query '{query}'")
         return candidates
+

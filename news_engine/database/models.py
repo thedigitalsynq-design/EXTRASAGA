@@ -283,3 +283,4 @@ class SystemSetting(Base):
     value = Column(String(1024), nullable=False)
     description = Column(String(255), nullable=True)
     updated_at = Column(DateTime, default=get_utc_now, onupdate=get_utc_now)
+

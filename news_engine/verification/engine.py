@@ -160,3 +160,4 @@ class FactVerificationEngine:
             independent_sources_count=ev2.get("independent_count", 0),
             has_critical_contradiction=ev6.get("has_critical_contradiction", False),
         )
+

@@ -111,3 +111,4 @@ class PublishingManager:
             error=api_result.get("error") or "All publishing adapters failed",
             message="Publishing dispatch failed across all adapters.",
         )
+

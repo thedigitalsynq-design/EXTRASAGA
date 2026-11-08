@@ -81,3 +81,4 @@ class GDELTClient:
 
         logger.info(f"Discovered {len(candidates)} candidate articles via GDELT 2.0")
         return candidates
+

@@ -81,3 +81,4 @@ class OllamaClient:
         except Exception as e:
             logger.error(f"Ollama generation error: {e}")
             return None
+

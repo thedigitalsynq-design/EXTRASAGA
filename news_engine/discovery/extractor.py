@@ -136,3 +136,4 @@ class ArticleExtractor:
             "canonical_url": canonical_url,
             "top_images": [{"url": primary_image_url}] if primary_image_url else [],
         }
+

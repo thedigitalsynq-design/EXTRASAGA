@@ -81,3 +81,4 @@ Independent Corroborating Reports:
 Produce the full original article JSON now according to the system instructions."""
 
     return user_prompt
+

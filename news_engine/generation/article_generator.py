@@ -152,3 +152,4 @@ class ArticleGenerator:
             "tags": ["Cinema", "Verified", "Industry Wire"],
             "source_attributions": [publisher] + [c.get("publisher", "") for c in corroborating if c.get("publisher")],
         }
+

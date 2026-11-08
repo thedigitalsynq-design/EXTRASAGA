@@ -93,3 +93,4 @@ class WebApiAdapter:
             "error": last_error or "Unknown publishing failure",
             "method": "api",
         }
+

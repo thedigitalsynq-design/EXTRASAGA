@@ -64,3 +64,4 @@ class Stage5DuplicatesCheck:
             "stage5_score": score,
         }
         return score, evidence
+

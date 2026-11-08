@@ -70,3 +70,4 @@ class SupabaseDbAdapter:
         except Exception as e:
             logger.error(f"Supabase publish error: {e}")
             return {"success": False, "error": str(e), "method": "supabase"}
+

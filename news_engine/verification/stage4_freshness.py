@@ -55,3 +55,4 @@ class Stage4FreshnessCheck:
             "stage4_score": score,
         }
         return score, evidence
+

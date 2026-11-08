@@ -52,3 +52,4 @@ class Stage6ContradictionCheck:
             "passed_contradiction_check": not has_critical_contradiction,
         }
         return score, evidence
+

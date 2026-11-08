@@ -99,3 +99,4 @@ class DiscoveryManager:
 
         logger.info(f"Extracted full body text for {len(extracted_batch)} articles in this cycle.")
         return extracted_batch
+

@@ -11,3 +11,4 @@ __all__ = [
     "SupabaseDbAdapter",
     "GitContentAdapter",
 ]
+

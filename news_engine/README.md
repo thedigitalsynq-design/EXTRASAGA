@@ -158,3 +158,4 @@ docker compose logs -f news-engine
 - **Emergency Kill-Switch**: In the dashboard or `.env`, toggle `EMERGENCY_PUBLISH_PAUSE=true`. Publishing across all adapters halts immediately.
 - **Dry-Run Mode**: Keep `DRY_RUN_MODE=true` to simulate discovery, extraction, verification, and AI article generation without pushing to the live site.
 - **High-Risk Category Quarantine**: Stories mentioning elections, health, or legal disputes are quarantined in the "Review Queue" and require manual 1-click approval in the Admin Dashboard.
+

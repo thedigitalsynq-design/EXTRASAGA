@@ -114,3 +114,4 @@ class RSSFetcher:
                 logger.error(f"Batch RSS fetch exception: {res}")
 
         return all_candidates
+

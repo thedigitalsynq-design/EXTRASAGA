@@ -54,3 +54,4 @@ class AsyncScheduler:
         """Signals the scheduler to stop gracefully."""
         self.is_running = False
         self._stop_event.set()
+

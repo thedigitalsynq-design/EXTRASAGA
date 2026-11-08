@@ -125,3 +125,4 @@ async def execute_pipeline_cycle(target_candidates: int = 200, max_process_count
         f"Rejected={metrics['articles_rejected']}"
     )
     return metrics
+

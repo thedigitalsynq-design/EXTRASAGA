@@ -192,3 +192,4 @@ async def manual_reject_article(article_id: str, authorized: bool = Depends(veri
     """Manually rejects a candidate article."""
     logger.info(f"Manual rejection issued for article: {article_id}")
     return {"success": True, "message": f"Article {article_id} rejected."}
+

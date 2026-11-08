@@ -55,3 +55,4 @@ class Stage3ClaimsCheck:
             "passed_claims": score >= 70.0,
         }
         return score, evidence
+
