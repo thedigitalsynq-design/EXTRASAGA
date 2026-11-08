@@ -11,9 +11,15 @@ import RamayanaSpotlightReview from "@/components/RamayanaSpotlightReview";
 
 interface ReviewsSectionProps {
   reviews: MovieReview[];
+  limit?: number;
+  isDedicatedPage?: boolean;
 }
 
-export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
+export default function ReviewsSection({
+  reviews,
+  limit,
+  isDedicatedPage = false,
+}: ReviewsSectionProps) {
   const { config, t, localizeUrl } = useLanguage();
   const [industryFilter, setIndustryFilter] = useState<string>("all");
 
@@ -28,6 +34,8 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
         if (industryFilter === "mollywood" && (r.language === "ml" || r.movieTitle.includes("Empuraan") || r.movieTitle.includes("Manjummel"))) return true;
         return false;
       });
+
+  const displayedReviews = limit ? filteredReviews.slice(0, limit) : filteredReviews;
 
   return (
     <section className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-8 relative overflow-hidden">

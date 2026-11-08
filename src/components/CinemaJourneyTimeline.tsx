@@ -192,14 +192,15 @@ export default function CinemaJourneyTimeline() {
 
               return (
                 <div key={step.num} className="relative flex items-start gap-4 sm:gap-6 group">
-                  {/* Circular Node on Timeline */}
-                  <div className="relative z-10 w-12 h-12 rounded-full bg-paper border-2 border-ink flex items-center justify-center shadow-sticker shrink-0 transition-transform group-hover:scale-105">
-                    <Icon className="w-5 h-5 text-ink" />
+                  {/* Circular Node on Timeline with Step Number Badge */}
+                  <div className="relative z-10 w-12 h-12 rounded-full bg-paper border-2 border-ink flex flex-col items-center justify-center shadow-sticker shrink-0 transition-transform group-hover:scale-105">
+                    <span className="text-[11px] font-poster font-bold text-ink leading-none">{step.num}</span>
+                    <Icon className="w-3.5 h-3.5 text-press mt-0.5" />
                   </div>
 
                   {/* Step Card with Edge Accent Tab */}
                   <div
-                    className={`flex-1 bg-sheet border-2 border-ink shadow-press p-5 sm:p-6 card-press-interactive ${step.accentBorder}`}
+                    className={`flex-1 bg-sheet rounded-[20px] border-2 border-ink shadow-press p-5 sm:p-6 card-press-interactive ${step.accentBorder}`}
                   >
                     {/* Header Row: Number + Stage Tag */}
                     <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-ink/15">
