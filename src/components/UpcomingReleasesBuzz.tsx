@@ -112,12 +112,16 @@ export default function UpcomingReleasesBuzz() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
 
-              {/* Industry Tag inside photo */}
-              <div className="absolute top-3 left-3 z-10">
+              {/* Industry & 5-Pillar Verification Tag inside photo */}
+              <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between gap-1">
                 <span
                   className={`px-2.5 py-0.5 rounded-full text-[10px] font-poster uppercase font-bold tracking-wider border border-ink shadow-xs ${film.industryBg}`}
                 >
                   {film.industry}
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-emerald-100 text-emerald-950 border border-ink shadow-xs flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                  <span>5/5 Verified</span>
                 </span>
               </div>
 

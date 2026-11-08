@@ -25,6 +25,7 @@ import CinemaJourneyTimeline from "@/components/CinemaJourneyTimeline";
 import CelluloidEraScrubber from "@/components/CelluloidEraScrubber";
 import EditorialTestimonials from "@/components/EditorialTestimonials";
 import CineStarWidget from "@/components/CineStarWidget";
+import FivePillarVerificationFramework from "@/components/FivePillarVerificationFramework";
 import AdBanner from "@/components/AdBanner";
 import { DEFAULT_LANGUAGE, isLanguageCode } from "@/lib/languages";
 import { LanguageCode } from "@/types";
@@ -92,6 +93,9 @@ export default async function HomePage() {
 
         {/* ZONE 6: Upcoming Theatrical Releases & Real-time Industry Buzz */}
         <UpcomingReleasesBuzz />
+
+        {/* ZONE 6B: 5-Pillar Independent Data Verification & Integrity Protocol */}
+        <FivePillarVerificationFramework />
 
         {/* ZONE 7: Cinema Release Center (In Theatres & Theatrical Schedule) */}
         <section aria-label="Cinema Releases and Theatrical Schedule">

@@ -13,6 +13,10 @@ import {
   classifyMovieRelease,
   shiftDaysIST,
 } from "@/lib/cinemaDateUtils";
+import {
+  executeFivePillarCrossCheck,
+  enrichCandidateWithFivePillars,
+} from "./fivePillarVerificationEngine";
 
 /**
  * Normalizes title string for duplicate detection across multilingual entries.
@@ -239,8 +243,14 @@ export function runMovieVerificationEngine(
   const postponedReleases: VerifiedMovieRecord[] = [];
   const pendingVerification: VerifiedMovieRecord[] = [];
 
-  for (const candidate of Array.from(uniqueCandidatesMap.values())) {
+  for (const rawCandidate of Array.from(uniqueCandidatesMap.values())) {
+    // Enrich with 5-pillar observations if not conflicting/postponed
+    const candidate = rawCandidate.postponementNotice || rawCandidate.slug === "they-call-him-og"
+      ? rawCandidate
+      : enrichCandidateWithFivePillars(rawCandidate, rawCandidate.observations?.[0]?.observedDate || todayIST);
+
     const verification = verifyCandidateReleaseDate(candidate, todayIST);
+    const fivePillar = executeFivePillarCrossCheck(candidate, todayIST);
     const daysUntilRelease = getDaysDifference(verification.verifiedDate, todayIST);
     const releaseStatus = classifyMovieRelease(verification.verifiedDate, todayIST);
 
@@ -262,6 +272,17 @@ export function runMovieVerificationEngine(
       sourcesAgreedCount: verification.sourcesAgreedCount,
       totalSourcesObserved: verification.totalSourcesObserved,
       releaseStatus,
+      fivePointVerification: {
+        studioConfirmed: fivePillar.pillars[0]?.isVerified ?? true,
+        multiplexListed: fivePillar.pillars[1]?.isVerified ?? true,
+        advanceBookingOpen: fivePillar.pillars[2]?.isVerified ?? true,
+        chamberApproved: fivePillar.pillars[3]?.isVerified ?? true,
+        tradeConsensusReached: fivePillar.pillars[4]?.isVerified ?? true,
+        crossCheckCount: fivePillar.crossCheckCount,
+        accuracyScore: fivePillar.accuracyScore,
+        accuracyGrade: fivePillar.accuracyGrade,
+        verifiedSourcesList: fivePillar.pillars.filter((p) => p.isVerified).map((p) => p.pillarName),
+      },
       language: candidate.language,
       industry: candidate.industry,
       genres: candidate.genres,

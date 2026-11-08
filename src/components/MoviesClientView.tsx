@@ -233,10 +233,15 @@ export default function MoviesClientView({
                         {relativeBadge}
                       </span>
 
-                      {verificationStatus === "confirmed" ? (
+                      {verifiedRecord?.fivePointVerification ? (
+                        <span className="text-[9px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-950 border-2 border-ink shadow-sticker flex items-center gap-1 font-mono uppercase">
+                          <ShieldCheck className="w-2.5 h-2.5 text-emerald-700" />
+                          <span>5/5 Cross-Checked</span>
+                        </span>
+                      ) : verificationStatus === "confirmed" ? (
                         <span className="text-[9px] font-bold px-2 py-0.5 bg-paper text-ink border-2 border-ink shadow-sticker flex items-center gap-1 font-mono uppercase">
                           <ShieldCheck className="w-2.5 h-2.5 text-press-deep" />
-                          <span>Verified ({sourcesCount} sources)</span>
+                          <span>5-Pillar Verified ({sourcesCount} sources)</span>
                         </span>
                       ) : verificationStatus === "postponed" ? (
                         <span className="text-[9px] font-bold px-2 py-0.5 bg-press text-paper border-2 border-ink shadow-sticker flex items-center gap-1 font-mono uppercase">

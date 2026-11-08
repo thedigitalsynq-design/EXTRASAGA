@@ -219,6 +219,8 @@ class MovieIntelligenceServiceClass {
       runtimeMinutes: record.runtimeMinutes,
       runtimeFormatted: record.runtimeFormatted,
       isFeatured: record.isFeatured,
+      fivePointVerification: record.fivePointVerification,
+      verificationScore: record.verificationScore,
       createdAt: record.lastVerifiedAt,
       updatedAt: record.lastVerifiedAt,
     };

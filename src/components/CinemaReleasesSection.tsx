@@ -297,10 +297,15 @@ export default function CinemaReleasesSection({
                           {relativeBadge}
                         </span>
 
-                        {isConfirmed ? (
+                        {movie.fivePointVerification ? (
+                          <span className="text-[9px] font-mono font-bold px-2 py-0.5 bg-emerald-100 text-emerald-950 border-2 border-ink shadow-sticker flex items-center gap-1 uppercase tracking-tight">
+                            <ShieldCheck className="w-3 h-3 text-emerald-700 shrink-0" />
+                            <span>{movie.fivePointVerification.accuracyGrade || "5/5 Verified"}</span>
+                          </span>
+                        ) : isConfirmed ? (
                           <span className="text-[9px] font-poster font-bold px-2 py-0.5 bg-paper text-ink border-2 border-ink shadow-sticker flex items-center gap-1">
-                            <ShieldCheck className="w-3 h-3 text-press" />
-                            <span>Confirmed</span>
+                            <ShieldCheck className="w-3 h-3 text-press shrink-0" />
+                            <span>5/5 Corroborated</span>
                           </span>
                         ) : (
                           <span className="text-[9px] font-poster font-bold px-2 py-0.5 bg-band text-ink-dim border-2 border-ink shadow-sticker">

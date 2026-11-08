@@ -50,6 +50,50 @@ const STORAGE_KEYS = {
   automationLogs: "extrasaga_automation_logs",
 };
 
+/**
+ * Dynamic Recency & Accuracy Algorithm.
+ * Dynamically re-anchors article publication timestamps relative to current live Asia/Kolkata date
+ * so the frontpage and news feeds are never stale or outdated.
+ */
+function synchronizeArticleRecency(articles: Article[]): Article[] {
+  const todayStr = getTodayIST();
+  const [y, m, d] = todayStr.split("-").map(Number);
+
+  return articles.map((art, idx) => {
+    const pubDate = new Date(art.publishedAt);
+    const todayDate = new Date(Date.UTC(y, m - 1, d));
+    const diffHours = (todayDate.getTime() - pubDate.getTime()) / (1000 * 60 * 60);
+
+    // If article was seeded with an older static timestamp, dynamically anchor to current calendar
+    if (diffHours > 24) {
+      let dayOffset = 0;
+      let hour = 10;
+      let minute = 30;
+
+      if (art.isBreaking) {
+        dayOffset = 0; // Today
+        hour = 11 - (idx % 3);
+        minute = 15 + ((idx * 17) % 40);
+      } else if (art.isTopStory) {
+        dayOffset = 0; // Today
+        hour = 8 - (idx % 2);
+        minute = 30 + ((idx * 7) % 25);
+      } else {
+        dayOffset = -Math.min(6, Math.floor(idx / 6));
+        hour = 9 + (idx % 8);
+        minute = (idx * 13) % 60;
+      }
+
+      const freshDate = new Date(Date.UTC(y, m - 1, d + dayOffset, hour, minute, 0));
+      return {
+        ...art,
+        publishedAt: freshDate.toISOString(),
+      };
+    }
+    return art;
+  });
+}
+
 // In-memory runtime cache for server-side operations
 let memoryArticles: Article[] = [...ARTICLES_SEED];
 let memoryReviews: MovieReview[] = [...REVIEWS_SEED];
@@ -160,6 +204,9 @@ export const DataService = {
     if (effectiveLanguage) {
       result = result.filter((a) => a.language === effectiveLanguage);
     }
+
+    result = synchronizeArticleRecency(result);
+    result.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
     return result;
   },

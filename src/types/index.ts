@@ -1,3 +1,5 @@
+import type { FivePointVerification } from "./movieIntelligence";
+
 export type LanguageCode = "kn" | "te" | "ta" | "ml" | "hi" | "en" | "bn" | "pa" | "other";
 
 export type FilmIndustry =
@@ -338,6 +340,8 @@ export interface Movie {
   createdAt: string;
   updatedAt: string;
   isFeatured?: boolean;
+  fivePointVerification?: FivePointVerification;
+  verificationScore?: number;
 }
 
 export interface AutomationLog {

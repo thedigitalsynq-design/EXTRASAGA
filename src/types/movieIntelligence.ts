@@ -29,6 +29,18 @@ export interface ReleaseDateHistoryEntry {
   reason?: string;
 }
 
+export interface FivePointVerification {
+  studioConfirmed: boolean;
+  multiplexListed: boolean;
+  advanceBookingOpen: boolean;
+  chamberApproved: boolean;
+  tradeConsensusReached: boolean;
+  crossCheckCount: number; // 0 to 5
+  accuracyScore: number;   // 0 to 100%
+  accuracyGrade: string;   // e.g. "5/5 Sovereign Consensus"
+  verifiedSourcesList: string[];
+}
+
 export interface VerifiedMovieRecord {
   id: string;
   title: string;
@@ -43,6 +55,7 @@ export interface VerifiedMovieRecord {
   sourcesAgreedCount: number;
   totalSourcesObserved: number;
   releaseStatus: MovieReleaseStatus;
+  fivePointVerification?: FivePointVerification;
   language: LanguageCode;
   industry: FilmIndustry;
   genres: string[];
