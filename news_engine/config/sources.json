@@ -1,0 +1,222 @@
+[
+  {
+    "id": "pib-india-culture",
+    "name": "Press Information Bureau (PIB) - Culture & I&B",
+    "url": "https://pib.gov.in/RssMain.aspx?ModId=2&Lang=1",
+    "category": "cinema",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.98,
+    "language": "en",
+    "country": "IN",
+    "is_official": true
+  },
+  {
+    "id": "hindu-entertainment",
+    "name": "The Hindu - Cinema & Entertainment",
+    "url": "https://www.thehindu.com/entertainment/movies/feeder/default.rss",
+    "category": "cinema",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.94,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "indian-express-entertainment",
+    "name": "The Indian Express - Entertainment",
+    "url": "https://indianexpress.com/section/entertainment/feed/",
+    "category": "cinema",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.92,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "deccan-herald-cinema",
+    "name": "Deccan Herald - Entertainment",
+    "url": "https://www.deccanherald.com/rss/entertainment",
+    "category": "sandalwood",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.92,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "hindustan-times-entertainment",
+    "name": "Hindustan Times - Entertainment",
+    "url": "https://www.hindustantimes.com/feeds/rss/entertainment/rssfeed.xml",
+    "category": "bollywood",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.90,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "variety-film",
+    "name": "Variety - Film & Box Office",
+    "url": "https://variety.com/v/film/feed/",
+    "category": "hollywood",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.95,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  },
+  {
+    "id": "hollywood-reporter-movies",
+    "name": "The Hollywood Reporter - Movies",
+    "url": "https://www.hollywoodreporter.com/c/movies/movie-news/feed/",
+    "category": "hollywood",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.95,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  },
+  {
+    "id": "deadline-boxoffice",
+    "name": "Deadline - Box Office & Film",
+    "url": "https://deadline.com/v/box-office/feed/",
+    "category": "box-office",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.95,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  },
+  {
+    "id": "indiewire-news",
+    "name": "IndieWire - Cinema & Festivals",
+    "url": "https://www.indiewire.com/feed/",
+    "category": "cinema",
+    "reliability_tier": "tier_2",
+    "authority_weight": 0.88,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  },
+  {
+    "id": "screen-daily-asia",
+    "name": "Screen Daily - Asia & Global Trade",
+    "url": "https://www.screendaily.com/rss/news",
+    "category": "cinema",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.92,
+    "language": "en",
+    "country": "GB",
+    "is_official": false
+  },
+  {
+    "id": "bbc-entertainment",
+    "name": "BBC News - Entertainment & Arts",
+    "url": "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
+    "category": "cinema",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.96,
+    "language": "en",
+    "country": "GB",
+    "is_official": false
+  },
+  {
+    "id": "reuters-entertainment",
+    "name": "Reuters - Lifestyle & Culture",
+    "url": "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best",
+    "category": "general",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.98,
+    "language": "en",
+    "country": "GLOBAL",
+    "is_official": false
+  },
+  {
+    "id": "livemint-industry",
+    "name": "Livemint - Entertainment & Media Business",
+    "url": "https://www.livemint.com/rss/industry",
+    "category": "box-office",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.93,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "ndtv-movies",
+    "name": "NDTV Movies",
+    "url": "https://feeds.feedburner.com/ndtvmovies-latest",
+    "category": "bollywood",
+    "reliability_tier": "tier_2",
+    "authority_weight": 0.86,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "news18-movies",
+    "name": "News18 Movies & Regional Wire",
+    "url": "https://www.news18.com/commonfeeds/v1/eng/rss/movies.xml",
+    "category": "cinema",
+    "reliability_tier": "tier_2",
+    "authority_weight": 0.85,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "firstpost-entertainment",
+    "name": "Firstpost - Entertainment Desk",
+    "url": "https://www.firstpost.com/rss/entertainment.xml",
+    "category": "cinema",
+    "reliability_tier": "tier_2",
+    "authority_weight": 0.85,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "scroll-reel",
+    "name": "Scroll.in - The Reel",
+    "url": "https://scroll.in/feed/category/17/reel",
+    "category": "reviews",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.90,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "film-companion-feed",
+    "name": "Film Companion - Features & Reviews",
+    "url": "https://www.filmcompanion.in/rss/feed",
+    "category": "reviews",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.90,
+    "language": "en",
+    "country": "IN",
+    "is_official": false
+  },
+  {
+    "id": "ap-entertainment",
+    "name": "Associated Press - Entertainment News",
+    "url": "https://feedx.net/rss/apnewsentertainment.xml",
+    "category": "hollywood",
+    "reliability_tier": "tier_1",
+    "authority_weight": 0.97,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  },
+  {
+    "id": "the-wrap-film",
+    "name": "TheWrap - Film & Box Office Wire",
+    "url": "https://www.thewrap.com/category/movies/feed/",
+    "category": "box-office",
+    "reliability_tier": "tier_2",
+    "authority_weight": 0.87,
+    "language": "en",
+    "country": "US",
+    "is_official": false
+  }
+]

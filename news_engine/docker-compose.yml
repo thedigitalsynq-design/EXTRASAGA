@@ -1,0 +1,114 @@
+# ====================================================================
+# EXTRASAGA Zero-Cost Autonomous News Engine - Docker Compose Stack
+# Fully functional, 100% free open-source infrastructure
+# ====================================================================
+
+version: "3.8"
+
+services:
+  # 1. Main Autonomous News Engine (FastAPI + 5-Minute Scheduler + Verifier)
+  news-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: extrasaga-news-engine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000" # Bound only to localhost for secure access
+    environment:
+      - APP_ENV=production
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATABASE_URL=postgresql+asyncpg://newsbot:secret_postgres_pass@postgres:5432/extrasaga_news
+      - REDIS_URL=redis://redis:6379/0
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama3.2
+      - SEARXNG_BASE_URL=http://searxng:8080
+      - USE_SEARXNG=true
+      - WEBSITE_API_URL=${WEBSITE_API_URL:-http://host.docker.internal:3001}
+      - ADMIN_SECRET_KEY=${ADMIN_SECRET_KEY:-cinijaatre-super-secret-admin-key-2026}
+      - DRY_RUN_MODE=${DRY_RUN_MODE:-true}
+      - EMERGENCY_PUBLISH_PAUSE=${EMERGENCY_PUBLISH_PAUSE:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    networks:
+      - extrasaga-internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # 2. Free Local PostgreSQL Database with pgvector capability
+  postgres:
+    image: postgres:16-alpine
+    container_name: extrasaga-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=newsbot
+      - POSTGRES_PASSWORD=secret_postgres_pass
+      - POSTGRES_DB=extrasaga_news
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U newsbot -d extrasaga_news"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - extrasaga-internal
+    # Internal only: ports not exposed to public host
+
+  # 3. Redis In-Memory Cache & Job Queue
+  redis:
+    image: redis:7-alpine
+    container_name: extrasaga-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - extrasaga-internal
+
+  # 4. Local Ollama LLM Container (CPU or GPU accelerated)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: extrasaga-ollama
+    restart: unless-stopped
+    volumes:
+      - ollama_models:/root/.ollama
+    networks:
+      - extrasaga-internal
+    # If running with NVIDIA GPU, uncomment the deploy section below:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  # 5. Free Self-Hosted SearXNG Metasearch Instance
+  searxng:
+    image: searxng/searxng:latest
+    container_name: extrasaga-searxng
+    restart: unless-stopped
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8888/
+    networks:
+      - extrasaga-internal
+
+networks:
+  extrasaga-internal:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  ollama_models:
