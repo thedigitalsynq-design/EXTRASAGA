@@ -149,6 +149,63 @@ export interface ConsolidatedBoxOfficeRecord {
   trajectory: BoxOfficeLifecycleTrajectory;
   territories: TerritoryFinancialBreakdown[];
   cityTelemetry: CityCinemaTelemetry[];
+  advanceBooking?: AdvanceBookingTelemetry;
+}
+
+/**
+ * Live Advance Booking Telemetry (BFILMY reverse-engineered mechanism).
+ * Tracks real-time tickets sold, show counts, fast-filling and housefull velocity.
+ */
+export interface AdvanceBookingTelemetry {
+  advanceGrossInCrores: number;
+  advanceGrossFormatted: string;
+  ticketsSold: number;
+  ticketsSoldFormatted: string;
+  totalShows: number;
+  fastFillingShows: number;
+  housefullShows: number;
+  trackedTheatres: number;
+  occupancyPercent: number;
+  nationalChainsTickets: number; // PIC: PVR, INOX, Cinépolis
+  nationalChainsTicketsFormatted: string;
+  nationalChainsGrossInCrores: number;
+  dayPredictionInCrores: string;
+  weekendProjectionInCrores: string;
+  trendDeltaPercent: number;
+  trend: "up" | "down" | "flat";
+  lastTracked: string;
+}
+
+/**
+ * National Chains Advance Pulse item for ticker & market strip.
+ */
+export interface NationalChainsAdvancePulseItem {
+  movieId: string;
+  movieTitle: string;
+  slug: string;
+  language: string;
+  picTicketsSold: number;
+  picTicketsSoldFormatted: string;
+  picGrossInCrores: number;
+  trend: "up" | "down" | "flat";
+  trendDelta: string;
+  occupancyPercent: number;
+  totalShows: number;
+  fastFillingCount: number;
+}
+
+/**
+ * State-wise Cinema Theatrical Exhibition Telemetry.
+ */
+export interface StateCinemaTelemetry {
+  state: string;
+  regionCode: string;
+  trackedTheatres: number;
+  trackedShows: number;
+  occupancyPercent: number;
+  dailyGrossInCrores: number;
+  topMovie: string;
+  leadLanguage: string;
 }
 
 /**

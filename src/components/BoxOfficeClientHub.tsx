@@ -2,9 +2,15 @@
 
 import React, { useState } from "react";
 import { ConsolidatedBoxOfficeRecord, CityCinemaTelemetry } from "@/types/boxOffice";
+import { AdvanceBookingService } from "@/lib/boxOfficeEngine/advanceBookingService";
 import BoxOfficeTrackingHero from "./BoxOfficeTrackingHero";
 import BoxOfficeInteractiveTable from "./BoxOfficeInteractiveTable";
 import CityCinemaTelemetrySection from "./CityCinemaTelemetry";
+import NationalChainsAdvancePulse from "./NationalChainsAdvancePulse";
+import BoxOfficeTrackingSwitcher, { BoxOfficeMode } from "./BoxOfficeTrackingSwitcher";
+import AdvanceBookingsLiveTable from "./AdvanceBookingsLiveTable";
+import NationalChainsPICCard from "./NationalChainsPICCard";
+import StateCircuitTelemetryTable from "./StateCircuitTelemetryTable";
 import { ShieldCheck } from "lucide-react";
 
 interface BoxOfficeClientHubProps {
@@ -18,12 +24,15 @@ export default function BoxOfficeClientHub({
 }: BoxOfficeClientHubProps) {
   const [records, setRecords] = useState<ConsolidatedBoxOfficeRecord[]>(initialRecords);
   const [cityTelemetry, setCityTelemetry] = useState<CityCinemaTelemetry[]>(initialCityTelemetry);
+  const [trackingMode, setTrackingMode] = useState<BoxOfficeMode>("all_india");
   const [viewMode, setViewMode] = useState<"gross" | "net" | "share">("gross");
   const [currency, setCurrency] = useState<"INR" | "USD">("INR");
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastUpdated, setLastUpdated] = useState<string>(
     initialRecords[0]?.lastUpdated || new Date().toISOString()
   );
+
+  const pulseItems = AdvanceBookingService.getNationalChainsPulse();
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
@@ -43,33 +52,69 @@ export default function BoxOfficeClientHub({
   };
 
   return (
-    <div className="space-y-8">
-      {/* 1. Hero Analytics & Status Switcher */}
-      <BoxOfficeTrackingHero
-        viewMode={viewMode}
-        onViewModeChange={setViewMode}
-        currency={currency}
-        onCurrencyChange={setCurrency}
-        isRefreshing={isRefreshing}
-        onRefresh={handleRefresh}
-        lastUpdated={lastUpdated}
-        totalTrackedMovies={records.length}
+    <div className="space-y-6">
+      {/* 1. National Chains Advance Pulse Strip (BFILMY Reverse-Engineered Mechanism) */}
+      <NationalChainsAdvancePulse pulseItems={pulseItems} />
+
+      {/* 2. Primary Tracking Mode Switcher */}
+      <BoxOfficeTrackingSwitcher
+        activeMode={trackingMode}
+        onModeChange={setTrackingMode}
       />
 
-      {/* 2. City Cinema Operations & Theatrical Telemetry */}
-      {cityTelemetry.length > 0 && (
-        <CityCinemaTelemetrySection
-          telemetry={cityTelemetry}
-          currency={currency}
-        />
+      {/* 3. Conditional View Modes */}
+      {trackingMode === "all_india" && (
+        <div className="space-y-8 animate-in fade-in duration-150">
+          <BoxOfficeTrackingHero
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
+            currency={currency}
+            onCurrencyChange={setCurrency}
+            isRefreshing={isRefreshing}
+            onRefresh={handleRefresh}
+            lastUpdated={lastUpdated}
+            totalTrackedMovies={records.length}
+          />
+
+          {cityTelemetry.length > 0 && (
+            <CityCinemaTelemetrySection
+              telemetry={cityTelemetry}
+              currency={currency}
+            />
+          )}
+
+          <BoxOfficeInteractiveTable
+            records={records}
+            viewMode={viewMode}
+            currency={currency}
+          />
+        </div>
       )}
 
-      {/* 3. Main Multi-Source Box Office Consolidated Table */}
-      <BoxOfficeInteractiveTable
-        records={records}
-        viewMode={viewMode}
-        currency={currency}
-      />
+      {trackingMode === "advance" && (
+        <div className="space-y-6 animate-in fade-in duration-150">
+          <AdvanceBookingsLiveTable />
+        </div>
+      )}
+
+      {trackingMode === "national_chains" && (
+        <div className="space-y-6 animate-in fade-in duration-150">
+          <NationalChainsPICCard />
+          <AdvanceBookingsLiveTable />
+        </div>
+      )}
+
+      {trackingMode === "circuits" && (
+        <div className="space-y-6 animate-in fade-in duration-150">
+          <StateCircuitTelemetryTable />
+          {cityTelemetry.length > 0 && (
+            <CityCinemaTelemetrySection
+              telemetry={cityTelemetry}
+              currency={currency}
+            />
+          )}
+        </div>
+      )}
 
       {/* 4. Transparency & Consensus Methodology Assurance Notice */}
       <div className="p-5 bg-sheet border-2 border-ink shadow-press flex items-start gap-3.5 text-xs text-ink-dim">

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BoxOfficeEngineService } from "@/lib/boxOfficeEngine/boxOfficeService";
+import { AdvanceBookingService } from "@/lib/boxOfficeEngine/advanceBookingService";
 import { LanguageCode } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -31,6 +32,10 @@ export async function GET(req: NextRequest) {
     ]);
 
     const health = BoxOfficeEngineService.getEngineHealth();
+    const advancePulse = AdvanceBookingService.getNationalChainsPulse();
+    const advanceTracked = AdvanceBookingService.getTrackedMovies();
+    const stateCircuits = AdvanceBookingService.getStateCircuits();
+    const aggregateMetrics = AdvanceBookingService.getAggregateMetrics();
 
     return NextResponse.json(
       {
@@ -39,6 +44,10 @@ export async function GET(req: NextRequest) {
         timestamp: new Date().toISOString(),
         records,
         cityTelemetry,
+        advancePulse,
+        advanceTracked,
+        stateCircuits,
+        aggregateMetrics,
         health: {
           activeProvidersCount: health.activeProvidersCount,
           lastSuccessfulSync: health.lastSuccessfulSync,
