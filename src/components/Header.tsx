@@ -74,6 +74,12 @@ export default function Header() {
     if (href === "/movies") {
       return pathname.startsWith("/movies");
     }
+    if (slug === "box-office" || href === "/box-office") {
+      return pathname.startsWith("/box-office");
+    }
+    if (slug === "hypometer" || href === "/hypometer") {
+      return pathname.startsWith("/hypometer");
+    }
     if (slug === "latest" || slug === "news") {
       return pathname === "/category/latest" || pathname.startsWith("/news");
     }

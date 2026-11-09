@@ -11,6 +11,7 @@ import BoxOfficeTrackingSwitcher, { BoxOfficeMode } from "./BoxOfficeTrackingSwi
 import AdvanceBookingsLiveTable from "./AdvanceBookingsLiveTable";
 import NationalChainsPICCard from "./NationalChainsPICCard";
 import StateCircuitTelemetryTable from "./StateCircuitTelemetryTable";
+import BoxOfficeYearlyLeaderboard from "./BoxOfficeYearlyLeaderboard";
 import { ShieldCheck } from "lucide-react";
 
 interface BoxOfficeClientHubProps {
@@ -63,6 +64,12 @@ export default function BoxOfficeClientHub({
       />
 
       {/* 3. Conditional View Modes */}
+      {trackingMode === "by_year" && (
+        <div className="space-y-6 animate-in fade-in duration-150">
+          <BoxOfficeYearlyLeaderboard />
+        </div>
+      )}
+
       {trackingMode === "all_india" && (
         <div className="space-y-8 animate-in fade-in duration-150">
           <BoxOfficeTrackingHero

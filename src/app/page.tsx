@@ -8,6 +8,7 @@ import CinemaIndustryPillFilters from "@/components/CinemaIndustryPillFilters";
 import EditorialPillarsGrid from "@/components/EditorialPillarsGrid";
 import ModularBentoShowcase from "@/components/ModularBentoShowcase";
 import UpcomingReleasesBuzz from "@/components/UpcomingReleasesBuzz";
+import CinematicHeroCarousel from "@/components/CinematicHeroCarousel";
 import SpotlightNewsletter from "@/components/SpotlightNewsletter";
 import HeroTopStories from "@/components/HeroTopStories";
 import LiveUpdatesFeed from "@/components/LiveUpdatesFeed";
@@ -90,6 +91,11 @@ export default async function HomePage() {
         <div id="the-wire">
           <HeroTopStories articles={topStories.length > 0 ? topStories : allArticles.slice(0, 3)} />
         </div>
+
+        {/* ZONE 5B: Films Discourse Cinematic Feature Carousel */}
+        <section aria-label="Upcoming Blockbuster Cinematic Spotlight">
+          <CinematicHeroCarousel />
+        </section>
 
         {/* ZONE 6: Upcoming Theatrical Releases & Real-time Industry Buzz */}
         <UpcomingReleasesBuzz />

@@ -55,5 +55,7 @@ export function categoryName(slug: string): string {
 export function categoryHref(slug: string): string {
   if (slug === "mukhaputa") return "/";
   if (slug === "movies") return "/movies";
+  if (slug === "box-office") return "/box-office";
+  if (slug === "hypometer") return "/hypometer";
   return `/category/${slug}`;
 }

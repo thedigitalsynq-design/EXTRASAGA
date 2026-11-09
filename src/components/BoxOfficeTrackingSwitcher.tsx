@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { BarChart3, Ticket, Building2, MapPin } from "lucide-react";
+import { BarChart3, Ticket, Building2, MapPin, Trophy } from "lucide-react";
 
-export type BoxOfficeMode = "all_india" | "advance" | "national_chains" | "circuits";
+export type BoxOfficeMode = "all_india" | "by_year" | "advance" | "national_chains" | "circuits";
 
 interface BoxOfficeTrackingSwitcherProps {
   activeMode: BoxOfficeMode;
@@ -17,6 +17,13 @@ export default function BoxOfficeTrackingSwitcher({
   advanceBadgeCount = 6,
 }: BoxOfficeTrackingSwitcherProps) {
   const tabs = [
+    {
+      id: "by_year" as BoxOfficeMode,
+      label: "Yearly Leaderboard",
+      subtitle: "2026 Rankings & Verdicts",
+      icon: Trophy,
+      badge: "NEW",
+    },
     {
       id: "all_india" as BoxOfficeMode,
       label: "All-India Gross & Net",
@@ -49,7 +56,7 @@ export default function BoxOfficeTrackingSwitcher({
       aria-label="Box Office Telemetry Modes"
       className="w-full bg-sheet border-2 border-ink shadow-sticker p-2 select-none"
     >
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeMode === tab.id;
@@ -65,7 +72,9 @@ export default function BoxOfficeTrackingSwitcher({
               }`}
             >
               {tab.badge && (
-                <span className="absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase bg-press text-paper border border-ink animate-pulse">
+                <span className={`absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-mono-tabular font-bold uppercase border border-ink ${
+                  tab.badge === "NEW" ? "bg-marquee text-ink" : "bg-press text-paper animate-pulse"
+                }`}>
                   {tab.badge}
                 </span>
               )}
@@ -80,7 +89,7 @@ export default function BoxOfficeTrackingSwitcher({
                   {tab.label}
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-ink-dim uppercase">
+              <span className="text-[10px] font-mono-tabular text-ink-dim uppercase">
                 {tab.subtitle}
               </span>
             </button>

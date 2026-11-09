@@ -220,3 +220,71 @@ export interface BoxOfficeEngineHealth {
   averageConfidenceScore: number;
 }
 
+/**
+ * Films Discourse Verdict Hierarchy:
+ * From All-Time Blockbuster to Disaster & Active Theatrical Runs.
+ */
+export type FilmsDiscourseVerdictLevel =
+  | "all_time_blockbuster"
+  | "blockbuster"
+  | "superhit"
+  | "hit"
+  | "above_average"
+  | "average"
+  | "flop"
+  | "disaster"
+  | "running";
+
+/**
+ * Yearly Box Office Leaderboard Record (Films Discourse mechanism).
+ * Allows sorting by Net, Opening Day, Worldwide, or Overseas.
+ */
+export interface YearlyBoxOfficeLeaderboardItem {
+  rank: number;
+  movieTitle: string;
+  movieTitleEn: string;
+  slug: string;
+  posterImage: string;
+  releaseDate: string; // e.g. "19 Mar 2026"
+  releaseYear: number;
+  openingDayNettCrores: number;
+  indiaNettCrores: number;
+  worldwideGrossCrores: number;
+  overseasGrossUSDMillions: number;
+  verdict: FilmsDiscourseVerdictLevel;
+  verdictLabel: string;
+  language: string;
+  industry: string;
+}
+
+/**
+ * HypoMeter Film Record (Audience Pulse & Fan Hype Telemetry).
+ * Reverse-engineered from Films Discourse HypoMeter.
+ */
+export interface HypoFilmItem {
+  id: string;
+  slug: string;
+  title: string;
+  titleEn: string;
+  releaseDate: string; // e.g. "2026-12-24"
+  releaseDateFormatted: string; // e.g. "24 Dec 2026"
+  daysToRelease: number;
+  language: string;
+  director: string;
+  starring: string;
+  posterImage: string;
+  backdropImage: string;
+  interestedCount: number;
+  interestedCountFormatted: string; // e.g. "1,11,000"
+  dailyDelta: number; // e.g. +3,500
+  hypeRank: number;
+  openingDayPredictionMinCr: number;
+  openingDayPredictionMaxCr: number;
+  hypedVotes: number;
+  notHypedVotes: number;
+  hypedPercent: number;
+  accentColorDark: string; // HSL for background tint
+  accentColorLight: string;
+}
+
+

@@ -28,6 +28,7 @@ export type CategorySlug =
   | "videos"
   | "ott"
   | "box-office"
+  | "hypometer"
   | "upcoming"
   | "trending"
   | "television"
