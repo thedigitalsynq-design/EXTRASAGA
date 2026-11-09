@@ -327,7 +327,7 @@ export default function Header() {
 
       {/* Category Navigation Bar — sleek editorial tabs */}
       <nav
-        className={`w-full bg-[#EDE6D4] border-b-2 border-ink transition-all duration-300 ${
+        className={`w-full bg-band border-b-2 border-ink transition-all duration-300 ${
           isSticky
             ? "sticky top-0 z-50 bg-paper/95 backdrop-blur-md shadow-press"
             : ""
