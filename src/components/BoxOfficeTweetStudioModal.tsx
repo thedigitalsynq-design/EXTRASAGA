@@ -227,3 +227,4 @@ Verified data: https://extrasaga.com/box-office`;
     </div>
   );
 }
+

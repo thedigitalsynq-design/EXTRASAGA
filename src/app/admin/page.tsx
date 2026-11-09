@@ -51,7 +51,7 @@ import { formatEditorialDate, formatCineNumber, slugify } from "@/lib/utils";
 import { TRUSTED_NEWS_SOURCES, TrustedNewsSource } from "@/lib/ingest/trustedSources";
 
 const ADMIN_EMAIL_ALIASES = [
-  "admin@cinijaatre.com",
+  "admin@EXTRASAGA.com",
   "admin@sinikannada.com",
   "admin@extrasaga.press",
 ] as const;
@@ -141,7 +141,7 @@ export default function AdminPage() {
           // Check local session fallback
           const logged =
             sessionStorage.getItem("filmygarage_admin_auth") ||
-            sessionStorage.getItem("cinijaatre_admin_auth");
+            sessionStorage.getItem("EXTRASAGA_admin_auth");
           if (logged === "true") {
             setIsAuthenticated(true);
           }
@@ -150,7 +150,7 @@ export default function AdminPage() {
       .catch(() => {
         const logged =
           sessionStorage.getItem("filmygarage_admin_auth") ||
-          sessionStorage.getItem("cinijaatre_admin_auth");
+          sessionStorage.getItem("EXTRASAGA_admin_auth");
         if (logged === "true") {
           setIsAuthenticated(true);
         }
@@ -364,7 +364,7 @@ export default function AdminPage() {
       });
 
       if (res.ok) {
-        sessionStorage.setItem("cinijaatre_admin_auth", "true");
+        sessionStorage.setItem("EXTRASAGA_admin_auth", "true");
         sessionStorage.setItem("filmygarage_admin_auth", "true");
         setIsAuthenticated(true);
         setAuthError("");
@@ -379,7 +379,7 @@ export default function AdminPage() {
         ADMIN_EMAIL_ALIASES.includes(loginEmail as (typeof ADMIN_EMAIL_ALIASES)[number]) &&
         loginPassword === "admin123"
       ) {
-        sessionStorage.setItem("cinijaatre_admin_auth", "true");
+        sessionStorage.setItem("EXTRASAGA_admin_auth", "true");
         sessionStorage.setItem("filmygarage_admin_auth", "true");
         setIsAuthenticated(true);
         setAuthError("");
@@ -396,7 +396,7 @@ export default function AdminPage() {
       // ignore
     }
     sessionStorage.removeItem("filmygarage_admin_auth");
-    sessionStorage.removeItem("cinijaatre_admin_auth");
+    sessionStorage.removeItem("EXTRASAGA_admin_auth");
     sessionStorage.removeItem("sini_admin_auth");
     setIsAuthenticated(false);
   };
@@ -482,19 +482,19 @@ export default function AdminPage() {
       <div className="min-h-[75vh] flex items-center justify-center p-4 bg-paper">
         <div className="w-full max-w-md bg-sheet p-8 border-2 border-ink shadow-press space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 bg-poster-red mx-auto flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
+            <div className="w-12 h-12 bg-press mx-auto flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-black text-ink uppercase tracking-tight">
-              CINIJAATRE <span className="text-poster-red">PRESS DESK</span>
+              EXTRASAGA <span className="text-press">PRESS DESK</span>
             </h1>
-            <p className="text-xs text-ink-muted font-medium">
+            <p className="text-xs text-ink-mute font-medium">
               Editorial Terminal &amp; Automated Pipeline Administration
             </p>
           </div>
 
           {authError && (
-            <div className="p-3 bg-poster-red/10 border-2 border-poster-red text-poster-red text-xs font-bold flex items-center gap-2">
+            <div className="p-3 bg-press/10 border-2 border-press text-press text-xs font-bold flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 shrink-0" />
               <span>{authError}</span>
             </div>
@@ -529,18 +529,18 @@ export default function AdminPage() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
+              className="w-full py-3 bg-press hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
             >
               Sign In to Editorial Console
             </button>
           </form>
 
           <div className="p-3.5 bg-paper border border-ink text-xs text-ink space-y-1 shadow-sticker">
-            <span className="font-black uppercase tracking-wider block text-[11px] text-ink-muted">Terminal Credentials:</span>
+            <span className="font-black uppercase tracking-wider block text-[11px] text-ink-mute">Terminal Credentials:</span>
             <div>
-              Email: <code className="text-poster-red font-mono-tabular font-bold">{DEFAULT_ADMIN_EMAIL}</code>
+              Email: <code className="text-press font-mono-tabular font-bold">{DEFAULT_ADMIN_EMAIL}</code>
             </div>
-            <div>Password: <code className="text-poster-red font-mono-tabular font-bold">admin123</code></div>
+            <div>Password: <code className="text-press font-mono-tabular font-bold">admin123</code></div>
           </div>
         </div>
       </div>
@@ -561,19 +561,19 @@ export default function AdminPage() {
       <div className="bg-sheet border-b-2 border-ink px-4 sm:px-6 py-4 shadow-press">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-poster-red flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
+            <div className="w-10 h-10 bg-press flex items-center justify-center text-paper border-2 border-ink shadow-sticker">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black text-ink uppercase tracking-tight">
-                  CINIJAATRE <span className="text-poster-red">PRESS</span> — Editorial Console
+                  EXTRASAGA <span className="text-press">PRESS</span> — Editorial Console
                 </h1>
                 <span className="px-2 py-0.5 bg-band text-ink text-[10px] font-black border border-ink shadow-sticker uppercase font-mono-tabular">
                   LIVE DESK ACTIVE
                 </span>
               </div>
-              <p className="text-xs text-ink-muted font-medium">
+              <p className="text-xs text-ink-mute font-medium">
                 Manage all Indian cinema news publishing, reviews, releases, and ingestion wires
               </p>
             </div>
@@ -585,12 +585,12 @@ export default function AdminPage() {
               target="_blank"
               className="px-3 py-1.5 bg-paper hover:bg-band text-ink text-xs font-black uppercase flex items-center gap-1.5 border-2 border-ink shadow-sticker transition-all btn-press-interactive"
             >
-              <Eye className="w-3.5 h-3.5 text-poster-red" />
+              <Eye className="w-3.5 h-3.5 text-press" />
               <span>View Live Frontpage</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="p-1.5 bg-paper hover:bg-poster-red hover:text-paper text-ink border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
+              className="p-1.5 bg-paper hover:bg-press hover:text-paper text-ink border-2 border-ink shadow-sticker transition-colors btn-press-interactive"
               title="Log Out"
             >
               <LogOut className="w-4 h-4" />
@@ -603,29 +603,29 @@ export default function AdminPage() {
         {/* Analytics Highlights Banner */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
-            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Total Articles</span>
+            <span className="text-[11px] uppercase tracking-wider text-ink-mute block font-black font-mono-tabular">Total Articles</span>
             <div className="text-2xl font-black text-ink font-mono-tabular mt-1">{totalArticles}</div>
-            <span className="text-[10px] text-poster-red font-black uppercase">✓ All Published</span>
+            <span className="text-[10px] text-press font-black uppercase">✓ All Published</span>
           </div>
 
           <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
-            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Total Views</span>
-            <div className="text-2xl font-black text-poster-violet font-mono-tabular mt-1">
+            <span className="text-[11px] uppercase tracking-wider text-ink-mute block font-black font-mono-tabular">Total Views</span>
+            <div className="text-2xl font-black text-violet-soft font-mono-tabular mt-1">
               {formatCineNumber(totalViews)}
             </div>
-            <span className="text-[10px] text-ink-muted font-bold font-mono-tabular">+18% Weekly Surge</span>
+            <span className="text-[10px] text-ink-mute font-bold font-mono-tabular">+18% Weekly Surge</span>
           </div>
 
           <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
-            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Breaking Wires</span>
-            <div className="text-2xl font-black text-poster-red font-mono-tabular mt-1">{breakingCount}</div>
-            <span className="text-[10px] text-poster-red font-black uppercase">Active On Ticker</span>
+            <span className="text-[11px] uppercase tracking-wider text-ink-mute block font-black font-mono-tabular">Breaking Wires</span>
+            <div className="text-2xl font-black text-press font-mono-tabular mt-1">{breakingCount}</div>
+            <span className="text-[10px] text-press font-black uppercase">Active On Ticker</span>
           </div>
 
           <div className="p-4 bg-sheet border-2 border-ink shadow-press card-press-interactive">
-            <span className="text-[11px] uppercase tracking-wider text-ink-muted block font-black font-mono-tabular">Movie Reviews</span>
+            <span className="text-[11px] uppercase tracking-wider text-ink-mute block font-black font-mono-tabular">Movie Reviews</span>
             <div className="text-2xl font-black text-ink font-mono-tabular mt-1">{reviews.length}</div>
-            <span className="text-[10px] text-poster-gold font-black uppercase">Dual-Axis Audited</span>
+            <span className="text-[10px] text-marquee-soft font-black uppercase">Dual-Axis Audited</span>
           </div>
         </div>
 
@@ -644,7 +644,7 @@ export default function AdminPage() {
                     : "bg-paper text-ink border border-ink hover:bg-band"
                 }`}
               >
-                <Icon className="w-4 h-4 text-poster-red" />
+                <Icon className="w-4 h-4 text-press" />
                 <span>{tab.label}</span>
               </button>
             );

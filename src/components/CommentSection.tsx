@@ -45,13 +45,13 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-ink">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-band border-2 border-ink flex items-center justify-center text-ink shadow-sticker">
-            <MessageSquare className="w-4 h-4 text-poster-red" />
+            <MessageSquare className="w-4 h-4 text-press" />
           </div>
           <h3 className="text-xl font-black text-ink uppercase tracking-tight">
             Reader Wire Comments ({comments.length})
           </h3>
         </div>
-        <span className="text-xs font-mono-tabular font-bold text-ink-muted uppercase">
+        <span className="text-xs font-mono-tabular font-bold text-ink-mute uppercase">
           Moderated Discussion
         </span>
       </div>
@@ -68,9 +68,9 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Praveen Kumar, Bengaluru"
-              className="w-full bg-paper border-2 border-ink px-4 py-2.5 text-sm text-ink placeholder-ink-muted/60 focus:outline-none focus:bg-band shadow-sticker font-bold transition-colors"
+              className="w-full bg-paper border-2 border-ink px-4 py-2.5 text-sm text-ink placeholder-ink-mute/60 focus:outline-none focus:bg-band shadow-sticker font-bold transition-colors"
             />
-            <User className="w-4 h-4 text-ink-muted absolute right-3.5 top-3" />
+            <User className="w-4 h-4 text-ink-mute absolute right-3.5 top-3" />
           </div>
         </div>
 
@@ -84,7 +84,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Share your review or reaction to this story..."
             required
-            className="w-full bg-paper border-2 border-ink p-3.5 text-sm text-ink placeholder-ink-muted/60 focus:outline-none focus:bg-band shadow-sticker font-medium transition-colors resize-none"
+            className="w-full bg-paper border-2 border-ink p-3.5 text-sm text-ink placeholder-ink-mute/60 focus:outline-none focus:bg-band shadow-sticker font-medium transition-colors resize-none"
           />
         </div>
 
@@ -98,7 +98,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2.5 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker flex items-center gap-2 transition-all btn-press-interactive disabled:opacity-50"
+          className="px-6 py-2.5 bg-press hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker flex items-center gap-2 transition-all btn-press-interactive disabled:opacity-50"
         >
           <Send className="w-3.5 h-3.5" />
           <span>{isSubmitting ? "Publishing..." : "Post Comment"}</span>
@@ -109,7 +109,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       <div className="space-y-4">
         {comments.length === 0 ? (
           <div className="p-6 bg-paper border-2 border-dashed border-ink/40 text-center">
-            <p className="text-sm text-ink-muted font-bold uppercase tracking-wider">
+            <p className="text-sm text-ink-mute font-bold uppercase tracking-wider">
               No reader comments yet. Be the first to share your critique!
             </p>
           </div>
@@ -123,19 +123,19 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
                 <span className="text-sm font-black text-ink uppercase tracking-tight">
                   {com.authorName}
                 </span>
-                <span className="text-[11px] text-ink-muted font-mono-tabular font-bold">
+                <span className="text-[11px] text-ink-mute font-mono-tabular font-bold">
                   {formatEditorialTimeAgo(com.createdAt)}
                 </span>
               </div>
               <p className="text-sm text-ink leading-relaxed font-medium">
                 {com.content}
               </p>
-              <div className="flex items-center gap-2 pt-1 text-xs text-ink-muted font-bold">
+              <div className="flex items-center gap-2 pt-1 text-xs text-ink-mute font-bold">
                 <button
                   type="button"
-                  className="flex items-center gap-1.5 px-2 py-0.5 bg-band border border-ink shadow-sticker hover:text-poster-red transition-colors"
+                  className="flex items-center gap-1.5 px-2 py-0.5 bg-band border border-ink shadow-sticker hover:text-press transition-colors"
                 >
-                  <Heart className="w-3 h-3 text-poster-red" />
+                  <Heart className="w-3 h-3 text-press" />
                   <span className="font-mono-tabular">{com.likes} Likes</span>
                 </button>
               </div>

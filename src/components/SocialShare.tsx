@@ -26,7 +26,7 @@ export default function SocialShare({ title, url }: SocialShareProps) {
   return (
     <div className="flex flex-wrap items-center gap-2 py-3.5 px-4 bg-sheet border-2 border-ink shadow-sticker my-6">
       <span className="text-xs uppercase font-black text-ink flex items-center gap-1.5 mr-2 tracking-wider">
-        <Share2 className="w-4 h-4 text-poster-red" />
+        <Share2 className="w-4 h-4 text-press" />
         Dispatch:
       </span>
 
@@ -86,8 +86,8 @@ export default function SocialShare({ title, url }: SocialShareProps) {
       >
         {copied ? (
           <>
-            <Check className="w-3.5 h-3.5 text-poster-red" />
-            <span className="text-poster-red font-black">Copied!</span>
+            <Check className="w-3.5 h-3.5 text-press" />
+            <span className="text-press font-black">Copied!</span>
           </>
         ) : (
           <>

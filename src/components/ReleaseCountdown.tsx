@@ -64,8 +64,8 @@ export default function ReleaseCountdown({
 
   if (!mounted) {
     return (
-      <div className="flex items-center gap-1.5 text-[11px] text-ink-muted font-mono-tabular">
-        <Clock className="w-3.5 h-3.5 text-ink-muted animate-spin" />
+      <div className="flex items-center gap-1.5 text-[11px] text-ink-mute font-mono-tabular">
+        <Clock className="w-3.5 h-3.5 text-ink-mute animate-spin" />
         <span>Calculating live IST clock...</span>
       </div>
     );
@@ -83,7 +83,7 @@ export default function ReleaseCountdown({
   if (compact) {
     return (
       <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm bg-sheet border-2 border-ink text-[11px] font-mono-tabular font-bold text-ink shadow-sticker">
-        <Clock className="w-3 h-3 text-poster-red animate-pulse" />
+        <Clock className="w-3 h-3 text-press animate-pulse" />
         <span>
           {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </span>
@@ -94,31 +94,31 @@ export default function ReleaseCountdown({
   return (
     <div className="bg-sheet rounded-sm p-3 border-2 border-ink shadow-press">
       <div className="flex items-center justify-between text-[10px] uppercase font-black text-ink tracking-widest mb-2 border-b border-ink/20 pb-1.5">
-        <span className="flex items-center gap-1.5 text-poster-red">
+        <span className="flex items-center gap-1.5 text-press">
           <Sparkles className="w-3 h-3" />
           <span>Release Countdown</span>
         </span>
-        <span className="text-ink-muted font-mono-tabular font-bold bg-band/40 px-1.5 py-0.5 rounded-xs border border-ink/20">Asia/Kolkata</span>
+        <span className="text-ink-mute font-mono-tabular font-bold bg-band/40 px-1.5 py-0.5 rounded-xs border border-ink/20">Asia/Kolkata</span>
       </div>
       <div className="grid grid-cols-4 gap-1.5 text-center">
         <div className="bg-paper rounded-xs p-1.5 border border-ink">
           <span className="text-base font-black text-ink block font-mono-tabular leading-none">{timeLeft.days}</span>
-          <span className="text-[9px] text-ink-muted uppercase font-bold tracking-wider mt-1 block">Days</span>
+          <span className="text-[9px] text-ink-mute uppercase font-bold tracking-wider mt-1 block">Days</span>
         </div>
         <div className="bg-paper rounded-xs p-1.5 border border-ink">
           <span className="text-base font-black text-ink block font-mono-tabular leading-none">
             {String(timeLeft.hours).padStart(2, "0")}
           </span>
-          <span className="text-[9px] text-ink-muted uppercase font-bold tracking-wider mt-1 block">Hrs</span>
+          <span className="text-[9px] text-ink-mute uppercase font-bold tracking-wider mt-1 block">Hrs</span>
         </div>
         <div className="bg-paper rounded-xs p-1.5 border border-ink">
           <span className="text-base font-black text-ink block font-mono-tabular leading-none">
             {String(timeLeft.minutes).padStart(2, "0")}
           </span>
-          <span className="text-[9px] text-ink-muted uppercase font-bold tracking-wider mt-1 block">Min</span>
+          <span className="text-[9px] text-ink-mute uppercase font-bold tracking-wider mt-1 block">Min</span>
         </div>
-        <div className="bg-poster-gold/20 rounded-xs p-1.5 border border-ink">
-          <span className="text-base font-black text-poster-red block font-mono-tabular leading-none">
+        <div className="bg-marquee/20 rounded-xs p-1.5 border border-ink">
+          <span className="text-base font-black text-press block font-mono-tabular leading-none">
             {String(timeLeft.seconds).padStart(2, "0")}
           </span>
           <span className="text-[9px] text-ink uppercase font-bold tracking-wider mt-1 block">Sec</span>

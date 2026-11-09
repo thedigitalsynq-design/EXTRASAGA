@@ -28,7 +28,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
           sizes="(max-width: 768px) 100vw, 800px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent flex flex-col justify-end p-3">
-          <span className="text-[9px] uppercase tracking-widest text-poster-gold font-mono-tabular font-black mb-0.5">
+          <span className="text-[9px] uppercase tracking-widest text-marquee-soft font-mono-tabular font-black mb-0.5">
             SPONSORED DISPATCH
           </span>
           <p className="text-xs sm:text-sm font-black text-paper uppercase drop-shadow">
@@ -58,7 +58,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.adCode && ad.isActive) {
     return (
       <div className={`w-full my-4 text-center ${className}`}>
-        <span className="text-[10px] uppercase tracking-widest text-ink-muted font-bold block mb-1">
+        <span className="text-[10px] uppercase tracking-widest text-ink-mute font-bold block mb-1">
           Advertisement
         </span>
         <iframe

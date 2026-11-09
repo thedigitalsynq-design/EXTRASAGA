@@ -64,7 +64,7 @@ export default function CelluloidEraScrubber() {
       description:
         "A golden renaissance where scale meets genuine reverence. Collaborating with world-class craftspeople, Indian cinema now commands global IMAX screens with head held high and soul intact.",
       quote: "When grand scale is blessed with authentic reverence, cinema ceases to be mere commerce — it becomes cultural heritage.",
-      quoteAuthor: "CINIJAATRE Editorial Bureau",
+      quoteAuthor: "EXTRASAGA Editorial Bureau",
       image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
     },
   ];
@@ -77,18 +77,18 @@ export default function CelluloidEraScrubber() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-4 border-b-2 border-ink">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-band text-ink font-black text-xs uppercase tracking-widest border border-ink shadow-sticker mb-3">
-            <Clapperboard className="w-3.5 h-3.5 text-poster-red" />
+            <Clapperboard className="w-3.5 h-3.5 text-press" />
             <span>Celluloid Time-Machine</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-ink uppercase tracking-tight">
             5 Decades of Cinema Evolution
           </h2>
-          <p className="text-base text-ink-muted font-medium mt-1">
+          <p className="text-base text-ink-mute font-medium mt-1">
             Travel through fifty unforgettable years of cinematic wonder — from mythical legends that built our culture to global epics that shake the modern world.
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1.5 border border-ink shadow-sticker self-start md:self-end">
-          <Clock className="w-3.5 h-3.5 text-poster-red" />
+          <Clock className="w-3.5 h-3.5 text-press" />
           <span>Interactive Historical Reel</span>
         </div>
       </div>
@@ -118,17 +118,17 @@ export default function CelluloidEraScrubber() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[11px] font-mono-tabular font-black tracking-wider text-poster-red">
+                  <span className="text-[11px] font-mono-tabular font-black tracking-wider text-press">
                     {era.years}
                   </span>
                   {isSelected && (
-                    <span className="w-2 h-2 rounded-full bg-poster-red animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-press animate-pulse" />
                   )}
                 </div>
                 <h4 className="text-sm font-black text-ink leading-tight mb-1">
                   {era.title}
                 </h4>
-                <p className="text-[11px] text-ink-muted line-clamp-1 font-medium">
+                <p className="text-[11px] text-ink-mute line-clamp-1 font-medium">
                   {era.tagline}
                 </p>
               </button>
@@ -149,8 +149,8 @@ export default function CelluloidEraScrubber() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Narrative Column */}
           <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-poster-gold/20 text-ink font-mono-tabular font-black text-xs border border-ink shadow-sticker">
-              <Clock className="w-3.5 h-3.5 text-poster-red" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-marquee/20 text-ink font-mono-tabular font-black text-xs border border-ink shadow-sticker">
+              <Clock className="w-3.5 h-3.5 text-press" />
               <span>{current.years} • {current.title}</span>
             </div>
 
@@ -158,7 +158,7 @@ export default function CelluloidEraScrubber() {
               {current.tagline}
             </h3>
 
-            <p className="text-base text-ink-muted leading-relaxed font-medium">
+            <p className="text-base text-ink-mute leading-relaxed font-medium">
               {current.description}
             </p>
 
@@ -167,7 +167,7 @@ export default function CelluloidEraScrubber() {
               <p className="text-sm text-ink italic font-medium leading-relaxed">
                 &ldquo;{current.quote}&rdquo;
               </p>
-              <span className="text-xs font-black text-poster-red uppercase tracking-wider block">
+              <span className="text-xs font-black text-press uppercase tracking-wider block">
                 — {current.quoteAuthor}
               </span>
             </div>
@@ -200,7 +200,7 @@ export default function CelluloidEraScrubber() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-paper font-bold">
-                  <span className="font-mono-tabular text-poster-gold uppercase tracking-wider">
+                  <span className="font-mono-tabular text-marquee-soft uppercase tracking-wider">
                     35mm Historical Master
                   </span>
                   <span className="px-2 py-0.5 bg-paper text-ink font-mono-tabular text-[10px] font-black border border-ink">

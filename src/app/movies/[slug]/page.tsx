@@ -39,14 +39,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
   const movie = await DataService.getMovieBySlug(params.slug);
   if (!movie) {
-    return { title: "Movie Not Found | CINIJAATRE" };
+    return { title: "Movie Not Found | EXTRASAGA" };
   }
 
   const siteUrl = getSiteUrl();
   const canonicalUrl = `${siteUrl}/movies/${movie.slug}`;
 
   return {
-    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Synopsis | CINIJAATRE`,
+    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Synopsis | EXTRASAGA`,
     description: `${movie.title} (${movie.titleEn}) theatrical release dossier. Director: ${movie.director}. Cast: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. Release date: ${movie.theatricalReleaseDate}.`,
     alternates: {
       canonical: canonicalUrl,
@@ -162,16 +162,16 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb Navigation */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-ink/20">
-            <nav className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink-muted uppercase" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-poster-red transition-colors">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5 text-ink-muted" />
-              <Link href="/movies" className="hover:text-poster-red transition-colors">Now Showing</Link>
-              <ChevronRight className="w-3.5 h-3.5 text-ink-muted" />
+            <nav className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink-mute uppercase" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-press transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-ink-mute" />
+              <Link href="/movies" className="hover:text-press transition-colors">Now Showing</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-ink-mute" />
               <span className="text-ink font-black truncate max-w-xs">{movie.titleEn}</span>
             </nav>
 
             <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1 border border-ink shadow-sticker">
-              <Sparkles className="w-3.5 h-3.5 text-poster-red" />
+              <Sparkles className="w-3.5 h-3.5 text-press" />
               <span>Verified Release Dossier</span>
             </div>
           </div>
@@ -195,7 +195,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       diffDays === 0
                         ? "bg-[#4ADE80] text-ink animate-pulse"
                         : diffDays > 0
-                        ? "bg-poster-gold text-ink"
+                        ? "bg-marquee text-ink"
                         : "bg-paper text-ink"
                     }`}
                   >
@@ -207,7 +207,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               {/* Release Spec Plate */}
               <div className="mt-4 p-3 bg-paper border-2 border-ink shadow-sticker flex items-center justify-between gap-2">
                 <div>
-                  <span className="text-[10px] font-mono-tabular uppercase text-ink-muted block font-black">RELEASE SPEC</span>
+                  <span className="text-[10px] font-mono-tabular uppercase text-ink-mute block font-black">RELEASE SPEC</span>
                   <span className="text-xs font-black text-ink uppercase">{movie.industry} THEATRICAL</span>
                 </div>
                 <span className="px-2 py-0.5 bg-band text-ink font-mono-tabular text-xs font-black border border-ink">
@@ -231,8 +231,8 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   </span>
                 )}
                 {movie.runtimeFormatted && (
-                  <span className="text-xs font-mono-tabular font-bold text-ink-muted flex items-center gap-1.5 ml-2">
-                    <Clock className="w-3.5 h-3.5 text-poster-red" />
+                  <span className="text-xs font-mono-tabular font-bold text-ink-mute flex items-center gap-1.5 ml-2">
+                    <Clock className="w-3.5 h-3.5 text-press" />
                     <span>{movie.runtimeFormatted}</span>
                   </span>
                 )}
@@ -242,7 +242,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-ink tracking-tight uppercase">
                   {movie.title}
                 </h1>
-                <p className="text-xl sm:text-2xl text-poster-red font-black uppercase mt-1">
+                <p className="text-xl sm:text-2xl text-press font-black uppercase mt-1">
                   {movie.titleEn}
                 </p>
               </div>
@@ -250,11 +250,11 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               {/* Release Date Banner */}
               <div className="p-4 bg-paper border-2 border-ink shadow-press flex flex-wrap items-center justify-between gap-4 max-w-xl">
                 <div>
-                  <span className="text-[10px] text-ink-muted uppercase font-black tracking-wider block font-mono-tabular">
+                  <span className="text-[10px] text-ink-mute uppercase font-black tracking-wider block font-mono-tabular">
                     Theatrical Release Date (IST)
                   </span>
                   <div className="text-2xl font-black font-mono-tabular text-ink flex items-center gap-2 mt-0.5">
-                    <Calendar className="w-5 h-5 text-poster-red" />
+                    <Calendar className="w-5 h-5 text-press" />
                     <span>{formatted}</span>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       <span>Confirmed Date</span>
                     </span>
                   ) : (
-                    <span className="px-3 py-1 bg-poster-gold text-ink border-2 border-ink shadow-sticker text-xs font-black uppercase flex items-center gap-1.5">
+                    <span className="px-3 py-1 bg-marquee text-ink border-2 border-ink shadow-sticker text-xs font-black uppercase flex items-center gap-1.5">
                       <AlertCircle className="w-4 h-4 text-ink" />
                       <span>Tentative Window</span>
                     </span>
@@ -289,11 +289,11 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               {/* Director & Producers quick list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
                 <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
-                  <span className="text-ink-muted block text-[10px] uppercase font-black">Director</span>
+                  <span className="text-ink-mute block text-[10px] uppercase font-black">Director</span>
                   <span className="text-ink font-black text-sm uppercase mt-0.5 block">{movie.director}</span>
                 </div>
                 <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
-                  <span className="text-ink-muted block text-[10px] uppercase font-black">Producers</span>
+                  <span className="text-ink-mute block text-[10px] uppercase font-black">Producers</span>
                   <span className="text-ink font-black text-sm uppercase mt-0.5 block truncate">
                     {movie.producers.join(", ")}
                   </span>
@@ -312,17 +312,17 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Synopsis */}
             <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
               <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
-                <Film className="w-5 h-5 text-poster-red" />
+                <Film className="w-5 h-5 text-press" />
                 <span>Synopsis &amp; Storyline</span>
               </h2>
 
               {movie.introduction && (
-                <p className="text-base text-ink font-bold leading-relaxed bg-band p-4 border-l-4 border-poster-red">
+                <p className="text-base text-ink font-bold leading-relaxed bg-band p-4 border-l-4 border-press">
                   {movie.introduction}
                 </p>
               )}
 
-              <p className="text-base text-ink-muted leading-relaxed font-medium">
+              <p className="text-base text-ink-mute leading-relaxed font-medium">
                 {movie.synopsis}
               </p>
             </section>
@@ -331,7 +331,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {movie.trailerYoutubeId && (
               <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
                 <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
-                  <Play className="w-5 h-5 text-poster-red fill-current" />
+                  <Play className="w-5 h-5 text-press fill-current" />
                   <span>Official Theatrical Trailer</span>
                 </h2>
 
@@ -350,7 +350,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Cast & Characters Grid */}
             <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
               <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
-                <User className="w-5 h-5 text-poster-red" />
+                <User className="w-5 h-5 text-press" />
                 <span>Main Cast &amp; Characters</span>
               </h2>
 
@@ -365,9 +365,9 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-black text-ink uppercase truncate">{actor.name}</h4>
-                      <p className="text-xs text-poster-red font-bold uppercase truncate">{actor.role}</p>
+                      <p className="text-xs text-press font-bold uppercase truncate">{actor.role}</p>
                       {actor.characterName && (
-                        <p className="text-[11px] text-ink-muted truncate font-medium">
+                        <p className="text-[11px] text-ink-mute truncate font-medium">
                           Character: {actor.characterName}
                         </p>
                       )}
@@ -380,13 +380,13 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Production & Distribution */}
             <section className="bg-sheet p-6 sm:p-8 border-2 border-ink shadow-press space-y-4 card-press-interactive">
               <h2 className="text-xl font-black text-ink uppercase tracking-tight flex items-center gap-2 border-b-2 border-ink pb-3">
-                <Building className="w-5 h-5 text-poster-red" />
+                <Building className="w-5 h-5 text-press" />
                 <span>Production &amp; Distribution</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
-                  <span className="text-ink-muted uppercase text-[10px] font-black block font-mono-tabular">
+                  <span className="text-ink-mute uppercase text-[10px] font-black block font-mono-tabular">
                     Production House
                   </span>
                   <span className="text-ink font-black text-sm uppercase mt-1 block">
@@ -394,7 +394,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   </span>
                 </div>
                 <div className="p-4 bg-paper border-2 border-ink shadow-sticker">
-                  <span className="text-ink-muted uppercase text-[10px] font-black block font-mono-tabular">
+                  <span className="text-ink-mute uppercase text-[10px] font-black block font-mono-tabular">
                     Distribution Network
                   </span>
                   <span className="text-ink font-black text-sm uppercase mt-1 block">
@@ -405,9 +405,9 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             </section>
 
             {/* Editorial Verification */}
-            <section className="p-5 bg-paper border-2 border-ink shadow-sticker text-xs text-ink-muted space-y-2">
+            <section className="p-5 bg-paper border-2 border-ink shadow-sticker text-xs text-ink-mute space-y-2">
               <div className="flex items-center gap-2 text-ink font-black uppercase text-xs">
-                <ShieldCheck className="w-4 h-4 text-poster-red" />
+                <ShieldCheck className="w-4 h-4 text-press" />
                 <span>Verified Editorial References</span>
               </div>
               <p className="leading-relaxed font-medium">
@@ -429,7 +429,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   ))}
                 </div>
               )}
-              <div className="pt-2 text-[11px] text-ink-muted font-mono-tabular font-bold border-t border-ink/20">
+              <div className="pt-2 text-[11px] text-ink-mute font-mono-tabular font-bold border-t border-ink/20">
                 Last updated: {new Date(movie.updatedAt).toLocaleDateString()} · Asia/Kolkata live time
               </div>
             </section>
@@ -440,15 +440,15 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Quick Share Card */}
             <div className="bg-sheet p-6 border-2 border-ink shadow-press space-y-3">
               <h3 className="text-sm font-black text-ink uppercase tracking-wider flex items-center gap-2">
-                <Share2 className="w-4 h-4 text-poster-red" />
+                <Share2 className="w-4 h-4 text-press" />
                 <span>Share Release Dossier</span>
               </h3>
-              <p className="text-xs text-ink-muted font-medium">
+              <p className="text-xs text-ink-mute font-medium">
                 Share this film&apos;s release date with fellow cinephiles:
               </p>
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on CINIJAATRE: ${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on EXTRASAGA: ${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"
@@ -456,7 +456,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   WhatsApp
                 </a>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #CINIJAATRE`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #EXTRASAGA`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"
@@ -469,7 +469,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Related Movie Articles */}
             <div className="bg-sheet p-6 border-2 border-ink shadow-press space-y-4">
               <h3 className="text-sm font-black text-ink uppercase tracking-wider flex items-center gap-2">
-                <Clapperboard className="w-4 h-4 text-poster-violet" />
+                <Clapperboard className="w-4 h-4 text-violet" />
                 <span>Related Dispatches</span>
               </h3>
               <div className="space-y-3">
@@ -488,10 +488,10 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-black text-ink group-hover:text-poster-red line-clamp-2 transition-colors uppercase">
+                      <h4 className="text-xs font-black text-ink group-hover:text-press line-clamp-2 transition-colors uppercase">
                         {art.title}
                       </h4>
-                      <span className="text-[10px] text-ink-muted font-mono-tabular font-bold block mt-1">
+                      <span className="text-[10px] text-ink-mute font-mono-tabular font-bold block mt-1">
                         {new Date(art.publishedAt).toLocaleDateString()}
                       </span>
                     </div>
@@ -503,12 +503,12 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
             {/* Permanent Archive Notice */}
             <div className="p-5 bg-band border-2 border-ink shadow-press text-xs space-y-2">
               <div className="font-black text-ink uppercase text-sm">Permanent Lore Vault</div>
-              <p className="text-xs leading-relaxed text-ink-muted font-medium">
+              <p className="text-xs leading-relaxed text-ink-mute font-medium">
                 Long after the theatrical run closes, this film&apos;s details, reviews, and posters remain permanently cataloged in our archival registry.
               </p>
               <Link
                 href="/archive"
-                className="text-poster-red font-black text-xs uppercase hover:underline block pt-1"
+                className="text-press font-black text-xs uppercase hover:underline block pt-1"
               >
                 Browse the permanent cinema archive &rarr;
               </Link>

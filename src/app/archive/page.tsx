@@ -14,9 +14,9 @@ import { DataService } from "@/lib/dataService";
 import { formatReleaseDateIST } from "@/lib/cinemaDateUtils";
 
 export const metadata: Metadata = {
-  title: "Permanent Cinema & Articles Archive | CINIJAATRE",
+  title: "Permanent Cinema & Articles Archive | EXTRASAGA",
   description:
-    "CINIJAATRE's comprehensive digital archive of permanent cinema articles, historical releases and authenticated box office records.",
+    "EXTRASAGA's comprehensive digital archive of permanent cinema articles, historical releases and authenticated box office records.",
 };
 
 export default async function PermanentArchivePage() {
@@ -32,7 +32,7 @@ export default async function PermanentArchivePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-3">
             <span className="p-1.5 bg-band text-ink border-2 border-ink shadow-sticker">
-              <Archive className="w-5 h-5 text-poster-red" />
+              <Archive className="w-5 h-5 text-press" />
             </span>
             <span className="uppercase text-xs font-black tracking-widest text-ink border border-ink bg-paper px-3 py-1 shadow-sticker">
               The Lore Depot · Permanent Preservation Vault
@@ -41,19 +41,19 @@ export default async function PermanentArchivePage() {
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-ink tracking-tight uppercase max-w-4xl">
             Permanent Celluloid Archive
           </h1>
-          <p className="text-base text-ink-muted mt-3 max-w-2xl leading-relaxed font-medium">
+          <p className="text-base text-ink-mute mt-3 max-w-2xl leading-relaxed font-medium">
             Cinema is an unbroken dialogue between eras. Every retrospective dispatch, historical box office record, and critical dossier is preserved here in perpetuity — a living testament to the evolution of the silver screen.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-6 text-xs text-ink font-bold">
             <span className="px-3.5 py-1.5 bg-paper border-2 border-ink shadow-sticker font-mono-tabular">
-              Archived Releases: <span className="text-poster-red font-black">{archivedMovies.length}</span>
+              Archived Releases: <span className="text-press font-black">{archivedMovies.length}</span>
             </span>
             <span className="px-3.5 py-1.5 bg-paper border-2 border-ink shadow-sticker font-mono-tabular">
-              Permanent Dispatches: <span className="text-poster-violet font-black">{allArticles.length}</span>
+              Permanent Dispatches: <span className="text-violet-soft font-black">{allArticles.length}</span>
             </span>
             <span className="px-3.5 py-1.5 bg-band border-2 border-ink shadow-sticker font-mono-tabular">
-              Permanent URL Preservation: <span className="font-black text-poster-red">Active 100%</span>
+              Permanent URL Preservation: <span className="font-black text-press">Active 100%</span>
             </span>
           </div>
         </div>
@@ -64,16 +64,16 @@ export default async function PermanentArchivePage() {
         <section>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b-2 border-ink mb-6 gap-2">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-poster-red uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-press uppercase tracking-wider mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Historic Film Catalog</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-ink uppercase tracking-tight flex items-center gap-2">
-                <Archive className="w-6 h-6 text-poster-red" />
+                <Archive className="w-6 h-6 text-press" />
                 <span>Theatrical Catalog ({archivedMovies.length})</span>
               </h2>
             </div>
-            <span className="text-xs font-mono-tabular font-bold text-ink-muted uppercase">
+            <span className="text-xs font-mono-tabular font-bold text-ink-mute uppercase">
               Canonical preservation guaranteed
             </span>
           </div>
@@ -101,13 +101,13 @@ export default async function PermanentArchivePage() {
                   </div>
                   <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                     <div>
-                      <span className="text-[10px] text-ink-muted font-mono-tabular uppercase font-bold block mb-1">
+                      <span className="text-[10px] text-ink-mute font-mono-tabular uppercase font-bold block mb-1">
                         {movie.industry} · {formatted}
                       </span>
-                      <h3 className="font-black text-ink text-base uppercase line-clamp-1 group-hover:text-poster-red transition-colors">
+                      <h3 className="font-black text-ink text-base uppercase line-clamp-1 group-hover:text-press transition-colors">
                         <Link href={`/movies/${movie.slug}`}>{movie.titleEn || movie.title}</Link>
                       </h3>
-                      <p className="text-xs text-ink-muted font-medium line-clamp-1 mt-0.5">
+                      <p className="text-xs text-ink-mute font-medium line-clamp-1 mt-0.5">
                         {movie.genres?.join(", ") || "Action Drama"}
                       </p>
                     </div>
@@ -116,7 +116,7 @@ export default async function PermanentArchivePage() {
                       className="w-full py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1 transition-all border-2 border-ink shadow-sticker btn-press-interactive"
                     >
                       <span>View Dossier</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-poster-red" />
+                      <ChevronRight className="w-3.5 h-3.5 text-press" />
                     </Link>
                   </div>
                 </article>
@@ -129,16 +129,16 @@ export default async function PermanentArchivePage() {
         <section>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b-2 border-ink mb-6 gap-2">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-poster-violet uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-violet-soft uppercase tracking-wider mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Editorial Wire Records</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-ink uppercase tracking-tight flex items-center gap-2">
-                <FileText className="w-6 h-6 text-poster-violet" />
+                <FileText className="w-6 h-6 text-violet-soft" />
                 <span>Permanent Articles Archive</span>
               </h2>
             </div>
-            <span className="text-xs font-mono-tabular font-bold text-ink-muted uppercase">
+            <span className="text-xs font-mono-tabular font-bold text-ink-mute uppercase">
               Permanent publication log
             </span>
           </div>
@@ -159,15 +159,15 @@ export default async function PermanentArchivePage() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2 text-[10px] text-ink-muted mb-1 font-mono-tabular font-bold">
-                    <span className="uppercase text-poster-red">{art.category}</span>
+                  <div className="flex items-center gap-2 text-[10px] text-ink-mute mb-1 font-mono-tabular font-bold">
+                    <span className="uppercase text-press">{art.category}</span>
                     <span>•</span>
                     <span>{new Date(art.publishedAt).toLocaleDateString()}</span>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-black text-ink group-hover:text-poster-red line-clamp-2 transition-colors uppercase leading-snug">
+                  <h4 className="text-xs sm:text-sm font-black text-ink group-hover:text-press line-clamp-2 transition-colors uppercase leading-snug">
                     {art.title}
                   </h4>
-                  <p className="text-[11px] text-ink-muted font-medium line-clamp-1 mt-1">
+                  <p className="text-[11px] text-ink-mute font-medium line-clamp-1 mt-1">
                     {art.summary}
                   </p>
                 </div>

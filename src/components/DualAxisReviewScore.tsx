@@ -34,11 +34,11 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b-2 border-ink">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-band border-2 border-ink flex items-center justify-center text-ink shadow-sticker">
-            <Award className="w-5 h-5 text-poster-red" />
+            <Award className="w-5 h-5 text-press" />
           </div>
           <div>
-            <span className="text-[10px] uppercase font-mono-tabular font-black text-poster-red tracking-widest block">
-              CINIJAATRE CRITICAL AUDIT
+            <span className="text-[10px] uppercase font-mono-tabular font-black text-press tracking-widest block">
+              EXTRASAGA CRITICAL AUDIT
             </span>
             <h3 className="text-xl sm:text-2xl font-black text-ink uppercase tracking-tight">
               Dual-Axis Review Matrix
@@ -47,7 +47,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
         </div>
 
         <div className="flex items-center gap-2 self-start sm:self-auto">
-          <span className="text-xs font-bold text-ink-muted uppercase">Recommended Screen:</span>
+          <span className="text-xs font-bold text-ink-mute uppercase">Recommended Screen:</span>
           <span className="px-3 py-1 bg-band text-ink font-mono-tabular font-black text-xs border-2 border-ink shadow-sticker uppercase">
             🎬 {formatRec}
           </span>
@@ -61,14 +61,14 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           <div>
             <div className="flex items-center justify-between mb-3 border-b border-ink/20 pb-2">
               <span className="text-xs uppercase font-black text-ink tracking-wider flex items-center gap-1.5">
-                <Film className="w-3.5 h-3.5 text-poster-red" />
+                <Film className="w-3.5 h-3.5 text-press" />
                 <span>AXIS 1: NARRATIVE & SOUL</span>
               </span>
-              <span className="text-xl font-mono-tabular font-black text-poster-red">
-                {narrative.overall} <span className="text-xs text-ink-muted font-bold">/ 10</span>
+              <span className="text-xl font-mono-tabular font-black text-press">
+                {narrative.overall} <span className="text-xs text-ink-mute font-bold">/ 10</span>
               </span>
             </div>
-            <p className="text-xs text-ink-muted font-medium mb-4 leading-relaxed">
+            <p className="text-xs text-ink-mute font-medium mb-4 leading-relaxed">
               Screenplay structure, dialogue weight, character arcs, and emotional depth.
             </p>
 
@@ -80,7 +80,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </div>
                 <div className="w-full h-2.5 bg-band border border-ink overflow-hidden">
                   <div
-                    className="h-full bg-poster-red"
+                    className="h-full bg-press"
                     style={{ width: `${narrative.story * 10}%` }}
                   />
                 </div>
@@ -93,7 +93,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </div>
                 <div className="w-full h-2.5 bg-band border border-ink overflow-hidden">
                   <div
-                    className="h-full bg-poster-red"
+                    className="h-full bg-press"
                     style={{ width: `${narrative.performances * 10}%` }}
                   />
                 </div>
@@ -107,14 +107,14 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           <div>
             <div className="flex items-center justify-between mb-3 border-b border-ink/20 pb-2">
               <span className="text-xs uppercase font-black text-ink tracking-wider flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-poster-violet" />
+                <Sparkles className="w-3.5 h-3.5 text-violet-soft" />
                 <span>AXIS 2: TECHNICAL CRAFT INDEX</span>
               </span>
-              <span className="text-xl font-mono-tabular font-black text-poster-violet">
-                {craft.overall} <span className="text-xs text-ink-muted font-bold">/ 10</span>
+              <span className="text-xl font-mono-tabular font-black text-violet-soft">
+                {craft.overall} <span className="text-xs text-ink-mute font-bold">/ 10</span>
               </span>
             </div>
-            <p className="text-xs text-ink-muted font-medium mb-4 leading-relaxed">
+            <p className="text-xs text-ink-mute font-medium mb-4 leading-relaxed">
               Cinematography, background score, Atmos acoustic sound mix, VFX, and editing.
             </p>
 
@@ -126,7 +126,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </div>
                 <div className="w-full h-2.5 bg-band border border-ink overflow-hidden">
                   <div
-                    className="h-full bg-poster-violet"
+                    className="h-full bg-violet"
                     style={{ width: `${craft.cinematography * 10}%` }}
                   />
                 </div>
@@ -139,7 +139,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
                 </div>
                 <div className="w-full h-2.5 bg-band border border-ink overflow-hidden">
                   <div
-                    className="h-full bg-poster-violet"
+                    className="h-full bg-violet"
                     style={{ width: `${craft.soundAndScore * 10}%` }}
                   />
                 </div>
@@ -153,7 +153,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
       <div className="mt-6 pt-5 border-t-2 border-ink">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-poster-red" />
+            <ShieldCheck className="w-4 h-4 text-press" />
             <span className="text-xs font-black text-ink uppercase tracking-wider">
               Editorial Spoiler Shield Protection
             </span>
@@ -165,7 +165,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           >
             {showSpoilers ? (
               <>
-                <EyeOff className="w-3.5 h-3.5 text-poster-red" />
+                <EyeOff className="w-3.5 h-3.5 text-press" />
                 <span>Hide Spoilers</span>
               </>
             ) : (

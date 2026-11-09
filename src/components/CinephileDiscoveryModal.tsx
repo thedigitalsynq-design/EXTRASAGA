@@ -174,7 +174,7 @@ export default function CinephileDiscoveryModal({
                     key={stepIdx}
                     className={`h-2 border border-ink transition-all duration-200 ${
                       currentStep === stepIdx
-                        ? "w-10 bg-poster-red"
+                        ? "w-10 bg-press"
                         : currentStep > stepIdx
                         ? "w-10 bg-ink"
                         : "w-10 bg-band"
@@ -197,7 +197,7 @@ export default function CinephileDiscoveryModal({
             {/* Question Screen */}
             {currentStep < totalSteps ? (
               <div className="space-y-4">
-                <span className="text-[11px] font-black tracking-widest text-poster-red font-mono-tabular uppercase block">
+                <span className="text-[11px] font-black tracking-widest text-press font-mono-tabular uppercase block">
                   {q.stepLabel}
                 </span>
 
@@ -205,7 +205,7 @@ export default function CinephileDiscoveryModal({
                   {q.title}
                 </h3>
 
-                <p className="text-[10px] font-black tracking-widest text-ink-muted font-mono-tabular uppercase">
+                <p className="text-[10px] font-black tracking-widest text-ink-mute font-mono-tabular uppercase">
                   {q.subtitle}
                 </p>
 
@@ -228,7 +228,7 @@ export default function CinephileDiscoveryModal({
                         <div
                           className={`w-5 h-5 border-2 border-ink flex items-center justify-center mt-0.5 shrink-0 transition-colors shadow-sticker ${
                             isSelected
-                              ? "bg-poster-red text-paper"
+                              ? "bg-press text-paper"
                               : "bg-paper"
                           }`}
                         >
@@ -242,7 +242,7 @@ export default function CinephileDiscoveryModal({
                           <div className="text-sm font-black text-ink uppercase">
                             {opt.label}
                           </div>
-                          <div className="text-xs text-ink-muted mt-0.5 font-medium leading-relaxed">
+                          <div className="text-xs text-ink-mute mt-0.5 font-medium leading-relaxed">
                             {opt.desc}
                           </div>
                         </div>
@@ -255,7 +255,7 @@ export default function CinephileDiscoveryModal({
               /* Recommendation Screen (Result) */
               <div className="space-y-4 py-2">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-band border-2 border-ink text-ink text-xs font-black font-mono-tabular uppercase tracking-wider shadow-sticker">
-                  <Sparkles className="w-3.5 h-3.5 text-poster-red" />
+                  <Sparkles className="w-3.5 h-3.5 text-press" />
                   <span>Cinephile Match Verified</span>
                 </div>
 
@@ -267,15 +267,15 @@ export default function CinephileDiscoveryModal({
                   <span className="px-2.5 py-0.5 bg-paper text-ink font-mono-tabular font-black uppercase border border-ink shadow-sticker">
                     {rec.industry}
                   </span>
-                  <span className="text-ink-muted">•</span>
-                  <span className="text-poster-red font-black uppercase">{rec.status}</span>
+                  <span className="text-ink-mute">•</span>
+                  <span className="text-press font-black uppercase">{rec.status}</span>
                 </div>
 
                 <div className="p-4 bg-paper border-2 border-ink shadow-sticker text-xs text-ink space-y-2">
                   <p className="leading-relaxed font-medium">{rec.summary}</p>
                   <div className="flex items-center justify-between pt-2 border-t border-ink/20 font-mono-tabular">
                     <span>Director: <strong className="text-ink uppercase">{rec.director}</strong></span>
-                    <span className="font-black text-poster-red uppercase">{rec.rating}</span>
+                    <span className="font-black text-press uppercase">{rec.rating}</span>
                   </div>
                 </div>
 
@@ -283,7 +283,7 @@ export default function CinephileDiscoveryModal({
                   <Link
                     href={rec.slug}
                     onClick={onClose}
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-poster-red hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-press hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
                   >
                     <span>Read Full Editorial Dossier</span>
                     <ArrowRight className="w-4 h-4" />
@@ -300,7 +300,7 @@ export default function CinephileDiscoveryModal({
                 <button
                   type="button"
                   onClick={() => setCurrentStep((s) => s - 1)}
-                  className="text-xs font-black text-ink-muted hover:text-ink tracking-wider uppercase font-mono-tabular transition-colors"
+                  className="text-xs font-black text-ink-mute hover:text-ink tracking-wider uppercase font-mono-tabular transition-colors"
                 >
                   Back
                 </button>
@@ -312,7 +312,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="px-6 py-2.5 bg-ink text-paper hover:bg-poster-red text-xs font-black uppercase tracking-wider border-2 border-ink shadow-sticker active:scale-95 transition-all flex items-center gap-1.5 btn-press-interactive"
+                className="px-6 py-2.5 bg-ink text-paper hover:bg-press text-xs font-black uppercase tracking-wider border-2 border-ink shadow-sticker active:scale-95 transition-all flex items-center gap-1.5 btn-press-interactive"
               >
                 <span>{currentStep === totalSteps - 1 ? "Discover Match" : "Next"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -325,7 +325,7 @@ export default function CinephileDiscoveryModal({
                 onClick={() => {
                   setCurrentStep(0);
                 }}
-                className="text-xs font-black text-ink-muted hover:text-ink inline-flex items-center gap-1.5 font-mono-tabular uppercase"
+                className="text-xs font-black text-ink-mute hover:text-ink inline-flex items-center gap-1.5 font-mono-tabular uppercase"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Start Over</span>
