@@ -46,9 +46,15 @@ const securityHeaders = [
 ];
 
 const isExport = process.env.NEXT_EXPORT === "true" || process.env.GITHUB_ACTIONS === "true";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS === "true" ? "/EXTRASAGA" : "");
 
 const nextConfig = {
   ...(isExport ? { output: "export" } : {}),
+  ...(basePath ? { basePath } : {}),
+  trailingSlash: isExport,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   optimizeFonts: false,
   compress: true,
   poweredByHeader: false,

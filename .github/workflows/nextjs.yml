@@ -80,6 +80,10 @@ jobs:
             mv src/app/api .api-backup/
           fi
       - name: Build with Next.js
+        env:
+          NEXT_EXPORT: "true"
+          NEXT_PUBLIC_BASE_PATH: "/EXTRASAGA"
+          NEXT_PUBLIC_SITE_URL: "https://thedigitalsynq-design.github.io/EXTRASAGA"
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Restore API routes
         if: always()
@@ -102,4 +106,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

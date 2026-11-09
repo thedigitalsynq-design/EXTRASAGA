@@ -7,7 +7,7 @@ import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from news_engine.generation.article_generator import GeneratedArticle
 
 logger = logging.getLogger(__name__)
@@ -50,7 +50,7 @@ class GitContentAdapter:
             "imageCaption": article.image_caption,
             "author": {
                 "id": "auth-engine-1",
-                "name": "EXTRASAGA Bureau",
+                "name": "EXTRA-SAAGA Bureau",
                 "role": "Editor",
             },
             "publishedAt": now_iso,
