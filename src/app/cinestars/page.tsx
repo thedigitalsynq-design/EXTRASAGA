@@ -9,7 +9,7 @@ import { CINESTAR_SUMMARY_STATS } from "@/data/cineStarData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `CineStar Leaderboard — Real-Time Rankings | EXTRASAGA`,
+    title: `CineStar Leaderboard — Real-Time Rankings | EXTRA-SAAGA`,
     description: `India's most powerful cinema personalities ranked by box office power, cultural impact & daily momentum across all Indian film industries.`,
   };
 }

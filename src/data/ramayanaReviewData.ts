@@ -166,7 +166,7 @@ export function getRamayanaMovieReview(_lang?: LanguageCode): MovieReview {
     cons: ["This epic has no shortcomings — an Indian pride beyond ratings!"],
     boxOfficeSummary: "Indian cinema poised to write all-time global history.",
     publishedAt: "2026-11-01T00:00:00Z",
-    author: "EXTRASAGA Special Editorial Board",
+    author: "EXTRA-SAAGA Special Editorial Board",
   };
 }
 

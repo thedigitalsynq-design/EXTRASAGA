@@ -9,11 +9,11 @@ import AdBanner from "@/components/AdBanner";
 import { HypoMeterService } from "@/lib/hypoMeterService";
 
 export const metadata: Metadata = {
-  title: "HypoMeter — Most Awaited Movies & Fan Hype Radar | EXTRASAGA",
+  title: "HypoMeter — Most Awaited Movies & Fan Hype Radar | EXTRA-SAAGA",
   description:
     "Live audience pulse, hype rankings, and opening day consensus projections for upcoming Indian theatrical releases.",
   openGraph: {
-    title: "HypoMeter — Most Awaited Movies & Audience Pulse | EXTRASAGA",
+    title: "HypoMeter — Most Awaited Movies & Audience Pulse | EXTRA-SAAGA",
     description:
       "Track fan interest velocity, release countdowns, and opening day predictions across Bollywood, Tollywood, Sandalwood, and Kollywood.",
     url: `${getSiteUrl()}/hypometer`,
@@ -31,7 +31,7 @@ export default async function HypoMeterPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "EXTRASAGA HypoMeter — Most Awaited Theatrical Releases",
+    name: "EXTRA-SAAGA HypoMeter — Most Awaited Theatrical Releases",
     description: "Audience hype rankings and fan expectations for upcoming Indian movies.",
     itemListElement: films.map((film, idx) => ({
       "@type": "ListItem",

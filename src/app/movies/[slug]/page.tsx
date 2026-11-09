@@ -39,14 +39,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
   const movie = await DataService.getMovieBySlug(params.slug);
   if (!movie) {
-    return { title: "Movie Not Found | EXTRASAGA" };
+    return { title: "Movie Not Found | EXTRA-SAAGA" };
   }
 
   const siteUrl = getSiteUrl();
   const canonicalUrl = `${siteUrl}/movies/${movie.slug}`;
 
   return {
-    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Synopsis | EXTRASAGA`,
+    title: `${movie.title} (${movie.titleEn}) - Theatrical Release Date, Cast, Trailer & Synopsis | EXTRA-SAAGA`,
     description: `${movie.title} (${movie.titleEn}) theatrical release dossier. Director: ${movie.director}. Cast: ${movie.cast.map(c => c.name).slice(0, 3).join(", ")}. Release date: ${movie.theatricalReleaseDate}.`,
     alternates: {
       canonical: canonicalUrl,
@@ -448,7 +448,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               </p>
               <div className="flex items-center gap-2">
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on EXTRASAGA: ${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://wa.me/?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted}. Read more on EXTRA-SAAGA: ${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"
@@ -456,7 +456,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                   WhatsApp
                 </a>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #EXTRASAGA`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${movie.title} (${movie.titleEn}) Theatrical Release: ${formatted} #EXTRA_SAAGA`)}&url=${encodeURIComponent(`${siteUrl}/movies/${movie.slug}`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase text-center border-2 border-ink shadow-sticker transition-all btn-press-interactive"

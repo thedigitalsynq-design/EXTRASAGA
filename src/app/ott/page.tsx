@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const config = getLanguageConfig("en");
 
   return {
-    title: `${config.ottTitle} | EXTRASAGA`,
+    title: `${config.ottTitle} | EXTRA-SAAGA`,
     description: `All Indian cinema verified OTT streaming dates and upcoming digital premiere radar.`,
   };
 }

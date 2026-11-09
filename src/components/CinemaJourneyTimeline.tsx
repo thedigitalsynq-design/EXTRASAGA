@@ -169,7 +169,7 @@ export default function CinemaJourneyTimeline() {
                     ES
                   </div>
                   <div>
-                    <div className="text-[11px] font-poster uppercase text-ink">EXTRASAGA Editorial Board</div>
+                    <div className="text-[11px] font-poster uppercase text-ink">EXTRA-SAAGA Editorial Board</div>
                     <div className="text-[9px] font-mono text-ink-dim">Standards &amp; Verification Protocol</div>
                   </div>
                 </div>

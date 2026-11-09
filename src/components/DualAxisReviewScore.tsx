@@ -38,7 +38,7 @@ export default function DualAxisReviewScore({ review }: DualAxisReviewScoreProps
           </div>
           <div>
             <span className="text-[10px] uppercase font-mono-tabular font-black text-press tracking-widest block">
-              EXTRASAGA CRITICAL AUDIT
+              EXTRA-SAAGA CRITICAL AUDIT
             </span>
             <h3 className="text-xl sm:text-2xl font-black text-ink uppercase tracking-tight">
               Dual-Axis Review Matrix

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const siteUrl = getSiteUrl();
 
   return {
-    title: `${article.title} — Films Discourse`,
+    title: `${article.title} — EXTRA-SAAGA`,
     description: article.summary,
     openGraph: {
       title: article.title,
@@ -86,7 +86,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ],
     publisher: {
       "@type": "Organization",
-      name: "Films Discourse",
+      name: "EXTRA-SAAGA",
       url: getSiteUrl(),
       logo: {
         "@type": "ImageObject",

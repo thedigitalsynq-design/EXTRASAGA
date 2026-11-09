@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const config = getLanguageConfig("en");
 
   return {
-    title: `${config.boxOfficeTitle} — Real-Time Multi-Source Cinema Tracking | EXTRASAGA`,
+    title: `${config.boxOfficeTitle} — Real-Time Multi-Source Cinema Tracking | EXTRA-SAAGA`,
     description: `All Indian cinema automated box office tracking, multi-source consolidated gross, net, distributor share and live theatre occupancy telemetry.`,
   };
 }

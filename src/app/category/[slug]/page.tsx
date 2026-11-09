@@ -29,12 +29,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === params.slug);
-  if (!cat) return { title: "Category not found — Films Discourse" };
+  if (!cat) return { title: "Category not found — EXTRA-SAAGA" };
 
   const catName = getLocalizedCategoryName(params.slug, "en");
 
   return {
-    title: `${catName} — Films Discourse`,
+    title: `${catName} — EXTRA-SAAGA`,
     description: cat.description || `${catName} cinema updates and reviews.`,
   };
 }

@@ -67,7 +67,7 @@ export default function BespokeEditorialHero({
 
   return (
     <section
-      aria-label="EXTRASAGA Unified Cinema Showcase"
+      aria-label="EXTRA-SAAGA Unified Cinema Showcase"
       className="relative w-full rounded-[32px] bg-sheet border-2 border-ink shadow-press p-6 sm:p-10 lg:p-12 overflow-hidden"
     >
       {/* Background Dot Grid and Subtle Texture */}
@@ -115,7 +115,7 @@ export default function BespokeEditorialHero({
               <span>THE UNIFIED INDIAN CINEMA DESK</span>
             </div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-poster text-ink tracking-tight uppercase leading-[0.98]">
-              EXTRASAGA
+              EXTRA-SAAGA
               <span className="block text-3xl sm:text-5xl lg:text-6xl font-normal lowercase tracking-normal mt-2">
                 <span className="font-poster uppercase font-bold text-ink">India&apos;s Cinema. </span>
                 <span className="font-serif-accent italic font-normal text-ink">Together.</span>

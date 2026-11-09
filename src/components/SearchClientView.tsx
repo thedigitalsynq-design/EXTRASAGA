@@ -55,7 +55,7 @@ export default function SearchClientView({
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
-            SEARCH <span className="text-press">EXTRASAGA</span> WIRE
+            SEARCH <span className="text-press">EXTRA-SAAGA</span> WIRE
           </h1>
 
           {/* Search Form */}

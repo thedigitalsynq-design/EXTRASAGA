@@ -80,7 +80,7 @@ export default function SpotlightNewsletter() {
         {isSubmitted ? (
           <div className="p-4 rounded-full bg-paper border-2 border-ink shadow-press inline-flex items-center gap-2.5 text-ink font-poster text-sm font-bold uppercase tracking-wider animate-in fade-in duration-300">
             <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-            <span>You&apos;re On The VIP Press Pass · Welcome To EXTRASAGA</span>
+            <span>You&apos;re On The VIP Press Pass · Welcome To EXTRA-SAAGA</span>
           </div>
         ) : (
           <form

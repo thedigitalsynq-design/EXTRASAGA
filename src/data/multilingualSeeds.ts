@@ -327,12 +327,12 @@ Marvel Studios' singular 2024 theatrical spectacle **'Deadpool & Wolverine'** ha
     title: "Nolan on 70mm IMAX: keeping pure celluloid cinema alive",
     titleEn: "Nolan on 70mm IMAX: keeping pure celluloid cinema alive",
     slug: "exclusive-interview-christopher-nolan-future-of-70mm-imax",
-    summary: "Following his sweeping Academy Awards triumph, Christopher Nolan sits down with EXTRASAGA to discuss his next Universal epic, the revival of physical film prints, and why practical stunts will always surpass CGI.",
+    summary: "Following his sweeping Academy Awards triumph, Christopher Nolan sits down with EXTRA-SAAGA to discuss his next Universal epic, the revival of physical film prints, and why practical stunts will always surpass CGI.",
     content: `
 Christopher Nolan remains cinema's most uncompromising guardian of the theatrical experience. In this wide-ranging editorial conversation, the British auteur reflects on scale, cinematic depth, and the tactile magic of photochemical film.
 
 ### The Return to Grand Celluloid
-"When you project a 70mm IMAX print, the audience is not watching an electronic approximation of light; they are experiencing reality refracted through glass and crystal. That visceral depth cannot be faked in post-production," Nolan tells EXTRASAGA.
+"When you project a 70mm IMAX print, the audience is not watching an electronic approximation of light; they are experiencing reality refracted through glass and crystal. That visceral depth cannot be faked in post-production," Nolan tells EXTRA-SAAGA.
     `,
     category: "interviews",
     categoryName: "Interviews",
@@ -459,7 +459,7 @@ Comic-Con once again became the epicenter of the global pop-culture universe. Th
     slug: "exclusive-interview-sukumar-pushpa-2-making-challenges",
     summary: "Sukumar in a special conversation about Pushpa Raj's character arc, Allu Arjun's dedication, and Telugu cinema's reach in the Japan and US markets.",
     content: `
-Amid the towering expectations around Pushpa 2: The Rule's Pan-India run, director Sukumar sat down with EXTRASAGA for a chat.
+Amid the towering expectations around Pushpa 2: The Rule's Pan-India run, director Sukumar sat down with EXTRA-SAAGA for a chat.
     `,
     category: "interviews",
     categoryName: "Interviews",
@@ -536,7 +536,7 @@ The hottest topic currently doing the rounds in Hyderabad's film city is NTR and
     slug: "exclusive-interview-lokesh-kanagaraj-rajinikanth-coolie-vision",
     summary: "Lokesh Kanagaraj opens up in a candid interview about his first experience with Superstar Rajinikanth, the gold-smuggling storyline, and Anirudh's music.",
     content: `
-The director of 'Coolie', currently being produced by Sun Pictures on a grand scale, Lokesh Kanagaraj shared his experiences with EXTRASAGA.
+The director of 'Coolie', currently being produced by Sun Pictures on a grand scale, Lokesh Kanagaraj shared his experiences with EXTRA-SAAGA.
     `,
     category: "interviews",
     categoryName: "Interviews",
@@ -690,7 +690,7 @@ Chatter is at full throttle over 'War 2', the next big instalment of Yash Raj Fi
     slug: "exclusive-interview-prithviraj-sukumaran-empuraan-scale",
     summary: "Prithviraj shares details on the second coming of Mohanlal's legendary character Stephen Nedumpally and the Lucifer franchise's future plans.",
     content: `
-Director Prithviraj shares the inside workings of 'Empuraan', mounted on Malayalam's biggest canvas yet, with EXTRASAGA.
+Director Prithviraj shares the inside workings of 'Empuraan', mounted on Malayalam's biggest canvas yet, with EXTRA-SAAGA.
     `,
     category: "interviews",
     categoryName: "Interviews",

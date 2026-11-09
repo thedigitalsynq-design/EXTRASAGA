@@ -19,7 +19,7 @@ const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: "t1",
     quote:
-      "EXTRASAGA changed how I follow Indian cinema. Their dual-axis reviews treat film as both a technical craft and an emotional voyage, and the box office numbers are grounded in audited trade receipts.",
+      "EXTRA-SAAGA changed how I follow Indian cinema. Their dual-axis reviews treat film as both a technical craft and an emotional voyage, and the box office numbers are grounded in audited trade receipts.",
     author: "Praveen Kumar",
     role: "Independent Filmmaker & Screenwriter",
     location: "Bengaluru, Sandalwood",

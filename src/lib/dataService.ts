@@ -289,7 +289,7 @@ export const DataService = {
         article.featuredImage ||
         "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
       imageCaption: article.imageCaption || "",
-      author: article.author || { id: "auth-1", name: "EXTRASAGA Bureau", role: "Editor" },
+      author: article.author || { id: "auth-1", name: "EXTRA-SAAGA Bureau", role: "Editor" },
       publishedAt: article.publishedAt || now,
       updatedAt: now,
       readTimeMinutes: article.readTimeMinutes || 3,
@@ -892,7 +892,7 @@ ${movie.synopsis}
       imageCaption: `Official Poster: ${movie.titleEn} (${movie.theatricalReleaseDate})`,
       author: {
         id: "cinema-release-desk",
-        name: "EXTRASAGA Cinema Releases Desk",
+        name: "EXTRA-SAAGA Cinema Releases Desk",
         role: "Chief Cinema Releases Editor",
       },
       publishedAt: existingArticle?.publishedAt || now,

@@ -486,7 +486,7 @@ export default function AdminPage() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-black text-ink uppercase tracking-tight">
-              EXTRASAGA <span className="text-press">PRESS DESK</span>
+              EXTRA-SAAGA <span className="text-press">PRESS DESK</span>
             </h1>
             <p className="text-xs text-ink-mute font-medium">
               Editorial Terminal &amp; Automated Pipeline Administration
@@ -567,7 +567,7 @@ export default function AdminPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black text-ink uppercase tracking-tight">
-                  EXTRASAGA <span className="text-press">PRESS</span> — Editorial Console
+                  EXTRA-SAAGA <span className="text-press">PRESS</span> — Editorial Console
                 </h1>
                 <span className="px-2 py-0.5 bg-band text-ink text-[10px] font-black border border-ink shadow-sticker uppercase font-mono-tabular">
                   LIVE DESK ACTIVE

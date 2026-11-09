@@ -19,7 +19,7 @@ export default function BoxOfficeTweetStudioModal({
 
   if (!isOpen || !movie) return null;
 
-  const tweetText = `🚨 EXTRASAGA THEATRICAL LEDGER: #Pushpa2TheRule / ${movie.movieTitleEn}
+  const tweetText = `🚨 EXTRA-SAAGA THEATRICAL LEDGER: #Pushpa2TheRule / ${movie.movieTitleEn}
 
 🎟️ Tickets Sold: ${movie.advance.ticketsSoldFormatted}
 💰 Advance Gross: ${movie.advance.advanceGrossFormatted}
@@ -29,8 +29,8 @@ export default function BoxOfficeTweetStudioModal({
 🎯 Day 1 Projections: ${movie.advance.dayPredictionInCrores}
 📊 Weekend Forecast: ${movie.advance.weekendProjectionInCrores}
 
-Audited multi-source telemetry via @extrasaga
-Verified data: https://extrasaga.com/box-office`;
+Audited multi-source telemetry via @ExtraSaaga
+Verified data: https://extra-saaga.com/box-office`;
 
   const handleCopy = async () => {
     try {
@@ -165,7 +165,7 @@ Verified data: https://extrasaga.com/box-office`;
                 <ShieldCheck className="w-3 h-3 text-press" />
                 Multi-Source Reconciled Telemetry
               </span>
-              <span className="font-bold uppercase tracking-wider text-ink">EXTRASAGA.COM</span>
+              <span className="font-bold uppercase tracking-wider text-ink">EXTRA-SAAGA.COM</span>
             </div>
           </div>
 

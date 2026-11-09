@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { checkRateLimit, resetRateLimit } from "@/lib/rateLimit";
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || "cinijaatre-super-secret-admin-key-2026";
-const EXPECTED_EMAIL = (process.env.ADMIN_EMAIL || "admin@cinijaatre.com").toLowerCase().trim();
+const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || "extra-saaga-super-secret-admin-key-2026";
+const EXPECTED_EMAIL = (process.env.ADMIN_EMAIL || "admin@extra-saaga.com").toLowerCase().trim();
 const EXPECTED_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
 function generateToken(email: string): string {
@@ -41,6 +41,7 @@ function verifyToken(token: string): boolean {
 // GET: Check authentication status
 export async function GET(req: NextRequest) {
   const token =
+    req.cookies.get("extra_saaga_admin_token")?.value ||
     req.cookies.get("filmygarage_admin_token")?.value ||
     req.cookies.get("cinijaatre_admin_token")?.value;
   if (!token || !verifyToken(token)) {
@@ -72,6 +73,7 @@ export async function POST(req: NextRequest) {
 
     const isEmailValid =
       email === EXPECTED_EMAIL ||
+      email === "admin@extra-saaga.com" ||
       email === "admin@cinijaatre.com" ||
       email === "admin@sinikannada.com" ||
       email === "admin@extrasaga.press";

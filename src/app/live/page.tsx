@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const config = getLanguageConfig("en");
 
   return {
-    title: `EXTRASAGA Live Wire | Real-Time All Indian Cinema Updates`,
+    title: `EXTRA-SAAGA Live Wire | Real-Time All Indian Cinema Updates`,
     description: `Real-time minute-by-minute cinema breaking news, live box office tracking, and shooting updates across all Indian film industries.`,
   };
 }

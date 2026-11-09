@@ -10,7 +10,7 @@ import { getLanguageConfig } from "@/lib/languages";
 import { getTranslation } from "@/lib/translations";
 
 export const metadata: Metadata = {
-  title: "The Verdict Desk — All-India Film Reviews & Dual-Axis Audits | EXTRASAGA",
+  title: "The Verdict Desk — All-India Film Reviews & Dual-Axis Audits | EXTRA-SAAGA",
   description:
     "Unbiased movie reviews, dual-axis storytelling and technical audits, and spoiler-free critical verdicts covering all Indian film industries.",
 };
@@ -82,13 +82,13 @@ export default async function ReviewsPage() {
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-press-deep uppercase">
               <span className="w-2 h-2 rounded-full bg-press" />
-              <span>THE EXTRASAGA CRITICAL CHARTER</span>
+              <span>THE EXTRA-SAAGA CRITICAL CHARTER</span>
             </div>
             <p className="text-base sm:text-lg font-poster uppercase text-ink leading-snug">
               &ldquo;We listen with curiosity, evaluate with honesty, and write with integrity. Every film is audited for both its emotional heartbeat and its technical visual craft.&rdquo;
             </p>
             <p className="font-handwritten text-base text-ink-dim font-bold">
-              — EXTRASAGA National Film Critics Guild ✍️
+              — EXTRA-SAAGA National Film Critics Guild ✍️
             </p>
           </div>
 

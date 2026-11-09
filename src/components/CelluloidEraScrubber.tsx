@@ -64,7 +64,7 @@ export default function CelluloidEraScrubber() {
       description:
         "A golden renaissance where scale meets genuine reverence. Collaborating with world-class craftspeople, Indian cinema now commands global IMAX screens with head held high and soul intact.",
       quote: "When grand scale is blessed with authentic reverence, cinema ceases to be mere commerce — it becomes cultural heritage.",
-      quoteAuthor: "EXTRASAGA Editorial Bureau",
+      quoteAuthor: "EXTRA-SAAGA Editorial Bureau",
       image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
     },
   ];

@@ -1,7 +1,10 @@
 import { NextRequest } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 
-const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || "cinijaatre-super-secret-admin-key-2026";
+const ADMIN_SECRET =
+  process.env.ADMIN_SECRET_KEY ||
+  process.env.EXTRA_SAAGA_ADMIN_SECRET ||
+  "extra-saaga-super-secret-admin-key-2026";
 const CRON_SECRET = process.env.CRON_SECRET || "";
 
 export function verifyAdminToken(token: string): boolean {
@@ -38,6 +41,7 @@ export function verifyAdminToken(token: string): boolean {
 export function verifyAdminRequest(request: NextRequest): { authorized: boolean; reason?: string } {
   // 1. Check cookies
   const cookieToken =
+    request.cookies.get("extra_saaga_admin_token")?.value ||
     request.cookies.get("filmygarage_admin_token")?.value ||
     request.cookies.get("cinijaatre_admin_token")?.value;
 

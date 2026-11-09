@@ -5,7 +5,7 @@ import { getLanguageConfig } from "@/lib/languages";
 import SearchClientView from "@/components/SearchClientView";
 
 export const metadata: Metadata = {
-  title: "Search Indian Cinema Wire | EXTRASAGA",
+  title: "Search Indian Cinema Wire | EXTRA-SAAGA",
   description: "Search across all Indian cinema headlines, reviews, lore, and stars.",
 };
 

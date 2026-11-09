@@ -62,8 +62,8 @@ export default function Header() {
   return (
     <header className={`site-head ${isMenuOpen ? "open" : ""}`} id="site-head">
       <div className="wrap">
-        <Link className="brand" href="/">
-          Films<span>Discourse</span>
+        <Link className="brand" href="/" aria-label="EXTRA-SAAGA">
+          EXTRA-<span>SAAGA</span>
         </Link>
 
         {/* Theme switcher toggle button */}

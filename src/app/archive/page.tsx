@@ -14,9 +14,9 @@ import { DataService } from "@/lib/dataService";
 import { formatReleaseDateIST } from "@/lib/cinemaDateUtils";
 
 export const metadata: Metadata = {
-  title: "Permanent Cinema & Articles Archive | EXTRASAGA",
+  title: "Permanent Cinema & Articles Archive | EXTRA-SAAGA",
   description:
-    "EXTRASAGA's comprehensive digital archive of permanent cinema articles, historical releases and authenticated box office records.",
+    "EXTRA-SAAGA's comprehensive digital archive of permanent cinema articles, historical releases and authenticated box office records.",
 };
 
 export default async function PermanentArchivePage() {

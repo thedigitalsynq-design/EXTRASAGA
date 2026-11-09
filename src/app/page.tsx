@@ -42,7 +42,7 @@ export default async function HomePage() {
   return (
     <main className="cn-home" id="cn-home" style={{ "--acc-d": "hsl(23 64% 62%)", "--acc-l": "hsl(23 55% 38%)" } as React.CSSProperties}>
       {/* ================= 1. Mosaic Hero ================= */}
-      <section className="cn-hero" aria-label="Tonight on Films Discourse">
+      <section className="cn-hero" aria-label="Tonight on EXTRA-SAAGA">
         {/* Feature slide */}
         <div className="cn-feature" id="cn-feature">
           <div className="cn-slides">
@@ -345,9 +345,9 @@ export default async function HomePage() {
         {/* ================= 4. The Desk & Latest Stories ================= */}
         <section className="cn-sec cn-desk" aria-labelledby="cn-desk-h">
           <div className="cn-desk-about">
-            <h2 id="cn-desk-h">Films Discourse</h2>
+            <h2 id="cn-desk-h">EXTRA-SAAGA</h2>
             <p>
-              Films Discourse follows Indian cinema the way fans and the trade do: by the numbers and by the story. We track box office collections day by day, advance booking before release and audience hype for upcoming films, and we write news, analysis and reviews of Hindi, South Indian and Hollywood films, web series and reality shows.
+              EXTRA-SAAGA follows Indian cinema the way fans and the trade do: by the numbers and by the story. We track box office collections day by day, advance booking before release and audience hype for upcoming films, and we write news, analysis and reviews of Hindi, South Indian and Hollywood films, web series and reality shows.
             </p>
             <p>
               Every figure says what it covers and when it was last updated, and our articles are written by our own team.
@@ -587,7 +587,7 @@ export default async function HomePage() {
 
         {/* ================= 10. Newsletter Dispatch CTA ================= */}
         <section className="cta" id="signup">
-          <p>Get the day&apos;s box office and new reviews from Films Discourse.</p>
+          <p>Get the day&apos;s box office and new reviews from EXTRA-SAAGA.</p>
           <form className="cta-form" action="/archive" method="get">
             <label className="sr-only" htmlFor="cta-name">Your name</label>
             <input id="cta-name" name="name" placeholder="Your name" required />

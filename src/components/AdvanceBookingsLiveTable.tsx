@@ -249,7 +249,7 @@ export default function AdvanceBookingsLiveTable({
             </span>
           </div>
           <span className="font-bold text-ink uppercase">
-            EXTRASAGA TRADE INTELLIGENCE
+            EXTRA-SAAGA TRADE INTELLIGENCE
           </span>
         </div>
       </div>

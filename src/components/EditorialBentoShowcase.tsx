@@ -19,7 +19,7 @@ export default function EditorialBentoShowcase() {
             <span>Innovation &amp; Cinema Craft</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-poster uppercase text-ink tracking-tight">
-            Why True Cinephiles Trust EXTRASAGA
+            Why True Cinephiles Trust EXTRA-SAAGA
           </h2>
           <p className="text-sm text-ink-dim font-grotesk font-medium mt-1 max-w-2xl">
             Cinema is more than commerce — it is our collective dream. We bring you fearless journalism, audited box office truth, and verdicts that honor both technical mastery and storytelling soul.

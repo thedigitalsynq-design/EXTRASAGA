@@ -19,10 +19,10 @@ export default function Footer() {
         <p className="foot-contact">
           <span className="soc soc-foot">
             <a
-              href="https://x.com/FilmsDiscourse"
+              href="https://x.com/ExtraSaaga"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Films Discourse on X (@FilmsDiscourse)"
+              aria-label="EXTRA-SAAGA on X (@ExtraSaaga)"
               title="Follow us on X"
             >
               <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor">
@@ -30,8 +30,8 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="mailto:hello@filmsdiscourse.com"
-              aria-label="Email Films Discourse"
+              href="mailto:contact@extra-saaga.com"
+              aria-label="Email EXTRA-SAAGA"
               title="Email us"
             >
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -41,17 +41,17 @@ export default function Footer() {
             </a>
           </span>
           <span>
-            Write to us at <a href="mailto:hello@filmsdiscourse.com">hello@filmsdiscourse.com</a> · Follow{" "}
-            <a href="https://x.com/FilmsDiscourse" target="_blank" rel="noopener noreferrer">
-              @FilmsDiscourse
+            Write to us at <a href="mailto:contact@extra-saaga.com">contact@extra-saaga.com</a> · Follow{" "}
+            <a href="https://x.com/ExtraSaaga" target="_blank" rel="noopener noreferrer">
+              @ExtraSaaga
             </a>{" "}
             on X
           </span>
         </p>
 
         <div className="foot-cols">
-          <nav aria-label="Films Discourse">
-            <b>Films Discourse</b>
+          <nav aria-label="EXTRA-SAAGA">
+            <b>EXTRA-SAAGA</b>
             <Link href="/archive">About us</Link>
             <Link href="/archive">Editorial team</Link>
             <Link href="/archive">Contact us</Link>
@@ -74,7 +74,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p>© 2026 Films Discourse · EXTRASAGA</p>
+        <p>© 2026 EXTRA-SAAGA. All rights reserved.</p>
       </div>
     </footer>
   );

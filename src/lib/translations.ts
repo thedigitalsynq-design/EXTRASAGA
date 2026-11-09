@@ -1,7 +1,7 @@
 import { LanguageCode } from "@/types";
 
 /**
- * CINIJAATRE / EXTRASAGA is a unified English-language entertainment platform.
+ * EXTRA-SAAGA is a unified English-language entertainment platform.
  * Every edition key resolves to the same clear, expressive, and engaging English
  * dictionary so all routes and legacy language hooks continue to render flawlessly.
  */
@@ -147,7 +147,7 @@ const ENGLISH: Translations = {
   bo_verdict: "Trade Verdict",
 
   footer_about:
-    "EXTRASAGA brings all Indian cinema together under one grand roof — celebrating extraordinary stories from Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and beyond. We deliver receipt-backed box office numbers, fearless reviews, and the living heartbeat of the silver screen with warmth, depth, and unwavering respect.",
+    "EXTRA-SAAGA brings all Indian cinema together under one grand roof — celebrating extraordinary stories from Bollywood, Tollywood, Sandalwood, Kollywood, Mollywood, and beyond. We deliver receipt-backed box office numbers, fearless reviews, and the living heartbeat of the silver screen with warmth, depth, and unwavering respect.",
   footer_telegram_whatsapp: "Connect With Our Newsroom:",
   footer_telegram: "Telegram Wire",
   footer_whatsapp: "WhatsApp Channel",

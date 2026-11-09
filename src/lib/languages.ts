@@ -1,7 +1,7 @@
 import { LanguageCode, FilmIndustry } from "@/types";
 
 /**
- * EXTRASAGA ships as an English-language publication.
+ * EXTRA-SAAGA ships as an English-language publication.
  * The language edition axis has been retired: every page renders English,
  * but films keep their own language identity (a Kannada film is still a
  * Kannada film — that field describes the film, not the site).
@@ -30,7 +30,7 @@ export const ENGLISH_CONFIG: LanguageConfig = {
   code: "en",
   name: "English",
   englishName: "English",
-  brandNameNative: "EXTRASAGA",
+  brandNameNative: "EXTRA-SAAGA",
   industry: "hollywood", // Technical identifier retained for compatibility
   industryName: "Indian Cinema",
   industryNameNative: "All Indian Film Industries",

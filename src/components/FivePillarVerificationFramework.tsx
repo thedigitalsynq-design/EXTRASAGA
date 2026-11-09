@@ -135,7 +135,7 @@ export default function FivePillarVerificationFramework() {
             THE 5-PILLAR <span className="text-press">CROSS-CHECK</span> SYSTEM
           </h2>
           <p className="text-sm text-ink-dim font-grotesk font-medium leading-relaxed">
-            Every release date, box office crore, and theatrical status on EXTRASAGA is dynamically verified through five independent institutional pillars before publication.
+            Every release date, box office crore, and theatrical status on EXTRA-SAAGA is dynamically verified through five independent institutional pillars before publication.
           </p>
         </div>
 
@@ -232,7 +232,7 @@ export default function FivePillarVerificationFramework() {
               &ldquo;Cinema data must be as sovereign as the craft itself. If studio dispatches, censor records, multiplex locks, chamber registries, and trade telemetry don&apos;t reach unanimous agreement, it never touches our frontpage.&rdquo;
             </p>
             <p className="text-xs font-mono text-ink-mute">
-              EXTRASAGA Institutional Charter · Section 4.2 Release Date &amp; Financial Sovereign Standards
+              EXTRA-SAAGA Institutional Charter · Section 4.2 Release Date &amp; Financial Sovereign Standards
             </p>
           </div>
         </div>
@@ -244,7 +244,7 @@ export default function FivePillarVerificationFramework() {
           </div>
           <div className="text-left pr-3">
             <p className="text-xs font-poster font-bold text-ink uppercase tracking-wide">
-              EXTRASAGA Bureau
+              EXTRA-SAAGA Bureau
             </p>
             <p className="text-[10px] font-mono text-ink-mute">
               Data Integrity Directorate

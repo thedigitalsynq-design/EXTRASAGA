@@ -32,12 +32,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
   const review = await DataService.getReviewBySlug(params.slug, "en");
-  if (!review) return { title: "Review Not Found — Films Discourse" };
+  if (!review) return { title: "Review Not Found — EXTRA-SAAGA" };
 
   const siteUrl = getSiteUrl();
 
   return {
-    title: `${review.movieTitle} Review — Films Discourse`,
+    title: `${review.movieTitle} Review — EXTRA-SAAGA`,
     description: review.summary,
     openGraph: {
       title: `${review.movieTitle} Review`,
@@ -86,11 +86,11 @@ export default async function MovieReviewPage({ params }: ReviewPageProps) {
         },
     author: {
       "@type": "Organization",
-      name: "Films Discourse",
+      name: "EXTRA-SAAGA",
     },
     publisher: {
       "@type": "Organization",
-      name: "Films Discourse",
+      name: "EXTRA-SAAGA",
       url: getSiteUrl(),
     },
   };

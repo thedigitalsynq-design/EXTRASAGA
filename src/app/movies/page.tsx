@@ -5,7 +5,7 @@ import { MovieIntelligenceService } from "@/lib/movieIntelligence/movieIntellige
 import MoviesClientView from "@/components/MoviesClientView";
 
 export const metadata: Metadata = {
-  title: "Cinema Releases & Discovery Hub | EXTRASAGA",
+  title: "Cinema Releases & Discovery Hub | EXTRA-SAAGA",
   description:
     "A multi-source verified release board of new and upcoming Kannada, Telugu, Tamil, Malayalam, Hindi and Hollywood films now in theatres or arriving soon.",
 };

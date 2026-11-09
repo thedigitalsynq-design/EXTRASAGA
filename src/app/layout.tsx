@@ -12,13 +12,13 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "EXTRASAGA | All Six Industries. One Cinema. House Full Every Day.",
-    template: "%s | EXTRASAGA — House Full Indian Cinema Press",
+    default: "EXTRA-SAAGA | All Six Industries. One Cinema. House Full Every Day.",
+    template: "%s | EXTRA-SAAGA — Indian Cinema Press",
   },
   description:
-    "EXTRASAGA is the front page of Indian cinema fandom, reported in English: verified release dates, receipt-backed box office, unbiased verdicts and OTT radar across Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood and Hollywood.",
+    "EXTRA-SAAGA is the front page of Indian cinema fandom, reported in English: verified release dates, receipt-backed box office, unbiased verdicts and OTT radar across Bollywood, Sandalwood, Tollywood, Kollywood, Mollywood and Hollywood.",
   keywords: [
-    "EXTRASAGA",
+    "EXTRA-SAAGA",
     "Indian Cinema",
     "One Indian Cinema Industry",
     "Indian Film Industry",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     "Indian Theatrical Releases",
     "OTT Releases India",
   ],
-  authors: [{ name: "EXTRASAGA Editorial Bureau", url: siteUrl }],
+  authors: [{ name: "EXTRA-SAAGA Editorial Bureau", url: siteUrl }],
   openGraph: {
-    title: "EXTRASAGA — All Six Industries. One Cinema.",
+    title: "EXTRA-SAAGA — All Six Industries. One Cinema.",
     description:
       "Different languages. Different cultures. Different filmmaking traditions. One industry. One identity. One press run. House full, every day.",
     url: siteUrl,
-    siteName: "EXTRASAGA",
+    siteName: "EXTRA-SAAGA",
     locale: "en_IN",
     type: "website",
     images: [
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop",
         width: 1200,
         height: 630,
-        alt: "EXTRASAGA — One Indian Cinema Industry",
+        alt: "EXTRA-SAAGA — One Indian Cinema Industry",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EXTRASAGA | All Six Industries. One Cinema.",
+    title: "EXTRA-SAAGA | All Six Industries. One Cinema.",
     description:
       "Different languages. Different cultures. Different filmmaking traditions. One industry. One identity. One platform.",
   },

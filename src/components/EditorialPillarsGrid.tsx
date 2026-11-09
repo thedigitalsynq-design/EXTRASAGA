@@ -71,7 +71,7 @@ export default function EditorialPillarsGrid() {
           <div className="flex items-center gap-2 mb-1">
             <span className="w-2.5 h-2.5 rounded-full bg-press animate-pulse" />
             <span className="text-xs font-poster uppercase tracking-wider text-ink font-bold">
-              THE FOUR CORNERSTONES OF EXTRASAGA
+              THE FOUR CORNERSTONES OF EXTRA-SAAGA
             </span>
             <span className="text-ink/40 hidden sm:inline">·</span>
             <span className="font-handwritten text-sm text-ink-dim hidden sm:inline select-none">
