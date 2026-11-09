@@ -9,7 +9,7 @@ This Software Requirements Specification defines the functional, non-functional,
 
 ### FR-01: English-Only Edition
 - The system shall render every page, label and metadata string in English (the `html lang` attribute is fixed to `en`).
-- Legacy `?lang=` parameters, `cinijaatre_lang` cookie and `localStorage` edition keys are accepted for compatibility and resolved to the English edition (`getLanguageConfig()` always returns the English config).
+- Legacy `?lang=` parameters, `extra_saaga_lang` cookie and `localStorage` edition keys are accepted for compatibility and resolved to the English edition (`getLanguageConfig()` always returns the English config).
 - Films keep their language identity as a data fact (`Movie.language` etc.), never as a UI setting.
 
 ### FR-02: Edge Security Middleware & Headers

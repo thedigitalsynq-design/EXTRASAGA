@@ -22,13 +22,13 @@ describe("Production Readiness: Site URL Resolution", () => {
   });
 
   it("uses NEXT_PUBLIC_SITE_URL when provided and removes trailing slashes", () => {
-    process.env.NEXT_PUBLIC_SITE_URL = "https://cinijaatre.com/";
-    expect(getSiteUrl()).toBe("https://cinijaatre.com");
+    process.env.NEXT_PUBLIC_SITE_URL = "https://extra-saaga.com/";
+    expect(getSiteUrl()).toBe("https://extra-saaga.com");
   });
 
   it("formats VERCEL_URL with https:// protocol prefix", () => {
-    process.env.VERCEL_URL = "cinijaatre-staging.vercel.app/";
-    expect(getSiteUrl()).toBe("https://cinijaatre-staging.vercel.app");
+    process.env.VERCEL_URL = "extra-saaga-staging.vercel.app/";
+    expect(getSiteUrl()).toBe("https://extra-saaga-staging.vercel.app");
   });
 });
 
@@ -76,7 +76,7 @@ describe("Production Readiness: Database Schema Integrity", () => {
     expect(sql).toContain("CREATE OR REPLACE FUNCTION public.acquire_seat_locks");
 
     // Storage bucket branding
-    expect(sql).toContain("cinijaatre-media");
+    expect(sql).toContain("extra-saaga-media");
   });
 });
 

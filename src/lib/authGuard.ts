@@ -34,16 +34,13 @@ export function verifyAdminToken(token: string): boolean {
 
 /**
  * Checks whether an incoming request has valid admin credentials:
- * 1. Via httpOnly cookie (filmygarage_admin_token or cinijaatre_admin_token)
+ * 1. Via httpOnly cookie (extra_saaga_admin_token)
  * 2. Via Authorization header: Bearer <token>
  * 3. Via x-admin-secret header matching ADMIN_SECRET_KEY
  */
 export function verifyAdminRequest(request: NextRequest): { authorized: boolean; reason?: string } {
   // 1. Check cookies
-  const cookieToken =
-    request.cookies.get("extra_saaga_admin_token")?.value ||
-    request.cookies.get("filmygarage_admin_token")?.value ||
-    request.cookies.get("cinijaatre_admin_token")?.value;
+  const cookieToken = request.cookies.get("extra_saaga_admin_token")?.value;
 
   if (cookieToken && verifyAdminToken(cookieToken)) {
     return { authorized: true };

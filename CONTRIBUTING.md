@@ -23,8 +23,8 @@ Thank you for your interest in contributing to **EXTRASAGA**! Please review the 
 ### 2.2 Setup Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/cinijaatre.git
-   cd cinijaatre
+   git clone https://github.com/your-username/extra-saaga.git
+   cd extra-saaga
    ```
 2. Install dependencies:
    ```bash

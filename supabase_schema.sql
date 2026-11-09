@@ -200,7 +200,7 @@ CREATE POLICY "Public can post comments" ON public.comments FOR INSERT WITH CHEC
 
 -- Storage bucket creation for media
 INSERT INTO storage.buckets (id, name, public) 
-VALUES ('cinijaatre-media', 'cinijaatre-media', true)
+VALUES ('extra-saaga-media', 'extra-saaga-media', true)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO storage.buckets (id, name, public) 

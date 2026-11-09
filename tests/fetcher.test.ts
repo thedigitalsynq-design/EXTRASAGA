@@ -29,11 +29,11 @@ describe("assertAllowedUrl", () => {
 describe("createPoliteFetcher", () => {
   it("returns text and sends the bot user agent", async () => {
     const fetchImpl = vi.fn(async (_url: string, init?: RequestInit) => {
-      expect((init?.headers as Record<string, string>)["User-Agent"]).toContain("SiniKannadaBot");
+      expect((init?.headers as Record<string, string>)["User-Agent"]).toContain("ExtraSaagaBot");
       return htmlResponse("ok");
     });
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 0,
@@ -48,7 +48,7 @@ describe("createPoliteFetcher", () => {
       return calls === 1 ? htmlResponse("busy", 503) : htmlResponse("ok");
     });
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 0,
@@ -64,7 +64,7 @@ describe("createPoliteFetcher", () => {
     let clock = 0;
     const fetchImpl = vi.fn(async () => htmlResponse("ok"));
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 1000,
@@ -84,7 +84,7 @@ describe("createPoliteFetcher", () => {
       new Response(null, { status: 302, headers: { location: "https://evil.example/x" } }),
     );
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 0,
@@ -95,7 +95,7 @@ describe("createPoliteFetcher", () => {
   it("does not retry when the per-call budget is already spent", async () => {
     const fetchImpl = vi.fn(async () => htmlResponse("busy", 503));
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 0,
@@ -123,7 +123,7 @@ describe("createPoliteFetcher", () => {
       return htmlResponse("ok");
     });
     const fetcher = createPoliteFetcher({
-      userAgent: "SiniKannadaBot/1.0",
+      userAgent: "ExtraSaagaBot/1.0",
       fetchImpl: fetchImpl as unknown as typeof fetch,
       allowedHosts: ["example.com"],
       minDelayMs: 0,

@@ -51,9 +51,7 @@ import { formatEditorialDate, formatCineNumber, slugify } from "@/lib/utils";
 import { TRUSTED_NEWS_SOURCES, TrustedNewsSource } from "@/lib/ingest/trustedSources";
 
 const ADMIN_EMAIL_ALIASES = [
-  "admin@EXTRASAGA.com",
-  "admin@sinikannada.com",
-  "admin@extrasaga.press",
+  "admin@extra-saaga.com",
 ] as const;
 const DEFAULT_ADMIN_EMAIL = ADMIN_EMAIL_ALIASES[0];
 const LANGUAGE_TO_INDUSTRY: Record<LanguageCode, FilmIndustry> = {
@@ -139,18 +137,14 @@ export default function AdminPage() {
           setIsAuthenticated(true);
         } else {
           // Check local session fallback
-          const logged =
-            sessionStorage.getItem("filmygarage_admin_auth") ||
-            sessionStorage.getItem("EXTRASAGA_admin_auth");
+          const logged = sessionStorage.getItem("extra_saaga_admin_auth");
           if (logged === "true") {
             setIsAuthenticated(true);
           }
         }
       })
       .catch(() => {
-        const logged =
-          sessionStorage.getItem("filmygarage_admin_auth") ||
-          sessionStorage.getItem("EXTRASAGA_admin_auth");
+        const logged = sessionStorage.getItem("extra_saaga_admin_auth");
         if (logged === "true") {
           setIsAuthenticated(true);
         }
@@ -364,8 +358,7 @@ export default function AdminPage() {
       });
 
       if (res.ok) {
-        sessionStorage.setItem("EXTRASAGA_admin_auth", "true");
-        sessionStorage.setItem("filmygarage_admin_auth", "true");
+        sessionStorage.setItem("extra_saaga_admin_auth", "true");
         setIsAuthenticated(true);
         setAuthError("");
         return;
@@ -379,8 +372,7 @@ export default function AdminPage() {
         ADMIN_EMAIL_ALIASES.includes(loginEmail as (typeof ADMIN_EMAIL_ALIASES)[number]) &&
         loginPassword === "admin123"
       ) {
-        sessionStorage.setItem("EXTRASAGA_admin_auth", "true");
-        sessionStorage.setItem("filmygarage_admin_auth", "true");
+        sessionStorage.setItem("extra_saaga_admin_auth", "true");
         setIsAuthenticated(true);
         setAuthError("");
       } else {
@@ -395,9 +387,7 @@ export default function AdminPage() {
     } catch (e) {
       // ignore
     }
-    sessionStorage.removeItem("filmygarage_admin_auth");
-    sessionStorage.removeItem("EXTRASAGA_admin_auth");
-    sessionStorage.removeItem("sini_admin_auth");
+    sessionStorage.removeItem("extra_saaga_admin_auth");
     setIsAuthenticated(false);
   };
 

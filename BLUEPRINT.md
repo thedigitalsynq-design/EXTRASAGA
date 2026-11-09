@@ -91,7 +91,7 @@ The homepage (`src/app/page.tsx`) uses a structured, magazine-grade hierarchy:
 ## 3. Directory Layout
 
 ```
-cinijaatre/
+extra-saaga/
 ├── public/                 # Static assets & logos
 ├── src/
 │   ├── app/                # Next.js 14 App Router routes & API endpoints

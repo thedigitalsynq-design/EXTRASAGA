@@ -93,7 +93,7 @@ Key settings in `.env`:
 OLLAMA_BASE_URL="http://localhost:11434"
 OLLAMA_MODEL="llama3.2"
 WEBSITE_API_URL="http://localhost:3001"
-ADMIN_SECRET_KEY="cinijaatre-super-secret-admin-key-2026"
+ADMIN_SECRET_KEY="extra-saaga-super-secret-admin-key-2026"
 DRY_RUN_MODE=true # Keep true for initial validation; set false when ready for live publishing
 EMERGENCY_PUBLISH_PAUSE=false
 ```

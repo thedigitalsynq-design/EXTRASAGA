@@ -71,7 +71,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - **Dedicated Reviews Page Route (`/reviews`)**:
-  - Implemented standalone reviews destination ([`src/app/reviews/page.tsx`](file:///c:/Users/email/OneDrive/Desktop/ALLINSYNQ/cinijaatre/src/app/reviews/page.tsx)) with dual-axis ratings, verified reviews count badge, and sidebar integration.
+  - Implemented standalone reviews destination ([`src/app/reviews/page.tsx`](file:///c:/Users/email/OneDrive/Desktop/ALLINSYNQ/extra-saaga/src/app/reviews/page.tsx)) with dual-axis ratings, verified reviews count badge, and sidebar integration.
 - **Seeded Category Content Across All 12 Nav Items**:
   - Added dedicated, authentic editorial articles in Kannada, Telugu, Tamil, Malayalam, Hindi, and English for previously unseeded categories (`interviews`, `gossip`, `television`, `celebrity`, `events`, `actors`, `bollywood`, `hollywood`).
 - **Data Segregation Test Suite (`tests/data-segregation.test.ts`)**:
@@ -89,7 +89,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - **Fixed Strict Data Segregation Between Pages & Categories**:
   - Eliminated the leaky `if (matches.length > 0) result = matches` fallback in `DataService.getArticles` that caused unpopulated categories to dump all site articles.
-  - Refactored [`src/app/category/[slug]/page.tsx`](file:///c:/Users/email/OneDrive/Desktop/ALLINSYNQ/cinijaatre/src/app/category/[slug]/page.tsx) so specialized pages (`reviews`, `box-office`, `ott`, `videos`, `gallery`) render their dedicated showcases and do not append unrelated general news articles below them.
+  - Refactored [`src/app/category/[slug]/page.tsx`](file:///c:/Users/email/OneDrive/Desktop/ALLINSYNQ/extra-saaga/src/app/category/[slug]/page.tsx) so specialized pages (`reviews`, `box-office`, `ott`, `videos`, `gallery`) render their dedicated showcases and do not append unrelated general news articles below them.
   - Enforced strict language segregation so filtering for one language never leaks articles from another.
 - **Removed Outdated 'No.1' Tagline Claims Across All 6 Languages**:
   - Replaced promotional portal claims with independent journalism and intelligence taglines in Kannada, Telugu, Tamil, Malayalam, Hindi, and English.

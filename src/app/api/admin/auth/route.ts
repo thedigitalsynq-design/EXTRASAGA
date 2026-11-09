@@ -40,10 +40,7 @@ function verifyToken(token: string): boolean {
 
 // GET: Check authentication status
 export async function GET(req: NextRequest) {
-  const token =
-    req.cookies.get("extra_saaga_admin_token")?.value ||
-    req.cookies.get("filmygarage_admin_token")?.value ||
-    req.cookies.get("cinijaatre_admin_token")?.value;
+  const token = req.cookies.get("extra_saaga_admin_token")?.value;
   if (!token || !verifyToken(token)) {
     return NextResponse.json({ authenticated: false }, { status: 401 });
   }
@@ -73,10 +70,7 @@ export async function POST(req: NextRequest) {
 
     const isEmailValid =
       email === EXPECTED_EMAIL ||
-      email === "admin@extra-saaga.com" ||
-      email === "admin@cinijaatre.com" ||
-      email === "admin@sinikannada.com" ||
-      email === "admin@extrasaga.press";
+      email === "admin@extra-saaga.com";
     const isPasswordValid = password === EXPECTED_PASSWORD;
 
     if (!isEmailValid || !isPasswordValid) {
@@ -93,7 +87,7 @@ export async function POST(req: NextRequest) {
     const response = NextResponse.json({ success: true, email });
 
     response.cookies.set({
-      name: "filmygarage_admin_token",
+      name: "extra_saaga_admin_token",
       value: token,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -112,16 +106,7 @@ export async function POST(req: NextRequest) {
 export async function DELETE() {
   const response = NextResponse.json({ success: true });
   response.cookies.set({
-    name: "filmygarage_admin_token",
-    value: "",
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
-  response.cookies.set({
-    name: "cinijaatre_admin_token",
+    name: "extra_saaga_admin_token",
     value: "",
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

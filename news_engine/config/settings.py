@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "EXTRASAGA Autonomous News Engine"
     APP_ENV: str = os.getenv("APP_ENV", "development")
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "cinijaatre-engine-secret-key-2026-production")
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "extra-saaga-engine-secret-key-2026-production")
     ADMIN_PASSWORD: str = os.getenv("ADMIN_PASSWORD", "admin123")
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "8000"))
@@ -44,7 +44,7 @@ class Settings(BaseSettings):
 
     # Target Website Publishing Integration
     WEBSITE_API_URL: str = os.getenv("WEBSITE_API_URL", "http://localhost:3001")
-    ADMIN_SECRET_KEY: str = os.getenv("ADMIN_SECRET_KEY", "cinijaatre-super-secret-admin-key-2026")
+    ADMIN_SECRET_KEY: str = os.getenv("ADMIN_SECRET_KEY", "extra-saaga-super-secret-admin-key-2026")
     DEFAULT_AUTHOR_NAME: str = "EXTRASAGA Bureau"
     DEFAULT_AUTHOR_ROLE: str = "Editor"
 

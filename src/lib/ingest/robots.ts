@@ -1,6 +1,6 @@
 import robotsParser from "robots-parser";
 
-export const INGEST_BOT_TOKEN = "SiniKannadaBot";
+export const INGEST_BOT_TOKEN = "ExtraSaagaBot";
 
 export function canFetch(url: string, robotsTxt: string | null, userAgent: string): boolean {
   if (!robotsTxt) return true;

@@ -71,8 +71,8 @@
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/cinijaatre.git
-cd cinijaatre
+git clone https://github.com/your-username/extra-saaga.git
+cd extra-saaga
 
 # Install dependencies (pure Tailwind CSS, zero shadcn)
 npm install

@@ -9,12 +9,12 @@ const ROBOTS = [
 
 describe("robots", () => {
   it("allows permitted paths and blocks disallowed paths", () => {
-    expect(canFetch("https://example.com/news/a", ROBOTS, "SiniKannadaBot")).toBe(true);
-    expect(canFetch("https://example.com/private/a", ROBOTS, "SiniKannadaBot")).toBe(false);
+    expect(canFetch("https://example.com/news/a", ROBOTS, "ExtraSaagaBot")).toBe(true);
+    expect(canFetch("https://example.com/private/a", ROBOTS, "ExtraSaagaBot")).toBe(false);
   });
 
   it("proceeds when robots.txt is unavailable", () => {
-    expect(canFetch("https://example.com/news/a", null, "SiniKannadaBot")).toBe(true);
+    expect(canFetch("https://example.com/news/a", null, "ExtraSaagaBot")).toBe(true);
   });
 
   it("caches robots.txt per origin", async () => {
@@ -26,10 +26,10 @@ describe("robots", () => {
           return ROBOTS;
         },
       },
-      "SiniKannadaBot",
+      "ExtraSaagaBot",
     );
-    await checker.isAllowed("https://example.com/news/a", "SiniKannadaBot");
-    await checker.isAllowed("https://example.com/news/b", "SiniKannadaBot");
+    await checker.isAllowed("https://example.com/news/a", "ExtraSaagaBot");
+    await checker.isAllowed("https://example.com/news/b", "ExtraSaagaBot");
     expect(calls).toBe(1);
   });
 });
