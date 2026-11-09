@@ -1,20 +1,19 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 import { CATEGORIES } from "@/data/mockData";
 import { DataService } from "@/lib/dataService";
 import { CategorySlug, LanguageCode } from "@/types";
-import ArticleCard from "@/components/ArticleCard";
-import TrendingSidebar from "@/components/TrendingSidebar";
 import ReviewsSection from "@/components/ReviewsSection";
 import BoxOfficeTable from "@/components/BoxOfficeTable";
 import OttSection from "@/components/OttSection";
 import VideoSection from "@/components/VideoSection";
 import PhotoGallerySection from "@/components/PhotoGallerySection";
-import AdBanner from "@/components/AdBanner";
 import { getLanguageConfig } from "@/lib/languages";
-import { getTranslation, getLocalizedCategoryName } from "@/lib/translations";
+import { getLocalizedCategoryName } from "@/lib/translations";
+import { formatEditorialDate } from "@/lib/utils";
 
 interface CategoryPageProps {
   params: {
@@ -30,12 +29,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const cat = CATEGORIES.find((c) => c.slug === params.slug);
-  if (!cat) return { title: "Category not found" };
+  if (!cat) return { title: "Category not found — Films Discourse" };
 
   const catName = getLocalizedCategoryName(params.slug, "en");
 
   return {
-    title: `${catName} (${cat.englishName}) - EXTRASAGA`,
+    title: `${catName} — Films Discourse`,
     description: cat.description || `${catName} cinema updates and reviews.`,
   };
 }
@@ -48,8 +47,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const activeLang = "en" as LanguageCode;
-  const config = getLanguageConfig(activeLang);
-
   const localizedTitle = getLocalizedCategoryName(params.slug, activeLang);
 
   const [articles, trendingArticles, reviews, boxOffice, ottReleases, videos, galleries] =
@@ -64,126 +61,131 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     ]);
 
   return (
-    <div className="w-full bg-paper min-h-screen text-ink">
-      {/* Category Header Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs text-ink-dim mb-3 font-mono">
-            <Link href="/" className="hover:text-press font-bold transition-colors">
-              {getTranslation(activeLang, "nav_home")}
-            </Link>
-            <span>/</span>
-            <span className="text-press-deep font-bold">{localizedTitle}</span>
-          </div>
+    <div className="wrap">
+      {/* Category Header */}
+      <header className="py-8 border-b border-line mb-8">
+        <p className="kicker text-xs font-mono uppercase text-muted mb-2 tracking-wider">
+          <Link href="/" className="hover:text-text">Home</Link> · Archive Desk
+        </p>
+        <h1 className="text-3xl sm:text-5xl font-title font-extrabold text-ink tracking-tight uppercase">
+          {localizedTitle}
+        </h1>
+        {currentCategory.description && (
+          <p className="text-sm sm:text-base text-muted mt-2 max-w-2xl">
+            {currentCategory.description}
+          </p>
+        )}
+      </header>
 
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
-                  CATEGORY DESK
-                </span>
-                <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
-                  ALL INDIAN FILM INDUSTRIES
-                </span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
-                {localizedTitle}
-              </h1>
-              <p className="mt-1.5 text-xs sm:text-sm text-ink-dim max-w-2xl font-grotesk font-medium">
-                {currentCategory.description}
-              </p>
-            </div>
-            <span className="text-xs font-poster uppercase px-3 py-1.5 bg-band text-ink border-2 border-ink shadow-sticker self-start md:self-auto">
-              {currentCategory.englishName}
-            </span>
-          </div>
+      {/* Specialized Category Views if category is Reviews, Box-Office, OTT, Videos, Gallery */}
+      {params.slug === "reviews" && (
+        <div className="space-y-8 mb-12">
+          <ReviewsSection reviews={reviews} />
         </div>
-      </div>
+      )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Render Specialized Category Views if category is Reviews, Box-Office, OTT, Videos, Gallery */}
-        {params.slug === "reviews" && (
-          <div className="space-y-8">
-            <ReviewsSection reviews={reviews} />
-          </div>
-        )}
+      {params.slug === "box-office" && (
+        <div className="space-y-8 mb-12">
+          <BoxOfficeTable entries={boxOffice} showAllLink={false} />
+        </div>
+      )}
 
-        {params.slug === "box-office" && (
-          <div className="space-y-8">
-            <BoxOfficeTable entries={boxOffice} showAllLink={false} />
-          </div>
-        )}
+      {params.slug === "ott" && (
+        <div className="space-y-8 mb-12">
+          <OttSection releases={ottReleases} />
+        </div>
+      )}
 
-        {params.slug === "ott" && (
-          <div className="space-y-8">
-            <OttSection releases={ottReleases} />
-          </div>
-        )}
+      {params.slug === "videos" && (
+        <div className="space-y-8 mb-12">
+          <VideoSection videos={videos} />
+        </div>
+      )}
 
-        {params.slug === "videos" && (
-          <div className="space-y-8">
-            <VideoSection videos={videos} />
-          </div>
-        )}
+      {params.slug === "gallery" && (
+        <div className="space-y-8 mb-12">
+          <PhotoGallerySection galleries={galleries} />
+        </div>
+      )}
 
-        {params.slug === "gallery" && (
-          <div className="space-y-8">
-            <PhotoGallerySection galleries={galleries} />
-          </div>
-        )}
-
-        {/* Regular Article Listing Grid */}
-        {!["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <main className="lg:col-span-8">
-              <h2 className="text-lg font-poster uppercase text-ink mb-5 border-l-4 border-press pl-3">
-                {localizedTitle} ({articles.length})
-              </h2>
-
-              {articles.length === 0 ? (
-                <div className="bg-sheet p-12 border-2 border-dashed border-ink shadow-press text-center space-y-3">
-                  <p className="text-base font-poster uppercase text-ink-dim">
-                    No articles printed in this category yet.
-                  </p>
-                  <Link
-                    href="/"
-                    className="inline-block px-5 py-2.5 bg-ink text-paper text-xs font-poster uppercase tracking-wider hover:bg-press border-2 border-ink shadow-sticker transition-colors"
-                  >
-                    Back to Home
+      {/* Standard Articles Grid */}
+      {!["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && (
+        <div>
+          {articles.length === 0 ? (
+            <div className="p-12 border border-dashed border-line text-center space-y-3 rounded">
+              <p className="text-base text-muted">
+                No dispatches published in this archive yet.
+              </p>
+              <Link
+                href="/"
+                className="inline-block px-4 py-2 bg-[var(--surface-2)] text-text text-xs uppercase font-medium hover:border-text border border-line rounded transition-colors"
+              >
+                Back to Desk
+              </Link>
+            </div>
+          ) : (
+            <div className="cn-arts">
+              {articles.map((art) => (
+                <article key={art.id} className="cn-artc">
+                  <Link href={`/news/${art.slug}`}>
+                    <figure className="cn-artc-fig">
+                      <Image
+                        src={art.featuredImage}
+                        alt={art.title}
+                        width={400}
+                        height={260}
+                        className="object-cover"
+                      />
+                    </figure>
+                    <div className="cn-artc-body">
+                      <div className="cn-artc-meta">
+                        <span>{art.category.toUpperCase()}</span>
+                        <span>{formatEditorialDate(art.publishedAt)}</span>
+                      </div>
+                      <h3 className="cn-artc-title">{art.title}</h3>
+                      <p className="cn-artc-sum line-clamp-2">{art.summary}</p>
+                    </div>
                   </Link>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {articles.map((article) => (
-                    <ArticleCard key={article.id} article={article} variant="horizontal" />
-                  ))}
-                </div>
-              )}
-            </main>
-
-            {/* Sidebar */}
-            <aside className="lg:col-span-4 space-y-6">
-              <TrendingSidebar articles={trendingArticles} />
-              <AdBanner placement="sidebar_rectangle" />
-            </aside>
-          </div>
-        )}
-
-        {/* Supplementary In-Depth Articles for Specialized Pages */}
-        {["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && articles.length > 0 && (
-          <div className="mt-12 pt-8 border-t-2 border-ink">
-            <h3 className="text-lg font-poster uppercase text-ink mb-5 border-l-4 border-press pl-3">
-              {localizedTitle} — Special Reports ({articles.length})
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {articles.map((article) => (
-                <ArticleCard key={article.id} article={article} variant="grid" />
+                </article>
               ))}
             </div>
+          )}
+        </div>
+      )}
+
+      {/* Supplementary Articles for Specialized Pages */}
+      {["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && articles.length > 0 && (
+        <div className="mt-12 pt-8 border-t border-line">
+          <div className="h3-head flex items-baseline justify-between pb-2 mb-6 border-b border-line">
+            <h2 className="text-lg font-bold uppercase tracking-wider">{localizedTitle} — Reports</h2>
           </div>
-        )}
-      </div>
+          <div className="cn-arts">
+            {articles.map((art) => (
+              <article key={art.id} className="cn-artc">
+                <Link href={`/news/${art.slug}`}>
+                  <figure className="cn-artc-fig">
+                    <Image
+                      src={art.featuredImage}
+                      alt={art.title}
+                      width={400}
+                      height={260}
+                      className="object-cover"
+                    />
+                  </figure>
+                  <div className="cn-artc-body">
+                    <div className="cn-artc-meta">
+                      <span>{art.category.toUpperCase()}</span>
+                      <span>{formatEditorialDate(art.publishedAt)}</span>
+                    </div>
+                    <h3 className="cn-artc-title">{art.title}</h3>
+                    <p className="cn-artc-sum line-clamp-2">{art.summary}</p>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

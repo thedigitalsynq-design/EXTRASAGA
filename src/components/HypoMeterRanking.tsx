@@ -131,15 +131,14 @@ export default function HypoMeterRanking() {
                 <div className="md:col-span-4 lg:col-span-3 flex items-center gap-4">
                   <div className="flex flex-col items-center justify-center shrink-0">
                     <span
-                      className={`w-10 h-10 border-2 border-ink font-mono-tabular font-black text-sm flex items-center justify-center ${
-                        index === 0
+                      className={`w-10 h-10 border-2 border-ink font-mono-tabular font-black text-sm flex items-center justify-center ${index === 0
                           ? "bg-marquee text-ink shadow-sticker"
                           : index === 1
-                          ? "bg-band text-ink shadow-sticker"
-                          : index === 2
-                          ? "bg-sheet text-ink shadow-sticker"
-                          : "bg-paper text-ink-dim"
-                      }`}
+                            ? "bg-band text-ink shadow-sticker"
+                            : index === 2
+                              ? "bg-sheet text-ink shadow-sticker"
+                              : "bg-paper text-ink-dim"
+                        }`}
                     >
                       #{index + 1}
                     </span>
@@ -299,3 +298,4 @@ export default function HypoMeterRanking() {
     </div>
   );
 }
+

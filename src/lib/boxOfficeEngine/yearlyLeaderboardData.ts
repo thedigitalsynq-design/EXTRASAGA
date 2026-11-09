@@ -367,3 +367,4 @@ export function getYearlyAggregateStats(year: number = 2026) {
     topGrosserCollection: topGrosser ? `₹${topGrosser.worldwideGrossCrores.toLocaleString("en-IN")} Cr` : "N/A",
   };
 }
+

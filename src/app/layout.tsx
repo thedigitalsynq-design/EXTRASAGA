@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/styles/filmsDiscourse.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TheaterAmbianceHUD from "@/components/TheaterAmbianceHUD";
@@ -69,8 +70,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `var fdT='dark';try{var fdS=localStorage.getItem('fd_theme');if(fdS==='dark'||fdS==='light')fdT=fdS;}catch(e){}document.documentElement.setAttribute('data-theme',fdT);`,
+          }}
+        />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -78,22 +84,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Caveat:wght@400..700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Google+Sans+Flex:wght@100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Caveat:wght@400..700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-paper text-ink font-sans antialiased relative overflow-x-hidden">
-        {/* Press Environment: the sheet is always on the printing table */}
-        <div aria-hidden="true" className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-          {/* Newsprint wash — warm paper breath, never sterile white */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#FBF7EC_0%,#F4EFE2_60%)]" />
-          {/* Registration grid — faint risograph checkout lines */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(23,20,15,0.04)_1px,transparent_1px)] [background-size:32px_100%]" />
-          {/* Halftone plates — two printed plates, top-left and mid-right */}
-          <div className="absolute -top-10 -left-10 w-[420px] h-[320px] halftone-faint rounded-2xl rotate-[-2deg]" />
-          <div className="absolute top-[45%] -right-16 w-[380px] h-[280px] halftone-faint rounded-2xl rotate-[1.5deg]" />
-        </div>
-
+      <body
+        data-concept="cinema"
+        className="min-h-screen flex flex-col bg-paper text-ink font-sans antialiased relative overflow-x-hidden"
+      >
         <LanguageProvider>
           <Header />
           <main className="flex-1 w-full">{children}</main>
