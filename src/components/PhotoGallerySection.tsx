@@ -38,15 +38,15 @@ export default function PhotoGallerySection({
   };
 
   return (
-    <section className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b-2 border-ink gap-4">
+    <section className="bg-sheet border border-line rounded-lg shadow-md p-6 sm:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b border-line gap-4">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 bg-violet text-paper border-2 border-ink shadow-sticker flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 bg-violet text-paper border border-line rounded shadow-sm flex items-center justify-center shrink-0">
             <Camera className="w-5 h-5" />
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+              <span className="sticker bg-band text-ink border border-line px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase rounded">
                 LENS &amp; LIGHT
               </span>
               <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
@@ -56,7 +56,7 @@ export default function PhotoGallerySection({
             <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink truncate">
               CELEBRITY <span className="text-violet">GALLERIES</span>
             </h2>
-            <p className="text-xs text-ink-dim font-grotesk font-medium">
+            <p className="text-xs text-ink-dim font-medium">
               Capturing the grace, glamour, and candid moments of India&apos;s most beloved screen icons.
             </p>
           </div>
@@ -64,10 +64,10 @@ export default function PhotoGallerySection({
 
         <Link
           href={localizeUrl("/category/gallery")}
-          className="btn-press-interactive self-start sm:self-auto px-4 py-2 bg-ink text-paper hover:bg-violet border-2 border-ink shadow-sticker text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all shrink-0"
+          className="self-start sm:self-auto px-4 py-2 bg-surface text-ink hover:bg-violet hover:text-white border border-line rounded shadow-sm text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all shrink-0"
         >
           <span>View All Galleries</span>
-          <ChevronRight className="w-3.5 h-3.5 text-paper" />
+          <ChevronRight className="w-3.5 h-3.5" />
         </Link>
       </div>
 
@@ -76,10 +76,10 @@ export default function PhotoGallerySection({
           <div
             key={item.id}
             onClick={() => openLightbox(item)}
-            className="card-press-interactive group cursor-pointer bg-paper border-2 border-ink shadow-press overflow-hidden flex flex-col justify-between"
+            className="group cursor-pointer bg-surface border border-line rounded-lg shadow-sm hover:border-line-2 hover:shadow-md transition-all overflow-hidden flex flex-col justify-between"
           >
             <div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden border-b-2 border-ink bg-band">
+              <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-line bg-band">
                 <Image
                   src={item.coverImage}
                   alt={item.title}
@@ -90,13 +90,13 @@ export default function PhotoGallerySection({
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
 
                 {/* Photo Count Tag */}
-                <div className="absolute top-3 right-3 bg-paper px-2.5 py-1 border-2 border-ink shadow-sticker text-ink text-xs font-mono font-bold flex items-center gap-1.5">
+                <div className="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2.5 py-1 border border-line rounded shadow-sm text-ink text-xs font-mono font-bold flex items-center gap-1.5">
                   <Camera className="w-3.5 h-3.5 text-press" />
                   <span>{item.photoCount} Photos</span>
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3">
-                  <span className="inline-block px-2 py-0.5 sticker bg-marquee text-ink border-2 border-ink text-[9px] font-bold uppercase mb-1 shadow-sticker">
+                  <span className="inline-block px-2 py-0.5 sticker bg-band text-ink border border-line text-[9px] font-bold uppercase mb-1 rounded">
                     {item.celebrityName}
                   </span>
                   <h3 className="text-sm font-poster uppercase text-paper leading-snug line-clamp-2 drop-shadow-sm">
@@ -112,9 +112,9 @@ export default function PhotoGallerySection({
       {/* Lightbox Modal */}
       {activeGallery && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/85 animate-fadeIn">
-          <div className="relative w-full max-w-5xl h-[85vh] bg-sheet border-4 border-ink shadow-press flex flex-col justify-between overflow-hidden">
+          <div className="relative w-full max-w-5xl h-[85vh] bg-sheet border border-line rounded-xl shadow-2xl flex flex-col justify-between overflow-hidden">
             {/* Top Bar */}
-            <div className="flex items-center justify-between p-4 bg-band border-b-2 border-ink">
+            <div className="flex items-center justify-between p-4 bg-band border-b border-line">
               <div>
                 <h3 className="text-sm sm:text-base font-poster uppercase text-ink">
                   {activeGallery.title}
@@ -125,7 +125,7 @@ export default function PhotoGallerySection({
               </div>
               <button
                 onClick={() => setActiveGallery(null)}
-                className="p-1.5 bg-ink hover:bg-press text-paper border-2 border-ink transition-colors"
+                className="p-1.5 bg-surface hover:bg-press text-ink hover:text-white border border-line rounded transition-colors"
                 aria-label="Close Gallery"
               >
                 <X className="w-5 h-5" />
@@ -133,7 +133,7 @@ export default function PhotoGallerySection({
             </div>
 
             {/* Photo View */}
-            <div className="relative flex-1 my-3 flex items-center justify-center bg-paper p-4">
+            <div className="relative flex-1 my-3 flex items-center justify-center bg-surface p-4">
               {activeGallery.photos[activePhotoIndex] && (
                 <div className="relative w-full h-full max-h-[60vh]">
                   <Image
@@ -149,14 +149,14 @@ export default function PhotoGallerySection({
               {/* Prev / Next controls */}
               <button
                 onClick={prevPhoto}
-                className="absolute left-4 p-3 bg-ink hover:bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+                className="absolute left-4 p-3 bg-surface/90 hover:bg-press text-ink hover:text-white border border-line rounded-full shadow-md transition-colors"
                 aria-label="Previous Photo"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextPhoto}
-                className="absolute right-4 p-3 bg-ink hover:bg-press text-paper border-2 border-ink shadow-sticker transition-colors"
+                className="absolute right-4 p-3 bg-surface/90 hover:bg-press text-ink hover:text-white border border-line rounded-full shadow-md transition-colors"
                 aria-label="Next Photo"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -164,8 +164,8 @@ export default function PhotoGallerySection({
             </div>
 
             {/* Caption */}
-            <div className="p-3.5 bg-band border-t-2 border-ink text-center">
-              <p className="text-xs sm:text-sm text-ink font-grotesk font-medium">
+            <div className="p-3.5 bg-band border-t border-line text-center">
+              <p className="text-xs sm:text-sm text-ink font-medium">
                 {activeGallery.photos[activePhotoIndex]?.caption}
               </p>
             </div>

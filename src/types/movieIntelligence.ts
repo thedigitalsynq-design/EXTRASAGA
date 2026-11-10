@@ -5,6 +5,7 @@ export type VerificationStatus =
   | "pending_verification" // Discrepancy between sources or single unconfirmed report
   | "date_changed"         // New date observed differing from earlier confirmed date
   | "postponed"            // Officially delayed / postponed to future or TBD
+  | "tba"                  // Officially announced, release date TBA
   | "in_theatres";         // Released and currently playing
 
 export type SourceType =

@@ -41,18 +41,18 @@ export default function TrendingSidebar({
   const displayTitle = title || "Trending Across Indian Cinema";
 
   return (
-    <aside className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-6">
+    <aside className="bg-sheet border border-line rounded-lg shadow-sm p-5 sm:p-6">
       <div>
-        <div className="flex items-center justify-between pb-3.5 mb-4 border-b-2 border-ink">
+        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-line">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-press text-paper border-2 border-ink shadow-sticker flex items-center justify-center">
+            <div className="w-8 h-8 bg-press text-paper border border-line rounded shadow-sm flex items-center justify-center">
               <Flame className="w-4 h-4 fill-paper text-paper" />
             </div>
             <h3 className="text-sm sm:text-base font-poster uppercase tracking-tight text-ink">
               {displayTitle}
             </h3>
           </div>
-          <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+          <span className="sticker bg-marquee text-ink border border-line px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase rounded">
             #TOP 5
           </span>
         </div>
@@ -61,9 +61,9 @@ export default function TrendingSidebar({
           {trendingList.map((item, index) => {
             const rank = index + 1;
             const rankStyles = [
-              "bg-press text-paper shadow-sticker",
-              "bg-violet text-paper shadow-sticker",
-              "bg-marquee text-ink shadow-sticker",
+              "bg-press text-paper shadow-sm",
+              "bg-violet text-paper shadow-sm",
+              "bg-marquee text-ink shadow-sm",
               "bg-band text-ink",
               "bg-band text-ink",
             ];
@@ -71,10 +71,10 @@ export default function TrendingSidebar({
             return (
               <div
                 key={item.id}
-                className="group flex gap-3 items-start pb-3.5 border-b border-line last:border-none last:pb-0 hover:bg-band/40 p-1.5 transition-colors"
+                className="group flex gap-3 items-start pb-3.5 border-b border-line last:border-none last:pb-0 hover:bg-band/40 p-1.5 rounded transition-colors"
               >
                 <span
-                  className={`w-7 h-7 shrink-0 border-2 border-ink flex items-center justify-center text-xs font-poster uppercase ${
+                  className={`w-7 h-7 shrink-0 border border-line rounded flex items-center justify-center text-xs font-poster uppercase ${
                     rankStyles[index] || rankStyles[3]
                   }`}
                 >
@@ -82,7 +82,7 @@ export default function TrendingSidebar({
                 </span>
                 <div className="flex-1 min-w-0">
                   <Link href={localizeUrl(`/news/${item.slug}`)}>
-                    <h4 className="text-xs sm:text-sm font-grotesk font-bold text-ink group-hover:text-press leading-snug line-clamp-2 transition-colors">
+                    <h4 className="text-xs sm:text-sm font-bold text-ink group-hover:text-press leading-snug line-clamp-2 transition-colors">
                       {item.title}
                     </h4>
                   </Link>

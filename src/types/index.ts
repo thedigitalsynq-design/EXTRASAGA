@@ -232,13 +232,17 @@ export interface OttRelease {
   movieTitleEn: string;
   platform: OttPlatform;
   platformBadgeColor: string;
-  releaseDate: string; // e.g. "21 November 2024"
+  releaseDate: string; // ISO date YYYY-MM-DD or formatted
+  releaseStatus?: "streaming_now" | "upcoming_ott" | "tba";
+  theatricalReleaseDate?: string;
   languages: string[];
   genre: string;
   posterImage: string;
   watchUrl?: string;
+  trailerUrl?: string;
   description: string;
   cast: string[];
+  director?: string;
   runtime?: string;
   productionHouse?: string;
   verificationScore?: number;
@@ -289,8 +293,8 @@ export interface Comment {
   isApproved: boolean;
 }
 
-export type MovieReleaseStatus = "in_theatres" | "upcoming" | "archived";
-export type ReleaseDateConfidence = "confirmed" | "tentative";
+export type MovieReleaseStatus = "in_theatres" | "upcoming" | "tba" | "postponed" | "archived";
+export type ReleaseDateConfidence = "confirmed" | "tentative" | "unconfirmed_tba";
 
 export interface MovieCastMember {
   name: string;

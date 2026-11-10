@@ -45,15 +45,15 @@ export default function OttSection({
   const displayedReleases = limit ? filteredReleases.slice(0, limit) : filteredReleases;
 
   return (
-    <section className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 relative">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b-2 border-ink gap-4">
+    <section className="bg-sheet border border-line rounded-lg shadow-md p-6 sm:p-8 relative">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b border-line gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-violet text-paper border-2 border-ink shadow-sticker flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 bg-violet text-paper border border-line rounded shadow-sm flex items-center justify-center shrink-0">
             <Tv className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="sticker bg-marquee text-ink border-2 border-ink px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+              <span className="sticker bg-band text-ink border border-line px-2 py-0.5 text-[9px] font-bold tracking-widest uppercase rounded">
                 DIGITAL STREAMING WIRE
               </span>
               <span className="text-[10px] font-mono uppercase text-ink-dim tracking-wider font-bold">
@@ -63,7 +63,7 @@ export default function OttSection({
             <h2 className="text-xl sm:text-2xl font-poster uppercase tracking-tight text-ink">
               NOW STREAM<span className="text-violet">ING</span>
             </h2>
-            <p className="text-xs text-ink-dim font-grotesk font-medium">
+            <p className="text-xs text-ink-dim font-medium">
               Curated digital premieres across Netflix, Prime Video, Hotstar, and ZEE5 — straight to your living room screen.
             </p>
           </div>
@@ -72,17 +72,17 @@ export default function OttSection({
         {!isDedicatedPage && (
           <Link
             href={localizeUrl("/ott")}
-            className="self-start sm:self-auto px-4 py-2 bg-ink text-paper hover:bg-violet border-2 border-ink shadow-sticker text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all"
+            className="self-start sm:self-auto px-4 py-2 bg-surface text-ink hover:bg-violet hover:text-white border border-line rounded shadow-sm text-xs font-poster uppercase tracking-wider flex items-center gap-2 transition-all"
           >
             <span>{t("btn_all_ott")}</span>
-            <ChevronRight className="w-3.5 h-3.5 text-paper" />
+            <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         )}
       </div>
 
-      {/* Platform Filter Buttons (visible on dedicated page or if multiple platforms exist) */}
+      {/* Platform Filter Buttons */}
       {isDedicatedPage && (
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6 border-b border-ink/15">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-6 border-b border-line">
           <span className="text-xs font-mono font-bold text-ink-dim uppercase flex items-center gap-1.5 shrink-0 mr-2">
             <Filter className="w-3.5 h-3.5 text-press" />
             <span>Platform:</span>
@@ -92,10 +92,10 @@ export default function OttSection({
               key={p.id}
               type="button"
               onClick={() => setPlatformFilter(p.id)}
-              className={`px-3 py-1.5 rounded-full text-xs font-poster uppercase tracking-wider font-bold border-2 transition-all shrink-0 ${
+              className={`px-3 py-1.5 rounded-full text-xs font-poster uppercase tracking-wider font-bold border transition-all shrink-0 ${
                 platformFilter === p.id
-                  ? "bg-ink text-paper border-ink shadow-press"
-                  : "bg-paper text-ink border-ink/30 hover:border-ink hover:bg-sheet"
+                  ? "bg-violet text-paper border-violet shadow-sm"
+                  : "bg-surface text-ink border-line hover:border-line-2 hover:bg-band"
               }`}
             >
               {p.label}
@@ -105,7 +105,7 @@ export default function OttSection({
       )}
 
       {displayedReleases.length === 0 ? (
-        <div className="p-8 text-center bg-paper border-2 border-dashed border-ink/30 my-4">
+        <div className="p-8 text-center bg-surface border border-dashed border-line rounded my-4">
           <p className="text-xs font-poster uppercase tracking-wider text-ink-dim">
             No active digital releases found for this platform.
           </p>
@@ -115,10 +115,10 @@ export default function OttSection({
           {displayedReleases.map((item) => (
             <div
               key={item.id}
-              className="group bg-paper border-2 border-ink shadow-press hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform flex flex-col justify-between"
+              className="group bg-surface border border-line rounded-lg shadow-sm hover:border-line-2 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden"
             >
               <div>
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b-2 border-ink bg-band">
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-band">
                   <Image
                     src={item.posterImage}
                     alt={item.movieTitle}
@@ -129,7 +129,7 @@ export default function OttSection({
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent"></div>
 
                   {/* Platform sticker */}
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 text-[10px] font-bold font-grotesk uppercase tracking-wider bg-violet text-paper border-2 border-ink shadow-sticker">
+                  <span className="absolute top-3 left-3 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-violet text-paper border border-line rounded shadow-sm">
                     {item.platform}
                   </span>
 

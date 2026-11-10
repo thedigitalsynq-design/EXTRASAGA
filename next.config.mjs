@@ -49,13 +49,13 @@ const isExport = process.env.NEXT_EXPORT === "true" || process.env.GITHUB_ACTION
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS === "true" ? "/EXTRASAGA" : "");
 
 const nextConfig = {
-  ...(isExport ? { output: "export" } : {}),
-  ...(basePath ? { basePath } : {}),
+  output: isExport ? "export" : undefined,
+  basePath: basePath || undefined,
   trailingSlash: isExport,
   compress: true,
   poweredByHeader: false,
   images: {
-    ...(isExport ? { unoptimized: true } : {}),
+    unoptimized: isExport,
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2592000,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

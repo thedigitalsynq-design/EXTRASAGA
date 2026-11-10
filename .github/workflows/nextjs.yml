@@ -55,12 +55,7 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
+
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -73,11 +68,17 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Prepare API routes for static export
+      - name: Prepare static export environment
         run: |
+          mkdir -p .static-backup
           if [ -d "src/app/api" ]; then
-            mkdir -p .api-backup
-            mv src/app/api .api-backup/
+            mv src/app/api .static-backup/
+          fi
+          if [ -f "src/proxy.ts" ]; then
+            mv src/proxy.ts .static-backup/
+          fi
+          if [ -f "src/middleware.ts" ]; then
+            mv src/middleware.ts .static-backup/
           fi
       - name: Build with Next.js
         env:
@@ -85,11 +86,17 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: "/EXTRASAGA"
           NEXT_PUBLIC_SITE_URL: "https://thedigitalsynq-design.github.io/EXTRASAGA"
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      - name: Restore API routes
+      - name: Restore dynamic files
         if: always()
         run: |
-          if [ -d ".api-backup/api" ]; then
-            mv .api-backup/api src/app/
+          if [ -d ".static-backup/api" ]; then
+            mv .static-backup/api src/app/
+          fi
+          if [ -f ".static-backup/proxy.ts" ]; then
+            mv .static-backup/proxy.ts src/
+          fi
+          if [ -f ".static-backup/middleware.ts" ]; then
+            mv .static-backup/middleware.ts src/
           fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

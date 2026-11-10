@@ -55,7 +55,7 @@ function DailyChangeCell({ value, pct }: { value: number; pct: number }) {
     <div className={`flex items-center gap-1 font-mono font-bold text-xs ${isPos ? "change-positive" : "change-negative"}`}>
       {isPos ? <ArrowUpRight className="w-3.5 h-3.5" /> : <ArrowDownRight className="w-3.5 h-3.5" />}
       <span>{isPos ? "+" : ""}{value.toFixed(1)} Cr</span>
-      <span className={`text-[10px] px-1.5 py-0.5 border border-ink font-bold ${isPos ? "bg-paper change-positive" : "bg-paper change-negative"}`}>
+      <span className={`text-[10px] px-1.5 py-0.5 border border-line rounded font-bold ${isPos ? "bg-surface change-positive" : "bg-surface change-negative"}`}>
         {isPos ? "+" : ""}{pct.toFixed(2)}%
       </span>
     </div>
@@ -66,14 +66,14 @@ function PodiumCard({ entry, podiumPos }: { entry: CineStarEntry; podiumPos: 1 |
   const heights = { 1: "h-76 sm:h-84", 2: "h-64 sm:h-72", 3: "h-60 sm:h-68" };
   const crowns = { 1: "🥇", 2: "🥈", 3: "🥉" };
   const badgeBg = {
-    1: "bg-marquee text-ink border-2 border-ink shadow-sticker",
-    2: "bg-paper text-ink border-2 border-ink shadow-sticker",
-    3: "bg-violet text-paper border-2 border-ink shadow-sticker",
+    1: "bg-marquee text-ink border border-line rounded shadow-sm",
+    2: "bg-surface text-ink border border-line rounded shadow-sm",
+    3: "bg-violet text-paper border border-line rounded shadow-sm",
   };
   const isGain = entry.dailyChangeCr >= 0;
 
   return (
-    <div className={`relative ${podiumPos === 1 ? "bg-marquee/15" : "bg-sheet"} card-press-interactive border-2 border-ink shadow-press overflow-hidden ${heights[podiumPos]} flex flex-col group`}>
+    <div className={`relative ${podiumPos === 1 ? "bg-marquee/15" : "bg-sheet"} border border-line rounded-lg shadow-sm overflow-hidden ${heights[podiumPos]} flex flex-col group`}>
       {/* Rank badge */}
       <div className={`absolute top-4 left-4 w-9 h-9 ${badgeBg[podiumPos]} flex items-center justify-center font-poster text-sm z-10`}>
         {podiumPos === 1 ? <Crown className="w-4 h-4" /> : entry.rank}
@@ -81,7 +81,7 @@ function PodiumCard({ entry, podiumPos }: { entry: CineStarEntry; podiumPos: 1 |
 
       {/* Live indicator */}
       {entry.isLive && (
-        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 sticker bg-press text-paper border-2 border-ink z-10">
+        <div className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 sticker bg-press text-paper border border-line rounded z-10 shadow-sm">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-paper opacity-70" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-paper" />
@@ -134,8 +134,8 @@ function PodiumCard({ entry, podiumPos }: { entry: CineStarEntry; podiumPos: 1 |
       </div>
 
       {/* Industry tag */}
-      <div className="px-4 py-2.5 border-t-2 border-ink flex items-center justify-between bg-band">
-        <span className="text-[10px] font-poster uppercase px-2.5 py-0.5 border border-ink bg-paper text-ink shadow-sticker">
+      <div className="px-4 py-2.5 border-t border-line flex items-center justify-between bg-band">
+        <span className="text-[10px] font-poster uppercase px-2.5 py-0.5 border border-line rounded bg-surface text-ink shadow-sm">
           {entry.industryLabel}
         </span>
         <span className="text-[10px] text-ink-dim font-mono font-bold">{entry.nationality}</span>
@@ -156,14 +156,14 @@ function SummaryStatCard({
   icon: React.ComponentType<{ className?: string }>;
 }) {
   return (
-    <div className="card-press-interactive bg-sheet border-2 border-ink shadow-sticker p-5 flex flex-col gap-3">
-      <div className="w-10 h-10 bg-band border-2 border-ink flex items-center justify-center">
+    <div className="bg-sheet border border-line rounded-lg shadow-sm p-5 flex flex-col gap-3">
+      <div className="w-10 h-10 bg-band border border-line rounded flex items-center justify-center">
         <Icon className="w-5 h-5 text-ink" />
       </div>
       <div>
         <div className="text-xs font-bold text-ink-dim uppercase tracking-wider font-mono mb-1">{label}</div>
         <div className="text-2xl font-poster uppercase text-ink leading-none">{value}</div>
-        <div className="text-xs font-grotesk font-bold mt-1 text-ink-dim">{sub}</div>
+        <div className="text-xs font-bold mt-1 text-ink-dim">{sub}</div>
       </div>
     </div>
   );

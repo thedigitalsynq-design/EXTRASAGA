@@ -38,14 +38,14 @@ export default function ReviewsSection({
   const displayedReviews = limit ? filteredReviews.slice(0, limit) : filteredReviews;
 
   return (
-    <section className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-8 relative overflow-hidden">
+    <section className="bg-sheet border border-line rounded-lg shadow-md p-5 sm:p-8 relative overflow-hidden">
       {/* Halftone plate */}
       <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-20 pointer-events-none" />
 
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b-2 border-ink gap-4 relative z-10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-6 border-b border-line gap-4 relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-violet border-2 border-ink shadow-sticker flex items-center justify-center -rotate-2 text-paper shrink-0">
+          <div className="w-10 h-10 bg-violet border border-line rounded shadow-sm flex items-center justify-center text-paper shrink-0">
             <Award className="w-5 h-5" />
           </div>
           <div>
@@ -60,7 +60,7 @@ export default function ReviewsSection({
 
         <Link
           href={localizeUrl("/category/reviews")}
-          className="px-4 py-2 bg-paper text-ink hover:bg-press hover:text-paper border-2 border-ink shadow-sticker text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors self-start sm:self-auto shrink-0"
+          className="px-4 py-2 bg-surface text-ink hover:bg-press hover:text-paper border border-line rounded shadow-sm text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors self-start sm:self-auto shrink-0"
         >
           <span>BROWSE ALL REVIEWS</span>
           <ChevronRight className="w-3.5 h-3.5" />
@@ -74,9 +74,9 @@ export default function ReviewsSection({
 
       {/* Other Industry Reviews */}
       <div className="mt-8 relative z-10">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-5 border-b-2 border-dashed border-ink/30">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-5 border-b border-line">
           <div className="text-xs font-poster font-bold uppercase tracking-wider text-ink flex items-center gap-2">
-            <span className="w-2.5 h-2.5 bg-press border border-ink rotate-45" />
+            <span className="w-2.5 h-2.5 bg-press rounded-full" />
             <span>CRITICAL REVIEWS ACROSS ALL INDUSTRIES:</span>
           </div>
 
@@ -98,10 +98,10 @@ export default function ReviewsSection({
                 key={ind.id}
                 type="button"
                 onClick={() => setIndustryFilter(ind.id)}
-                className={`px-3 py-0.5 text-[11px] font-poster font-bold uppercase tracking-wider shrink-0 transition-all border-2 border-ink ${
+                className={`px-3 py-1 text-[11px] font-poster font-bold uppercase tracking-wider shrink-0 transition-all border border-line rounded ${
                   industryFilter === ind.id
-                    ? "bg-violet text-paper shadow-sticker -rotate-1"
-                    : "bg-paper text-ink hover:bg-marquee shadow-2xs"
+                    ? "bg-violet text-paper shadow-sm"
+                    : "bg-surface text-ink hover:bg-band shadow-sm"
                 }`}
               >
                 {ind.label}
@@ -114,10 +114,10 @@ export default function ReviewsSection({
           {filteredReviews.slice(0, 6).map((review) => (
             <article
               key={review.id}
-              className="group flex flex-col bg-paper border-2 border-ink shadow-press hover:shadow-press-lg transition-all duration-200 overflow-hidden justify-between"
+              className="group flex flex-col bg-surface border border-line rounded-lg shadow-sm hover:border-line-2 hover:shadow-md transition-all duration-200 overflow-hidden justify-between"
             >
               <div>
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-band border-b-2 border-ink">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-band border-b border-line">
                   <Image
                     src={review.posterImage}
                     alt={review.movieTitle}
@@ -128,7 +128,7 @@ export default function ReviewsSection({
                   <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-25 pointer-events-none" />
 
                   {/* Rating Stamp */}
-                  <div className="absolute top-3 right-3 bg-marquee text-ink border-2 border-ink px-2.5 py-0.5 shadow-sticker flex items-center gap-1">
+                  <div className="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm text-ink border border-line rounded px-2.5 py-0.5 shadow-sm flex items-center gap-1">
                     <Star className="w-3.5 h-3.5 fill-ink text-ink" />
                     <span className="text-xs font-poster font-bold font-mono-tabular">
                       {review.rating.toFixed(1)}
@@ -138,7 +138,7 @@ export default function ReviewsSection({
 
                   {/* Verdict Sticker */}
                   <div className="absolute bottom-3 left-3 right-3">
-                    <span className="inline-block px-2.5 py-0.5 bg-press text-paper border-2 border-ink text-[10px] font-poster font-bold uppercase shadow-sticker truncate max-w-full">
+                    <span className="inline-block px-2.5 py-0.5 bg-press text-paper border border-line rounded text-[10px] font-poster font-bold uppercase shadow-sm truncate max-w-full">
                       {review.verdict}
                     </span>
                   </div>

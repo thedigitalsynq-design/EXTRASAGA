@@ -63,10 +63,10 @@ export default function BoxOfficeInteractiveTable({
             key={ind.id}
             type="button"
             onClick={() => setSelectedIndustry(ind.id)}
-            className={`px-3.5 py-1.5 font-grotesk font-bold uppercase transition-all whitespace-nowrap border-2 border-ink ${
+            className={`px-3.5 py-1.5 font-bold uppercase transition-all whitespace-nowrap rounded-lg border text-xs ${
               selectedIndustry === ind.id
-                ? "bg-ink text-paper shadow-press -translate-y-0.5"
-                : "bg-sheet text-ink hover:bg-band shadow-sticker"
+                ? "bg-press text-paper border-press shadow-sm -translate-y-0.5"
+                : "bg-surface text-ink border-line hover:border-line-2 hover:bg-band shadow-sm"
             }`}
           >
             {ind.label}
@@ -75,11 +75,11 @@ export default function BoxOfficeInteractiveTable({
       </div>
 
       {/* Main Table Card */}
-      <div className="bg-sheet border-2 border-ink shadow-press overflow-hidden">
+      <div className="bg-sheet border border-line rounded-lg shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b-2 border-ink text-ink uppercase font-poster tracking-wider bg-band">
+              <tr className="border-b border-line text-ink uppercase font-poster tracking-wider bg-band">
                 <th className="py-3 px-4 font-bold w-12 text-center">Rank</th>
                 <th className="py-3 px-4 font-bold">Movie &amp; Status</th>
                 <th className="py-3 px-4 font-bold">Day 1</th>
@@ -96,7 +96,7 @@ export default function BoxOfficeInteractiveTable({
                 <th className="py-3 px-4 text-right font-bold">Analysis</th>
               </tr>
             </thead>
-            <tbody className="divide-y border-t border-line font-grotesk">
+            <tbody className="divide-y border-t border-line">
               {filteredRecords.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="text-center py-12 text-ink-dim font-poster uppercase">
@@ -110,17 +110,17 @@ export default function BoxOfficeInteractiveTable({
 
                   const statusBadge =
                     item.figureStatus === "verified" ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-paper text-ink text-[10px] font-bold border border-ink uppercase">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-surface text-ink text-[10px] font-bold border border-line rounded uppercase shadow-sm">
                         <ShieldCheck className="w-3 h-3 text-press-deep" />
                         <span>Verified Audit</span>
                       </span>
                     ) : item.figureStatus === "live_estimate" ? (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-marquee text-ink text-[10px] font-bold border border-ink uppercase">
-                        <span className="w-1.5 h-1.5 bg-ink animate-ping" />
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-marquee text-ink text-[10px] font-bold border border-line rounded uppercase shadow-sm">
+                        <span className="w-1.5 h-1.5 bg-press animate-ping" />
                         <span>Live Estimate</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-band text-ink text-[10px] font-bold border border-ink uppercase">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-band text-ink text-[10px] font-bold border border-line rounded uppercase shadow-sm">
                         <span>Consolidated</span>
                       </span>
                     );
@@ -137,13 +137,13 @@ export default function BoxOfficeInteractiveTable({
                         {/* Rank */}
                         <td className="py-3.5 px-4 text-center">
                           <span
-                            className={`w-7 h-7 border-2 border-ink inline-flex items-center justify-center font-poster text-xs ${
+                            className={`w-7 h-7 border border-line rounded inline-flex items-center justify-center font-poster text-xs ${
                               idx === 0
-                                ? "bg-marquee text-ink shadow-sticker"
+                                ? "bg-marquee text-ink shadow-sm"
                                 : idx === 1
-                                ? "bg-sheet text-ink shadow-sticker"
+                                ? "bg-sheet text-ink shadow-sm"
                                 : idx === 2
-                                ? "bg-violet text-paper shadow-sticker"
+                                ? "bg-violet text-paper shadow-sm"
                                 : "bg-band text-ink"
                             }`}
                           >
@@ -154,7 +154,7 @@ export default function BoxOfficeInteractiveTable({
                         {/* Title & Poster */}
                         <td className="py-3.5 px-4 font-bold text-ink">
                           <div className="flex items-center gap-3">
-                            <div className="relative w-11 h-14 border-2 border-ink overflow-hidden shrink-0 hidden sm:block bg-band shadow-sticker">
+                            <div className="relative w-11 h-14 border border-line rounded overflow-hidden shrink-0 hidden sm:block bg-band shadow-sm">
                               <Image
                                 src={item.posterImage}
                                 alt={item.movieTitle}
@@ -195,7 +195,7 @@ export default function BoxOfficeInteractiveTable({
 
                         {/* Verdict */}
                         <td className="py-3.5 px-4">
-                          <span className="inline-block px-2.5 py-0.5 text-[10px] font-poster uppercase bg-marquee text-ink border-2 border-ink shadow-sticker">
+                          <span className="inline-block px-2.5 py-0.5 text-[10px] font-poster uppercase bg-marquee text-ink border border-line rounded shadow-sm">
                             {item.verdict}
                           </span>
                         </td>
@@ -206,7 +206,7 @@ export default function BoxOfficeInteractiveTable({
                             <span className="font-mono font-bold text-xs text-ink block">
                               {item.confidenceScore}%
                             </span>
-                            <div className="w-16 h-2 border border-ink bg-paper overflow-hidden">
+                            <div className="w-16 h-2 border border-line rounded-full bg-surface overflow-hidden">
                               <div
                                 className="h-full bg-press"
                                 style={{ width: `${item.confidenceScore}%` }}
@@ -222,10 +222,10 @@ export default function BoxOfficeInteractiveTable({
                             onClick={() =>
                               setExpandedMovieSlug(isExpanded ? null : item.slug)
                             }
-                            className={`p-2 border-2 border-ink shadow-sticker transition-all ${
+                            className={`p-2 border border-line rounded-lg shadow-sm transition-all ${
                               isExpanded
-                                ? "bg-press text-paper"
-                                : "bg-ink hover:bg-press text-paper"
+                                ? "bg-press text-paper border-press"
+                                : "bg-surface hover:bg-press hover:text-paper text-ink"
                             }`}
                             title="View territory breakdown"
                           >
@@ -241,18 +241,18 @@ export default function BoxOfficeInteractiveTable({
                       {/* Expanded Drawer: Trajectory & Territory Radar */}
                       {isExpanded && (
                         <tr>
-                          <td colSpan={8} className="p-4 sm:p-6 bg-paper border-t-2 border-b-2 border-ink">
+                          <td colSpan={8} className="p-4 sm:p-6 bg-surface border-t border-b border-line">
                             <div className="space-y-6">
                               {/* Trajectory Tracker */}
-                              <div className="p-4 bg-sheet border-2 border-ink shadow-sticker space-y-3">
+                              <div className="p-4 bg-sheet border border-line rounded-lg shadow-sm space-y-3">
                                 <h4 className="text-xs font-poster uppercase tracking-wider text-ink flex items-center gap-1.5">
                                   <TrendingUp className="w-3.5 h-3.5 text-press" />
                                   <span>LIFECYCLE TRAJECTORY</span>
                                 </h4>
 
                                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center font-mono text-xs">
-                                  <div className="p-2.5 bg-paper border-2 border-ink">
-                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                  <div className="p-2.5 bg-surface border border-line rounded">
+                                    <span className="text-[10px] text-ink-dim block font-bold uppercase">
                                       Day 1
                                     </span>
                                     <span className="font-bold text-ink mt-0.5 block">
@@ -260,8 +260,8 @@ export default function BoxOfficeInteractiveTable({
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 bg-paper border-2 border-ink">
-                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                  <div className="p-2.5 bg-surface border border-line rounded">
+                                    <span className="text-[10px] text-ink-dim block font-bold uppercase">
                                       Day 2
                                     </span>
                                     <span className="font-bold text-ink mt-0.5 block">
@@ -269,8 +269,8 @@ export default function BoxOfficeInteractiveTable({
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 bg-paper border-2 border-ink">
-                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                  <div className="p-2.5 bg-surface border border-line rounded">
+                                    <span className="text-[10px] text-ink-dim block font-bold uppercase">
                                       Weekend
                                     </span>
                                     <span className="font-bold text-ink mt-0.5 block">
@@ -278,8 +278,8 @@ export default function BoxOfficeInteractiveTable({
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 bg-paper border-2 border-ink">
-                                    <span className="text-[10px] text-ink-dim block font-grotesk font-bold uppercase">
+                                  <div className="p-2.5 bg-surface border border-line rounded">
+                                    <span className="text-[10px] text-ink-dim block font-bold uppercase">
                                       Week 1
                                     </span>
                                     <span className="font-bold text-ink mt-0.5 block">
@@ -287,7 +287,7 @@ export default function BoxOfficeInteractiveTable({
                                     </span>
                                   </div>
 
-                                  <div className="p-2.5 bg-marquee text-ink border-2 border-ink">
+                                  <div className="p-2.5 bg-marquee text-ink border border-line rounded shadow-sm">
                                     <span className="text-[10px] text-ink block font-poster uppercase">
                                       Lifetime Est.
                                     </span>

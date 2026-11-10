@@ -41,11 +41,11 @@ export default function BoxOfficeTable({
 
   if (compact) {
     return (
-      <aside className="bg-sheet border-2 border-ink shadow-press p-5">
+      <aside className="bg-sheet border border-line rounded-lg shadow-sm p-5">
         <div>
-          <div className="flex items-center justify-between pb-3 mb-3.5 border-b-2 border-ink">
+          <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-line">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-marquee border border-ink rotate-45 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-marquee rounded-full shrink-0" />
               <h3 className="text-xs sm:text-sm font-poster font-bold text-ink uppercase tracking-wide">
                 THE RECEIPTS · TOP 5
               </h3>
@@ -63,17 +63,17 @@ export default function BoxOfficeTable({
             {displayEntries.slice(0, 5).map((entry, idx) => (
               <div
                 key={entry.id}
-                className={`flex items-center justify-between gap-2 p-2.5 border-2 border-ink transition-all ${
+                className={`flex items-center justify-between gap-2 p-2.5 border border-line rounded transition-all ${
                   idx === 0
-                    ? "bg-marquee/30 shadow-sticker font-bold"
-                    : "bg-paper hover:bg-band shadow-2xs"
+                    ? "bg-marquee/15 font-bold"
+                    : "bg-surface hover:bg-band"
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span
-                    className={`w-5 h-5 flex items-center justify-center font-poster font-bold text-[10px] shrink-0 border border-ink ${
+                    className={`w-5 h-5 flex items-center justify-center font-poster font-bold text-[10px] shrink-0 rounded ${
                       idx === 0
-                        ? "bg-marquee text-ink shadow-2xs"
+                        ? "bg-marquee text-ink"
                         : "bg-band text-ink font-mono-tabular"
                     }`}
                   >
@@ -104,13 +104,13 @@ export default function BoxOfficeTable({
   }
 
   return (
-    <section className="my-10 bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 relative overflow-hidden">
+    <section className="my-10 bg-sheet border border-line rounded-lg shadow-md p-6 sm:p-8 relative overflow-hidden">
       {/* Halftone watermark */}
       <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-15 pointer-events-none" />
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 border-b-2 border-ink relative z-10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 mb-6 border-b border-line relative z-10">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 bg-marquee border-2 border-ink shadow-sticker flex items-center justify-center shrink-0 -rotate-2">
+          <div className="w-10 h-10 bg-marquee border border-line rounded shadow-sm flex items-center justify-center shrink-0">
             <DollarSign className="w-5 h-5 text-ink" />
           </div>
           <div className="min-w-0">
@@ -118,7 +118,7 @@ export default function BoxOfficeTable({
               <h2 className="text-xl sm:text-2xl font-poster font-bold text-ink uppercase tracking-tight truncate">
                 THE RECEIPTS — CONSOLIDATED INDIAN BOX OFFICE
               </h2>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[9px] font-poster font-bold uppercase tracking-wider bg-press text-paper border-2 border-ink shadow-sticker">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[9px] font-poster font-bold uppercase tracking-wider bg-press text-paper border border-line rounded shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-paper animate-pulse"></span>
                 RECEIPTS ATTACHED
               </span>
@@ -132,7 +132,7 @@ export default function BoxOfficeTable({
         {showAllLink && (
           <Link
             href={localizeUrl("/box-office")}
-            className="px-4 py-2 bg-paper text-ink hover:bg-press hover:text-paper border-2 border-ink shadow-sticker text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
+            className="px-4 py-2 bg-surface text-ink hover:bg-press hover:text-paper border border-line rounded shadow-sm text-xs font-poster font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
           >
             <span>FULL AUDITED REPORT</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -141,39 +141,39 @@ export default function BoxOfficeTable({
       </div>
 
       <div className="overflow-x-auto relative z-10">
-        <table className="w-full text-left border-collapse border-2 border-ink bg-paper">
+        <table className="w-full text-left border-collapse border border-line bg-surface rounded">
           <thead>
-            <tr className="border-b-2 border-ink text-xs text-ink font-poster font-bold uppercase tracking-wider bg-band">
-              <th className="py-3 px-4 border-r-2 border-ink">RANK</th>
-              <th className="py-3 px-4 border-r-2 border-ink">MOVIE / TITLE</th>
-              <th className="py-3 px-4 border-r-2 border-ink">OPENING DAY</th>
-              <th className="py-3 px-4 border-r-2 border-ink">WEEKEND</th>
-              <th className="py-3 px-4 border-r-2 border-ink bg-marquee/20 text-ink">WORLDWIDE GROSS</th>
+            <tr className="border-b border-line text-xs text-ink font-poster font-bold uppercase tracking-wider bg-band">
+              <th className="py-3 px-4 border-r border-line">RANK</th>
+              <th className="py-3 px-4 border-r border-line">MOVIE / TITLE</th>
+              <th className="py-3 px-4 border-r border-line">OPENING DAY</th>
+              <th className="py-3 px-4 border-r border-line">WEEKEND</th>
+              <th className="py-3 px-4 border-r border-line bg-marquee/20 text-ink">WORLDWIDE GROSS</th>
               <th className="py-3 px-4">TRADE VERDICT</th>
             </tr>
           </thead>
-          <tbody className="divide-y-2 divide-ink text-sm font-mono-tabular">
+          <tbody className="divide-y divide-line text-sm font-mono-tabular">
             {displayEntries.map((item) => (
               <tr
                 key={item.id}
                 className={`transition-colors group hover:bg-band/50 ${
-                  item.rank === 1 ? "bg-marquee/15 font-bold" : "bg-paper"
+                  item.rank === 1 ? "bg-marquee/15 font-bold" : "bg-surface"
                 }`}
               >
-                <td className="py-3.5 px-4 border-r-2 border-ink text-center">
+                <td className="py-3.5 px-4 border-r border-line text-center">
                   <span
-                    className={`inline-flex w-7 h-7 border-2 border-ink font-poster font-bold text-xs items-center justify-center shadow-sticker ${
+                    className={`inline-flex w-7 h-7 border border-line rounded font-poster font-bold text-xs items-center justify-center shadow-sm ${
                       item.rank === 1
-                        ? "bg-marquee text-ink font-black -rotate-2"
+                        ? "bg-marquee text-ink font-black"
                         : "bg-band text-ink"
                     }`}
                   >
                     {item.rank}
                   </span>
                 </td>
-                <td className="py-3.5 px-4 border-r-2 border-ink font-bold text-ink">
+                <td className="py-3.5 px-4 border-r border-line font-bold text-ink">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-9 h-12 border-2 border-ink shrink-0 hidden sm:block bg-band overflow-hidden">
+                    <div className="relative w-9 h-12 border border-line rounded shrink-0 hidden sm:block bg-band overflow-hidden">
                       <Image
                         src={item.posterImage}
                         alt={item.movieTitle}
@@ -192,10 +192,10 @@ export default function BoxOfficeTable({
                     </div>
                   </div>
                 </td>
-                <td className="py-3.5 px-4 border-r-2 border-ink text-ink-dim font-bold">{item.day1Collection}</td>
-                <td className="py-3.5 px-4 border-r-2 border-ink text-ink-dim font-bold">{item.weekendCollection}</td>
+                <td className="py-3.5 px-4 border-r border-line text-ink-dim font-bold">{item.day1Collection}</td>
+                <td className="py-3.5 px-4 border-r border-line text-ink-dim font-bold">{item.weekendCollection}</td>
                 <td
-                  className={`py-3.5 px-4 border-r-2 border-ink font-black text-base ${
+                  className={`py-3.5 px-4 border-r border-line font-black text-base ${
                     item.rank === 1 ? "text-press font-poster" : "text-ink font-poster"
                   }`}
                 >
@@ -203,7 +203,7 @@ export default function BoxOfficeTable({
                 </td>
                 <td className="py-3.5 px-4">
                   <span
-                    className="inline-block px-2.5 py-0.5 text-xs font-poster font-bold uppercase bg-band text-ink border-2 border-ink shadow-2xs"
+                    className="inline-block px-2.5 py-0.5 text-xs font-poster font-bold uppercase bg-band text-ink border border-line rounded shadow-sm"
                   >
                     {item.verdict}
                   </span>

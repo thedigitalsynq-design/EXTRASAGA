@@ -37,15 +37,30 @@ export function getDaysDifference(targetDate: string, baseDate?: string): number
 
 /**
  * Dynamically classifies a movie release based on the strict 30-day window:
+ * - TBA: Officially announced but release date unconfirmed or TBA
+ * - Postponed: Officially postponed
  * - Upcoming: release date > today
  * - In Theatres (Latest Releases): release date between (today - 30 days) and today
  * - Archived: release date < (today - 30 days)
  */
 export function classifyMovieRelease(
   theatricalReleaseDate: string,
-  baseDate?: string
+  baseDate?: string,
+  isPostponed?: boolean
 ): MovieReleaseStatus {
+  if (isPostponed) return "postponed";
+  if (
+    !theatricalReleaseDate ||
+    theatricalReleaseDate.toUpperCase() === "TBA" ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(theatricalReleaseDate)
+  ) {
+    return "tba";
+  }
+
   const diffDays = getDaysDifference(theatricalReleaseDate, baseDate);
+  if (isNaN(diffDays)) {
+    return "tba";
+  }
 
   if (diffDays > 0) {
     return "upcoming";
@@ -108,10 +123,14 @@ export function partitionMoviesByReleaseStatus(
   inTheatres: Movie[];
   upcoming: Movie[];
   archived: Movie[];
+  tba: Movie[];
+  postponed: Movie[];
 } {
   const inTheatres: Movie[] = [];
   const upcoming: Movie[] = [];
   const archived: Movie[] = [];
+  const tba: Movie[] = [];
+  const postponed: Movie[] = [];
 
   for (const m of movies) {
     const status = classifyMovieRelease(m.theatricalReleaseDate, baseDate);
@@ -121,6 +140,10 @@ export function partitionMoviesByReleaseStatus(
       upcoming.push(enriched);
     } else if (status === "in_theatres") {
       inTheatres.push(enriched);
+    } else if (status === "tba") {
+      tba.push(enriched);
+    } else if (status === "postponed") {
+      postponed.push(enriched);
     } else {
       archived.push(enriched);
     }
@@ -147,7 +170,7 @@ export function partitionMoviesByReleaseStatus(
       new Date(a.theatricalReleaseDate).getTime()
   );
 
-  return { inTheatres, upcoming, archived };
+  return { inTheatres, upcoming, archived, tba, postponed };
 }
 
 /**
@@ -161,6 +184,18 @@ export function formatReleaseDateIST(
   relativeBadge: string;
   diffDays: number;
 } {
+  if (
+    !dateStr ||
+    dateStr.toUpperCase() === "TBA" ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)
+  ) {
+    return {
+      formatted: "To Be Announced (TBA)",
+      relativeBadge: "Official Date TBA",
+      diffDays: 9999,
+    };
+  }
+
   const diffDays = getDaysDifference(dateStr, baseDate);
 
   const [year, month, day] = dateStr.split("-").map(Number);
@@ -183,7 +218,7 @@ export function formatReleaseDateIST(
   } else if (diffDays > 7 && diffDays <= 30) {
     relativeBadge = `Next ${diffDays} Days`;
   } else if (diffDays > 30) {
-    relativeBadge = `Upcoming Release (${Math.round(diffDays / 30)} Months)`;
+    relativeBadge = `Upcoming (${Math.round(diffDays / 30)} Months)`;
   } else if (diffDays >= -7) {
     relativeBadge = `Released This Week (${Math.abs(diffDays)} Days Ago)`;
   } else if (diffDays >= -30) {

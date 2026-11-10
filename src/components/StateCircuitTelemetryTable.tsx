@@ -15,10 +15,10 @@ export default function StateCircuitTelemetryTable({
   return (
     <section
       aria-label="State and Circuit Theatrical Telemetry"
-      className="bg-sheet border-2 border-ink shadow-press overflow-hidden"
+      className="bg-sheet border border-line rounded-lg shadow-sm overflow-hidden"
     >
       {/* Header */}
-      <div className="bg-band border-b-2 border-ink px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div className="bg-band border-b border-line px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <MapPin className="w-4 h-4 text-press" />
           <h2 className="text-sm font-poster uppercase tracking-wide text-ink">
@@ -26,7 +26,7 @@ export default function StateCircuitTelemetryTable({
           </h2>
         </div>
         <div className="flex items-center gap-2 text-[10px] font-mono text-ink-dim">
-          <span className="px-2 py-0.5 bg-paper border border-ink/30 uppercase font-bold text-ink">
+          <span className="px-2 py-0.5 bg-surface border border-line rounded uppercase font-bold text-ink">
             7 MAJOR INDIAN DISTRIBUTION CIRCUITS
           </span>
         </div>
@@ -36,7 +36,7 @@ export default function StateCircuitTelemetryTable({
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs font-mono border-collapse">
           <thead>
-            <tr className="bg-paper border-b-2 border-ink text-ink-dim uppercase text-[10px] tracking-wider">
+            <tr className="bg-surface border-b border-line text-ink-dim uppercase text-[10px] tracking-wider">
               <th className="py-3 px-4 font-bold">Circuit &amp; Territory</th>
               <th className="py-3 px-3 font-bold text-right">Theatres</th>
               <th className="py-3 px-3 font-bold text-right">Shows Tracked</th>
@@ -45,7 +45,7 @@ export default function StateCircuitTelemetryTable({
               <th className="py-3 px-4 font-bold">Top Performing Film</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-ink/10">
+          <tbody className="divide-y divide-line/40">
             {circuits.map((item) => (
               <tr
                 key={item.regionCode}
@@ -99,7 +99,7 @@ export default function StateCircuitTelemetryTable({
       </div>
 
       {/* Footer */}
-      <div className="bg-paper border-t-2 border-ink px-5 py-3 flex items-center justify-between text-[11px] font-mono text-ink-dim">
+      <div className="bg-surface border-t border-line px-5 py-3 flex items-center justify-between text-[11px] font-mono text-ink-dim">
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-press" />
           <span>Regional distributor returns compiled from verified circuit logs.</span>

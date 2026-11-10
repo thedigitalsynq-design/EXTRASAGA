@@ -27,6 +27,7 @@ import {
 } from "@/data/mockData";
 import AUTOMATED_ARTICLES_SEED from "@/data/automated_news.json";
 import { INITIAL_MOVIES_SEED } from "@/data/cinemaReleasesData";
+import { DYNAMIC_OTT_RELEASES } from "@/data/ottReleasesData";
 import {
   classifyMovieRelease,
   matchesUpcomingBucket,
@@ -551,12 +552,44 @@ export const DataService = {
   },
 
   // --- OTT ---
-  async getOttReleases(language?: LanguageCode): Promise<OttRelease[]> {
-    if (language) {
-      const filtered = OTT_RELEASES_SEED.filter((o) => o.language === language);
-      if (filtered.length > 0) return filtered;
+  async getOttReleases(
+    optionsOrLanguage?:
+      | LanguageCode
+      | {
+          language?: LanguageCode;
+          industry?: FilmIndustry;
+          platform?: string;
+          status?: "streaming_now" | "upcoming_ott" | "tba";
+        }
+  ): Promise<OttRelease[]> {
+    const all = DYNAMIC_OTT_RELEASES && DYNAMIC_OTT_RELEASES.length > 0
+      ? DYNAMIC_OTT_RELEASES
+      : OTT_RELEASES_SEED;
+
+    if (!optionsOrLanguage) {
+      return all;
     }
-    return OTT_RELEASES_SEED;
+
+    if (typeof optionsOrLanguage === "string") {
+      const filtered = all.filter((o) => o.language === optionsOrLanguage);
+      return filtered.length > 0 ? filtered : all;
+    }
+
+    let list = [...all];
+    if (optionsOrLanguage.language) {
+      list = list.filter((o) => o.language === optionsOrLanguage.language);
+    }
+    if (optionsOrLanguage.industry) {
+      list = list.filter((o) => o.industry === optionsOrLanguage.industry);
+    }
+    if (optionsOrLanguage.status) {
+      list = list.filter((o) => o.releaseStatus === optionsOrLanguage.status);
+    }
+    if (optionsOrLanguage.platform && optionsOrLanguage.platform !== "all") {
+      const plat = optionsOrLanguage.platform.toLowerCase();
+      list = list.filter((o) => o.platform.toLowerCase().includes(plat));
+    }
+    return list;
   },
 
   // --- VIDEOS ---
@@ -671,10 +704,12 @@ export const DataService = {
   // --- CINEMA RELEASES & DYNAMIC DATE SYSTEM ---
   async getMovies(options?: {
     language?: LanguageCode;
+    industry?: FilmIndustry;
     status?: MovieReleaseStatus;
     timeFilter?: UpcomingTimeFilter;
     search?: string;
     limit?: number;
+    excludeArchived?: boolean;
   }): Promise<Movie[]> {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(STORAGE_KEYS.movies);
@@ -711,8 +746,16 @@ export const DataService = {
       releaseStatus: classifyMovieRelease(m.theatricalReleaseDate),
     }));
 
+    if (options?.excludeArchived) {
+      list = list.filter((m) => m.releaseStatus !== "archived");
+    }
+
     if (options?.language) {
       list = list.filter((m) => m.language === options.language);
+    }
+
+    if (options?.industry) {
+      list = list.filter((m) => m.industry === options.industry);
     }
 
     if (options?.status) {
@@ -764,6 +807,16 @@ export const DataService = {
   ): Promise<Movie[]> {
     const movies = await this.getMovies({ language, status: "upcoming", timeFilter });
     movies.sort((a, b) => new Date(a.theatricalReleaseDate).getTime() - new Date(b.theatricalReleaseDate).getTime());
+    return limit ? movies.slice(0, limit) : movies;
+  },
+
+  async getTbaReleases(language?: LanguageCode, limit?: number): Promise<Movie[]> {
+    const movies = await this.getMovies({ language, status: "tba" });
+    return limit ? movies.slice(0, limit) : movies;
+  },
+
+  async getPostponedReleases(language?: LanguageCode, limit?: number): Promise<Movie[]> {
+    const movies = await this.getMovies({ language, status: "postponed" });
     return limit ? movies.slice(0, limit) : movies;
   },
 

@@ -22,12 +22,12 @@ export default function CityCinemaTelemetrySection({
   };
 
   return (
-    <section className="w-full bg-sheet border-2 border-ink shadow-press p-6 sm:p-8">
+    <section className="w-full bg-sheet border border-line rounded-lg shadow-md p-6 sm:p-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b-2 border-ink">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-line">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 text-xs font-poster uppercase tracking-wider bg-marquee text-ink border-2 border-ink shadow-sticker">
-            <Activity className="w-3.5 h-3.5 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 text-xs font-poster uppercase tracking-wider bg-band text-ink border border-line rounded shadow-sm">
+            <Activity className="w-3.5 h-3.5 animate-pulse text-press" />
             <span>CITY-WISE CINEMA OPERATIONS</span>
           </div>
 
@@ -35,13 +35,13 @@ export default function CityCinemaTelemetrySection({
             METROPOLITAN OCCUPANCY &amp; THEATRICAL RADAR
           </h2>
 
-          <p className="text-xs text-ink-dim max-w-2xl font-grotesk font-medium">
+          <p className="text-xs text-ink-dim max-w-2xl font-medium">
             Real-time theatre telemetry monitoring seat occupancy, fast-filling show counts, and average ticket price (ATP) across primary circuits.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-ink self-start sm:self-auto bg-band px-2.5 py-1 border border-ink">
-          <Clock className="w-3.5 h-3.5 text-press-deep" />
+        <div className="flex items-center gap-2 text-xs font-mono font-bold text-ink self-start sm:self-auto bg-surface px-2.5 py-1 border border-line rounded shadow-sm">
+          <Clock className="w-3.5 h-3.5 text-press-soft" />
           <span>Real-time polling active</span>
         </div>
       </div>
@@ -54,13 +54,13 @@ export default function CityCinemaTelemetrySection({
           return (
             <div
               key={item.city}
-              className="p-5 bg-paper border-2 border-ink shadow-sticker hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex flex-col justify-between space-y-4 group"
+              className="p-5 bg-surface border border-line rounded-lg shadow-sm hover:border-line-2 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group"
             >
               {/* City Name & Status Pill */}
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-ink text-paper border border-ink flex items-center justify-center">
-                    <MapPin className="w-4 h-4 text-paper" />
+                  <div className="w-8 h-8 bg-band text-ink border border-line rounded flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-press" />
                   </div>
                   <div>
                     <h3 className="font-poster uppercase text-ink text-sm">

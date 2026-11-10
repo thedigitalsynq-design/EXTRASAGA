@@ -3,6 +3,8 @@ import { ARTICLES_SEED, REVIEWS_SEED, CATEGORIES } from "@/data/mockData";
 import { INITIAL_MOVIES_SEED } from "@/data/cinemaReleasesData";
 import { getSiteUrl } from "@/lib/siteUrl";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteUrl();
 
