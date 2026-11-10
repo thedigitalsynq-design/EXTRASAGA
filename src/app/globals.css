@@ -35,18 +35,19 @@
   --press-violet: #8F72FF;
   --press-gold: #F0B429;
 
-  /* ═════ MOMO TRUST DISPLAY (Exclusively Across Whole Website) ═════ */
-  --font-momo-trust: 'Momo Trust Display', sans-serif;
-  --font-dm-serif: var(--font-momo-trust);
-  --font-google-sans-flex: var(--font-momo-trust);
-  --font-serif-accent: var(--font-momo-trust);
-  --font-handwriting: var(--font-momo-trust);
-  --font-english: var(--font-momo-trust);
-  --font-display-latin: var(--font-momo-trust);
-  --font-poster: var(--font-momo-trust);
-  --font-sans: var(--font-momo-trust);
-  --font-display: var(--font-momo-trust);
-  --font-body: var(--font-momo-trust);
+  /* ═════ GOOGLE SANS FLEX (Exclusively Across Whole Website) ═════ */
+  --font-google-sans-flex: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--font-google-sans-flex);
+  --font-serif: var(--font-google-sans-flex);
+  --font-display: var(--font-google-sans-flex);
+  --font-body: var(--font-google-sans-flex);
+  --font-poster: var(--font-google-sans-flex);
+  --font-english: var(--font-google-sans-flex);
+  --font-momo-trust: var(--font-google-sans-flex);
+  --font-dm-serif: var(--font-google-sans-flex);
+  --font-serif-accent: var(--font-google-sans-flex);
+  --font-handwriting: var(--font-google-sans-flex);
+  --font-display-latin: var(--font-google-sans-flex);
 }
 
 html[data-theme="light"] {
@@ -72,7 +73,7 @@ html[data-theme="light"] {
 }
 
 *, *::before, *::after {
-  font-family: 'Momo Trust Display', sans-serif !important;
+  font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .font-serif-accent,
@@ -86,7 +87,7 @@ html[data-theme="light"] {
 .font-sans,
 .font-serif,
 .font-display {
-  font-family: 'Momo Trust Display', sans-serif !important;
+  font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 html {
@@ -95,14 +96,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color-scheme: dark;
-  font-family: 'Momo Trust Display', sans-serif !important;
+  font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 body {
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  font-family: 'Momo Trust Display', sans-serif !important;
+  font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   line-height: 1.62;
   letter-spacing: -0.005em;
   -webkit-font-smoothing: antialiased;

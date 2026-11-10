@@ -85,7 +85,9 @@ jobs:
           NEXT_EXPORT: "true"
           NEXT_PUBLIC_BASE_PATH: "/EXTRASAGA"
           NEXT_PUBLIC_SITE_URL: "https://thedigitalsynq-design.github.io/EXTRASAGA"
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: |
+          ${{ steps.detect-package-manager.outputs.runner }} next build
+          touch ./out/.nojekyll
       - name: Restore dynamic files
         if: always()
         run: |

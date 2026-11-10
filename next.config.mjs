@@ -70,18 +70,15 @@ const nextConfig = {
       { protocol: "https", hostname: "placehold.co" },
     ],
   },
-  ...(isExport
-    ? {}
-    : {
-        async headers() {
-          return [
-            {
-              source: "/(.*)",
-              headers: securityHeaders,
-            },
-          ];
-        },
-      }),
 };
+
+if (!isExport) {
+  nextConfig.headers = async () => [
+    {
+      source: "/(.*)",
+      headers: securityHeaders,
+    },
+  ];
+}
 
 export default nextConfig;
