@@ -31,8 +31,8 @@ export default async function BoxOfficePage() {
 
   return (
     <div className="w-full bg-paper min-h-screen text-ink">
-      {/* The Receipts — Broadsheet Hero Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
+      {/* The Receipts — Cinema Hero Band */}
+      <div className="bg-sheet border-b border-line py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
@@ -41,16 +41,16 @@ export default async function BoxOfficePage() {
                   {getTranslation(activeLang, "nav_home")}
                 </Link>
                 <span>/</span>
-                <span className="text-press-deep font-bold">
+                <span className="text-press-soft font-bold">
                   {getTranslation(activeLang, "nav_boxoffice")}
                 </span>
               </div>
 
               <div className="flex items-center gap-2 mb-2">
-                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+                <span className="sticker bg-press text-paper border border-line px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase rounded">
                   THE RECEIPTS
                 </span>
-                <span className="px-3 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+                <span className="px-3 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border border-line rounded shadow-sm">
                   MULTI-SOURCE CONSOLIDATED
                 </span>
               </div>
@@ -58,13 +58,13 @@ export default async function BoxOfficePage() {
               <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
                 CONSOLIDATED <span className="text-press">BOX OFFICE</span> LEDGER
               </h1>
-              <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
+              <p className="text-xs sm:text-sm text-ink-dim mt-2 font-medium max-w-2xl">
                 Where trade hearsay gives way to audited truth. Rigorously cross-verified theatrical grosses, distributor shares, and real-time screen occupancy reconciled across every territory in Indian cinema.
               </p>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-ink bg-marquee border-2 border-ink shadow-sticker px-3 py-1.5 font-poster uppercase self-start sm:self-center">
-              <span className="w-2 h-2 bg-ink animate-ping" />
+            <div className="flex items-center gap-2 text-xs text-ink bg-band border border-line rounded shadow-sm px-3 py-1.5 font-poster uppercase self-start sm:self-center">
+              <span className="w-2 h-2 rounded-full bg-press animate-ping" />
               <span>UNBIASED CONSENSUS ACTIVE</span>
             </div>
           </div>

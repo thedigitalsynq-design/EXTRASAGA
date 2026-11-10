@@ -27,14 +27,14 @@ export default async function PermanentArchivePage() {
 
   return (
     <main className="min-h-screen pb-20 font-sans bg-paper text-ink">
-      {/* Archive Header Broadsheet Band */}
-      <div className="bg-sheet border-b-2 border-ink py-12 px-4 sm:px-6">
+      {/* Archive Header Cinema Band */}
+      <div className="bg-sheet border-b border-line py-12 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-3">
-            <span className="p-1.5 bg-band text-ink border-2 border-ink shadow-sticker">
+            <span className="p-1.5 bg-band text-ink border border-line rounded shadow-sm">
               <Archive className="w-5 h-5 text-press" />
             </span>
-            <span className="uppercase text-xs font-black tracking-widest text-ink border border-ink bg-paper px-3 py-1 shadow-sticker">
+            <span className="uppercase text-xs font-black tracking-widest text-ink border border-line bg-surface px-3 py-1 rounded shadow-sm">
               The Lore Depot · Permanent Preservation Vault
             </span>
           </div>
@@ -46,13 +46,13 @@ export default async function PermanentArchivePage() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-6 text-xs text-ink font-bold">
-            <span className="px-3.5 py-1.5 bg-paper border-2 border-ink shadow-sticker font-mono-tabular">
+            <span className="px-3.5 py-1.5 bg-surface border border-line rounded shadow-sm font-mono-tabular">
               Archived Releases: <span className="text-press font-black">{archivedMovies.length}</span>
             </span>
-            <span className="px-3.5 py-1.5 bg-paper border-2 border-ink shadow-sticker font-mono-tabular">
+            <span className="px-3.5 py-1.5 bg-surface border border-line rounded shadow-sm font-mono-tabular">
               Permanent Dispatches: <span className="text-violet-soft font-black">{allArticles.length}</span>
             </span>
-            <span className="px-3.5 py-1.5 bg-band border-2 border-ink shadow-sticker font-mono-tabular">
+            <span className="px-3.5 py-1.5 bg-band border border-line rounded shadow-sm font-mono-tabular">
               Permanent URL Preservation: <span className="font-black text-press">Active 100%</span>
             </span>
           </div>

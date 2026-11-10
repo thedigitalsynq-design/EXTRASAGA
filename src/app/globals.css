@@ -10,42 +10,83 @@
 @tailwind utilities;
 
 :root {
-  /* ═════ v4 PRESS CORE ═════ */
-  --paper: #F4EFE2;
-  --sheet: #FBF7EC;
-  --band: #ECE3D0;
-  --ink: #17140F;
-  --ink-dim: #5C5344;
-  --ink-mute: #8D8471;
-  --hairline: #D9CEB4;
+  /* ═════ CINEMA AUDITORIUM THEME (Unified with Landing Page) ═════ */
+  --bg: #120C10;
+  --surface: #1B1318;
+  --surface-2: #261B21;
+  --surface-3: #31242B;
+  --ink: #F6EEE9;
+  --text: #EDE3DF;
+  --muted: #B3A3AA;
+  --faint: #7E6E76;
+  --line: rgba(246,236,232,.11);
+  --line-2: rgba(246,236,232,.22);
+  --acc: hsl(41 86% 61%);
+  --on-acc: #140C10;
+
+  --paper: var(--bg);
+  --sheet: var(--surface);
+  --band: var(--surface-2);
+  --ink-dim: var(--muted);
+  --ink-mute: var(--faint);
+  --hairline: var(--line);
 
   --press-red: #E03A2F;
-  --press-violet: #4F2BEF;
+  --press-violet: #8F72FF;
   --press-gold: #F0B429;
 
-  /* All typography unified exclusively to DM Serif Display */
-  --font-dm-serif: 'DM Serif Display', Georgia, serif;
-  --font-google-sans-flex: var(--font-dm-serif);
-  --font-serif-accent: var(--font-dm-serif);
-  --font-handwriting: var(--font-dm-serif);
-  --font-english: var(--font-dm-serif);
-  --font-display-latin: var(--font-dm-serif);
-  --font-poster: var(--font-dm-serif);
-  --font-sans: var(--font-dm-serif);
-  --font-display: var(--font-dm-serif);
-  --font-body: var(--font-dm-serif);
+  /* ═════ MOMO TRUST DISPLAY (Exclusively Across Whole Website) ═════ */
+  --font-momo-trust: 'Momo Trust Display', sans-serif;
+  --font-dm-serif: var(--font-momo-trust);
+  --font-google-sans-flex: var(--font-momo-trust);
+  --font-serif-accent: var(--font-momo-trust);
+  --font-handwriting: var(--font-momo-trust);
+  --font-english: var(--font-momo-trust);
+  --font-display-latin: var(--font-momo-trust);
+  --font-poster: var(--font-momo-trust);
+  --font-sans: var(--font-momo-trust);
+  --font-display: var(--font-momo-trust);
+  --font-body: var(--font-momo-trust);
+}
+
+html[data-theme="light"] {
+  --bg: #F4F0EC;
+  --surface: #FFFFFF;
+  --surface-2: #EBE4DF;
+  --surface-3: #E0D7D1;
+  --ink: #17101A;
+  --text: #241A22;
+  --muted: #6E6068;
+  --faint: #9C8E95;
+  --line: rgba(30,18,24,.12);
+  --line-2: rgba(30,18,24,.24);
+  --acc: hsl(36 90% 29%);
+  --on-acc: #FFFFFF;
+
+  --paper: var(--bg);
+  --sheet: var(--surface);
+  --band: var(--surface-2);
+  --ink-dim: var(--muted);
+  --ink-mute: var(--faint);
+  --hairline: var(--line);
 }
 
 *, *::before, *::after {
-  font-family: var(--font-dm-serif);
+  font-family: 'Momo Trust Display', sans-serif !important;
 }
 
-.font-serif-accent {
-  font-family: var(--font-dm-serif);
-}
-
-.font-handwritten {
-  font-family: var(--font-dm-serif);
+.font-serif-accent,
+.font-handwritten,
+.font-english,
+.font-brand-en,
+.font-google-sans,
+.font-sans-flex,
+.font-display-latin,
+.font-poster,
+.font-sans,
+.font-serif,
+.font-display {
+  font-family: 'Momo Trust Display', sans-serif !important;
 }
 
 html {
@@ -53,15 +94,15 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
-  font-family: var(--font-dm-serif);
+  color-scheme: dark;
+  font-family: 'Momo Trust Display', sans-serif !important;
 }
 
 body {
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
-  font-family: var(--font-dm-serif);
+  font-family: 'Momo Trust Display', sans-serif !important;
   line-height: 1.62;
   letter-spacing: -0.005em;
   -webkit-font-smoothing: antialiased;
@@ -87,20 +128,20 @@ html[data-lang="kn"] {
   line-height: 1.68;
 }
 
-/* Legacy generic grays remapped onto the paper system */
-.text-gray-400 { color: #8D8471 !important; }
-.text-gray-500 { color: #8D8471 !important; }
-.text-gray-600 { color: #5C5344 !important; }
-.text-gray-700 { color: #17140F !important; }
-.text-gray-800 { color: #17140F !important; }
-.text-gray-900 { color: #17140F !important; }
-.bg-gray-50  { background-color: #ECE3D0 !important; }
-.bg-gray-100 { background-color: #ECE3D0 !important; }
-.bg-gray-200 { background-color: #D9CEB4 !important; }
-.border-gray-100 { border-color: #ECE3D0 !important; }
-.border-gray-200 { border-color: #D9CEB4 !important; }
-.border-gray-300 { border-color: #17140F !important; }
-.bg-white { background-color: #FBF7EC; }
+/* Legacy generic grays remapped onto cinema auditorium system */
+.text-gray-400 { color: var(--muted) !important; }
+.text-gray-500 { color: var(--muted) !important; }
+.text-gray-600 { color: var(--faint) !important; }
+.text-gray-700 { color: var(--text) !important; }
+.text-gray-800 { color: var(--ink) !important; }
+.text-gray-900 { color: var(--ink) !important; }
+.bg-gray-50  { background-color: var(--surface-2) !important; }
+.bg-gray-100 { background-color: var(--surface-2) !important; }
+.bg-gray-200 { background-color: var(--line) !important; }
+.border-gray-100 { border-color: var(--line) !important; }
+.border-gray-200 { border-color: var(--line) !important; }
+.border-gray-300 { border-color: var(--line-2) !important; }
+.bg-white { background-color: var(--surface); }
 
 /* GPU Hardware Acceleration on Compositor Layers */
 .gpu-layer {
@@ -132,169 +173,175 @@ body {
   font-family: var(--font-display-latin);
 }
 
-/* ── Press Scrollbar (ink on paper) ───────────────────────────────── */
+/* ── Cinema Scrollbar ───────────────────────────────── */
 ::-webkit-scrollbar {
   width: 10px;
-  height: 8px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #ECE3D0;
-  border-left: 2px solid #17140F;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #17140F;
-  border-radius: 0;
+  background: var(--line-2);
+  border-radius: 99px;
+  border: 2px solid var(--bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E03A2F;
+  background: var(--acc);
 }
 
 ::selection {
-  background: #17140F;
-  color: #F0B429;
+  background: var(--acc);
+  color: var(--on-acc);
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   HOUSE FULL PRESS COMPONENT SYSTEM
-   (legacy class names kept; surfaces remapped to the press)
+   CINEMA AUDITORIUM COMPONENT SYSTEM (Unified Theme)
    ════════════════════════════════════════════════════════════════════ */
 
-/* Print-grid background (risograph registration grid) */
+/* Cinema grid background */
 .cinema-grid-bg,
 .jade-grid-bg {
   background-image:
-    linear-gradient(to right, rgba(23, 20, 15, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 20, 15, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Theatre Card (canonical card of the system) — now a printed clip */
+/* Theatre Card — Cinema Auditorium surface */
 .cinema-card {
-  background: #FBF7EC;
-  border-radius: 0;
-  border: 2px solid #17140F;
-  box-shadow: 4px 4px 0 0 #17140F;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px -4px rgba(0,0,0,.5);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text);
 }
 
 .cinema-card:hover {
-  box-shadow: 6px 6px 0 0 #E03A2F;
-  transform: translate(-2px, -2px);
+  border-color: var(--line-2);
+  box-shadow: 0 8px 30px -6px rgba(0,0,0,.7);
+  transform: translateY(-2px);
 }
 
 /* Legacy alias cards */
 .jade-card,
 .noir-card {
-  background: #FBF7EC;
-  border-radius: 0;
-  border: 2px solid #17140F;
-  box-shadow: 4px 4px 0 0 #17140F;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px -4px rgba(0,0,0,.5);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text);
 }
 
 .jade-card:hover,
 .noir-card:hover {
-  box-shadow: 6px 6px 0 0 #E03A2F;
-  transform: translate(-2px, -2px);
+  border-color: var(--line-2);
+  box-shadow: 0 8px 30px -6px rgba(0,0,0,.7);
+  transform: translateY(-2px);
 }
 
-/* Press card (overlays / rails) — formerly dark glass */
-.glass-card {
-  background: #FBF7EC;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: 2px solid #17140F;
-  box-shadow: 4px 4px 0 0 #17140F;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  box-shadow: 6px 6px 0 0 #4F2BEF;
-  transform: translate(-2px, -2px);
-}
-
-/* Bento containers (kept class names, printed panels) */
+/* Press card / Bento containers */
+.glass-card,
 .jade-bento,
 .noir-bento,
 .glass-bento,
 .glass-panel {
-  background: #FBF7EC;
-  border-radius: 0;
-  border: 2px solid #17140F;
-  box-shadow: 5px 5px 0 0 #17140F;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px -4px rgba(0,0,0,.6);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text);
+}
+
+.glass-card:hover,
+.jade-bento:hover,
+.noir-bento:hover,
+.glass-bento:hover,
+.glass-panel:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px -6px rgba(0,0,0,.8);
 }
 
 .jade-bento:hover,
 .noir-bento:hover,
 .glass-bento:hover {
-  box-shadow: 8px 8px 0 0 #4F2BEF;
-  transform: translate(-3px, -3px);
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px -6px rgba(0,0,0,.8);
 }
 
-/* Signature Pill System (press chips) */
+/* Signature Pill System (cinema chips) */
 .jade-pill-dark {
-  background: #17140F;
-  color: #F4EFE2;
-  border: 2px solid #17140F;
-  border-radius: 0;
-  font-weight: 700;
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-weight: 600;
 }
 
 .jade-pill-mint,
 .glass-pill {
-  background: rgba(79, 43, 239, 0.09);
-  color: #3B1DBE;
-  border: 2px solid #17140F;
-  border-radius: 0;
-  font-weight: 700;
+  background: rgba(246, 236, 232, 0.06);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  font-weight: 600;
 }
 
 .jade-pill-white {
-  background: #FBF7EC;
-  color: #17140F;
-  border: 2px solid #17140F;
-  box-shadow: 2px 2px 0 0 #17140F;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border-radius: 99px;
 }
 
-/* Ink Stamp Icon Badge */
+/* Cinema Accent Badges */
 .jade-icon-glow {
-  background: #4F2BEF;
-  box-shadow: 3px 3px 0 0 #17140F;
+  background: var(--acc);
+  color: var(--on-acc);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 /* Press red variant */
 .s-icon-glow {
-  background: #E03A2F;
-  box-shadow: 3px 3px 0 0 #17140F;
+  background: var(--press-red);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-/* Marquee gold (reverence badge, #1 rank) — printed halftone edge */
+/* Marquee gold */
 .marquee-halo {
-  box-shadow: 3px 3px 0 0 #17140F;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-/* Dashed connector — ticket perforation */
+/* Dashed connector */
 .jade-dashed-connector {
   border-style: dashed;
-  border-color: #17140F;
+  border-color: var(--line-2);
 }
 
-/* Stat Box (press) */
+/* Stat Box (cinema) */
 .jade-stat-box {
-  background: #4F2BEF;
-  color: #F4EFE2;
-  border: 2px solid #17140F;
-  box-shadow: 4px 4px 0 0 #17140F;
-  border-radius: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  border-radius: 8px;
   padding: 1rem 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
-/* Print Roll — a poster rolling out of the press */
+/* Print Roll */
 .projector-beam {
   position: relative;
   overflow: hidden;
@@ -304,31 +351,32 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(23, 20, 15, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(246, 236, 232, 0.05) 1px, transparent 1px);
   background-size: 10px 10px;
   pointer-events: none;
 }
 
-/* Legacy halo helpers: now solid ink offsets (no blur) */
-.glow-signal-text { color: #B3271E; }
-.glow-ultra-text { color: #3B1DBE; }
-.glow-marquee-text { color: #A96A00; }
+/* Legacy halo helpers */
+.glow-signal-text { color: var(--press-red); }
+.glow-ultra-text { color: var(--press-violet); }
+.glow-marquee-text { color: var(--press-gold); }
 
 .double-bezel {
   padding: 3px;
-  border-radius: 0;
-  background: #FBF7EC;
-  border: 2px solid #17140F;
-  box-shadow: 4px 4px 0 0 #17140F;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px -4px rgba(0,0,0,0.5);
   transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .double-bezel:hover {
-  box-shadow: 6px 6px 0 0 #E03A2F;
-  transform: translate(-2px, -2px);
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px -6px rgba(0,0,0,0.7);
 }
 
-/* Snappy, Zero-Lag Press Easing (180ms-240ms) */
+/* Snappy Cinema Easing */
 .transition-cinema {
   transition-property: transform, opacity, background-color, border-color, box-shadow;
   transition-duration: 200ms;
@@ -347,8 +395,8 @@ body {
 }
 
 .card-press-interactive:hover {
-  transform: translateY(-3px) translateX(-1px);
-  box-shadow: 6px 6px 0 0 #17140F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px -6px rgba(0,0,0,0.7);
 }
 
 .btn-press-interactive {
@@ -405,14 +453,14 @@ body {
 
 /* ─── v4 FANZINE PRIMITIVES ─────────────────────────────────────── */
 
-/* The ink rule: 2px hard border on any element */
+/* The ink rule: clean border on any element */
 .ink-rule {
-  border: 2px solid #17140F;
+  border: 1px solid var(--line);
 }
 
-/* The hard press shadow */
+/* The press shadow */
 .press-pop {
-  box-shadow: 4px 4px 0 0 #17140F;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
 .press-pop-hover {
@@ -420,21 +468,21 @@ body {
 }
 
 .press-pop-hover:hover {
-  box-shadow: 6px 6px 0 0 #17140F;
-  transform: translate(-2px, -2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+  transform: translateY(-2px);
 }
 
-/* Sticker: rotated press chip */
+/* Sticker: cinema badge */
 .sticker {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  border: 2px solid #17140F;
-  box-shadow: 3px 3px 0 0 #17140F;
-  transform: rotate(-3deg);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border-radius: 4px;
   font-family: var(--font-display-latin);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   font-weight: 700;
 }
 
@@ -442,45 +490,46 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  border: 2px solid #17140F;
+  border: 1px solid var(--line);
+  border-radius: 4px;
   font-family: var(--font-display-latin);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   font-weight: 700;
 }
 
 /* Ticket perforation line */
 .ticket-cut {
-  background-image: linear-gradient(to bottom, #17140F 45%, transparent 45%);
+  background-image: linear-gradient(to bottom, var(--line) 45%, transparent 45%);
   background-size: 2px 8px;
   background-repeat: repeat-y;
   width: 2px;
 }
 
 .ticket-cut-x {
-  background-image: linear-gradient(to right, #17140F 45%, transparent 45%);
+  background-image: linear-gradient(to right, var(--line) 45%, transparent 45%);
   background-size: 8px 2px;
   background-repeat: repeat-x;
   height: 2px;
 }
 
-/* Halftone print texture */
+/* Halftone cinema texture */
 .halftone {
-  background-image: radial-gradient(rgba(23, 20, 15, 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(246, 236, 232, 0.08) 1px, transparent 1px);
   background-size: 8px 8px;
 }
 
 .halftone-faint {
-  background-image: radial-gradient(rgba(23, 20, 15, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(246, 236, 232, 0.04) 1px, transparent 1px);
   background-size: 10px 10px;
 }
 
 /* Marquee ribbon strip */
 .marquee-strip {
-  background: #17140F;
-  color: #F4EFE2;
-  border-top: 2px solid #17140F;
-  border-bottom: 2px solid #17140F;
+  background: var(--surface-2);
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 /* Stamped headline (section titles) */

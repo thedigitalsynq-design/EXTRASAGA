@@ -27,24 +27,24 @@ export default async function OttPage() {
 
   return (
     <div className="w-full bg-paper min-h-screen text-ink">
-      {/* Now Streaming — Broadsheet Hero Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
+      {/* Now Streaming — Cinema Hero Band */}
+      <div className="bg-sheet border-b border-line py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-center gap-2 text-xs text-ink-dim mb-2 font-mono">
             <Link href="/" className="hover:text-press font-bold transition-colors">
               {getTranslation("en", "nav_home")}
             </Link>
             <span>/</span>
-            <span className="text-press-deep font-bold">
+            <span className="text-press-soft font-bold">
               {getTranslation("en", "nav_ott")}
             </span>
           </div>
 
           <div className="flex items-center gap-2 mb-2">
-            <span className="sticker bg-violet text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+            <span className="sticker bg-violet text-paper border border-line px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase rounded">
               NOW STREAMING
             </span>
-            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border border-line rounded shadow-sm">
               ALL INDIAN FILM INDUSTRIES
             </span>
           </div>
@@ -52,7 +52,7 @@ export default async function OttPage() {
           <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
             DIGITAL STREAM<span className="text-violet">ING</span> WIRE
           </h1>
-          <p className="text-xs sm:text-sm text-ink-dim mt-2 font-grotesk font-medium max-w-2xl">
+          <p className="text-xs sm:text-sm text-ink-dim mt-2 font-medium max-w-2xl">
             Bringing the magic of the silver screen straight into your living room. Independently verified digital premiere dates, direct streaming links, and curated watchlists across every major platform.
           </p>
         </div>

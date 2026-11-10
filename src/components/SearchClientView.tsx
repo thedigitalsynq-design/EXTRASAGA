@@ -42,14 +42,14 @@ export default function SearchClientView({
 
   return (
     <div className="w-full bg-paper min-h-screen text-ink">
-      {/* The Search Deck — Broadsheet Hero Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
+      {/* The Search Deck — Cinema Hero Band */}
+      <div className="bg-sheet border-b border-line py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-center gap-2 mb-2">
-            <span className="sticker bg-violet text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase">
+            <span className="sticker bg-violet text-paper border border-line px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase rounded">
               THE SEARCH DECK
             </span>
-            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border-2 border-ink shadow-sticker">
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider bg-band text-ink border border-line rounded shadow-sm">
               ALL INDIAN FILM INDUSTRIES
             </span>
           </div>
@@ -66,7 +66,7 @@ export default function SearchClientView({
                 name="q"
                 defaultValue={query}
                 placeholder="Search across all Indian cinema headlines, reviews, lore..."
-                className="w-full bg-paper border-2 border-ink pl-10 pr-4 py-3 text-sm text-ink placeholder-ink-mute focus:outline-none shadow-press font-grotesk font-medium"
+                className="w-full bg-surface border border-line rounded pl-10 pr-4 py-3 text-sm text-ink placeholder-ink-mute focus:outline-none focus:border-acc shadow-sm font-medium"
               />
               <SearchIcon className="w-4 h-4 text-ink-dim absolute left-3.5 top-3.5" />
             </div>

@@ -157,11 +157,11 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
       />
 
-      {/* Broadsheet Hero Dossier Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 sm:py-12 px-4 sm:px-6">
+      {/* Cinema Hero Dossier Band */}
+      <div className="bg-sheet border-b border-line py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb Navigation */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-ink/20">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-line">
             <nav className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink-mute uppercase" aria-label="Breadcrumb">
               <Link href="/" className="hover:text-press transition-colors">Home</Link>
               <ChevronRight className="w-3.5 h-3.5 text-ink-mute" />
@@ -170,7 +170,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               <span className="text-ink font-black truncate max-w-xs">{movie.titleEn}</span>
             </nav>
 
-            <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-paper px-3 py-1 border border-ink shadow-sticker">
+            <div className="flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink bg-surface px-3 py-1 border border-line rounded shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-press" />
               <span>Verified Release Dossier</span>
             </div>
@@ -180,7 +180,7 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             {/* Poster Column */}
             <div className="md:col-span-4 lg:col-span-3">
-              <div className="relative aspect-[2/3] bg-band border-2 border-ink shadow-press overflow-hidden group">
+              <div className="relative aspect-[2/3] bg-band border border-line rounded-lg shadow-lg overflow-hidden group">
                 <Image
                   src={movie.posterImage}
                   alt={movie.titleEn}
@@ -191,12 +191,12 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
                 />
                 <div className="absolute top-3 left-3">
                   <span
-                    className={`text-[10px] font-mono-tabular font-black px-2.5 py-1 border-2 border-ink shadow-sticker uppercase tracking-wide ${
+                    className={`text-[10px] font-mono-tabular font-black px-2.5 py-1 border border-line rounded shadow-sm uppercase tracking-wide ${
                       diffDays === 0
                         ? "bg-[#4ADE80] text-ink animate-pulse"
                         : diffDays > 0
                         ? "bg-marquee text-ink"
-                        : "bg-paper text-ink"
+                        : "bg-surface text-ink"
                     }`}
                   >
                     {relativeBadge}
@@ -205,12 +205,12 @@ export default async function MovieDetailPage({ params }: MoviePageProps) {
               </div>
 
               {/* Release Spec Plate */}
-              <div className="mt-4 p-3 bg-paper border-2 border-ink shadow-sticker flex items-center justify-between gap-2">
+              <div className="mt-4 p-3 bg-surface border border-line rounded shadow-sm flex items-center justify-between gap-2">
                 <div>
                   <span className="text-[10px] font-mono-tabular uppercase text-ink-mute block font-black">RELEASE SPEC</span>
                   <span className="text-xs font-black text-ink uppercase">{movie.industry} THEATRICAL</span>
                 </div>
-                <span className="px-2 py-0.5 bg-band text-ink font-mono-tabular text-xs font-black border border-ink">
+                <span className="px-2 py-0.5 bg-band text-ink font-mono-tabular text-xs font-black border border-line rounded">
                   70mm
                 </span>
               </div>

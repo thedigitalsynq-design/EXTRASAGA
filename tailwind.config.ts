@@ -22,18 +22,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── HOUSE FULL PRESS core (canonical) ────────────────────────
-        paper: "#F4EFE2", // the sheet — page canvas
-        sheet: "#FBF7EC", // cards, panels
-        band: "#ECE3D0", // alternate newspaper bands
+        // ── Cinema Auditorium & Press Tokens (Unified Across Whole Site) ──
+        paper: "var(--paper)", // the sheet — page canvas
+        sheet: "var(--sheet)", // cards, panels
+        band: "var(--band)", // alternate bands
         ink: {
-          DEFAULT: "#17140F", // warm black — type & borders
-          dim: "#5C5344", // secondary type
-          mute: "#8D8471", // metadata, captions
+          DEFAULT: "var(--ink)", // primary type
+          dim: "var(--ink-dim)", // secondary type
+          mute: "var(--ink-mute)", // metadata, captions
         },
         line: {
-          DEFAULT: "#D9CEB4", // hairline rules
-          strong: "#17140F", // emphasis rules (2px ink)
+          DEFAULT: "var(--line)", // hairline rules
+          strong: "var(--line-2)", // emphasis rules
         },
 
         // ── Poster inks ──────────────────────────────────────────────
@@ -126,30 +126,30 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["'DM Serif Display'", "Georgia", "serif"],
-        serif: ["'DM Serif Display'", "Georgia", "serif"],
-        display: ["'DM Serif Display'", "Georgia", "serif"],
-        poster: ["'DM Serif Display'", "Georgia", "serif"],
-        kannada: ["'DM Serif Display'", "Georgia", "serif"],
-        notoSerifKannada: ["'DM Serif Display'", "Georgia", "serif"],
-        benne: ["'DM Serif Display'", "Georgia", "serif"],
-        english: ["'DM Serif Display'", "Georgia", "serif"],
-        grotesk: ["'DM Serif Display'", "Georgia", "serif"],
-        googleSans: ["'DM Serif Display'", "Georgia", "serif"],
-        googleSansFlex: ["'DM Serif Display'", "Georgia", "serif"],
-        hubballi: ["'DM Serif Display'", "Georgia", "serif"],
-        telugu: ["'DM Serif Display'", "Georgia", "serif"],
-        tamil: ["'DM Serif Display'", "Georgia", "serif"],
-        hindi: ["'DM Serif Display'", "Georgia", "serif"],
-        malayalam: ["'DM Serif Display'", "Georgia", "serif"],
-        displayLatin: ["'DM Serif Display'", "Georgia", "serif"],
+        sans: ["'Momo Trust Display'", "sans-serif"],
+        serif: ["'Momo Trust Display'", "sans-serif"],
+        display: ["'Momo Trust Display'", "sans-serif"],
+        poster: ["'Momo Trust Display'", "sans-serif"],
+        kannada: ["'Momo Trust Display'", "sans-serif"],
+        notoSerifKannada: ["'Momo Trust Display'", "sans-serif"],
+        benne: ["'Momo Trust Display'", "sans-serif"],
+        english: ["'Momo Trust Display'", "sans-serif"],
+        grotesk: ["'Momo Trust Display'", "sans-serif"],
+        googleSans: ["'Momo Trust Display'", "sans-serif"],
+        googleSansFlex: ["'Momo Trust Display'", "sans-serif"],
+        hubballi: ["'Momo Trust Display'", "sans-serif"],
+        telugu: ["'Momo Trust Display'", "sans-serif"],
+        tamil: ["'Momo Trust Display'", "sans-serif"],
+        hindi: ["'Momo Trust Display'", "sans-serif"],
+        malayalam: ["'Momo Trust Display'", "sans-serif"],
+        displayLatin: ["'Momo Trust Display'", "sans-serif"],
       },
       boxShadow: {
-        // The press-print offset shadows — the signature of the edition
-        press: "4px 4px 0 0 #17140F",
-        "press-sm": "2px 2px 0 0 #17140F",
-        "press-lg": "7px 7px 0 0 #17140F",
-        sticker: "3px 3px 0 0 #17140F",
+        // Cinema depth and subtle glow shadows
+        press: "0 2px 8px rgba(0,0,0,0.5), 0 12px 28px -8px rgba(0,0,0,0.7)",
+        "press-sm": "0 1px 4px rgba(0,0,0,0.4)",
+        "press-lg": "0 16px 36px -12px rgba(0,0,0,0.85)",
+        sticker: "0 2px 6px rgba(0,0,0,0.4)",
         none: "none",
       },
       borderWidth: {

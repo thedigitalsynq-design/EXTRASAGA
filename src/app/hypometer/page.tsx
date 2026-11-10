@@ -57,7 +57,7 @@ export default async function HypoMeterPage() {
       />
 
       {/* Breadcrumb Navigation */}
-      <div className="bg-sheet border-b-2 border-ink py-3 px-4 sm:px-6">
+      <div className="bg-sheet border-b border-line py-3 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex items-center gap-2 text-xs font-mono-tabular font-bold text-ink-dim">
           <Link href="/" className="hover:text-press transition-colors">
             Home

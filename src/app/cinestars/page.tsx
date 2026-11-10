@@ -19,8 +19,8 @@ export default async function CineStarsPage() {
 
   return (
     <div className="w-full bg-paper min-h-screen text-ink">
-      {/* CineStar Power Rankings — Broadsheet Hero Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 relative overflow-hidden">
+      {/* CineStar Power Rankings — Cinema Hero Band */}
+      <div className="bg-sheet border-b border-line py-8 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs text-ink-dim mb-3 font-mono">
@@ -28,14 +28,14 @@ export default async function CineStarsPage() {
               Home
             </Link>
             <span>/</span>
-            <span className="text-press-deep font-bold">CineStar Leaderboard</span>
+            <span className="text-press-soft font-bold">CineStar Leaderboard</span>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
               <div className="flex items-center gap-2.5 mb-2">
-                <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase flex items-center gap-1.5">
-                  <span className="w-2 h-2 bg-paper animate-ping" />
+                <span className="sticker bg-press text-paper border border-line px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase rounded flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-paper animate-ping" />
                   REAL-TIME RANKINGS
                 </span>
                 <span className="text-ink-mute text-[11px] font-mono font-bold">
@@ -45,24 +45,24 @@ export default async function CineStarsPage() {
               <h1 className="text-3xl sm:text-5xl font-poster uppercase tracking-tight text-ink mt-2">
                 CINESTAR<span className="text-press"> LEADERBOARD</span>
               </h1>
-              <p className="text-ink-dim text-xs sm:text-sm mt-2 max-w-xl font-grotesk font-medium leading-relaxed">
+              <p className="text-ink-dim text-xs sm:text-sm mt-2 max-w-xl font-medium leading-relaxed">
                 India&apos;s living index of screen sovereignty. Tracking the stars whose names fill single screens with thunder and whose craft leaves an indelible stamp upon the cultural fabric of Indian cinema.
               </p>
             </div>
 
             {/* Summary pill strip */}
             <div className="flex flex-wrap gap-3 shrink-0">
-              <div className="bg-paper border-2 border-ink shadow-sticker px-4 py-3 text-center">
+              <div className="bg-surface border border-line rounded shadow-sm px-4 py-3 text-center">
                 <div className="text-2xl font-poster uppercase text-ink">{CINESTAR_SUMMARY_STATS.totalTracked}</div>
-                <div className="text-[10px] text-ink-dim font-grotesk font-bold uppercase">Stars Tracked</div>
+                <div className="text-[10px] text-ink-dim font-bold uppercase">Stars Tracked</div>
               </div>
-              <div className="bg-paper border-2 border-ink shadow-sticker px-4 py-3 text-center">
+              <div className="bg-surface border border-line rounded shadow-sm px-4 py-3 text-center">
                 <div className="text-2xl font-poster uppercase text-ink">
                   ₹{(CINESTAR_SUMMARY_STATS.totalBoxOfficePowerCr / 1000).toFixed(0)}K Cr
                 </div>
-                <div className="text-[10px] text-ink-dim font-grotesk font-bold uppercase">Combined Power</div>
+                <div className="text-[10px] text-ink-dim font-bold uppercase">Combined Power</div>
               </div>
-              <div className="bg-marquee text-ink border-2 border-ink shadow-sticker px-4 py-3 text-center">
+              <div className="bg-band text-ink border border-line rounded shadow-sm px-4 py-3 text-center">
                 <div className="text-2xl font-poster uppercase text-ink">
                   +{CINESTAR_SUMMARY_STATS.topGainerChangePct}%
                 </div>

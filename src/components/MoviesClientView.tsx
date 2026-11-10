@@ -68,26 +68,26 @@ export default function MoviesClientView({
 
   return (
     <main className="min-h-screen pb-20 font-sans bg-paper text-ink">
-      {/* Now Showing — Broadsheet Header Band */}
-      <div className="bg-sheet border-b-2 border-ink py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden">
+      {/* Now Showing — Cinema Header Band */}
+      <div className="bg-sheet border-b border-line py-8 sm:py-12 px-4 sm:px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 bg-press text-paper border-2 border-ink shadow-sticker">
+              <span className="p-1.5 bg-press text-paper rounded border border-line shadow-sm">
                 <Clapperboard className="w-4 h-4" />
               </span>
-              <span className="sticker bg-marquee text-ink border-2 border-ink px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase">
+              <span className="sticker bg-band text-ink border border-line px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase rounded">
                 NOW SHOWING · MULTI-SOURCE RELEASE WIRE
               </span>
             </div>
 
             {/* Dynamic System Clock IST Badge */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-              <span className="px-3 py-1 bg-paper text-ink border-2 border-ink font-bold flex items-center gap-1.5 shadow-sticker">
-                <span className="w-2 h-2 bg-press animate-ping"></span>
+              <span className="px-3 py-1 bg-surface text-ink border border-line rounded font-bold flex items-center gap-1.5 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-press animate-ping"></span>
                 <span>Asia/Kolkata (IST): {stats.todayIST}</span>
               </span>
-              <span className="px-3 py-1 bg-band text-ink border-2 border-ink font-bold">
+              <span className="px-3 py-1 bg-band text-ink border border-line rounded font-bold">
                 Window: {stats.windowStartDate} &rarr; {stats.windowEndDate}
               </span>
             </div>
@@ -96,7 +96,7 @@ export default function MoviesClientView({
           <h1 className="text-3xl sm:text-5xl font-poster uppercase text-ink tracking-tight mt-2">
             CINEMA RELEASES &amp; <span className="text-press">DISCOVERY HUB</span>
           </h1>
-          <p className="text-sm text-ink-dim mt-2 max-w-3xl leading-relaxed font-grotesk font-medium">
+          <p className="text-sm text-ink-dim mt-2 max-w-3xl leading-relaxed font-medium">
             From theatrical premieres setting multiplex corridors ablaze to tomorrow&apos;s most awaited festival showcases, explore our independently verified calendar tracing Indian cinema across every language, screen, and horizon.
           </p>
 
@@ -104,37 +104,37 @@ export default function MoviesClientView({
           <div className="flex flex-wrap items-center gap-2.5 pt-6">
             <Link
               href="/movies"
-              className={`px-4 py-2 border-2 border-ink text-xs font-poster uppercase tracking-wider transition-all ${
+              className={`px-4 py-2 border border-line rounded text-xs font-poster uppercase tracking-wider transition-all ${
                 !statusFilter
-                  ? "bg-press text-paper shadow-press -translate-y-0.5"
-                  : "bg-paper text-ink hover:bg-band shadow-sticker"
+                  ? "bg-press text-paper shadow-sm -translate-y-0.5"
+                  : "bg-surface text-ink hover:bg-band shadow-sm"
               }`}
             >
               All Films ({stats.totalDiscovered})
             </Link>
             <Link
               href="/movies?status=in_theatres"
-              className={`px-4 py-2 border-2 border-ink text-xs font-poster uppercase tracking-wider transition-all ${
+              className={`px-4 py-2 border border-line rounded text-xs font-poster uppercase tracking-wider transition-all ${
                 statusFilter === "in_theatres"
-                  ? "bg-marquee text-ink shadow-press -translate-y-0.5"
-                  : "bg-paper text-ink hover:bg-band shadow-sticker"
+                  ? "bg-marquee text-ink shadow-sm -translate-y-0.5"
+                  : "bg-surface text-ink hover:bg-band shadow-sm"
               }`}
             >
               In Theatres ({stats.nowShowingCount})
             </Link>
             <Link
               href="/movies?status=upcoming"
-              className={`px-4 py-2 border-2 border-ink text-xs font-poster uppercase tracking-wider transition-all ${
+              className={`px-4 py-2 border border-line rounded text-xs font-poster uppercase tracking-wider transition-all ${
                 statusFilter === "upcoming"
-                  ? "bg-violet text-paper shadow-press -translate-y-0.5"
-                  : "bg-paper text-ink hover:bg-band shadow-sticker"
+                  ? "bg-violet text-paper shadow-sm -translate-y-0.5"
+                  : "bg-surface text-ink hover:bg-band shadow-sm"
               }`}
             >
               Upcoming 30 Days ({stats.upcoming30DaysCount})
             </Link>
             <Link
               href="/archive"
-              className="px-4 py-2 bg-band text-ink hover:bg-ink hover:text-paper border-2 border-ink shadow-sticker text-xs font-poster uppercase tracking-wider transition-all ml-auto"
+              className="px-4 py-2 bg-band text-ink hover:bg-ink hover:text-paper border border-line rounded shadow-sm text-xs font-poster uppercase tracking-wider transition-all ml-auto"
             >
               The Lore Depot &rarr;
             </Link>

@@ -25,8 +25,8 @@ export default async function ReviewsPage() {
 
   return (
     <div className="w-full">
-      {/* The Verdict Desk — Press Header Band */}
-      <div className="relative bg-sheet border-b-2 border-ink py-8 px-4 sm:px-6 overflow-hidden">
+      {/* The Verdict Desk — Cinema Header Band */}
+      <div className="relative bg-sheet border-b border-line py-8 px-4 sm:px-6 overflow-hidden">
         <div aria-hidden="true" className="absolute inset-0 halftone-faint opacity-20 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -44,15 +44,15 @@ export default async function ReviewsPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
             <div>
               <div className="flex items-center gap-2 mb-2.5 flex-wrap">
-                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-violet text-paper border-2 border-ink shadow-sticker text-[10px] font-poster font-bold uppercase tracking-widest -rotate-1 select-none">
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-violet text-paper border border-line rounded shadow-sm text-[10px] font-poster font-bold uppercase tracking-widest select-none">
                   <Award className="w-3.5 h-3.5" />
                   <span>The Verdict Desk</span>
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-paper text-ink border-2 border-ink shadow-sticker text-[10px] font-poster font-bold uppercase tracking-wider select-none rotate-1">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-band text-ink border border-line rounded shadow-sm text-[10px] font-poster font-bold uppercase tracking-wider select-none">
                   <span className="w-1.5 h-1.5 rounded-full bg-press animate-pulse"></span>
                   <span>All Indian Cinema</span>
                 </span>
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-marquee text-ink border border-ink text-[10px] font-mono font-bold uppercase select-none">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-band text-ink border border-line rounded text-[10px] font-mono font-bold uppercase select-none">
                   <Star className="w-3 h-3 fill-ink text-ink" />
                   <span>Dual-Axis Storytelling & Technical Audits</span>
                 </span>
