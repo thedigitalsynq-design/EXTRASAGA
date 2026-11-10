@@ -72,7 +72,7 @@ export default function SearchClientView({
             </div>
             <button
               type="submit"
-              className="px-6 py-3 bg-ink hover:bg-press text-paper font-poster uppercase text-xs tracking-wider transition-all border-2 border-ink shadow-sticker"
+              className="px-6 py-3 bg-press hover:bg-press-deep text-paper font-poster uppercase text-xs tracking-wider transition-all rounded-lg shadow-sm"
             >
               Search
             </button>
@@ -85,7 +85,7 @@ export default function SearchClientView({
               <Link
                 key={tag}
                 href={`/search?q=${encodeURIComponent(tag)}`}
-                className="px-2.5 py-1 bg-paper hover:bg-press hover:text-paper text-ink text-xs border-2 border-ink shadow-sticker transition-colors font-grotesk font-bold uppercase"
+                className="px-2.5 py-1 bg-surface hover:bg-band text-ink text-xs border border-line rounded shadow-sm hover:border-press/40 transition-colors font-bold uppercase"
               >
                 #{tag}
               </Link>
@@ -97,7 +97,7 @@ export default function SearchClientView({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <main className="lg:col-span-8">
-            <div className="flex items-center justify-between pb-3 mb-6 border-b-2 border-ink">
+            <div className="flex items-center justify-between pb-3 mb-6 border-b border-line">
               <span className="text-sm font-poster uppercase text-ink">
                 {query ? (
                   <>
@@ -110,17 +110,17 @@ export default function SearchClientView({
             </div>
 
             {results.length === 0 ? (
-              <div className="bg-sheet p-12 border-2 border-dashed border-ink text-center space-y-3 shadow-press">
+              <div className="bg-sheet p-12 border border-dashed border-line rounded-xl text-center space-y-3 shadow-lg">
                 <AlertCircle className="w-10 h-10 text-press mx-auto" />
                 <h3 className="text-base font-poster uppercase text-ink">
                   No stories found for this query!
                 </h3>
-                <p className="text-xs text-ink-dim font-grotesk font-medium">
+                <p className="text-xs text-ink-dim font-medium">
                   Try searching with different actor names, movie titles, or explore latest cinema news on the home page.
                 </p>
                 <Link
                   href="/"
-                  className="inline-block mt-3 px-5 py-2.5 bg-ink text-paper text-xs font-poster uppercase tracking-wider hover:bg-press border-2 border-ink shadow-sticker transition-colors"
+                  className="inline-block mt-3 px-5 py-2.5 bg-band text-ink text-xs font-poster uppercase tracking-wider hover:bg-surface border border-line rounded-lg shadow-sm hover:border-press/40 transition-colors"
                 >
                   Back to Home
                 </Link>

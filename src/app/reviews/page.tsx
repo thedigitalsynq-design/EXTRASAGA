@@ -68,7 +68,7 @@ export default async function ReviewsPage() {
             </div>
 
             <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
-              <span className="text-xs font-poster font-bold px-4 py-2 bg-marquee text-ink border-2 border-ink shadow-sticker uppercase tracking-wider">
+              <span className="text-xs font-poster font-bold px-4 py-2 bg-band text-ink border border-line rounded-lg shadow-sm uppercase tracking-wider">
                 {reviews.length} VERIFIED REVIEWS
               </span>
             </div>
@@ -77,27 +77,27 @@ export default async function ReviewsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Editorial Standards Quote inspired by Reference Image 1 & 4 */}
-        <div className="mb-8 p-6 rounded-[24px] bg-[#FAF7F2] border-2 border-ink shadow-press flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        {/* Editorial Standards Quote */}
+        <div className="mb-8 p-6 rounded-xl bg-sheet border border-line shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
           <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-mono font-bold text-press-deep uppercase">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-press uppercase">
               <span className="w-2 h-2 rounded-full bg-press" />
               <span>THE EXTRA-SAAGA CRITICAL CHARTER</span>
             </div>
             <p className="text-base sm:text-lg font-poster uppercase text-ink leading-snug">
               &ldquo;We listen with curiosity, evaluate with honesty, and write with integrity. Every film is audited for both its emotional heartbeat and its technical visual craft.&rdquo;
             </p>
-            <p className="font-handwritten text-base text-ink-dim font-bold">
+            <p className="text-sm text-ink-dim font-bold">
               — EXTRA-SAAGA National Film Critics Guild ✍️
             </p>
           </div>
 
           <div className="flex items-center gap-3 shrink-0 flex-wrap">
-            <div className="px-4 py-2.5 rounded-2xl bg-paper border-2 border-ink shadow-sticker text-center">
+            <div className="px-4 py-2.5 rounded-lg bg-surface border border-line shadow-sm text-center">
               <div className="text-[10px] font-mono uppercase text-ink-dim font-bold">Axis 1</div>
               <div className="text-xs font-poster font-bold text-ink uppercase">Narrative &amp; Soul</div>
             </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-paper border-2 border-ink shadow-sticker text-center">
+            <div className="px-4 py-2.5 rounded-lg bg-surface border border-line shadow-sm text-center">
               <div className="text-[10px] font-mono uppercase text-ink-dim font-bold">Axis 2</div>
               <div className="text-xs font-poster font-bold text-press uppercase">Technical Index</div>
             </div>

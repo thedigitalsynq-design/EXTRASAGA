@@ -54,7 +54,7 @@ export default function BoxOfficeTrackingSwitcher({
   return (
     <nav
       aria-label="Box Office Telemetry Modes"
-      className="w-full bg-sheet border-2 border-ink shadow-sticker p-2 select-none"
+      className="w-full bg-sheet border border-line rounded-xl shadow-lg p-2.5 select-none"
     >
       <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
         {tabs.map((tab) => {
@@ -65,15 +65,15 @@ export default function BoxOfficeTrackingSwitcher({
             <button
               key={tab.id}
               onClick={() => onModeChange(tab.id)}
-              className={`flex flex-col items-start p-3 text-left transition-all border-2 relative ${
+              className={`flex flex-col items-start p-3 text-left transition-all rounded-lg border relative ${
                 isActive
-                  ? "bg-paper text-ink border-ink shadow-press"
-                  : "bg-sheet text-ink-dim hover:text-ink hover:bg-paper/60 border-transparent"
+                  ? "bg-surface text-ink border-line shadow-sm font-bold"
+                  : "bg-sheet text-ink-dim hover:text-ink hover:bg-surface/50 border-transparent"
               }`}
             >
               {tab.badge && (
-                <span className={`absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-mono-tabular font-bold uppercase border border-ink ${
-                  tab.badge === "NEW" ? "bg-marquee text-ink" : "bg-press text-paper animate-pulse"
+                <span className={`absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-mono-tabular font-bold uppercase border rounded ${
+                  tab.badge === "NEW" ? "bg-marquee text-ink border-line" : "bg-press text-paper border-press animate-pulse"
                 }`}>
                   {tab.badge}
                 </span>

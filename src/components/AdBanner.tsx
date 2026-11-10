@@ -16,7 +16,7 @@ export default function AdBanner({ placement, ad, className = "" }: AdBannerProp
   if (ad && ad.imageUrl && ad.isActive) {
     const bannerContent = (
       <div
-        className={`relative overflow-hidden bg-sheet border-2 border-ink shadow-press card-press-interactive group ${
+        className={`relative overflow-hidden bg-sheet border border-line rounded-xl shadow-lg hover:border-press/40 transition-all duration-300 group ${
           isLeaderboard ? "h-24 sm:h-28 max-w-4xl" : isSidebar ? "h-64 max-w-sm" : "h-32"
         } w-full mx-auto my-6`}
       >

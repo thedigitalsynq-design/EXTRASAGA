@@ -41,17 +41,17 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
   };
 
   return (
-    <section className="my-10 bg-sheet border-2 border-ink shadow-press p-6 sm:p-8">
-      <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-ink">
+    <section className="my-10 bg-sheet border border-line rounded-xl shadow-lg p-6 sm:p-8">
+      <div className="flex items-center justify-between pb-4 mb-6 border-b border-line">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-band border-2 border-ink flex items-center justify-center text-ink shadow-sticker">
+          <div className="w-8 h-8 bg-surface border border-line rounded-lg flex items-center justify-center text-ink">
             <MessageSquare className="w-4 h-4 text-press" />
           </div>
-          <h3 className="text-xl font-black text-ink uppercase tracking-tight">
+          <h3 className="text-xl font-bold text-ink uppercase tracking-tight">
             Reader Wire Comments ({comments.length})
           </h3>
         </div>
-        <span className="text-xs font-mono-tabular font-bold text-ink-mute uppercase">
+        <span className="text-xs font-mono-tabular font-semibold text-ink-mute uppercase">
           Moderated Discussion
         </span>
       </div>
@@ -59,7 +59,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       {/* Comment Form */}
       <form onSubmit={handleSubmit} className="mb-8 space-y-4">
         <div>
-          <label className="block text-xs uppercase font-black text-ink mb-1.5 tracking-wider">
+          <label className="block text-xs uppercase font-bold text-ink mb-1.5 tracking-wider">
             Your Name & City:
           </label>
           <div className="relative">
@@ -68,14 +68,14 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Praveen Kumar, Bengaluru"
-              className="w-full bg-paper border-2 border-ink px-4 py-2.5 text-sm text-ink placeholder-ink-mute/60 focus:outline-none focus:bg-band shadow-sticker font-bold transition-colors"
+              className="w-full bg-surface border border-line rounded-lg px-4 py-2.5 text-sm text-ink placeholder-ink-mute/50 focus:outline-none focus:border-press/50 font-medium transition-colors"
             />
             <User className="w-4 h-4 text-ink-mute absolute right-3.5 top-3" />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs uppercase font-black text-ink mb-1.5 tracking-wider">
+          <label className="block text-xs uppercase font-bold text-ink mb-1.5 tracking-wider">
             Your Take:
           </label>
           <textarea
@@ -84,12 +84,12 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Share your review or reaction to this story..."
             required
-            className="w-full bg-paper border-2 border-ink p-3.5 text-sm text-ink placeholder-ink-mute/60 focus:outline-none focus:bg-band shadow-sticker font-medium transition-colors resize-none"
+            className="w-full bg-surface border border-line rounded-lg p-3.5 text-sm text-ink placeholder-ink-mute/50 focus:outline-none focus:border-press/50 font-normal transition-colors resize-none"
           />
         </div>
 
         {successMsg && (
-          <div className="p-2.5 bg-[#4ADE80]/20 border-2 border-ink text-xs text-ink font-bold shadow-sticker flex items-center gap-2">
+          <div className="p-3 bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 rounded-lg text-xs font-medium flex items-center gap-2">
             <span>✓</span>
             <span>{successMsg}</span>
           </div>
@@ -98,7 +98,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2.5 bg-press hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker flex items-center gap-2 transition-all btn-press-interactive disabled:opacity-50"
+          className="px-6 py-2.5 bg-press hover:bg-press/90 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center gap-2 transition-all disabled:opacity-50"
         >
           <Send className="w-3.5 h-3.5" />
           <span>{isSubmitting ? "Publishing..." : "Post Comment"}</span>
@@ -108,8 +108,8 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
       {/* Comments List */}
       <div className="space-y-4">
         {comments.length === 0 ? (
-          <div className="p-6 bg-paper border-2 border-dashed border-ink/40 text-center">
-            <p className="text-sm text-ink-mute font-bold uppercase tracking-wider">
+          <div className="p-6 bg-surface/30 border border-dashed border-line rounded-xl text-center">
+            <p className="text-sm text-ink-mute font-medium uppercase tracking-wider">
               No reader comments yet. Be the first to share your critique!
             </p>
           </div>
@@ -117,26 +117,26 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
           comments.map((com) => (
             <div
               key={com.id}
-              className="p-4 bg-paper border-2 border-ink shadow-sticker space-y-2 card-press-interactive"
+              className="p-4 bg-surface/60 border border-line rounded-xl space-y-2 hover:border-line/80 transition-colors"
             >
-              <div className="flex items-center justify-between border-b border-ink/20 pb-1.5">
-                <span className="text-sm font-black text-ink uppercase tracking-tight">
+              <div className="flex items-center justify-between border-b border-line/40 pb-2">
+                <span className="text-sm font-bold text-ink uppercase tracking-tight">
                   {com.authorName}
                 </span>
-                <span className="text-[11px] text-ink-mute font-mono-tabular font-bold">
+                <span className="text-[11px] text-ink-mute font-mono-tabular">
                   {formatEditorialTimeAgo(com.createdAt)}
                 </span>
               </div>
-              <p className="text-sm text-ink leading-relaxed font-medium">
+              <p className="text-sm text-ink leading-relaxed font-normal">
                 {com.content}
               </p>
-              <div className="flex items-center gap-2 pt-1 text-xs text-ink-mute font-bold">
+              <div className="flex items-center gap-2 pt-1 text-xs text-ink-mute">
                 <button
                   type="button"
-                  className="flex items-center gap-1.5 px-2 py-0.5 bg-band border border-ink shadow-sticker hover:text-press transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 py-1 bg-surface border border-line rounded-md hover:text-press transition-colors"
                 >
                   <Heart className="w-3 h-3 text-press" />
-                  <span className="font-mono-tabular">{com.likes} Likes</span>
+                  <span className="font-mono-tabular font-medium">{com.likes} Likes</span>
                 </button>
               </div>
             </div>

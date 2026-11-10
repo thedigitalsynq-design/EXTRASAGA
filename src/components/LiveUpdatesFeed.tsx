@@ -75,10 +75,10 @@ export default function LiveUpdatesFeed({
 
   if (compact) {
     return (
-      <aside className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-6 relative overflow-hidden">
+      <aside className="bg-sheet border border-line rounded-xl shadow-lg p-5 sm:p-6 relative overflow-hidden">
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b-2 border-ink">
+          <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-line">
             <div className="flex items-center gap-2.5">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-press opacity-75"></span>
@@ -150,23 +150,23 @@ export default function LiveUpdatesFeed({
   }
 
   return (
-    <section className="w-full my-8 bg-sheet border-2 border-ink shadow-press p-5 sm:p-7 relative overflow-hidden">
+    <section className="w-full my-8 bg-sheet border border-line rounded-xl shadow-lg p-5 sm:p-7 relative overflow-hidden">
       {/* Header Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b-2 border-ink relative z-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-line relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-press text-paper border-2 border-ink shadow-sticker flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 bg-press text-paper border border-line rounded-lg shadow-sm flex items-center justify-center shrink-0">
             <Radio className="w-5 h-5 animate-pulse" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="sticker bg-press text-paper border-2 border-ink px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest">
+              <span className="sticker bg-press text-paper border border-line rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest">
                 LIVE
               </span>
               <h2 className="text-lg sm:text-xl font-poster uppercase text-ink tracking-tight">
                 REAL-TIME CINEMA LIVE WIRE
               </h2>
             </div>
-            <p className="text-xs text-ink-dim font-grotesk font-medium mt-0.5">
+            <p className="text-xs text-ink-dim font-medium mt-0.5">
               Direct from the heartbeat of the industry — live box office receipts, set dispatches, and breaking cinema news as it unfolds.
             </p>
           </div>
@@ -177,15 +177,15 @@ export default function LiveUpdatesFeed({
           <button
             type="button"
             onClick={() => setAutoRefresh(!autoRefresh)}
-            className={`btn-press-interactive flex items-center gap-1.5 px-3 py-1.5 text-xs font-poster uppercase transition-all border-2 border-ink ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-poster uppercase rounded-lg transition-all border ${
               autoRefresh
-                ? "bg-marquee text-ink shadow-sticker"
-                : "bg-paper text-ink shadow-sticker"
+                ? "bg-band text-ink border-line font-bold shadow-sm"
+                : "bg-surface text-ink-dim hover:text-ink border-line"
             }`}
           >
             <span
-              className={`w-2 h-2 ${
-                autoRefresh ? "bg-press animate-ping" : "bg-ink"
+              className={`w-2 h-2 rounded-full ${
+                autoRefresh ? "bg-press animate-ping" : "bg-ink-mute"
               }`}
             ></span>
             <span className="font-mono">{autoRefresh ? `Auto: ${countdown}s` : "Auto-Refresh: OFF"}</span>
@@ -195,7 +195,7 @@ export default function LiveUpdatesFeed({
             type="button"
             onClick={fetchLiveUpdates}
             disabled={isLoading}
-            className="btn-press-interactive flex items-center gap-1.5 px-3.5 py-1.5 bg-ink hover:bg-press disabled:opacity-50 text-paper text-xs font-poster uppercase tracking-wider transition-all border-2 border-ink shadow-sticker"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-press hover:bg-press-deep disabled:opacity-50 text-paper text-xs font-poster uppercase tracking-wider rounded-lg shadow-sm transition-all"
             aria-label="Refresh updates"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
@@ -205,17 +205,17 @@ export default function LiveUpdatesFeed({
       </div>
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-3.5 border-b-2 border-ink text-xs">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-3.5 border-b border-line text-xs">
         <Filter className="w-3.5 h-3.5 text-ink shrink-0 mr-1" />
         {categoryPills.map((pill) => (
           <button
             key={pill.id}
             type="button"
             onClick={() => setSelectedCategory(pill.id)}
-            className={`btn-press-interactive px-3.5 py-1 text-xs font-poster uppercase transition-all whitespace-nowrap border-2 border-ink ${
+            className={`px-3.5 py-1 text-xs font-poster uppercase rounded-lg transition-all whitespace-nowrap border ${
               selectedCategory === pill.id
-                ? "bg-press text-paper shadow-sticker"
-                : "bg-paper text-ink hover:bg-band shadow-sticker"
+                ? "bg-press text-paper border-press font-bold shadow-sm"
+                : "bg-surface text-ink-dim hover:text-ink border-line"
             }`}
           >
             {pill.label}
@@ -226,7 +226,7 @@ export default function LiveUpdatesFeed({
       {/* Live Stream List */}
       <div className="space-y-3.5 mt-4">
         {updates.length === 0 ? (
-          <div className="p-8 text-center bg-paper border-2 border-dashed border-ink">
+          <div className="p-8 text-center bg-surface border border-dashed border-line rounded-xl">
             <p className="text-sm font-poster uppercase text-ink-dim">
               No live updates available in this category right now.
             </p>
@@ -235,14 +235,14 @@ export default function LiveUpdatesFeed({
           updates.map((item) => (
             <article
               key={item.id}
-              className="card-press-interactive group p-4 bg-paper hover:bg-band border-2 border-ink shadow-sticker transition-all relative"
+              className="group p-4 bg-surface hover:bg-band border border-line rounded-xl shadow-sm hover:border-press/40 transition-all relative"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-2 py-0.5 text-[9px] font-bold uppercase bg-marquee text-ink border border-ink font-mono">
+                  <span className="px-2 py-0.5 text-[9px] font-bold uppercase bg-band text-ink border border-line rounded font-mono">
                     {item.badgeText}
                   </span>
-                  <span className="flex items-center gap-1 text-[11px] text-press-deep font-bold font-mono">
+                  <span className="flex items-center gap-1 text-[11px] text-press font-bold font-mono">
                     <CheckCircle2 className="w-3 h-3 text-press-deep" />
                     {item.source}
                   </span>

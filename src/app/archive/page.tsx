@@ -62,7 +62,7 @@ export default async function PermanentArchivePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 space-y-12">
         {/* Section 1: Archived Cinema Releases */}
         <section>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b-2 border-ink mb-6 gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b border-line mb-6 gap-2">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-press uppercase tracking-wider mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -84,17 +84,17 @@ export default async function PermanentArchivePage() {
               return (
                 <article
                   key={movie.id}
-                  className="bg-sheet border-2 border-ink shadow-press overflow-hidden flex flex-col card-press-interactive group"
+                  className="bg-sheet border border-line rounded-xl shadow-lg overflow-hidden flex flex-col group hover:border-press/40 transition-all duration-300"
                 >
-                  <div className="relative aspect-[2/3] w-full bg-band border-b-2 border-ink">
+                  <div className="relative aspect-[2/3] w-full bg-band border-b border-line">
                     <Image
                       src={movie.posterImage}
                       alt={movie.titleEn}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-2.5 left-2.5">
-                      <span className="px-2 py-0.5 text-[10px] font-mono-tabular font-black bg-paper text-ink border border-ink uppercase shadow-sticker">
+                      <span className="px-2.5 py-1 text-[10px] font-mono-tabular font-black bg-surface/90 text-ink border border-line rounded backdrop-blur-sm uppercase shadow-sm">
                         Archived
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export default async function PermanentArchivePage() {
                     </div>
                     <Link
                       href={`/movies/${movie.slug}`}
-                      className="w-full py-2 bg-paper hover:bg-band text-ink text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1 transition-all border-2 border-ink shadow-sticker btn-press-interactive"
+                      className="w-full py-2 bg-band hover:bg-surface text-ink text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all border border-line rounded-lg shadow-sm hover:border-press/40"
                     >
                       <span>View Dossier</span>
                       <ChevronRight className="w-3.5 h-3.5 text-press" />
@@ -127,7 +127,7 @@ export default async function PermanentArchivePage() {
 
         {/* Section 2: Permanent Published Articles Feed */}
         <section>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b-2 border-ink mb-6 gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-4 border-b border-line mb-6 gap-2">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-mono-tabular font-black text-violet-soft uppercase tracking-wider mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -148,14 +148,14 @@ export default async function PermanentArchivePage() {
               <Link
                 key={art.id}
                 href={`/news/${art.slug}`}
-                className="p-4 bg-sheet border-2 border-ink shadow-press hover:bg-paper transition-all flex gap-4 card-press-interactive group"
+                className="p-4 bg-sheet border border-line rounded-xl shadow-lg hover:bg-surface hover:border-press/40 transition-all flex gap-4 group"
               >
-                <div className="relative w-20 h-20 border border-ink overflow-hidden bg-band shrink-0 shadow-sticker">
+                <div className="relative w-20 h-20 border border-line rounded-lg overflow-hidden bg-band shrink-0 shadow-sm">
                   <Image
                     src={art.featuredImage}
                     alt={art.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="min-w-0 flex-1">

@@ -16,6 +16,7 @@ import SocialShare from "@/components/SocialShare";
 import CommentSection from "@/components/CommentSection";
 import { RAMAYANA_REVIEWS_BY_LANGUAGE } from "@/data/ramayanaReviewData";
 import DualAxisReviewScore from "@/components/DualAxisReviewScore";
+import DualLuminousDiscs from "@/components/DualLuminousDiscs";
 
 interface ReviewPageProps {
   params: {
@@ -208,6 +209,16 @@ export default async function MovieReviewPage({ params }: ReviewPageProps) {
           <div className="my-6">
             <DualAxisReviewScore review={review} />
           </div>
+
+          {/* Dual Luminous Discs: Narrative vs Craft Audit */}
+          <DualLuminousDiscs
+            categoryLabel={review.movieTitle}
+            heading={`Critical Audit: ${review.movieTitleEn}`}
+            problemTitle="Story & Narrative Soul"
+            problemDesc={review.storyAnalysis || "Screenplay cadence, character depth, and thematic emotional resonance across runtime."}
+            solutionTitle="Technical Visual Craft"
+            solutionDesc={review.directionAnalysis || review.musicAnalysis || "Cinematography, sound engineering, visual effects, and directorial execution."}
+          />
 
           {/* Review Body */}
           <div className="art-body">

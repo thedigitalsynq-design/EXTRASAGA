@@ -30,29 +30,29 @@ export default function BoxOfficeYearlyLeaderboard() {
 
   return (
     <div className="space-y-6">
-      {/* Elegance Formula: 60-30-10 Color Hierarchy & Aggregate Stats Banner */}
-      <div className="bg-sheet border-2 border-ink shadow-press p-5 sm:p-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b-2 border-ink">
+      {/* Aggregate Stats Banner */}
+      <div className="bg-sheet border border-line rounded-xl shadow-lg p-5 sm:p-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-line">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="sticker bg-press text-paper border-2 border-ink px-2.5 py-0.5 text-[10px] font-mono-tabular font-black uppercase tracking-wider shadow-sticker flex items-center gap-1.5">
+              <span className="sticker bg-press text-paper border border-line px-2.5 py-0.5 text-[10px] font-mono-tabular font-black uppercase tracking-wider rounded shadow-sm flex items-center gap-1.5">
                 <Trophy className="w-3.5 h-3.5" />
                 <span>OFFICIAL TRADE RECORD</span>
               </span>
-              <span className="px-2.5 py-0.5 text-[10px] font-mono-tabular font-bold uppercase bg-band text-ink border border-ink shadow-sticker">
+              <span className="px-2.5 py-0.5 text-[10px] font-mono-tabular font-bold uppercase bg-band text-ink border border-line rounded shadow-sm">
                 YEARLY RANKING
               </span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-poster uppercase text-ink tracking-tight">
               {selectedYear} Box Office Leaderboard
             </h2>
-            <p className="text-xs sm:text-sm text-ink-dim font-grotesk mt-1 font-medium">
+            <p className="text-xs sm:text-sm text-ink-dim mt-1 font-medium">
               Multi-source audited theatrical revenue rankings across all Indian cinema industries.
             </p>
           </div>
 
           {/* Year Switcher Chips */}
-          <div className="flex items-center gap-1.5 bg-paper p-1.5 border-2 border-ink shadow-sticker self-start md:self-auto">
+          <div className="flex items-center gap-1.5 bg-surface p-1.5 border border-line rounded-lg shadow-sm self-start md:self-auto">
             <span className="text-[10px] font-mono-tabular uppercase font-bold text-ink-mute px-2 flex items-center gap-1">
               <Calendar className="w-3 h-3 text-press" />
               Year:
@@ -64,10 +64,10 @@ export default function BoxOfficeYearlyLeaderboard() {
                   key={year}
                   type="button"
                   onClick={() => setSelectedYear(year)}
-                  className={`px-3 py-1 text-xs font-mono-tabular font-black uppercase border-2 transition-all ${
+                  className={`px-3 py-1 text-xs font-mono-tabular font-black uppercase border rounded transition-all ${
                     isActive
-                      ? "bg-marquee text-ink border-ink shadow-sticker scale-105"
-                      : "bg-paper text-ink border-transparent hover:border-ink hover:bg-band"
+                      ? "bg-band text-ink border-line font-bold shadow-sm"
+                      : "bg-surface text-ink-dim border-transparent hover:border-line hover:text-ink"
                   }`}
                 >
                   {year}
@@ -79,7 +79,7 @@ export default function BoxOfficeYearlyLeaderboard() {
 
         {/* Aggregate Stats Cards Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-5">
-          <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
+          <div className="p-4 bg-surface border border-line rounded-xl shadow-sm">
             <span className="text-[10px] font-mono-tabular uppercase font-bold text-ink-mute block">
               Films Documented
             </span>
@@ -91,7 +91,7 @@ export default function BoxOfficeYearlyLeaderboard() {
             </span>
           </div>
 
-          <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
+          <div className="p-4 bg-surface border border-line rounded-xl shadow-sm">
             <span className="text-[10px] font-mono-tabular uppercase font-bold text-ink-mute block">
               Total India Net
             </span>
@@ -103,7 +103,7 @@ export default function BoxOfficeYearlyLeaderboard() {
             </span>
           </div>
 
-          <div className="p-3.5 bg-paper border-2 border-ink shadow-sticker">
+          <div className="p-4 bg-surface border border-line rounded-xl shadow-sm">
             <span className="text-[10px] font-mono-tabular uppercase font-bold text-ink-mute block">
               Total Worldwide Gross
             </span>
@@ -115,15 +115,15 @@ export default function BoxOfficeYearlyLeaderboard() {
             </span>
           </div>
 
-          <div className="p-3.5 bg-marquee text-ink border-2 border-ink shadow-sticker">
+          <div className="p-4 bg-band text-ink border border-line rounded-xl shadow-sm">
             <span className="text-[10px] font-mono-tabular uppercase font-black text-ink/70 block flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-ink" />
+              <Sparkles className="w-3 h-3 text-press" />
               Year Top Grosser
             </span>
             <div className="text-sm sm:text-base font-poster uppercase text-ink mt-0.5 truncate" title={stats.topGrosserName}>
               {stats.topGrosserName}
             </div>
-            <span className="text-xs font-mono-tabular font-black text-ink block mt-0.5">
+            <span className="text-xs font-mono-tabular font-black text-press block mt-0.5">
               {stats.topGrosserCollection} Worldwide
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function BoxOfficeYearlyLeaderboard() {
       </div>
 
       {/* Sort Dimension Filters */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-sheet border-2 border-ink p-3 shadow-sticker">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-sheet border border-line rounded-xl p-3 shadow-lg">
         <div className="flex items-center gap-2">
           <Filter className="w-4 h-4 text-press shrink-0" />
           <span className="text-xs font-mono-tabular uppercase font-black text-ink">
@@ -155,10 +155,10 @@ export default function BoxOfficeYearlyLeaderboard() {
                 key={dim.key}
                 type="button"
                 onClick={() => setSelectedSort(dim.key)}
-                className={`px-3 py-1.5 text-xs font-mono-tabular font-black uppercase border-2 flex items-center gap-1.5 transition-all ${
+                className={`px-3 py-1.5 text-xs font-mono-tabular font-black uppercase rounded-lg border flex items-center gap-1.5 transition-all ${
                   isActive
-                    ? "bg-press text-paper border-ink shadow-sticker"
-                    : "bg-paper text-ink border-ink hover:bg-band"
+                    ? "bg-press text-paper border-press shadow-sm"
+                    : "bg-surface text-ink border-line hover:bg-band"
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -170,11 +170,11 @@ export default function BoxOfficeYearlyLeaderboard() {
       </div>
 
       {/* Table Container */}
-      <div className="bg-sheet border-2 border-ink shadow-press overflow-hidden">
+      <div className="bg-sheet border border-line rounded-xl shadow-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-band border-b-2 border-ink text-xs font-mono-tabular font-black uppercase text-ink">
+              <tr className="bg-surface border-b border-line text-xs font-mono-tabular font-black uppercase text-ink">
                 <th scope="col" className="py-3.5 px-4 w-14 text-center">Rank</th>
                 <th scope="col" className="py-3.5 px-4 min-w-[240px]">Film</th>
                 <th scope="col" className="py-3.5 px-4 min-w-[110px]">Release Date</th>
@@ -185,25 +185,25 @@ export default function BoxOfficeYearlyLeaderboard() {
                 <th scope="col" className="py-3.5 px-4 text-center min-w-[160px]">Trade Verdict</th>
               </tr>
             </thead>
-            <tbody className="divide-y-2 divide-ink/20 text-xs font-mono-tabular">
+            <tbody className="divide-y divide-line text-xs font-mono-tabular">
               {items.map((item) => {
                 const isTop3 = item.rank <= 3;
                 return (
                   <tr
                     key={item.slug}
-                    className="hover:bg-band/50 transition-colors bg-paper"
+                    className="hover:bg-surface/50 transition-colors bg-sheet"
                   >
                     {/* Rank */}
                     <td className="py-3.5 px-4 text-center">
                       <span
-                        className={`inline-flex items-center justify-center w-7 h-7 text-xs font-black border-2 border-ink ${
+                        className={`inline-flex items-center justify-center w-7 h-7 text-xs font-black rounded border ${
                           item.rank === 1
-                            ? "bg-marquee text-ink shadow-sticker"
+                            ? "bg-marquee text-ink border-line font-bold"
                             : item.rank === 2
-                            ? "bg-sheet text-ink shadow-sticker"
+                            ? "bg-surface text-ink border-line"
                             : item.rank === 3
-                            ? "bg-band text-ink shadow-sticker"
-                            : "bg-paper text-ink-dim"
+                            ? "bg-band text-ink border-line"
+                            : "bg-surface/50 text-ink-dim border-transparent"
                         }`}
                       >
                         {item.rank}
@@ -213,7 +213,7 @@ export default function BoxOfficeYearlyLeaderboard() {
                     {/* Film Poster + Title */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="relative w-10 h-14 border border-ink overflow-hidden bg-band shrink-0 shadow-sticker">
+                        <div className="relative w-10 h-14 border border-line rounded overflow-hidden bg-band shrink-0 shadow-sm">
                           <Image
                             src={item.posterImage}
                             alt={item.movieTitleEn}
@@ -230,7 +230,7 @@ export default function BoxOfficeYearlyLeaderboard() {
                             {item.movieTitle}
                           </Link>
                           <div className="flex items-center gap-1.5 mt-1">
-                            <span className="text-[9px] px-1.5 py-0.2 bg-band text-ink border border-ink uppercase font-bold">
+                            <span className="text-[9px] px-1.5 py-0.5 bg-surface text-ink border border-line rounded uppercase font-bold">
                               {item.language.toUpperCase()}
                             </span>
                             <span className="text-[10px] text-ink-mute uppercase font-bold truncate">
@@ -278,7 +278,7 @@ export default function BoxOfficeYearlyLeaderboard() {
         </div>
 
         {/* Footer Note */}
-        <div className="p-4 bg-band border-t-2 border-ink flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono-tabular text-ink-dim">
+        <div className="p-4 bg-surface border-t border-line flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono-tabular text-ink-dim">
           <span>
             * All figures reconciliated via independent exhibitor telemetry and certified trade returns.
           </span>

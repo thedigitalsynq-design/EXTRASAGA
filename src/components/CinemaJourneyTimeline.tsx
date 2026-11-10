@@ -92,33 +92,33 @@ export default function CinemaJourneyTimeline() {
 
   return (
     <section aria-label="Cinema Journey Timeline" className="w-full py-12 relative">
-      {/* Broadsheet Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b-2 border-ink">
+      {/* Cinema Section Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b border-line">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-band text-ink font-bold text-xs uppercase tracking-widest border-2 border-ink shadow-sticker mb-3">
-            <Compass className="w-3.5 h-3.5 text-press-deep" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-band text-ink font-bold text-xs uppercase tracking-widest border border-line rounded-lg shadow-sm mb-3">
+            <Compass className="w-3.5 h-3.5 text-press" />
             <span>The Cinema Odyssey</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-poster uppercase text-ink tracking-tight">
             From Blank Page to Cultural Monument
           </h2>
-          <p className="text-sm text-ink-dim font-grotesk font-medium mt-1 max-w-2xl">
+          <p className="text-sm text-ink-dim font-medium mt-1 max-w-2xl">
             How our newsroom documents, audits, and honors each film&apos;s journey — from the first spark of inspiration to an immortal cultural memory.
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-ink bg-paper px-3 py-1.5 border-2 border-ink shadow-sticker self-start md:self-end">
+        <div className="flex items-center gap-2 text-xs font-mono font-bold text-ink bg-surface px-3 py-1.5 border border-line rounded-lg shadow-sm self-start md:self-end">
           <span className="w-2 h-2 rounded-full bg-press animate-ping" />
           <span>6-Stage Editorial Audit</span>
         </div>
       </div>
 
-      {/* Main 2-Column Split inspired by reference designs */}
+      {/* Main 2-Column Split */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
         {/* Left Sticky Hero Column (5 cols) */}
         <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-          <div className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 relative overflow-hidden">
+          <div className="bg-sheet border border-line rounded-2xl shadow-xl p-6 sm:p-8 relative overflow-hidden">
             {/* Dot grid decoration */}
-            <DotGrid className="absolute top-4 right-4" rows={3} cols={4} />
+            <DotGrid className="absolute top-4 right-4 opacity-20" rows={3} cols={4} />
 
             <div className="flex items-center gap-2 text-xs font-mono text-ink-dim mb-3">
               <span className="w-2 h-2 rounded-full bg-press" />
@@ -133,39 +133,39 @@ export default function CinemaJourneyTimeline() {
               Editorial Pillars Every Film Undergoes
             </h3>
 
-            <p className="text-xs sm:text-sm text-ink-dim font-grotesk font-medium leading-relaxed mb-6">
+            <p className="text-xs sm:text-sm text-ink-dim font-medium leading-relaxed mb-6">
               Great cinema is not born overnight. By shadowing every transition from production sets to premiere midnight screenings, our coverage guarantees integrity, depth, and genuine respect for the art form.
             </p>
 
-            {/* Impact Stat Cards inspired by Reference Image 2 */}
-            <div className="grid grid-cols-3 gap-2.5 pt-4 border-t-2 border-ink">
-              <div className="bg-paper border-2 border-ink shadow-sticker p-2.5 text-center">
+            {/* Impact Stat Cards */}
+            <div className="grid grid-cols-3 gap-2.5 pt-4 border-t border-line">
+              <div className="bg-surface border border-line rounded-xl shadow-sm p-2.5 text-center">
                 <div className="text-base sm:text-lg font-poster text-ink">100%</div>
                 <div className="text-[9px] text-ink-dim font-mono font-bold uppercase mt-0.5">Verified</div>
               </div>
-              <div className="bg-paper border-2 border-ink shadow-sticker p-2.5 text-center">
+              <div className="bg-surface border border-line rounded-xl shadow-sm p-2.5 text-center">
                 <div className="text-base sm:text-lg font-poster text-ink">2-AXIS</div>
                 <div className="text-[9px] text-ink-dim font-mono font-bold uppercase mt-0.5">Dual Audit</div>
               </div>
-              <div className="bg-marquee text-ink border-2 border-ink shadow-sticker p-2.5 text-center">
+              <div className="bg-band text-ink border border-line rounded-xl shadow-sm p-2.5 text-center">
                 <div className="text-base sm:text-lg font-poster text-ink">0%</div>
                 <div className="text-[9px] text-ink font-mono font-bold uppercase mt-0.5">Fake Tea</div>
               </div>
             </div>
           </div>
 
-          {/* Pull Quote Card inspired by Reference Image 4 & 5 */}
-          <div className="bg-sheet border-2 border-ink shadow-press p-5 relative overflow-hidden">
+          {/* Pull Quote Card */}
+          <div className="bg-sheet border border-line rounded-2xl shadow-xl p-5 relative overflow-hidden">
             <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-full bg-press text-paper border-2 border-ink flex items-center justify-center shrink-0 shadow-sticker">
+              <div className="w-9 h-9 rounded-full bg-press text-paper border border-line flex items-center justify-center shrink-0 shadow-sm">
                 <Quote className="w-4 h-4 fill-current" />
               </div>
               <div className="space-y-2">
-                <p className="text-xs sm:text-sm font-grotesk font-semibold text-ink leading-relaxed italic">
+                <p className="text-xs sm:text-sm font-semibold text-ink leading-relaxed italic">
                   &ldquo;Cinema is not built by chance. It is crafted with sweat, heart, and the relentless pursuit of truth on screen.&rdquo;
                 </p>
-                <div className="flex items-center gap-2 pt-2 border-t border-ink/20">
-                  <div className="w-6 h-6 rounded-full bg-marquee border border-ink text-[10px] font-poster flex items-center justify-center font-bold">
+                <div className="flex items-center gap-2 pt-2 border-t border-line">
+                  <div className="w-6 h-6 rounded-full bg-surface border border-line text-[10px] font-poster flex items-center justify-center font-bold">
                     ES
                   </div>
                   <div>
@@ -180,10 +180,10 @@ export default function CinemaJourneyTimeline() {
 
         {/* Right Connected Timeline Column (7 cols) */}
         <div className="lg:col-span-7 relative">
-          {/* Vertical connecting spine line inspired by Image 4 */}
+          {/* Vertical connecting spine line */}
           <div
             aria-hidden="true"
-            className="absolute left-6 top-8 bottom-8 w-0.5 bg-ink/40"
+            className="absolute left-6 top-8 bottom-8 w-0.5 bg-line"
           />
 
           <div className="space-y-6">
@@ -193,22 +193,22 @@ export default function CinemaJourneyTimeline() {
               return (
                 <div key={step.num} className="relative flex items-start gap-4 sm:gap-6 group">
                   {/* Circular Node on Timeline with Step Number Badge */}
-                  <div className="relative z-10 w-12 h-12 rounded-full bg-paper border-2 border-ink flex flex-col items-center justify-center shadow-sticker shrink-0 transition-transform group-hover:scale-105">
+                  <div className="relative z-10 w-12 h-12 rounded-full bg-sheet border border-line flex flex-col items-center justify-center shadow-md shrink-0 transition-transform group-hover:scale-105 group-hover:border-press/50">
                     <span className="text-[11px] font-poster font-bold text-ink leading-none">{step.num}</span>
                     <Icon className="w-3.5 h-3.5 text-press mt-0.5" />
                   </div>
 
                   {/* Step Card with Edge Accent Tab */}
                   <div
-                    className={`flex-1 bg-sheet rounded-[20px] border-2 border-ink shadow-press p-5 sm:p-6 card-press-interactive ${step.accentBorder}`}
+                    className={`flex-1 bg-sheet rounded-2xl border border-line shadow-lg p-5 sm:p-6 group-hover:border-press/40 transition-all duration-300 ${step.accentBorder}`}
                   >
                     {/* Header Row: Number + Stage Tag */}
-                    <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-ink/15">
+                    <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-line">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold px-2 py-0.5 bg-band text-ink border border-ink shadow-2xs">
+                        <span className="text-xs font-mono font-bold px-2 py-0.5 bg-band text-ink border border-line rounded">
                           STAGE {step.num}
                         </span>
-                        <span className="text-[10px] font-poster uppercase tracking-wider text-press-deep">
+                        <span className="text-[10px] font-poster uppercase tracking-wider text-press">
                           {step.stageName}
                         </span>
                       </div>
@@ -223,7 +223,7 @@ export default function CinemaJourneyTimeline() {
                     </h4>
 
                     {/* Step Body */}
-                    <p className="text-xs sm:text-sm text-ink-dim font-grotesk font-medium leading-relaxed">
+                    <p className="text-xs sm:text-sm text-ink-dim font-medium leading-relaxed">
                       {step.body}
                     </p>
                   </div>

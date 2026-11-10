@@ -84,27 +84,27 @@ export default async function CineStarsPage() {
           {/* Sidebar — 3 cols */}
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-20 self-start">
             {/* Methodology card */}
-            <div className="bg-sheet border-2 border-ink shadow-press p-5">
+            <div className="bg-sheet border border-line rounded-xl shadow-lg p-5">
               <h3 className="text-xs font-poster uppercase tracking-wider text-ink mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 bg-ink text-paper border border-ink flex items-center justify-center text-[10px] font-bold">?</span>
+                <span className="w-5 h-5 bg-band text-press border border-line rounded-full flex items-center justify-center text-[10px] font-bold">?</span>
                 <span>RANKING METHODOLOGY</span>
               </h3>
-              <ul className="space-y-2 text-xs font-grotesk text-ink-dim">
+              <ul className="space-y-2.5 text-xs text-ink-dim">
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-press mt-1.5 shrink-0" />
                   Box office power — lifetime verified gross from consolidated trade
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-press mt-1.5 shrink-0" />
                   Daily momentum — opening collections of active releases
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-press mt-1.5 shrink-0" />
                   Cultural influence — social &amp; editorial coverage weight
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-press mt-1.5 shrink-0" />
-                  Zero paid AI — 100% deterministic algorithm
+                  <span className="w-1.5 h-1.5 rounded-full bg-press mt-1.5 shrink-0" />
+                  Zero paid PR — 100% deterministic algorithm
                 </li>
               </ul>
             </div>

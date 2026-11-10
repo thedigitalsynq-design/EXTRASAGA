@@ -157,27 +157,27 @@ export default function CinephileDiscoveryModal({
   const rec = getRecommendation();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/75 backdrop-blur-xs font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md font-sans animate-in fade-in duration-200">
       {/* Background Dim click */}
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Main Ticket Stack Card */}
       <div className="relative w-full max-w-lg z-10">
-        <div className="bg-sheet border-2 border-ink shadow-press p-6 sm:p-8 flex flex-col min-h-[480px] justify-between">
+        <div className="bg-sheet border border-line rounded-2xl shadow-2xl p-6 sm:p-8 flex flex-col min-h-[480px] justify-between">
           {/* Top Bar: Progress Dashes & Close Button */}
           <div>
-            <div className="flex items-center justify-between pb-6 border-b-2 border-ink mb-6">
+            <div className="flex items-center justify-between pb-6 border-b border-line mb-6">
               {/* Segmented Progress Dashes */}
               <div className="flex items-center gap-2">
                 {[0, 1, 2].map((stepIdx) => (
                   <div
                     key={stepIdx}
-                    className={`h-2 border border-ink transition-all duration-200 ${
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
                       currentStep === stepIdx
                         ? "w-10 bg-press"
                         : currentStep > stepIdx
-                        ? "w-10 bg-ink"
-                        : "w-10 bg-band"
+                        ? "w-10 bg-surface border border-line"
+                        : "w-10 bg-surface/40"
                     }`}
                   />
                 ))}
@@ -187,7 +187,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-8 h-8 bg-paper hover:bg-band text-ink flex items-center justify-center border-2 border-ink shadow-sticker text-sm btn-press-interactive"
+                className="w-8 h-8 bg-surface hover:bg-surface/80 text-ink flex items-center justify-center border border-line rounded-lg text-sm transition-colors"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -197,15 +197,15 @@ export default function CinephileDiscoveryModal({
             {/* Question Screen */}
             {currentStep < totalSteps ? (
               <div className="space-y-4">
-                <span className="text-[11px] font-black tracking-widest text-press font-mono-tabular uppercase block">
+                <span className="text-[11px] font-bold tracking-widest text-press font-mono-tabular uppercase block">
                   {q.stepLabel}
                 </span>
 
-                <h3 className="text-xl sm:text-2xl font-black text-ink uppercase tracking-tight leading-snug">
+                <h3 className="text-xl sm:text-2xl font-bold text-ink uppercase tracking-tight leading-snug">
                   {q.title}
                 </h3>
 
-                <p className="text-[10px] font-black tracking-widest text-ink-mute font-mono-tabular uppercase">
+                <p className="text-[10px] font-semibold tracking-widest text-ink-mute font-mono-tabular uppercase">
                   {q.subtitle}
                 </p>
 
@@ -218,31 +218,31 @@ export default function CinephileDiscoveryModal({
                         key={opt.id}
                         type="button"
                         onClick={() => q.onChange(opt.id)}
-                        className={`w-full text-left p-3.5 border-2 transition-all flex items-start gap-3.5 card-press-interactive ${
+                        className={`w-full text-left p-3.5 rounded-xl border transition-all flex items-start gap-3.5 ${
                           isSelected
-                            ? "bg-band border-ink shadow-press scale-[1.01]"
-                            : "bg-paper border-ink/40 hover:border-ink hover:bg-sheet"
+                            ? "bg-surface border-press shadow-md scale-[1.01]"
+                            : "bg-surface/40 border-line hover:border-line/80 hover:bg-surface/70"
                         }`}
                       >
                         {/* Radio Checkbox Stamp */}
                         <div
-                          className={`w-5 h-5 border-2 border-ink flex items-center justify-center mt-0.5 shrink-0 transition-colors shadow-sticker ${
+                          className={`w-5 h-5 rounded-full border flex items-center justify-center mt-0.5 shrink-0 transition-colors ${
                             isSelected
-                              ? "bg-press text-paper"
-                              : "bg-paper"
+                              ? "border-press bg-press text-white"
+                              : "border-line bg-surface"
                           }`}
                         >
                           {isSelected && (
-                            <div className="w-2 h-2 bg-paper" />
+                            <div className="w-2 h-2 rounded-full bg-white" />
                           )}
                         </div>
 
                         {/* Label & Description */}
                         <div>
-                          <div className="text-sm font-black text-ink uppercase">
+                          <div className="text-sm font-bold text-ink uppercase">
                             {opt.label}
                           </div>
-                          <div className="text-xs text-ink-mute mt-0.5 font-medium leading-relaxed">
+                          <div className="text-xs text-ink-mute mt-0.5 font-normal leading-relaxed">
                             {opt.desc}
                           </div>
                         </div>
@@ -254,28 +254,28 @@ export default function CinephileDiscoveryModal({
             ) : (
               /* Recommendation Screen (Result) */
               <div className="space-y-4 py-2">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-band border-2 border-ink text-ink text-xs font-black font-mono-tabular uppercase tracking-wider shadow-sticker">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface border border-line rounded-lg text-ink text-xs font-bold font-mono-tabular uppercase tracking-wider shadow-sm">
                   <Sparkles className="w-3.5 h-3.5 text-press" />
                   <span>Cinephile Match Verified</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-ink uppercase tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold text-ink uppercase tracking-tight">
                   {rec.title}
                 </h3>
 
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="px-2.5 py-0.5 bg-paper text-ink font-mono-tabular font-black uppercase border border-ink shadow-sticker">
+                  <span className="px-2.5 py-0.5 bg-surface text-ink font-mono-tabular font-semibold uppercase border border-line rounded-md">
                     {rec.industry}
                   </span>
                   <span className="text-ink-mute">•</span>
-                  <span className="text-press font-black uppercase">{rec.status}</span>
+                  <span className="text-press font-bold uppercase">{rec.status}</span>
                 </div>
 
-                <div className="p-4 bg-paper border-2 border-ink shadow-sticker text-xs text-ink space-y-2">
-                  <p className="leading-relaxed font-medium">{rec.summary}</p>
-                  <div className="flex items-center justify-between pt-2 border-t border-ink/20 font-mono-tabular">
-                    <span>Director: <strong className="text-ink uppercase">{rec.director}</strong></span>
-                    <span className="font-black text-press uppercase">{rec.rating}</span>
+                <div className="p-4 bg-surface/60 border border-line rounded-xl text-xs text-ink space-y-2">
+                  <p className="leading-relaxed font-normal">{rec.summary}</p>
+                  <div className="flex items-center justify-between pt-2 border-t border-line/40 font-mono-tabular">
+                    <span>Director: <strong className="text-ink uppercase font-semibold">{rec.director}</strong></span>
+                    <span className="font-bold text-press uppercase">{rec.rating}</span>
                   </div>
                 </div>
 
@@ -283,7 +283,7 @@ export default function CinephileDiscoveryModal({
                   <Link
                     href={rec.slug}
                     onClick={onClose}
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-press hover:bg-ink text-paper font-black text-xs uppercase tracking-wider border-2 border-ink shadow-sticker transition-all btn-press-interactive"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 bg-press hover:bg-press/90 text-white font-bold text-xs uppercase tracking-wider border border-press/60 rounded-xl shadow-md transition-all"
                   >
                     <span>Read Full Editorial Dossier</span>
                     <ArrowRight className="w-4 h-4" />
@@ -295,12 +295,12 @@ export default function CinephileDiscoveryModal({
 
           {/* Bottom Action Bar */}
           {currentStep < totalSteps ? (
-            <div className="flex items-center justify-between pt-6 border-t-2 border-ink mt-6">
+            <div className="flex items-center justify-between pt-6 border-t border-line mt-6">
               {currentStep > 0 ? (
                 <button
                   type="button"
                   onClick={() => setCurrentStep((s) => s - 1)}
-                  className="text-xs font-black text-ink-mute hover:text-ink tracking-wider uppercase font-mono-tabular transition-colors"
+                  className="text-xs font-semibold text-ink-mute hover:text-ink tracking-wider uppercase font-mono-tabular transition-colors"
                 >
                   Back
                 </button>
@@ -312,20 +312,20 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={() => setCurrentStep((s) => s + 1)}
-                className="px-6 py-2.5 bg-ink text-paper hover:bg-press text-xs font-black uppercase tracking-wider border-2 border-ink shadow-sticker active:scale-95 transition-all flex items-center gap-1.5 btn-press-interactive"
+                className="px-6 py-2.5 bg-press text-white hover:bg-press/90 text-xs font-bold uppercase tracking-wider rounded-xl shadow-md active:scale-95 transition-all flex items-center gap-1.5"
               >
                 <span>{currentStep === totalSteps - 1 ? "Discover Match" : "Next"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           ) : (
-            <div className="flex items-center justify-between pt-4 border-t-2 border-ink mt-4">
+            <div className="flex items-center justify-between pt-4 border-t border-line mt-4">
               <button
                 type="button"
                 onClick={() => {
                   setCurrentStep(0);
                 }}
-                className="text-xs font-black text-ink-mute hover:text-ink inline-flex items-center gap-1.5 font-mono-tabular uppercase"
+                className="text-xs font-semibold text-ink-mute hover:text-ink inline-flex items-center gap-1.5 font-mono-tabular uppercase transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Start Over</span>
@@ -333,7 +333,7 @@ export default function CinephileDiscoveryModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="text-xs font-black text-ink uppercase hover:underline"
+                className="text-xs font-semibold text-ink uppercase hover:text-press transition-colors"
               >
                 Done
               </button>

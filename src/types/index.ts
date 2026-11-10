@@ -117,6 +117,7 @@ export interface MovieReview {
   verdict: string; // Verdict badge e.g. "Blockbuster Movie!", "Total Entertainment!"
   summary: string;
   storyAnalysis: string;
+  technicalAnalysis?: string;
   performanceAnalysis: string;
   directionAnalysis: string;
   musicAnalysis: string;

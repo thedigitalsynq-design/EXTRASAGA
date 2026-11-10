@@ -47,23 +47,23 @@ Verified data: https://extra-saaga.com/box-office`;
       role="dialog"
       aria-modal="true"
       aria-labelledby="tweet-studio-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="bg-paper border-2 border-ink shadow-press w-full max-w-xl max-h-[90vh] overflow-y-auto">
+      <div className="bg-sheet border border-line rounded-2xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto flex flex-col">
         {/* Modal Header */}
-        <div className="bg-sheet border-b-2 border-ink px-5 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 bg-band text-ink border border-ink">
+        <div className="bg-surface/80 border-b border-line px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <span className="p-2 bg-surface text-ink border border-line rounded-lg">
               <Share2 className="w-4 h-4 text-press" />
             </span>
             <div>
               <h2
                 id="tweet-studio-title"
-                className="text-base font-poster uppercase tracking-wide text-ink"
+                className="text-base font-bold uppercase tracking-wide text-ink"
               >
                 Social Tweet Studio &amp; Trade Card
               </h2>
-              <span className="text-[10px] font-mono text-ink-dim uppercase">
+              <span className="text-[10px] font-mono-tabular text-ink-mute uppercase">
                 1-Click Formatted Snapshot for X / Instagram
               </span>
             </div>
@@ -71,7 +71,7 @@ Verified data: https://extra-saaga.com/box-office`;
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-1.5 border border-ink hover:bg-paper text-ink transition-colors"
+            className="p-1.5 rounded-lg border border-line hover:bg-surface text-ink transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -79,64 +79,64 @@ Verified data: https://extra-saaga.com/box-office`;
 
         {/* Modal Body */}
         <div className="p-6 space-y-6">
-          {/* Card Preview (Editorial BroadSheet Style) */}
-          <div className="bg-sheet border-2 border-ink p-5 shadow-sticker relative overflow-hidden">
-            <div className="flex items-start justify-between border-b-2 border-ink pb-3 mb-4">
+          {/* Card Preview */}
+          <div className="bg-surface/60 border border-line rounded-xl p-5 relative overflow-hidden">
+            <div className="flex items-start justify-between border-b border-line/40 pb-3 mb-4">
               <div>
-                <span className="sticker bg-press text-paper border border-ink text-[9px] font-bold px-2 py-0.5 tracking-wider uppercase">
+                <span className="bg-press/20 text-press border border-press/40 rounded-full text-[9px] font-bold px-2.5 py-0.5 tracking-wider uppercase inline-block">
                   VERIFIED THEATRICAL LEDGER
                 </span>
-                <h3 className="text-xl font-poster uppercase tracking-tight text-ink mt-1.5">
+                <h3 className="text-xl font-bold uppercase tracking-tight text-ink mt-1.5">
                   {movie.movieTitleEn}
                 </h3>
-                <span className="text-xs font-mono text-ink-dim uppercase">
+                <span className="text-xs font-mono-tabular text-ink-mute uppercase">
                   Industry: {movie.industry} • Language: {movie.language.toUpperCase()}
                 </span>
               </div>
               <div className="text-right">
-                <span className="text-[10px] font-mono text-ink-dim uppercase block">
+                <span className="text-[10px] font-mono-tabular text-ink-mute uppercase block">
                   Advance Gross
                 </span>
-                <span className="text-2xl font-poster text-press font-bold">
+                <span className="text-2xl font-mono-tabular text-press font-bold">
                   {movie.advance.advanceGrossFormatted}
                 </span>
               </div>
             </div>
 
             {/* Metrics Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono text-xs mb-4">
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">Tickets Sold</span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-mono-tabular text-xs mb-4">
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">Tickets Sold</span>
                 <span className="font-bold text-sm text-ink">
                   {movie.advance.ticketsSoldFormatted}
                 </span>
               </div>
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">PIC Multiplexes</span>
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">PIC Multiplexes</span>
                 <span className="font-bold text-sm text-ink">
                   {movie.advance.nationalChainsTicketsFormatted}
                 </span>
               </div>
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">Total Shows</span>
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">Total Shows</span>
                 <span className="font-bold text-sm text-ink">
                   {movie.advance.totalShows.toLocaleString("en-IN")}
                 </span>
               </div>
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">Occupancy</span>
-                <span className="font-bold text-sm text-accent-moss">
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">Occupancy</span>
+                <span className="font-bold text-sm text-emerald-400">
                   {movie.advance.occupancyPercent}%
                 </span>
               </div>
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">Fast Filling</span>
-                <span className="font-bold text-sm text-accent-signal">
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">Fast Filling</span>
+                <span className="font-bold text-sm text-amber-400">
                   {movie.advance.fastFillingShows}
                 </span>
               </div>
-              <div className="p-2.5 bg-paper border border-ink/20">
-                <span className="text-[10px] text-ink-dim uppercase block">Housefull</span>
+              <div className="p-2.5 bg-surface border border-line/60 rounded-lg">
+                <span className="text-[10px] text-ink-mute uppercase block">Housefull</span>
                 <span className="font-bold text-sm text-press">
                   {movie.advance.housefullShows}
                 </span>
@@ -144,15 +144,15 @@ Verified data: https://extra-saaga.com/box-office`;
             </div>
 
             {/* Projections Band */}
-            <div className="p-3 bg-band border border-ink flex items-center justify-between text-xs font-mono mb-3">
+            <div className="p-3 bg-surface border border-line rounded-lg flex items-center justify-between text-xs font-mono-tabular mb-3">
               <div>
-                <span className="text-[9px] uppercase tracking-wider text-ink-dim block">
+                <span className="text-[9px] uppercase tracking-wider text-ink-mute block">
                   Day 1 Projection
                 </span>
                 <span className="font-bold text-ink">{movie.advance.dayPredictionInCrores}</span>
               </div>
               <div className="text-right">
-                <span className="text-[9px] uppercase tracking-wider text-ink-dim block">
+                <span className="text-[9px] uppercase tracking-wider text-ink-mute block">
                   Weekend Forecast
                 </span>
                 <span className="font-bold text-ink">{movie.advance.weekendProjectionInCrores}</span>
@@ -160,7 +160,7 @@ Verified data: https://extra-saaga.com/box-office`;
             </div>
 
             {/* Footer Watermark */}
-            <div className="flex items-center justify-between pt-2 border-t border-ink/20 text-[10px] font-mono text-ink-dim">
+            <div className="flex items-center justify-between pt-2 border-t border-line/40 text-[10px] font-mono-tabular text-ink-mute">
               <span className="flex items-center gap-1">
                 <ShieldCheck className="w-3 h-3 text-press" />
                 Multi-Source Reconciled Telemetry
@@ -174,18 +174,18 @@ Verified data: https://extra-saaga.com/box-office`;
             <div className="flex items-center justify-between">
               <label
                 htmlFor="tweet-copy-text"
-                className="text-xs font-poster uppercase tracking-wide text-ink flex items-center gap-1.5"
+                className="text-xs font-bold uppercase tracking-wide text-ink flex items-center gap-1.5"
               >
                 <Sparkles className="w-3.5 h-3.5 text-press" />
                 Ready-to-Post Tweet Copy
               </label>
               <button
                 onClick={handleCopy}
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-band hover:bg-marquee border border-ink text-xs font-mono font-bold uppercase transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface hover:bg-surface/80 border border-line rounded-lg text-xs font-mono-tabular font-bold uppercase text-ink transition-colors"
               >
                 {copied ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-accent-moss" />
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
                     COPIED TO CLIPBOARD
                   </>
                 ) : (
@@ -201,16 +201,16 @@ Verified data: https://extra-saaga.com/box-office`;
               readOnly
               value={tweetText}
               rows={7}
-              className="w-full bg-sheet border-2 border-ink p-3 font-mono text-xs text-ink focus:outline-none resize-none"
+              className="w-full bg-surface border border-line rounded-xl p-3 font-mono text-xs text-ink focus:outline-none focus:border-press/50 resize-none"
             />
           </div>
         </div>
 
         {/* Modal Footer Actions */}
-        <div className="bg-sheet border-t-2 border-ink px-5 py-3 flex items-center justify-end gap-3">
+        <div className="bg-surface/80 border-t border-line px-6 py-3.5 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 border-2 border-ink text-xs font-mono font-bold uppercase hover:bg-paper transition-colors"
+            className="px-4 py-2 border border-line rounded-lg text-xs font-mono-tabular font-bold uppercase text-ink hover:bg-surface transition-colors"
           >
             Close
           </button>
@@ -218,7 +218,7 @@ Verified data: https://extra-saaga.com/box-office`;
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 bg-press text-paper border-2 border-ink text-xs font-mono font-bold uppercase hover:bg-press-deep transition-colors shadow-sticker"
+            className="px-5 py-2 bg-press text-white border border-press/60 rounded-lg text-xs font-mono-tabular font-bold uppercase hover:bg-press/90 transition-colors shadow-md"
           >
             Post on X (Twitter)
           </a>

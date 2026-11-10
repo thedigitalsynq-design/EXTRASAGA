@@ -286,7 +286,7 @@ export default function CineStarLeaderboard() {
       </div>
 
       {/* FILTERS & SEARCH */}
-      <div className="bg-sheet border-2 border-ink shadow-press p-4">
+      <div className="bg-sheet border border-line rounded-xl shadow-lg p-4">
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Search */}
           <div className="relative flex-1">
@@ -296,7 +296,7 @@ export default function CineStarLeaderboard() {
               placeholder="Search name, film, or source of power..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border-2 border-ink bg-paper text-sm text-ink placeholder:text-ink-mute focus:outline-none shadow-sticker font-grotesk font-medium"
+              className="w-full pl-10 pr-4 py-2 border border-line rounded-lg bg-surface text-sm text-ink placeholder:text-ink-mute focus:outline-none shadow-sm font-medium"
             />
           </div>
 
@@ -312,10 +312,10 @@ export default function CineStarLeaderboard() {
                 key={c.id}
                 type="button"
                 onClick={() => setCategoryFilter(c.id)}
-                className={`btn-press-interactive px-3 py-1.5 text-xs font-poster uppercase whitespace-nowrap transition-all border-2 border-ink ${
+                className={`px-3 py-1.5 text-xs font-poster uppercase whitespace-nowrap rounded-lg transition-all border ${
                   categoryFilter === c.id
-                    ? "bg-ink text-paper shadow-sticker"
-                    : "bg-paper text-ink hover:bg-band shadow-sticker"
+                    ? "bg-band text-ink border-line font-bold shadow-sm"
+                    : "bg-surface text-ink-dim hover:text-ink border-line"
                 }`}
               >
                 {c.label}
@@ -337,10 +337,10 @@ export default function CineStarLeaderboard() {
                 key={ind.id}
                 type="button"
                 onClick={() => setIndustryFilter(ind.id)}
-                className={`btn-press-interactive px-3 py-1.5 text-xs font-poster uppercase whitespace-nowrap transition-all border-2 border-ink ${
+                className={`px-3 py-1.5 text-xs font-poster uppercase whitespace-nowrap rounded-lg transition-all border ${
                   industryFilter === ind.id
-                    ? "bg-press text-paper shadow-sticker"
-                    : "bg-paper text-ink hover:bg-band shadow-sticker"
+                    ? "bg-press text-paper border-press font-bold shadow-sm"
+                    : "bg-surface text-ink-dim hover:text-ink border-line"
                 }`}
               >
                 {ind.label}
@@ -351,9 +351,9 @@ export default function CineStarLeaderboard() {
       </div>
 
       {/* MAIN LEADERBOARD TABLE */}
-      <div className="bg-sheet border-2 border-ink shadow-press overflow-hidden">
+      <div className="bg-sheet border border-line rounded-xl shadow-lg overflow-hidden">
         {/* Table metadata bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b-2 border-ink bg-band">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-line bg-surface">
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-press" />
             <span className="text-sm font-poster uppercase text-ink">
@@ -418,7 +418,7 @@ export default function CineStarLeaderboard() {
                       {/* Profile */}
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">
-                          <div className="relative w-12 h-12 border-2 border-ink overflow-hidden shrink-0 bg-band shadow-sticker">
+                          <div className="relative w-12 h-12 border border-line rounded-lg overflow-hidden shrink-0 bg-band shadow-sm">
                             <Image
                               src={entry.profileImage}
                               alt={entry.name}

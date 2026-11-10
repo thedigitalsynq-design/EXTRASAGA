@@ -5,6 +5,9 @@ import { DataService } from "@/lib/dataService";
 import { HypoMeterService } from "@/lib/hypoMeterService";
 import { YEARLY_LEADERBOARD_RECORDS } from "@/lib/boxOfficeEngine/yearlyLeaderboardData";
 import VerdictBadge from "@/components/VerdictBadge";
+import EditorialBentoShowcase from "@/components/EditorialBentoShowcase";
+import CinemaJourneyTimeline from "@/components/CinemaJourneyTimeline";
+import ExtraSaagaHeroShowcase from "@/components/ExtraSaagaHeroShowcase";
 
 export const revalidate = 60;
 
@@ -41,6 +44,9 @@ export default async function HomePage() {
 
   return (
     <main className="cn-home" id="cn-home" style={{ "--acc-d": "hsl(23 64% 62%)", "--acc-l": "hsl(23 55% 38%)" } as React.CSSProperties}>
+      {/* ================= 0. Grand Masthead & Discover Folder Showcase (Sample Design) ================= */}
+      <ExtraSaagaHeroShowcase />
+
       {/* ================= 1. Mosaic Hero ================= */}
       <section className="cn-hero" aria-label="Tonight on EXTRA-SAAGA">
         {/* Feature slide */}
@@ -585,7 +591,13 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ================= 10. Newsletter Dispatch CTA ================= */}
+        {/* ================= 10. Cinephile Editorial Bento ================= */}
+        <EditorialBentoShowcase />
+
+        {/* ================= 11. Cinema Odyssey Journey ================= */}
+        <CinemaJourneyTimeline />
+
+        {/* ================= 12. Newsletter Dispatch CTA ================= */}
         <section className="cta" id="signup">
           <p>Get the day&apos;s box office and new reviews from EXTRA-SAAGA.</p>
           <form className="cta-form" action="/archive" method="get">

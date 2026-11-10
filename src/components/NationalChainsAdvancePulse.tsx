@@ -17,11 +17,11 @@ export default function NationalChainsAdvancePulse({
   return (
     <section
       aria-label="National Chains Advance Booking Pulse"
-      className="w-full bg-sheet border-2 border-ink shadow-press overflow-hidden my-6 select-none"
+      className="w-full bg-sheet border border-line rounded-xl shadow-lg overflow-hidden my-6 select-none"
     >
       <div className="flex flex-col md:flex-row md:items-stretch">
         {/* Ticker Lead Header */}
-        <div className="bg-band text-ink border-b-2 md:border-b-0 md:border-r-2 border-ink px-4 py-3 flex items-center gap-2.5 shrink-0">
+        <div className="bg-surface text-ink border-b md:border-b-0 md:border-r border-line px-4 py-3 flex items-center gap-2.5 shrink-0">
           <div className="relative flex items-center justify-center">
             <span className="w-2.5 h-2.5 rounded-full bg-press animate-ping absolute" />
             <span className="w-2.5 h-2.5 rounded-full bg-press" />
@@ -43,14 +43,14 @@ export default function NationalChainsAdvancePulse({
             <Link
               key={item.movieId}
               href={`/movies/${item.slug}`}
-              className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-paper hover:bg-sheet border border-ink/30 hover:border-ink transition-all rounded text-xs shrink-0 group"
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-surface hover:bg-band border border-line hover:border-press/40 transition-all rounded-lg text-xs shrink-0 group"
             >
-              <span className="font-bold font-grotesk text-ink group-hover:text-press transition-colors">
+              <span className="font-bold text-ink group-hover:text-press transition-colors">
                 {item.movieTitle}
               </span>
 
               {/* PIC Tickets Badge */}
-              <span className="inline-flex items-center gap-1 font-mono-tabular font-bold bg-sheet px-2 py-0.5 border border-ink/20 text-ink text-[11px]">
+              <span className="inline-flex items-center gap-1 font-mono-tabular font-bold bg-band px-2 py-0.5 border border-line rounded text-ink text-[11px]">
                 <span className="text-[9px] uppercase tracking-wider text-ink-dim">PIC:</span>
                 {item.picTicketsSoldFormatted}
               </span>
@@ -62,14 +62,14 @@ export default function NationalChainsAdvancePulse({
 
               {/* Trend Indicator */}
               <span
-                className={`inline-flex items-center text-[10px] font-mono font-bold px-1.5 py-0.2 rounded ${
+                className={`inline-flex items-center text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
                   item.trend === "up"
-                    ? "bg-accent-moss/20 text-ink"
-                    : "bg-press/20 text-press-deep"
+                    ? "bg-[#4ADE80]/20 text-[#4ADE80]"
+                    : "bg-press/20 text-press"
                 }`}
               >
                 {item.trend === "up" ? (
-                  <ArrowUpRight className="w-3 h-3 mr-0.5 text-accent-moss" />
+                  <ArrowUpRight className="w-3 h-3 mr-0.5 text-[#4ADE80]" />
                 ) : (
                   <ArrowDownRight className="w-3 h-3 mr-0.5 text-press" />
                 )}

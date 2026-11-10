@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,7 +56,8 @@ export default function Header() {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
+      setIsSearchOpen(false);
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -108,7 +110,29 @@ export default function Header() {
 
         {/* Main Navigation */}
         <nav className="nav" aria-label="Main">
-          {/* Box Office Dropdown */}
+          <Link
+            href="/movies"
+            aria-current={pathname.startsWith("/movies") ? "page" : undefined}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            The Screen
+          </Link>
+          <Link
+            href="/cinestars"
+            aria-current={pathname.startsWith("/cinestars") ? "page" : undefined}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            The Stars
+          </Link>
+          <Link
+            href="/hypometer"
+            aria-current={pathname === "/hypometer" ? "page" : undefined}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            The Buzz
+          </Link>
+
+          {/* The Business (Box Office Dropdown) */}
           <div
             className={`dd ${isBoxOfficeDropdownOpen ? "open" : ""}`}
             ref={dropdownRef}
@@ -122,7 +146,7 @@ export default function Header() {
               onClick={() => setIsBoxOfficeDropdownOpen(!isBoxOfficeDropdownOpen)}
               data-current={pathname.startsWith("/box-office") ? "true" : undefined}
             >
-              <span>Box office</span>
+              <span>The Business</span>
               <span className="caret">▼</span>
             </button>
             <div className="dd-menu">
@@ -157,39 +181,18 @@ export default function Header() {
           </div>
 
           <Link
-            href="/box-office"
-            aria-current={pathname === "/box-office" ? "page" : undefined}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Advance
-          </Link>
-          <Link
-            href="/hypometer"
-            aria-current={pathname === "/hypometer" ? "page" : undefined}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            HypoMeter
-          </Link>
-          <Link
             href="/reviews"
             aria-current={pathname.startsWith("/reviews") ? "page" : undefined}
             onClick={() => setIsMenuOpen(false)}
           >
-            Reviews
+            The Critics
           </Link>
           <Link
-            href="/movies"
-            aria-current={pathname.startsWith("/movies") ? "page" : undefined}
+            href="/archive"
+            aria-current={pathname.startsWith("/archive") ? "page" : undefined}
             onClick={() => setIsMenuOpen(false)}
           >
-            Releases
-          </Link>
-          <Link
-            href="/category/latest"
-            aria-current={pathname.startsWith("/news") || pathname.startsWith("/category") ? "page" : undefined}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Articles
+            The Archive
           </Link>
         </nav>
 

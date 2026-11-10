@@ -124,15 +124,15 @@ export default function BoxOfficeClientHub({
       )}
 
       {/* 4. Transparency & Consensus Methodology Assurance Notice */}
-      <div className="p-5 bg-sheet border-2 border-ink shadow-press flex items-start gap-3.5 text-xs text-ink-dim">
-        <div className="p-2 bg-band text-ink border border-ink shrink-0">
-          <ShieldCheck className="w-4 h-4 text-press-deep" />
+      <div className="p-5 bg-sheet border border-line rounded-xl shadow-lg flex items-start gap-3.5 text-xs text-ink-mute">
+        <div className="p-2 bg-surface text-ink border border-line rounded-lg shrink-0">
+          <ShieldCheck className="w-4 h-4 text-press" />
         </div>
         <div className="space-y-1">
-          <span className="font-poster uppercase text-ink block">
+          <span className="font-bold uppercase text-ink tracking-wide block">
             Consolidated Consensus Methodology &amp; Integrity Assurance
           </span>
-          <p className="leading-relaxed font-grotesk text-ink-dim font-medium">
+          <p className="leading-relaxed text-ink-mute font-normal">
             Our aggregation engine unifies reporting formats across exhibitors, ticketing platforms, and regional distributor ledgers. By filtering statistical anomalies and inflated claims, we deliver an honest, tamper-free ledger that respects both the science of trade numbers and the craft of cinema.
           </p>
         </div>
