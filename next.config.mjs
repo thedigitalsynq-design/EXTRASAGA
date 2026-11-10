@@ -52,10 +52,6 @@ const nextConfig = {
   ...(isExport ? { output: "export" } : {}),
   ...(basePath ? { basePath } : {}),
   trailingSlash: isExport,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  optimizeFonts: false,
   compress: true,
   poweredByHeader: false,
   images: {

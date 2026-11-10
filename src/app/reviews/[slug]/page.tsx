@@ -20,7 +20,9 @@ import DualAxisReviewScore from "@/components/DualAxisReviewScore";
 interface ReviewPageProps {
   params: {
     slug: string;
-  };
+  } | Promise<{
+    slug: string;
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -31,7 +33,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ReviewPageProps): Promise<Metadata> {
-  const review = await DataService.getReviewBySlug(params.slug, "en");
+  const resolvedParams = await Promise.resolve(params);
+  const review = await DataService.getReviewBySlug(resolvedParams.slug, "en");
   if (!review) return { title: "Review Not Found — EXTRA-SAAGA" };
 
   const siteUrl = getSiteUrl();
@@ -49,13 +52,14 @@ export async function generateMetadata({ params }: ReviewPageProps): Promise<Met
 }
 
 export default async function MovieReviewPage({ params }: ReviewPageProps) {
-  const review = await DataService.getReviewBySlug(params.slug, "en");
+  const resolvedParams = await Promise.resolve(params);
+  const review = await DataService.getReviewBySlug(resolvedParams.slug, "en");
 
   if (!review) {
     notFound();
   }
 
-  const isRamayana = review.slug.startsWith("ramayana-part-1") || params.slug.startsWith("ramayana");
+  const isRamayana = review.slug.startsWith("ramayana-part-1") || resolvedParams.slug.startsWith("ramayana");
   const ramayanaData = isRamayana ? RAMAYANA_REVIEWS_BY_LANGUAGE.en || RAMAYANA_REVIEWS_BY_LANGUAGE.kn : null;
 
   const allReviews = await DataService.getReviews();

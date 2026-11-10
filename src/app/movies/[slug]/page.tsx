@@ -26,7 +26,9 @@ import { getSiteUrl } from "@/lib/siteUrl";
 interface MoviePageProps {
   params: {
     slug: string;
-  };
+  } | Promise<{
+    slug: string;
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -37,7 +39,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: MoviePageProps): Promise<Metadata> {
-  const movie = await DataService.getMovieBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const movie = await DataService.getMovieBySlug(resolvedParams.slug);
   if (!movie) {
     return { title: "Movie Not Found | EXTRA-SAAGA" };
   }
@@ -69,7 +72,8 @@ export async function generateMetadata({ params }: MoviePageProps): Promise<Meta
 }
 
 export default async function MovieDetailPage({ params }: MoviePageProps) {
-  const movie = await DataService.getMovieBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const movie = await DataService.getMovieBySlug(resolvedParams.slug);
   if (!movie) {
     notFound();
   }

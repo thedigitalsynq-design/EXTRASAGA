@@ -18,7 +18,9 @@ import { formatEditorialDate } from "@/lib/utils";
 interface CategoryPageProps {
   params: {
     slug: string;
-  };
+  } | Promise<{
+    slug: string;
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -28,10 +30,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const cat = CATEGORIES.find((c) => c.slug === params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const cat = CATEGORIES.find((c) => c.slug === resolvedParams.slug);
   if (!cat) return { title: "Category not found — EXTRA-SAAGA" };
 
-  const catName = getLocalizedCategoryName(params.slug, "en");
+  const catName = getLocalizedCategoryName(resolvedParams.slug, "en");
 
   return {
     title: `${catName} — EXTRA-SAAGA`,
@@ -40,18 +43,19 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const currentCategory = CATEGORIES.find((c) => c.slug === params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const currentCategory = CATEGORIES.find((c) => c.slug === resolvedParams.slug);
 
   if (!currentCategory) {
     notFound();
   }
 
   const activeLang = "en" as LanguageCode;
-  const localizedTitle = getLocalizedCategoryName(params.slug, activeLang);
+  const localizedTitle = getLocalizedCategoryName(resolvedParams.slug, activeLang);
 
   const [articles, trendingArticles, reviews, boxOffice, ottReleases, videos, galleries] =
     await Promise.all([
-      DataService.getArticles(params.slug as CategorySlug, activeLang),
+      DataService.getArticles(resolvedParams.slug as CategorySlug, activeLang),
       DataService.getTrendingArticles(5, activeLang),
       DataService.getReviews(),
       DataService.getBoxOffice(),
@@ -78,38 +82,38 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </header>
 
       {/* Specialized Category Views if category is Reviews, Box-Office, OTT, Videos, Gallery */}
-      {params.slug === "reviews" && (
+      {resolvedParams.slug === "reviews" && (
         <div className="space-y-8 mb-12">
           <ReviewsSection reviews={reviews} />
         </div>
       )}
 
-      {params.slug === "box-office" && (
+      {resolvedParams.slug === "box-office" && (
         <div className="space-y-8 mb-12">
           <BoxOfficeTable entries={boxOffice} showAllLink={false} />
         </div>
       )}
 
-      {params.slug === "ott" && (
+      {resolvedParams.slug === "ott" && (
         <div className="space-y-8 mb-12">
           <OttSection releases={ottReleases} />
         </div>
       )}
 
-      {params.slug === "videos" && (
+      {resolvedParams.slug === "videos" && (
         <div className="space-y-8 mb-12">
           <VideoSection videos={videos} />
         </div>
       )}
 
-      {params.slug === "gallery" && (
+      {resolvedParams.slug === "gallery" && (
         <div className="space-y-8 mb-12">
           <PhotoGallerySection galleries={galleries} />
         </div>
       )}
 
       {/* Standard Articles Grid */}
-      {!["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && (
+      {!["reviews", "box-office", "ott", "videos", "gallery"].includes(resolvedParams.slug) && (
         <div>
           {articles.length === 0 ? (
             <div className="p-12 border border-dashed border-line text-center space-y-3 rounded">
@@ -154,7 +158,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       )}
 
       {/* Supplementary Articles for Specialized Pages */}
-      {["reviews", "box-office", "ott", "videos", "gallery"].includes(params.slug) && articles.length > 0 && (
+      {["reviews", "box-office", "ott", "videos", "gallery"].includes(resolvedParams.slug) && articles.length > 0 && (
         <div className="mt-12 pt-8 border-t border-line">
           <div className="h3-head flex items-baseline justify-between pb-2 mb-6 border-b border-line">
             <h2 className="text-lg font-bold uppercase tracking-wider">{localizedTitle} — Reports</h2>

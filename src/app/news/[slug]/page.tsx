@@ -12,7 +12,9 @@ import CommentSection from "@/components/CommentSection";
 interface ArticlePageProps {
   params: {
     slug: string;
-  };
+  } | Promise<{
+    slug: string;
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -23,7 +25,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-  const article = await DataService.getArticleBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const article = await DataService.getArticleBySlug(resolvedParams.slug);
   if (!article) {
     return {
       title: "Article Not Found",
@@ -61,7 +64,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const article = await DataService.getArticleBySlug(params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const article = await DataService.getArticleBySlug(resolvedParams.slug);
 
   if (!article) {
     notFound();

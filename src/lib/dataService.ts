@@ -243,6 +243,7 @@ export const DataService = {
   },
 
   async getArticleBySlug(slug: string): Promise<Article | null> {
+    if (!slug || typeof slug !== "string") return null;
     const all = await this.getArticles();
     const article = all.find((a) => a.slug === slug);
     if (article) {
@@ -377,6 +378,7 @@ export const DataService = {
   },
 
   async getReviewBySlug(slug: string, lang?: string): Promise<MovieReview | null> {
+    if (!slug || typeof slug !== "string") return null;
     const all = await this.getReviews();
 
     // 1. Exact slug match
@@ -576,6 +578,7 @@ export const DataService = {
   },
 
   async getGalleryBySlug(slug: string): Promise<GalleryItem | null> {
+    if (!slug || typeof slug !== "string") return null;
     return memoryGalleries.find((g) => g.slug === slug) || null;
   },
 
@@ -742,6 +745,7 @@ export const DataService = {
   },
 
   async getMovieBySlug(slug: string): Promise<Movie | null> {
+    if (!slug || typeof slug !== "string") return null;
     const movies = await this.getMovies();
     const movie = movies.find((m) => m.slug === slug);
     return movie || null;
